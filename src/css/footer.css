@@ -1,0 +1,288 @@
+.mnshop-footer {
+  width: 100%;
+  background: #111111;
+  color: #f8fafc;
+}
+
+@media screen and (min-width: 1024px) {
+  .mnshop-footer {
+    padding: 72px 48px 28px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-footer__inner {
+    display: grid;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: 96px;
+  }
+
+  .mnshop-footer__brand {
+    max-width: 440px;
+  }
+
+  .mnshop-footer__brand-link {
+    display: inline-flex;
+    color: #f8fafc;
+    text-decoration: none;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .mnshop-footer__logo {
+    position: relative;
+    display: block;
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+  }
+
+  .mnshop-footer__logo img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    object-fit: contain;
+    transform: translate(-50%, -50%);
+  }
+
+  .mnshop-footer__logo img:first-child {
+    width: 48px;
+    height: 48px;
+    animation: mnshop-footer-logo-ring 6s linear infinite;
+  }
+
+  .mnshop-footer__logo img:last-child {
+    width: 30px;
+    height: 30px;
+  }
+
+  .mnshop-footer__brand-name {
+    font-family: "Poppins", "Inter", sans-serif;
+    font-size: 22px;
+    font-weight: 900;
+  }
+
+  .mnshop-footer__description {
+    margin: 24px 0 0;
+    color: rgba(248, 250, 252, 0.62);
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .mnshop-footer__title {
+    margin: 0;
+    color: #f8fafc;
+    font-family: "Poppins", "Inter", sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .mnshop-footer__links {
+    display: grid;
+    margin-top: 22px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 24px;
+  }
+
+  .mnshop-footer__links a {
+    color: rgba(248, 250, 252, 0.62);
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 180ms ease;
+  }
+
+  .mnshop-footer__links a:hover {
+    color: #3b82f6;
+  }
+
+  .mnshop-footer__bottom {
+    width: 100%;
+    max-width: 1280px;
+    margin: 56px auto 0;
+    padding-top: 22px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-footer__bottom p {
+    margin: 0;
+    color: rgba(248, 250, 252, 0.48);
+    font-family: "Inter", sans-serif;
+    font-size: 13px;
+  }
+
+  .mnshop-footer__brand-link:focus-visible,
+  .mnshop-footer__links a:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 3px;
+  }
+}
+
+@keyframes mnshop-footer-logo-ring {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mnshop-footer *,
+  .mnshop-footer *::before,
+  .mnshop-footer *::after {
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .mnshop-footer {
+    padding: 56px 32px 28px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-footer__inner {
+    display: grid;
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    grid-template-columns: minmax(0, 1fr) 220px;
+    gap: 48px;
+  }
+
+  .mnshop-footer__brand {
+    max-width: 420px;
+  }
+
+  .mnshop-footer__brand-link {
+    display: inline-flex;
+    color: #f8fafc;
+    text-decoration: none;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .mnshop-footer__logo {
+    position: relative;
+    display: block;
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
+  }
+
+  .mnshop-footer__logo img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    object-fit: contain;
+    transform: translate(-50%, -50%);
+  }
+
+  .mnshop-footer__logo img:first-child {
+    width: 44px;
+    height: 44px;
+    animation: mnshop-footer-logo-ring 6s linear infinite;
+  }
+
+  .mnshop-footer__logo img:last-child {
+    width: 28px;
+    height: 28px;
+  }
+
+  .mnshop-footer__brand-name {
+    font-family: "Poppins", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+  }
+
+  .mnshop-footer__description {
+    margin: 20px 0 0;
+    color: rgba(248, 250, 252, 0.62);
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .mnshop-footer__title {
+    margin: 0;
+    color: #f8fafc;
+    font-family: "Poppins", "Inter", sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .mnshop-footer__links {
+    display: grid;
+    margin-top: 20px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 20px;
+  }
+
+  .mnshop-footer__links a {
+    color: rgba(248, 250, 252, 0.62);
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .mnshop-footer__links a:hover {
+    color: #3b82f6;
+  }
+
+  .mnshop-footer__bottom {
+    width: 100%;
+    max-width: 960px;
+    margin: 48px auto 0;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-footer__bottom p {
+    margin: 0;
+    color: rgba(248, 250, 252, 0.48);
+    font-family: "Inter", sans-serif;
+    font-size: 13px;
+  }
+
+  .mnshop-footer__brand-link:focus-visible,
+  .mnshop-footer__links a:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 3px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .mnshop-footer {
+    padding: 48px 16px 112px;
+  }
+
+  .mnshop-footer__inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+  }
+
+  .mnshop-footer__description {
+    max-width: 360px;
+  }
+
+  .mnshop-footer__navigation {
+    max-width: 320px;
+  }
+
+  .mnshop-footer__bottom {
+    margin-top: 40px;
+  }
+}
