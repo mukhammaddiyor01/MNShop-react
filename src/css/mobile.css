@@ -1366,6 +1366,764 @@
   }
 }
 
+/* ==================================================
+   SOURCE parity — products catalog mobile
+   ================================================== */
+
+@media screen and (max-width: 767px) {
+  .mnshop-catalog {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 48px 20px;
+  }
+
+  .mnshop-catalog__heading {
+    display: grid;
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    gap: 20px;
+  }
+
+  .mnshop-catalog__heading > div > p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  .mnshop-catalog__heading h2 {
+    margin: 12px 0 0;
+    font-family: "Poppins", "Inter", sans-serif;
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 1.2;
+  }
+
+  .mnshop-catalog__sort {
+    display: flex;
+    width: fit-content;
+    min-width: fit-content;
+    padding: 0 16px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.6);
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+  }
+
+  .mnshop-catalog__sort svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .mnshop-catalog__sort select {
+    height: 44px;
+    padding-right: 32px;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+  }
+
+  .mnshop-catalog__layout {
+    display: grid;
+    gap: 40px;
+  }
+
+  .mnshop-catalog__filters {
+    height: fit-content;
+    padding-bottom: 32px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .mnshop-catalog__price-filter > label,
+  .mnshop-catalog__color-filter > p,
+  .mnshop-catalog__size-filter > p {
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .mnshop-catalog__price-filter > label {
+    display: block;
+  }
+
+  .mnshop-catalog__price-filter > input {
+    width: 100%;
+    margin-top: 16px;
+    accent-color: #3b82f6;
+  }
+
+  .mnshop-catalog__price-filter > div {
+    display: flex;
+    margin-top: 8px;
+    color: rgba(255, 255, 255, 0.4);
+    justify-content: space-between;
+    font-size: 12px;
+  }
+
+  .mnshop-catalog__color-filter,
+  .mnshop-catalog__size-filter {
+    margin-top: 28px;
+  }
+
+  .mnshop-catalog__color-filter > p,
+  .mnshop-catalog__size-filter > p {
+    margin: 0 0 16px;
+  }
+
+  .mnshop-catalog__color-filter > label {
+    display: flex;
+    margin-bottom: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+  }
+
+  .mnshop-catalog__color-filter > label:active {
+    color: #fff;
+  }
+
+  .mnshop-catalog__color-filter input {
+    accent-color: #3b82f6;
+  }
+
+  .mnshop-catalog__color-filter label > span {
+    width: 16px;
+    height: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 9999px;
+  }
+
+  .mnshop-catalog__size-filter > div {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .mnshop-catalog__size-filter button {
+    height: 40px;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    transition:
+      border-color 150ms ease,
+      background-color 150ms ease,
+      color 150ms ease;
+  }
+
+  .mnshop-catalog__size-filter button:active {
+    border-color: #fff;
+    background: #fff;
+    color: #000;
+  }
+
+  .mnshop-catalog__results-heading {
+    display: flex;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mnshop-catalog__results-heading p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+  }
+
+  .mnshop-catalog__results-heading span {
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .mnshop-catalog__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    column-gap: 20px;
+    row-gap: 48px;
+  }
+
+  .mnshop-catalog__sort select:focus-visible,
+  .mnshop-catalog__price-filter input:focus-visible,
+  .mnshop-catalog__color-filter input:focus-visible,
+  .mnshop-catalog__size-filter button:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 3px;
+  }
+}
+
+@media screen and (min-width: 640px) and (max-width: 767px) {
+  .mnshop-catalog__heading {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+  }
+
+  .mnshop-catalog__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ==================================================
+   SOURCE parity — catalog hero tablet
+   ================================================== */
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .mnshop-catalog-hero {
+    position: relative;
+    height: 54vh;
+    min-height: 440px;
+    max-height: 680px;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+  }
+
+  .mnshop-catalog-hero__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    animation: mnshop-catalog-image-enter 850ms
+      cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .mnshop-catalog-hero__veil,
+  .mnshop-catalog-hero__gradient {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .mnshop-catalog-hero__veil {
+    background: rgba(0, 0, 0, 0.25);
+  }
+
+  .mnshop-catalog-hero__gradient {
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(0, 0, 0, 0.35) 50%,
+      transparent 100%
+    );
+  }
+
+  .mnshop-catalog-hero__inner {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    width: 100%;
+    max-width: 1440px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 56px 32px;
+    align-items: flex-end;
+  }
+
+  .mnshop-catalog-hero__content {
+    display: grid;
+    width: 100%;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    grid-template-columns: 1fr 420px;
+    align-items: end;
+    gap: 20px;
+  }
+
+  .mnshop-catalog-hero__eyebrow {
+    display: flex;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.65);
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  .mnshop-catalog-hero__eyebrow svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .mnshop-catalog-hero h1 {
+    margin: 12px 0 0;
+    color: #fff;
+    font-family: "Poppins", "Inter", sans-serif;
+    font-size: 72px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .mnshop-catalog-hero__description {
+    max-width: 576px;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 16px;
+    line-height: 28px;
+  }
+
+  .mnshop-catalog-hero__previous,
+  .mnshop-catalog-hero__next {
+    position: absolute;
+    z-index: 20;
+    top: 50%;
+    display: grid;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0;
+    background: rgba(0, 0, 0, 0.35);
+    color: #fff;
+    cursor: pointer;
+    place-items: center;
+    transform: translateY(-50%);
+    transition:
+      background-color 150ms ease,
+      color 150ms ease;
+  }
+
+  .mnshop-catalog-hero__previous {
+    left: 16px;
+  }
+
+  .mnshop-catalog-hero__next {
+    right: 16px;
+  }
+
+  .mnshop-catalog-hero__previous:hover,
+  .mnshop-catalog-hero__next:hover {
+    background: #fff;
+    color: #000;
+  }
+
+  .mnshop-catalog-hero__previous svg,
+  .mnshop-catalog-hero__next svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .mnshop-catalog-hero__indicators {
+    position: absolute;
+    z-index: 20;
+    right: 32px;
+    bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mnshop-catalog-hero__indicator {
+    width: 20px;
+    height: 2px;
+    padding: 0;
+    border: 0;
+    background: rgba(255, 255, 255, 0.35);
+    cursor: pointer;
+    transition:
+      width 150ms ease,
+      background-color 150ms ease;
+  }
+
+  .mnshop-catalog-hero__indicator:hover,
+  .mnshop-catalog-hero__indicator--active {
+    background: #fff;
+  }
+
+  .mnshop-catalog-hero__indicator--active {
+    width: 36px;
+  }
+
+  .mnshop-catalog-hero__previous:focus-visible,
+  .mnshop-catalog-hero__next:focus-visible,
+  .mnshop-catalog-hero__indicator:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 3px;
+  }
+
+  @keyframes mnshop-catalog-image-enter {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+/* ==================================================
+   SOURCE parity — products catalog tablet
+   ================================================== */
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .mnshop-catalog {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 80px 32px;
+  }
+
+  .mnshop-catalog__heading {
+    display: grid;
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 20px;
+  }
+
+  .mnshop-catalog__heading > div > p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  .mnshop-catalog__heading h2 {
+    margin: 12px 0 0;
+    font-family: "Poppins", "Inter", sans-serif;
+    font-size: 36px;
+    font-weight: 900;
+    line-height: 1.2;
+  }
+
+  .mnshop-catalog__sort {
+    display: flex;
+    min-width: fit-content;
+    padding: 0 16px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.6);
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+  }
+
+  .mnshop-catalog__sort svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .mnshop-catalog__sort select {
+    height: 44px;
+    padding-right: 32px;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+  }
+
+  .mnshop-catalog__layout {
+    display: grid;
+    gap: 40px;
+  }
+
+  .mnshop-catalog__filters {
+    height: fit-content;
+    padding-bottom: 32px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .mnshop-catalog__price-filter > label,
+  .mnshop-catalog__color-filter > p,
+  .mnshop-catalog__size-filter > p {
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .mnshop-catalog__price-filter > label {
+    display: block;
+  }
+
+  .mnshop-catalog__price-filter > input {
+    width: 100%;
+    margin-top: 16px;
+    accent-color: #3b82f6;
+  }
+
+  .mnshop-catalog__price-filter > div {
+    display: flex;
+    margin-top: 8px;
+    color: rgba(255, 255, 255, 0.4);
+    justify-content: space-between;
+    font-size: 12px;
+  }
+
+  .mnshop-catalog__color-filter,
+  .mnshop-catalog__size-filter {
+    margin-top: 28px;
+  }
+
+  .mnshop-catalog__color-filter > p,
+  .mnshop-catalog__size-filter > p {
+    margin: 0 0 16px;
+  }
+
+  .mnshop-catalog__color-filter > label {
+    display: flex;
+    margin-bottom: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+  }
+
+  .mnshop-catalog__color-filter > label:hover {
+    color: #fff;
+  }
+
+  .mnshop-catalog__color-filter input {
+    accent-color: #3b82f6;
+  }
+
+  .mnshop-catalog__color-filter label > span {
+    width: 16px;
+    height: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 9999px;
+  }
+
+  .mnshop-catalog__size-filter > div {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .mnshop-catalog__size-filter button {
+    height: 40px;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    transition:
+      border-color 150ms ease,
+      background-color 150ms ease,
+      color 150ms ease;
+  }
+
+  .mnshop-catalog__size-filter button:hover {
+    border-color: #fff;
+    background: #fff;
+    color: #000;
+  }
+
+  .mnshop-catalog__results-heading {
+    display: flex;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mnshop-catalog__results-heading p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+  }
+
+  .mnshop-catalog__results-heading span {
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .mnshop-catalog__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 20px;
+    row-gap: 48px;
+  }
+
+  .mnshop-catalog__sort select:focus-visible,
+  .mnshop-catalog__price-filter input:focus-visible,
+  .mnshop-catalog__color-filter input:focus-visible,
+  .mnshop-catalog__size-filter button:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 3px;
+  }
+}
+
+/* ==================================================
+   SOURCE parity — catalog hero mobile
+   ================================================== */
+
+@media screen and (max-width: 767px) {
+  .mnshop-catalog-hero {
+    position: relative;
+    height: 54vh;
+    min-height: 440px;
+    max-height: 680px;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+  }
+
+  .mnshop-catalog-hero__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    animation: mnshop-catalog-image-enter 850ms
+      cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .mnshop-catalog-hero__veil,
+  .mnshop-catalog-hero__gradient {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .mnshop-catalog-hero__veil {
+    background: rgba(0, 0, 0, 0.25);
+  }
+
+  .mnshop-catalog-hero__gradient {
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(0, 0, 0, 0.35) 50%,
+      transparent 100%
+    );
+  }
+
+  .mnshop-catalog-hero__inner {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    width: 100%;
+    max-width: 1440px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 48px 20px;
+    align-items: flex-end;
+  }
+
+  .mnshop-catalog-hero__content {
+    display: grid;
+    width: 100%;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    gap: 20px;
+  }
+
+  .mnshop-catalog-hero__eyebrow {
+    display: flex;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.65);
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  .mnshop-catalog-hero__eyebrow svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .mnshop-catalog-hero h1 {
+    margin: 12px 0 0;
+    color: #fff;
+    font-family: "Poppins", "Inter", sans-serif;
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .mnshop-catalog-hero__description {
+    max-width: 576px;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 14px;
+    line-height: 28px;
+  }
+
+  .mnshop-catalog-hero__previous,
+  .mnshop-catalog-hero__next {
+    display: none;
+  }
+
+  .mnshop-catalog-hero__indicators {
+    position: absolute;
+    z-index: 20;
+    right: 20px;
+    bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mnshop-catalog-hero__indicator {
+    width: 20px;
+    height: 2px;
+    padding: 0;
+    border: 0;
+    background: rgba(255, 255, 255, 0.35);
+    cursor: pointer;
+    transition:
+      width 150ms ease,
+      background-color 150ms ease;
+  }
+
+  .mnshop-catalog-hero__indicator:hover,
+  .mnshop-catalog-hero__indicator--active {
+    background: #fff;
+  }
+
+  .mnshop-catalog-hero__indicator--active {
+    width: 36px;
+  }
+
+  .mnshop-catalog-hero__indicator:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 3px;
+  }
+
+  @keyframes mnshop-catalog-image-enter {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+}
+
 @media screen and (max-width: 767px) {
   .mnshop-home-hero {
     position: relative;
@@ -1564,4 +2322,3 @@
     outline-offset: 3px;
   }
 }
-
