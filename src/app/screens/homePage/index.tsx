@@ -1,4 +1,5 @@
 import "../../../css/home.css";
+import "../../../css/mobile.css";
 import "../../../css/products.css";
 import { BestSellers } from "./BestSellers";
 import { Hero } from "./Hero";
