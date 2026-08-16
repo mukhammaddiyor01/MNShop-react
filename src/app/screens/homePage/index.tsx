@@ -1,5 +1,10 @@
-import { Container } from "@mui/material";
+import "../../../css/home.css";
+import { Hero } from "./Hero";
 
 export function HomePage() {
-  return <Container>Home</Container>;
+  return (
+    <main className="mnshop-homepage">
+      <Hero />
+    </main>
+  );
 }
