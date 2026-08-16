@@ -672,3 +672,233 @@
     display: none;
   }
 }
+
+/* ==================================================
+   Buyer Home Navbar — tablet and mobile
+   ================================================== */
+
+@media screen and (max-width: 1023px) {
+  .mnshop-home-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 64px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(10, 10, 10, 0.92);
+    color: #f8fafc;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .mnshop-home-navbar__inner {
+    display: flex;
+    width: 100%;
+    height: 64px;
+    margin: 0 auto;
+    padding: 0 32px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mnshop-home-navbar__brand,
+  .mnshop-home-navbar__drawer-brand {
+    display: flex;
+    color: #f8fafc;
+    text-decoration: none;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .mnshop-home-navbar__brand > span:first-child,
+  .mnshop-home-navbar__drawer-brand > span:first-child {
+    display: grid;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(59, 130, 246, 0.75);
+    border-radius: 12px;
+    background: rgba(59, 130, 246, 0.14);
+    color: #3b82f6;
+    font-family: "Poppins", "Inter", sans-serif;
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    place-items: center;
+  }
+
+  .mnshop-home-navbar__brand-name,
+  .mnshop-home-navbar__drawer-brand span:last-child {
+    display: block;
+    color: #f8fafc;
+    font-family: "Poppins", "Inter", sans-serif;
+    font-size: 18px;
+    font-weight: 900;
+  }
+
+  .mnshop-home-navbar__desktop-nav {
+    display: none;
+  }
+
+  .mnshop-home-navbar__actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mnshop-home-navbar__login,
+  .mnshop-home-navbar__mobile-login {
+    display: flex;
+    min-height: 40px;
+    padding: 0 20px;
+    border-radius: 9999px;
+    background: #3b82f6;
+    color: #f8fafc;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .mnshop-home-navbar__menu-toggle,
+  .mnshop-home-navbar__drawer-close {
+    display: grid;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 0;
+    border-radius: 9999px;
+    background: transparent;
+    color: #f8fafc;
+    cursor: pointer;
+    place-items: center;
+  }
+
+  .mnshop-home-navbar__menu-toggle:hover,
+  .mnshop-home-navbar__drawer-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-home-navbar__overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1100;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    background: rgba(0, 0, 0, 0.68);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  .mnshop-home-navbar__drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1200;
+    display: flex;
+    width: min(360px, 100%);
+    padding: 20px;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    background: #0a0a0a;
+    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.38);
+    animation: mnshop-drawer-enter 240ms ease-out;
+    flex-direction: column;
+  }
+
+  .mnshop-home-navbar__drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mnshop-home-navbar__mobile-nav {
+    display: flex;
+    margin-top: 32px;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .mnshop-home-navbar__mobile-link {
+    display: block;
+    padding: 12px 16px;
+    border-radius: 8px;
+    color: rgba(248, 250, 252, 0.7);
+    font-family: "Inter", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none;
+    transition:
+      background-color 180ms ease,
+      color 180ms ease;
+  }
+
+  .mnshop-home-navbar__mobile-link:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #f8fafc;
+  }
+
+  .mnshop-home-navbar__mobile-link--active {
+    background: rgba(59, 130, 246, 0.15);
+    color: #3b82f6;
+  }
+
+  .mnshop-home-navbar__mobile-login {
+    width: 100%;
+    margin-top: 32px;
+  }
+
+  .mnshop-home-navbar__brand:focus-visible,
+  .mnshop-home-navbar__login:focus-visible,
+  .mnshop-home-navbar__menu-toggle:focus-visible,
+  .mnshop-home-navbar__drawer-brand:focus-visible,
+  .mnshop-home-navbar__drawer-close:focus-visible,
+  .mnshop-home-navbar__mobile-link:focus-visible,
+  .mnshop-home-navbar__mobile-login:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 3px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .mnshop-home-navbar__inner {
+    padding: 0 16px;
+  }
+
+  .mnshop-home-navbar__brand-name,
+  .mnshop-home-navbar__login {
+    display: none;
+  }
+
+  .mnshop-home-navbar__drawer {
+    width: min(340px, 100%);
+    padding: 16px;
+  }
+}
+
+@keyframes mnshop-drawer-enter {
+  from {
+    opacity: 0;
+    transform: translateX(32px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mnshop-home-navbar *,
+  .mnshop-home-navbar *::before,
+  .mnshop-home-navbar *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
+  }
+}
