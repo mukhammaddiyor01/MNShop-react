@@ -280,6 +280,290 @@
   }
 }
 
+/* ==================================================
+   SOURCE parity — best sellers desktop
+   ================================================== */
+
+@media screen and (min-width: 1024px) {
+  .mnshop-best-sellers {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 96px 48px;
+    scroll-margin-top: 96px;
+  }
+
+  .mnshop-best-sellers__heading {
+    display: grid;
+    margin-bottom: 36px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 20px;
+  }
+
+  .mnshop-best-sellers__heading p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  .mnshop-best-sellers__heading h2 {
+    margin: 12px 0 0;
+    font-family: "Poppins", "Inter", sans-serif;
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .mnshop-best-sellers__heading-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mnshop-best-sellers__heading-actions a {
+    display: flex;
+    margin-right: 12px;
+    color: rgba(255, 255, 255, 0.65);
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 150ms ease;
+  }
+
+  .mnshop-best-sellers__heading-actions a:hover {
+    color: #fff;
+  }
+
+  .mnshop-best-sellers__heading-actions a svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .mnshop-best-sellers__heading-actions button {
+    display: grid;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 0;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    place-items: center;
+    transition: background-color 150ms ease, color 150ms ease;
+  }
+
+  .mnshop-best-sellers__heading-actions button:hover {
+    background: #fff;
+    color: #000;
+  }
+
+  .mnshop-best-sellers__heading-actions button svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .mnshop-best-sellers__rail {
+    display: grid;
+    padding-bottom: 8px;
+    grid-auto-columns: 320px;
+    grid-auto-flow: column;
+    gap: 28px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+  }
+
+  .mnshop-best-sellers__heading-actions a:focus-visible,
+  .mnshop-best-sellers__heading-actions button:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 3px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .mnshop-best-sellers {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 96px 32px;
+    scroll-margin-top: 96px;
+  }
+
+  .mnshop-best-sellers__heading {
+    display: grid;
+    margin-bottom: 36px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 20px;
+  }
+
+  .mnshop-best-sellers__heading p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  .mnshop-best-sellers__heading h2 {
+    margin: 12px 0 0;
+    font-family: "Poppins", "Inter", sans-serif;
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .mnshop-best-sellers__heading-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mnshop-best-sellers__heading-actions a {
+    display: flex;
+    margin-right: 12px;
+    color: rgba(255, 255, 255, 0.65);
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .mnshop-best-sellers__heading-actions a svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .mnshop-best-sellers__heading-actions button {
+    display: grid;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 0;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    place-items: center;
+  }
+
+  .mnshop-best-sellers__heading-actions button svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .mnshop-best-sellers__rail {
+    display: grid;
+    padding-bottom: 8px;
+    grid-auto-columns: 320px;
+    grid-auto-flow: column;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+  }
+
+  .mnshop-best-sellers__heading-actions a:focus-visible,
+  .mnshop-best-sellers__heading-actions button:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 3px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .mnshop-best-sellers {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 64px 20px;
+    scroll-margin-top: 96px;
+  }
+
+  .mnshop-best-sellers__heading {
+    display: grid;
+    margin-bottom: 36px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    gap: 20px;
+  }
+
+  .mnshop-best-sellers__heading p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  .mnshop-best-sellers__heading h2 {
+    margin: 12px 0 0;
+    font-family: "Poppins", "Inter", sans-serif;
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 36px;
+  }
+
+  .mnshop-best-sellers__heading-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mnshop-best-sellers__heading-actions a {
+    display: none;
+  }
+
+  .mnshop-best-sellers__heading-actions button {
+    display: grid;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 0;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    place-items: center;
+  }
+
+  .mnshop-best-sellers__heading-actions button:active {
+    background: #fff;
+    color: #000;
+  }
+
+  .mnshop-best-sellers__heading-actions button svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .mnshop-best-sellers__rail {
+    display: grid;
+    padding-bottom: 8px;
+    grid-auto-columns: minmax(260px, 1fr);
+    grid-auto-flow: column;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+  }
+
+  .mnshop-best-sellers__heading-actions button:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 3px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .mnshop-hero__video {
     display: none;
