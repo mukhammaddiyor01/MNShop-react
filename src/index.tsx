@@ -10,6 +10,7 @@ import "./css/index.css";
 import { BrowserRouter as Router } from "react-router-dom";
 import theme from "./app/MaterialTheme copy";
 import { ContextProvider } from "./app/context/ContextProvider";
+import { SitePreferencesProvider } from "./app/context/SitePreferencesProvider";
 
 const container = document.getElementById("root");
 
@@ -24,12 +25,14 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <ContextProvider>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Router>
-            <App />
-          </Router>
-        </ThemeProvider>
+        <SitePreferencesProvider>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Router>
+              <App />
+            </Router>
+          </ThemeProvider>
+        </SitePreferencesProvider>
       </ContextProvider>
     </Provider>
   </React.StrictMode>,
