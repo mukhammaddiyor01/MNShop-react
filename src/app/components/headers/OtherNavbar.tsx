@@ -1,101 +1,135 @@
-import { Box, Button, Container, Stack } from "@mui/material";
-import React from "react";
-import { NavLink } from "react-router-dom";
+import CloseIcon from "@mui/icons-material/Close";
+import MenuIcon from "@mui/icons-material/Menu";
+import PersonIcon from "@mui/icons-material/Person";
+import { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+
+const publicNavigation = [
+  { label: "Home", href: "/", exact: true },
+  { label: "Products", href: "/products" },
+  { label: "Help", href: "/help" },
+  { label: "About", href: "/about" },
+];
+
+function MnshopLogo() {
+  return (
+    <span className="mnshop-other-navbar__logo" aria-label="MNShop logo">
+      <img src="/icons/Tashqi aylana.png" alt="" aria-hidden="true" />
+      <img src="/icons/Markaziy logo.png" alt="" aria-hidden="true" />
+    </span>
+  );
+}
 
 export function OtherNavbar() {
-  const authMember = null;
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <div className="mnshop-other-navbar">
-      <Container className="mnshop-other-navbar__container">
-        <Stack className="mnshop-other-navbar__menu">
-          {/* BRAND LOGO */}
-          <Box className="mnshop-other-navbar__brand">
-            <NavLink to="/">
-              <img
-                className="mnshop-other-navbar__brand-logo"
-                src="/icons/mnshop.svg"
-                alt="MNShop"
-              />
+    <header className="mnshop-other-navbar">
+      <div className="mnshop-other-navbar__inner">
+        <Link to="/" className="mnshop-other-navbar__brand">
+          <MnshopLogo />
+          <span className="mnshop-other-navbar__brand-name">MNShop</span>
+        </Link>
+
+        <nav
+          className="mnshop-other-navbar__desktop-nav"
+          aria-label="Buyer navigation"
+        >
+          {publicNavigation.map((item) => (
+            <NavLink
+              key={item.href}
+              exact={item.exact}
+              to={item.href}
+              className="mnshop-other-navbar__link"
+              activeClassName="mnshop-other-navbar__link--active"
+            >
+              {item.label}
             </NavLink>
-          </Box>
+          ))}
+        </nav>
 
-          {/* NAVIGATION LINKS */}
-          <Stack className="mnshop-other-navbar__links">
-            <Box className="mnshop-other-navbar__link">
-              <NavLink
-                exact
+        <div className="mnshop-other-navbar__actions">
+          <Link to="/login" className="mnshop-other-navbar__login">
+            <PersonIcon sx={{ fontSize: 17 }} />
+            Login
+          </Link>
+
+          <button
+            type="button"
+            className="mnshop-other-navbar__menu-toggle"
+            aria-label="Open navigation menu"
+            aria-expanded={mobileOpen}
+            aria-controls="mnshop-other-mobile-menu"
+            onClick={() => setMobileOpen(true)}
+          >
+            <MenuIcon />
+          </button>
+        </div>
+      </div>
+
+      {mobileOpen && (
+        <>
+          <button
+            type="button"
+            className="mnshop-other-navbar__overlay"
+            aria-label="Close navigation"
+            onClick={() => setMobileOpen(false)}
+          />
+
+          <aside
+            id="mnshop-other-mobile-menu"
+            className="mnshop-other-navbar__drawer"
+            aria-label="Mobile navigation"
+          >
+            <div className="mnshop-other-navbar__drawer-header">
+              <Link
                 to="/"
-                activeClassName="mnshop-other-navbar__link--active"
+                className="mnshop-other-navbar__drawer-brand"
+                onClick={() => setMobileOpen(false)}
               >
-                Home
-              </NavLink>
-            </Box>
+                <MnshopLogo />
+                <span>MNShop</span>
+              </Link>
 
-            <Box className="mnshop-other-navbar__link">
-              <NavLink
-                to="/products"
-                activeClassName="mnshop-other-navbar__link--active"
+              <button
+                type="button"
+                className="mnshop-other-navbar__drawer-close"
+                aria-label="Close menu"
+                onClick={() => setMobileOpen(false)}
               >
-                Products
-              </NavLink>
-            </Box>
+                <CloseIcon />
+              </button>
+            </div>
 
-            {authMember ? (
-              <Box className="mnshop-other-navbar__link">
+            <nav
+              className="mnshop-other-navbar__mobile-nav"
+              aria-label="Mobile buyer navigation"
+            >
+              {publicNavigation.map((item) => (
                 <NavLink
-                  to="/orders"
-                  activeClassName="mnshop-other-navbar__link--active"
+                  key={item.href}
+                  exact={item.exact}
+                  to={item.href}
+                  className="mnshop-other-navbar__mobile-link"
+                  activeClassName="mnshop-other-navbar__mobile-link--active"
+                  onClick={() => setMobileOpen(false)}
                 >
-                  Orders
+                  {item.label}
                 </NavLink>
-              </Box>
-            ) : null}
+              ))}
+            </nav>
 
-            {authMember ? (
-              <Box className="mnshop-other-navbar__link">
-                <NavLink
-                  to="/member-page"
-                  activeClassName="mnshop-other-navbar__link--active"
-                >
-                  My Page
-                </NavLink>
-              </Box>
-            ) : null}
-
-            <Box className="mnshop-other-navbar__link">
-              <NavLink
-                to="/help"
-                activeClassName="mnshop-other-navbar__link--active"
-              >
-                Help
-              </NavLink>
-            </Box>
-
-            {/* BASKET */}
-
-            {!authMember ? (
-              <Box className="mnshop-other-navbar__auth">
-                <Button
-                  variant="contained"
-                  className="mnshop-other-navbar__login-button"
-                >
-                  Login
-                </Button>
-              </Box>
-            ) : (
-              <Box className="mnshop-other-navbar__member">
-                <img
-                  className="mnshop-other-navbar__user-avatar"
-                  src="/icons/default-user.svg"
-                  alt="MNShop member"
-                  aria-haspopup="true"
-                />
-              </Box>
-            )}
-          </Stack>
-        </Stack>
-      </Container>
-    </div>
+            <Link
+              to="/login"
+              className="mnshop-other-navbar__mobile-login"
+              onClick={() => setMobileOpen(false)}
+            >
+              <PersonIcon sx={{ fontSize: 18 }} />
+              Login
+            </Link>
+          </aside>
+        </>
+      )}
+    </header>
   );
 }

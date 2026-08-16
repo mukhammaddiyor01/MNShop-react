@@ -902,3 +902,192 @@
     animation-duration: 0ms !important;
   }
 }
+
+/* ==================================================
+   Buyer Other Navbar — desktop
+   ================================================== */
+
+@media screen and (min-width: 1024px) {
+  .mnshop-other-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 64px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(10, 10, 10, 0.92);
+    color: #f8fafc;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .mnshop-other-navbar__inner {
+    display: flex;
+    width: 100%;
+    max-width: 1440px;
+    height: 64px;
+    margin: 0 auto;
+    padding: 0 48px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mnshop-other-navbar__brand {
+    display: flex;
+    color: #f8fafc;
+    text-decoration: none;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .mnshop-other-navbar__logo {
+    position: relative;
+    display: block;
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+  }
+
+  .mnshop-other-navbar__logo img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    object-fit: contain;
+    transform: translate(-50%, -50%);
+  }
+
+  .mnshop-other-navbar__logo img:first-child {
+    width: 40px;
+    height: 40px;
+    animation: mnshop-logo-ring 6s linear infinite;
+  }
+
+  .mnshop-other-navbar__logo img:last-child {
+    width: 25px;
+    height: 25px;
+  }
+
+  .mnshop-other-navbar__brand-name {
+    display: none;
+    color: #f8fafc;
+    font-family: "Poppins", "Inter", sans-serif;
+    font-size: 18px;
+    font-weight: 900;
+  }
+
+  .mnshop-other-navbar__desktop-nav {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .mnshop-other-navbar__link {
+    position: relative;
+    display: flex;
+    height: 100%;
+    padding: 0;
+    color: rgba(248, 250, 252, 0.7);
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 180ms ease;
+    align-items: center;
+  }
+
+  .mnshop-other-navbar__link::after {
+    position: absolute;
+    right: 0;
+    bottom: 11px;
+    left: 0;
+    height: 1px;
+    background: #3b82f6;
+    content: "";
+    transform: scaleX(0);
+    transition: transform 180ms ease;
+  }
+
+  .mnshop-other-navbar__link:hover,
+  .mnshop-other-navbar__link--active {
+    color: #3b82f6;
+  }
+
+  .mnshop-other-navbar__link:hover::after,
+  .mnshop-other-navbar__link--active::after {
+    transform: scaleX(1);
+  }
+
+  .mnshop-other-navbar__actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mnshop-other-navbar__login {
+    display: flex;
+    min-height: 40px;
+    padding: 0 20px;
+    border-radius: 9999px;
+    background: #3b82f6;
+    color: #f8fafc;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition:
+      background-color 180ms ease,
+      box-shadow 180ms ease,
+      transform 180ms ease;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mnshop-other-navbar__login:hover {
+    background: #2563eb;
+    box-shadow: 0 0 28px rgba(59, 130, 246, 0.28);
+    transform: translateY(-1px);
+  }
+
+  .mnshop-other-navbar__brand:focus-visible,
+  .mnshop-other-navbar__link:focus-visible,
+  .mnshop-other-navbar__login:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 3px;
+  }
+
+  .mnshop-other-navbar__menu-toggle,
+  .mnshop-other-navbar__overlay,
+  .mnshop-other-navbar__drawer {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .mnshop-other-navbar__brand-name {
+    display: block;
+  }
+}
+
+@keyframes mnshop-logo-ring {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mnshop-other-navbar *,
+  .mnshop-other-navbar *::before,
+  .mnshop-other-navbar *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
+  }
+}
