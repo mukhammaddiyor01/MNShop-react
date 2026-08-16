@@ -12,6 +12,7 @@ import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import { useMemo, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { products } from "../../data/products";
+import { useGlobals } from "../../hooks/useGlobals";
 import { MnshopLogo } from "../mnshop-logo";
 
 const publicNavigation = [
@@ -23,8 +24,26 @@ const publicNavigation = [
 
 export function HomeNavbar() {
   const { pathname } = useLocation();
+  const { authMember, basket, likedIds, setCartOpen } = useGlobals();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [query, setQuery] = useState("");
+
+  const mainNavigation = useMemo(
+    () =>
+      authMember
+        ? [
+            publicNavigation[0],
+            publicNavigation[1],
+            {
+              label: "Orders",
+              href: "/orders",
+              icon: ShoppingBagOutlinedIcon,
+            },
+            ...publicNavigation.slice(2),
+          ]
+        : publicNavigation,
+    [authMember],
+  );
 
   const suggestions = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
@@ -39,6 +58,13 @@ export function HomeNavbar() {
     if (href === "/") return pathname === "/";
     return pathname.startsWith(href);
   };
+
+  const initials = authMember?.fullName
+    .split(" ")
+    .map((part) => part[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
 
   return (
     <header className="mnshop-home-header">
@@ -57,7 +83,7 @@ export function HomeNavbar() {
           className="mnshop-home-header__desktop-nav"
           aria-label="Buyer navigation"
         >
-          {publicNavigation.map((item) => (
+          {mainNavigation.map((item) => (
             <Link
               key={item.href}
               to={item.href}
@@ -100,23 +126,59 @@ export function HomeNavbar() {
 
         <div className="mnshop-home-header__actions">
           <Link
-            to="/login?next=%2Flikes"
+            to={authMember ? "/likes" : "/login?next=%2Flikes"}
             className="mnshop-home-header__icon-action"
             aria-label="Liked items"
           >
             <FavoriteBorderIcon />
+            {likedIds.length > 0 && (
+              <span className="mnshop-home-header__action-count">
+                {likedIds.length}
+              </span>
+            )}
           </Link>
-          <Link
-            to="/login?next=%2Fcart"
-            className="mnshop-home-header__icon-action"
-            aria-label="Cart"
-          >
-            <ShoppingBagOutlinedIcon />
-          </Link>
-          <Link to="/login" className="mnshop-home-header__login">
-            <PersonOutlineIcon />
-            Sign In
-          </Link>
+          {authMember ? (
+            <button
+              type="button"
+              className="mnshop-home-header__icon-action"
+              aria-label="Cart"
+              onClick={() => setCartOpen(true)}
+            >
+              <ShoppingBagOutlinedIcon />
+              {basket.length > 0 && (
+                <span className="mnshop-home-header__action-count">
+                  {basket.length}
+                </span>
+              )}
+            </button>
+          ) : (
+            <Link
+              to="/login?next=%2Fcart"
+              className="mnshop-home-header__icon-action"
+              aria-label="Cart"
+            >
+              <ShoppingBagOutlinedIcon />
+              {basket.length > 0 && (
+                <span className="mnshop-home-header__action-count">
+                  {basket.length}
+                </span>
+              )}
+            </Link>
+          )}
+          {authMember ? (
+            <Link
+              to="/member-page"
+              className="mnshop-home-header__profile"
+              aria-label="My Page"
+            >
+              {initials}
+            </Link>
+          ) : (
+            <Link to="/login" className="mnshop-home-header__login">
+              <PersonOutlineIcon />
+              Sign In
+            </Link>
+          )}
           <button
             type="button"
             className="mnshop-home-header__menu-toggle"
@@ -156,7 +218,7 @@ export function HomeNavbar() {
           </div>
 
           <nav className="mnshop-home-header__mobile-nav">
-            {publicNavigation.map((item) => {
+            {mainNavigation.map((item) => {
               const Icon = item.icon;
 
               return (
@@ -175,15 +237,27 @@ export function HomeNavbar() {
                 </Link>
               );
             })}
+            {authMember && (
+              <Link
+                to="/member-page"
+                className="mnshop-home-header__mobile-link"
+                onClick={() => setMobileOpen(false)}
+              >
+                <PersonOutlineIcon aria-hidden="true" />
+                My Page
+              </Link>
+            )}
           </nav>
 
-          <Link
-            to="/signup"
-            className="mnshop-home-header__mobile-auth"
-            onClick={() => setMobileOpen(false)}
-          >
-            Sign In / Sign Up
-          </Link>
+          {!authMember && (
+            <Link
+              to="/signup"
+              className="mnshop-home-header__mobile-auth"
+              onClick={() => setMobileOpen(false)}
+            >
+              Sign In / Sign Up
+            </Link>
+          )}
         </aside>
       )}
     </header>

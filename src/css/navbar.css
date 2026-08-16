@@ -1903,6 +1903,59 @@
   }
 }
 
+@media screen and (min-width: 768px) {
+  .mnshop-home-header__profile {
+    display: grid;
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+    border-radius: 9999px;
+    background: #fff;
+    color: #000 !important;
+    font-size: 14px;
+    font-weight: 900;
+    place-items: center;
+  }
+
+  .mnshop-home-header__profile:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 3px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .mnshop-home-header__profile {
+    display: grid;
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+    border-radius: 9999px;
+    background: #fff;
+    color: #000 !important;
+    font-size: 14px;
+    font-weight: 900;
+    place-items: center;
+  }
+
+  .mnshop-home-header__profile:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 3px;
+  }
+}
+
+.mnshop-home-header__action-count {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  padding: 0 6px;
+  border-radius: 9999px;
+  background: #3b82f6;
+  color: #000;
+  font-size: 10px;
+  font-weight: 900;
+  line-height: 1.5;
+}
+
 @keyframes mnshop-home-drawer-enter {
   from {
     transform: translateX(100%);
