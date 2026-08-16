@@ -1,325 +1,526 @@
-/* =========================================
+/* ==================================================
    MNShop Home Navbar
-   Naming convention: BEM
-   Block: mnshop-home-navbar
-   ========================================= */
+   Original naming va layout logikasi saqlangan
+   ================================================== */
 
-.mnshop-home-navbar {
+.home-navbar {
   position: relative;
   display: flex;
   width: 100%;
-  min-height: 773px;
+  height: 773px;
   overflow: hidden;
+
   background-color: #0a0a0a;
-  background-image: linear-gradient(
-    180deg,
-    rgba(10, 10, 10, 0.3) 0%,
-    rgba(10, 10, 10, 0.12) 45%,
-    rgba(10, 10, 10, 0.92) 100%
-  );
+  background-image:
+    linear-gradient(
+      180deg,
+      rgba(10, 10, 10, 0.35) 0%,
+      rgba(10, 10, 10, 0.12) 45%,
+      rgba(10, 10, 10, 0.92) 100%
+    ),
+    url("/img/banner.webp");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-/* Navbar content remains above the background overlay. */
-.mnshop-home-navbar__container {
+.home-navbar .navbar-container {
   position: relative;
   z-index: 2;
-  width: 100%;
-  max-width: 1440px;
-  height: 100%;
-  margin: 0 auto;
-  padding: 55px 48px 0;
+  height: 642px;
+  margin-top: 55px;
 }
 
-.mnshop-home-navbar__navigation {
+/* Navbar menu */
+
+.home-navbar .navbar-container .menu {
   display: flex;
-  min-height: 50px;
+  height: 50px;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
 
-.mnshop-home-navbar__brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  color: #f8fafc;
-  text-decoration: none;
-}
-
-.mnshop-home-navbar__logo {
+.home-navbar .navbar-container .menu .brand-logo {
   display: block;
   width: 125px;
   height: 30px;
   object-fit: contain;
 }
 
-.mnshop-home-navbar__menu {
+.home-navbar .navbar-container .menu .links {
   display: flex;
   min-width: 700px;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
   gap: 28px;
 }
 
-.mnshop-home-navbar__link {
+/* Login button */
+
+.home-navbar .navbar-container .menu .links .login-button {
+  min-width: 104px;
+  height: 42px;
+  border-radius: 4px;
+
+  background-color: #3b82f6;
+  color: #f8fafc;
+
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: none;
+
+  box-shadow: 0 0 28px rgba(59, 130, 246, 0.2);
+
+  transition:
+    background-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.home-navbar .navbar-container .menu .links .login-button:hover {
+  background-color: #2563eb;
+  box-shadow: 0 0 40px rgba(59, 130, 246, 0.32);
+  transform: translateY(-1px);
+}
+
+/* Authenticated member avatar */
+
+.home-navbar .navbar-container .menu .links .user-avatar {
+  width: 50px;
+  height: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.home-navbar .navbar-container .menu .links .user-avatar:hover {
+  border-color: #3b82f6;
+  box-shadow: 0 0 24px rgba(59, 130, 246, 0.3);
+  transform: translateY(-1px);
+}
+
+/* Navigation links */
+
+.home-navbar a {
+  text-decoration: none;
+}
+
+.home-navbar .hover-line {
   position: relative;
-  display: inline-flex;
+}
+
+.home-navbar .hover-line a {
+  position: relative;
+  z-index: 100;
+  display: block;
   padding: 10px 0;
+
   color: rgba(248, 250, 252, 0.72);
-  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+
+  font-family: "Inter", sans-serif;
   font-size: 13px;
   font-weight: 700;
-  letter-spacing: 0.12em;
-  line-height: 1;
-  text-decoration: none;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
+
   transition: color 180ms ease;
 }
 
-.mnshop-home-navbar__link::after {
-  position: absolute;
-  right: 0;
-  bottom: 2px;
-  left: 0;
-  height: 2px;
-  background-color: #3b82f6;
+.home-navbar .hover-line a:hover {
+  color: #f8fafc;
+}
+
+/* NavLink activeClassName="underline" */
+
+.home-navbar .underline {
+  display: block;
+  color: #3b82f6 !important;
+  border-bottom: solid 2px #3b82f6;
+}
+
+/* Navigation hover underline */
+
+.home-navbar .hover-line::after {
+  display: block;
+  border-bottom: solid 2px #3b82f6;
   content: "";
   transform: scaleX(0);
   transform-origin: right center;
   transition: transform 250ms ease-in-out;
 }
 
-.mnshop-home-navbar__link:hover {
-  color: #f8fafc;
+.home-navbar .hover-line:hover::after {
+  transform: scaleX(1);
 }
 
-.mnshop-home-navbar__link:hover::after {
-  transform: scaleX(1);
+.home-navbar div.hover-line:hover::after {
   transform-origin: left center;
 }
 
-/* Next.js usePathname orqali active linkka qo‘shiladi. */
-.mnshop-home-navbar__link--active {
-  color: #3b82f6;
-}
+/* ==================================================
+   MNShop Home Header Content
+   ================================================== */
 
-.mnshop-home-navbar__link--active::after {
-  transform: scaleX(1);
-}
-
-/* Login button */
-.mnshop-home-navbar__login {
-  display: inline-flex;
-  min-height: 42px;
+.home-navbar .navbar-container .header-frame {
+  display: flex;
+  height: 462px;
+  margin-top: 142px;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
-  border: 1px solid #3b82f6;
-  border-radius: 999px;
-  background-color: #3b82f6;
-  padding: 0 22px;
-  color: #ffffff;
-  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-  font-size: 14px;
+  justify-content: space-between;
+}
+
+.home-navbar .navbar-container .header-frame .detail {
+  display: flex;
+  width: 510px;
+  flex-direction: column;
+}
+
+.home-navbar .navbar-container .header-frame .detail .head-main-txt {
+  width: 450px;
+  min-height: 150px;
+  margin: 0;
+
+  color: #f8fafc;
+
+  font-family: "Poppins", "Inter", sans-serif;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 900;
+  letter-spacing: -2px;
+  line-height: 1.05;
+}
+
+.home-navbar .navbar-container .header-frame .detail .wel-txt {
+  width: 510px;
+  min-height: 42px;
+  margin: 0;
+
+  color: #3b82f6;
+
+  font-family: "Poppins", "Inter", sans-serif;
+  font-size: 36px;
+  font-style: normal;
   font-weight: 800;
-  text-decoration: none;
+  letter-spacing: -0.75px;
+  line-height: 1.2;
+}
+
+.home-navbar .navbar-container .header-frame .detail .signup {
+  margin-top: 73px;
+}
+
+.home-navbar .navbar-container .header-frame .detail .signup .signup-button {
+  width: 210px;
+  height: 60px;
+  border-radius: 4px;
+
+  background-color: #3b82f6;
+  color: #f8fafc;
+
+  font-family: "Poppins", "Inter", sans-serif;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-align: center;
+  text-transform: none;
+
+  box-shadow: 0 0 36px rgba(59, 130, 246, 0.25);
+
   transition:
-    color 180ms ease,
     background-color 180ms ease,
     box-shadow 180ms ease,
     transform 180ms ease;
 }
 
-.mnshop-home-navbar__login:hover {
+.home-navbar
+  .navbar-container
+  .header-frame
+  .detail
+  .signup
+  .signup-button:hover {
   background-color: #2563eb;
-  box-shadow: 0 0 40px rgba(59, 130, 246, 0.28);
-  transform: translateY(-1px);
+  box-shadow: 0 0 48px rgba(59, 130, 246, 0.38);
+  transform: translateY(-2px);
 }
 
-/* Basket button */
-.mnshop-home-navbar__basket {
+/* MNShop hero logo */
+
+.home-navbar .navbar-container .logo-frame {
+  width: 690px;
+  height: 419px;
+  margin-top: 43px;
+}
+
+.home-navbar .navbar-container .logo-frame .logo-img {
+  width: 100%;
+  height: 100%;
+
+  background-image: url("/img/logo.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  filter: drop-shadow(0 0 45px rgba(59, 130, 246, 0.24));
+}
+
+/* ==================================================
+   MNShop Other Navbar
+   Products, Orders, Help va boshqa sahifalar
+   ================================================== */
+
+.other-navbar {
   position: relative;
-  display: inline-grid;
-  width: 42px;
+  display: flex;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+
+  background-color: #0a0a0a;
+  background-image:
+    linear-gradient(
+      180deg,
+      rgba(10, 10, 10, 0.45) 0%,
+      rgba(10, 10, 10, 0.28) 55%,
+      rgba(10, 10, 10, 0.95) 100%
+    ),
+    url("/img/banner.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.other-navbar .navbar-container {
+  position: relative;
+  z-index: 2;
+  margin-top: 55px;
+}
+
+.other-navbar .navbar-container .menu {
+  display: flex;
+  height: 50px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.other-navbar .navbar-container .menu .brand-logo {
+  display: block;
+  width: 125px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.other-navbar .navbar-container .menu .links {
+  display: flex;
+  min-width: 700px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+}
+
+/* Other navbar login */
+
+.other-navbar .navbar-container .menu .links .login-button {
+  min-width: 104px;
   height: 42px;
-  place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 999px;
-  background-color: rgba(255, 255, 255, 0.06);
-  color: rgba(248, 250, 252, 0.75);
-  cursor: pointer;
-  transition:
-    color 180ms ease,
-    border-color 180ms ease,
-    background-color 180ms ease;
-}
+  border-radius: 4px;
 
-.mnshop-home-navbar__basket:hover {
-  border-color: rgba(59, 130, 246, 0.75);
-  background-color: rgba(59, 130, 246, 0.14);
-  color: #3b82f6;
-}
-
-.mnshop-home-navbar__basket-count {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  display: grid;
-  min-width: 18px;
-  height: 18px;
-  place-items: center;
-  border-radius: 999px;
   background-color: #3b82f6;
-  padding: 0 5px;
-  color: #ffffff;
-  font-size: 10px;
-  font-weight: 900;
-}
+  color: #f8fafc;
 
-/* Authenticated user button */
-.mnshop-home-navbar__profile {
-  position: relative;
-}
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: none;
 
-.mnshop-home-navbar__profile-button {
-  display: grid;
-  width: 42px;
-  height: 42px;
-  place-items: center;
-  border: 2px solid rgba(255, 255, 255, 0.16);
-  border-radius: 999px;
-  background-color: #f8fafc;
-  color: #0a0a0a;
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 900;
+  box-shadow: 0 0 28px rgba(59, 130, 246, 0.2);
+
   transition:
-    border-color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease,
     transform 180ms ease;
 }
 
-.mnshop-home-navbar__profile-button:hover {
-  border-color: #3b82f6;
+.other-navbar .navbar-container .menu .links .login-button:hover {
+  background-color: #2563eb;
+  box-shadow: 0 0 40px rgba(59, 130, 246, 0.32);
   transform: translateY(-1px);
 }
 
-/* Hero content below navigation */
-.mnshop-home-navbar__content {
-  display: flex;
-  min-height: 620px;
-  align-items: center;
-  padding: 70px 0;
+/* Other navbar avatar */
+
+.other-navbar .navbar-container .menu .links .user-avatar {
+  width: 50px;
+  height: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
 }
 
-.mnshop-home-navbar__content-inner {
-  max-width: 720px;
+.other-navbar .navbar-container .menu .links .user-avatar:hover {
+  border-color: #3b82f6;
+  box-shadow: 0 0 24px rgba(59, 130, 246, 0.3);
+  transform: translateY(-1px);
 }
 
-.mnshop-home-navbar__eyebrow {
-  margin: 0 0 16px;
-  color: #3b82f6;
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: 0.2em;
+/* Other navbar links */
+
+.other-navbar a {
+  text-decoration: none;
+}
+
+.other-navbar .hover-line {
+  position: relative;
+}
+
+.other-navbar .hover-line a {
+  position: relative;
+  z-index: 100;
+  display: block;
+  padding: 10px 0;
+
+  color: rgba(248, 250, 252, 0.72);
+
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
+
+  transition: color 180ms ease;
 }
 
-.mnshop-home-navbar__title {
-  margin: 0;
+.other-navbar .hover-line a:hover {
   color: #f8fafc;
-  font-family: Poppins, Inter, ui-sans-serif, system-ui, sans-serif;
-  font-size: clamp(2.75rem, 7vw, 6rem);
-  font-weight: 900;
-  letter-spacing: -0.05em;
-  line-height: 0.95;
 }
 
-.mnshop-home-navbar__description {
-  max-width: 580px;
-  margin: 24px 0 0;
-  color: rgba(248, 250, 252, 0.68);
-  font-size: clamp(1rem, 2vw, 1.125rem);
-  line-height: 1.7;
+.other-navbar .underline {
+  display: block;
+  color: #3b82f6 !important;
+  border-bottom: solid 2px #3b82f6;
 }
 
-/* Tablet */
-@media (max-width: 1024px) {
-  .mnshop-home-navbar {
-    min-height: 680px;
-  }
-
-  .mnshop-home-navbar__container {
-    padding: 32px 28px 0;
-  }
-
-  .mnshop-home-navbar__menu {
-    min-width: auto;
-    gap: 20px;
-  }
+.other-navbar .hover-line::after {
+  display: block;
+  border-bottom: solid 2px #3b82f6;
+  content: "";
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 250ms ease-in-out;
 }
 
-/* Mobile */
-@media (max-width: 768px) {
-  .mnshop-home-navbar {
-    min-height: 620px;
-    background-position: 60% center;
-  }
-
-  .mnshop-home-navbar__container {
-    padding: 20px 16px 0;
-  }
-
-  .mnshop-home-navbar__menu {
-    display: none;
-  }
-
-  .mnshop-home-navbar__logo {
-    width: 105px;
-    height: auto;
-  }
-
-  .mnshop-home-navbar__content {
-    min-height: 520px;
-    align-items: flex-end;
-    padding: 64px 0;
-  }
-
-  .mnshop-home-navbar__title {
-    font-size: clamp(2.5rem, 14vw, 4.25rem);
-  }
-
-  .mnshop-home-navbar__description {
-    font-size: 0.95rem;
-  }
+.other-navbar .hover-line:hover::after {
+  transform: scaleX(1);
 }
 
-/* Light theme */
-:root[data-theme="light"] .mnshop-home-navbar__link {
-  color: rgba(255, 255, 255, 0.72);
+.other-navbar div.hover-line:hover::after {
+  transform-origin: left center;
 }
 
-:root[data-theme="light"] .mnshop-home-navbar__link:hover,
-:root[data-theme="light"] .mnshop-home-navbar__title {
-  color: #ffffff;
-}
+/* ==================================================
+   Accessibility
+   ================================================== */
 
-/* Accessibility */
-.mnshop-home-navbar__link:focus-visible,
-.mnshop-home-navbar__login:focus-visible,
-.mnshop-home-navbar__basket:focus-visible,
-.mnshop-home-navbar__profile-button:focus-visible {
+.home-navbar a:focus-visible,
+.home-navbar button:focus-visible,
+.other-navbar a:focus-visible,
+.other-navbar button:focus-visible,
+.home-navbar .user-avatar:focus-visible,
+.other-navbar .user-avatar:focus-visible {
   outline: 2px solid #3b82f6;
   outline-offset: 3px;
 }
 
+/* ==================================================
+   Responsive
+   ================================================== */
+
+@media screen and (max-width: 1024px) {
+  .home-navbar .navbar-container .menu .links,
+  .other-navbar .navbar-container .menu .links {
+    min-width: 600px;
+    gap: 18px;
+  }
+
+  .home-navbar .navbar-container .logo-frame {
+    width: 520px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .home-navbar {
+    height: auto;
+    min-height: 700px;
+  }
+
+  .other-navbar {
+    height: 300px;
+  }
+
+  .home-navbar .navbar-container,
+  .other-navbar .navbar-container {
+    width: 100%;
+    margin-top: 24px;
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .home-navbar .navbar-container .menu .links,
+  .other-navbar .navbar-container .menu .links {
+    min-width: auto;
+    gap: 14px;
+  }
+
+  .home-navbar .navbar-container .header-frame {
+    height: auto;
+    margin-top: 100px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .home-navbar .navbar-container .header-frame .detail,
+  .home-navbar .navbar-container .header-frame .detail .head-main-txt,
+  .home-navbar .navbar-container .header-frame .detail .wel-txt {
+    width: 100%;
+    height: auto;
+  }
+
+  .home-navbar .navbar-container .header-frame .detail .head-main-txt {
+    font-size: 42px;
+  }
+
+  .home-navbar .navbar-container .header-frame .detail .wel-txt {
+    font-size: 28px;
+  }
+
+  .home-navbar .navbar-container .logo-frame {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .mnshop-home-navbar__link,
-  .mnshop-home-navbar__link::after,
-  .mnshop-home-navbar__login,
-  .mnshop-home-navbar__basket,
-  .mnshop-home-navbar__profile-button {
-    transition: none;
+  .home-navbar *,
+  .other-navbar * {
+    scroll-behavior: auto !important;
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
   }
 }

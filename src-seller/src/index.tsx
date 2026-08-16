@@ -8,7 +8,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import "./css/index.css";
 import { BrowserRouter as Router } from "react-router-dom";
-import theme from "./app/MaterialTheme copy";
+import theme from "./app/MaterialTheme";
 
 // Global integration => REDUX
 ReactDOM.render(

@@ -1,3 +1,4 @@
+import { createTheme } from '@mui/material/styles';
 import shadow from './shadow';
 import typography from './typography';
 
@@ -10,34 +11,28 @@ const shared = {
   typography,
 } as const;
 
-export const darkTheme = {
-  mode: 'dark',
-  ...shared,
-  colors: {
-    background: '#0a0a0a',
-    backgroundSecondary: '#111111',
-    surface: 'rgba(17, 17, 17, 0.68)',
-    text: '#f8fafc',
-    textMuted: 'rgba(248, 250, 252, 0.6)',
-    border: 'rgba(255, 255, 255, 0.1)',
+export const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+    background: { default: '#0a0a0a', paper: '#111111' },
+    text: { primary: '#f8fafc', secondary: 'rgba(248, 250, 252, 0.6)' },
+    primary: { main: shared.brand.blue },
   },
-} as const;
+  typography: { fontFamily: typography.fontFamily.sans },
+});
 
-export const lightTheme = {
-  mode: 'light',
-  ...shared,
-  colors: {
-    background: '#f7f6f2',
-    backgroundSecondary: '#eeece6',
-    surface: 'rgba(255, 255, 255, 0.78)',
-    text: '#141414',
-    textMuted: 'rgba(20, 20, 20, 0.6)',
-    border: 'rgba(20, 20, 20, 0.12)',
+export const lightTheme = createTheme({
+  palette: {
+    mode: 'light',
+    background: { default: '#f7f6f2', paper: '#ffffff' },
+    text: { primary: '#141414', secondary: 'rgba(20, 20, 20, 0.6)' },
+    primary: { main: shared.brand.blue },
   },
-} as const;
+  typography: { fontFamily: typography.fontFamily.sans },
+});
 
 export type MnshopTheme = typeof darkTheme | typeof lightTheme;
-export type ThemeMode = MnshopTheme['mode'];
+export type ThemeMode = 'dark' | 'light';
 
 export { shadow, typography };
 
