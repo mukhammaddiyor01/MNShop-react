@@ -9,6 +9,7 @@ import { UserPage } from "./screens/userPage/index";
 import { HomeNavbar } from "./components/headers/HomeNavbar";
 import { OtherNavbar } from "./components/headers/OtherNavbar";
 import { CartDrawer } from "./components/headers/Basket";
+import { MobileBottomNav } from "./components/headers/MobileBottomNav";
 import { Footer } from "./components/footer";
 import "../css/navbar.css";
 import "../css/footer.css";
@@ -45,6 +46,7 @@ function App() {
       </Switch>
       <Footer />
       <CartDrawer />
+      <MobileBottomNav />
     </>
   );
 }
