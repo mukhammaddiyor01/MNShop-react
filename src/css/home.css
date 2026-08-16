@@ -119,3 +119,176 @@
     outline-offset: 4px;
   }
 }
+
+/* ==================================================
+   Buyer Homepage Hero — tablet and mobile
+   ================================================== */
+
+@media screen and (max-width: 1023px) {
+  .mnshop-hero {
+    position: relative;
+    display: flex;
+    width: 100%;
+    min-height: calc(100svh - 64px);
+    overflow: hidden;
+    background: #0a0a0a;
+    color: #f8fafc;
+    align-items: center;
+  }
+
+  .mnshop-hero__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 58% center;
+  }
+
+  .mnshop-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(
+        90deg,
+        rgba(10, 10, 10, 0.94) 0%,
+        rgba(10, 10, 10, 0.7) 58%,
+        rgba(10, 10, 10, 0.3) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(10, 10, 10, 0.14) 0%,
+        rgba(10, 10, 10, 0.12) 62%,
+        #0a0a0a 100%
+      );
+  }
+
+  .mnshop-hero__content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 64px 32px;
+  }
+
+  .mnshop-hero__eyebrow {
+    margin: 0 0 18px;
+    color: #3b82f6;
+    font-family: "Inter", sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .mnshop-hero__title {
+    display: flex;
+    max-width: 680px;
+    margin: 0;
+    color: #f8fafc;
+    font-family: "Poppins", "Inter", sans-serif;
+    font-size: clamp(48px, 8vw, 68px);
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    line-height: 0.98;
+    flex-direction: column;
+  }
+
+  .mnshop-hero__title span {
+    color: #3b82f6;
+  }
+
+  .mnshop-hero__description {
+    max-width: 500px;
+    margin: 24px 0 0;
+    color: rgba(248, 250, 252, 0.72);
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  .mnshop-hero__cta {
+    display: inline-flex;
+    min-height: 50px;
+    margin-top: 30px;
+    padding: 0 26px;
+    border-radius: 9999px;
+    background: #3b82f6;
+    color: #f8fafc;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mnshop-hero__cta:active {
+    background: #2563eb;
+    transform: scale(0.98);
+  }
+
+  .mnshop-hero__cta:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 4px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .mnshop-hero {
+    min-height: calc(100svh - 64px);
+  }
+
+  .mnshop-hero__video {
+    object-position: 62% center;
+  }
+
+  .mnshop-hero__overlay {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(10, 10, 10, 0.94) 0%,
+        rgba(10, 10, 10, 0.72) 72%,
+        rgba(10, 10, 10, 0.48) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(10, 10, 10, 0.18) 0%,
+        rgba(10, 10, 10, 0.18) 58%,
+        #0a0a0a 100%
+      );
+  }
+
+  .mnshop-hero__content {
+    padding: 56px 16px 88px;
+  }
+
+  .mnshop-hero__title {
+    max-width: 100%;
+    font-size: clamp(42px, 13vw, 58px);
+  }
+
+  .mnshop-hero__description {
+    max-width: 360px;
+    font-size: 15px;
+  }
+
+  .mnshop-hero__cta {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mnshop-hero__video {
+    display: none;
+  }
+
+  .mnshop-hero *,
+  .mnshop-hero *::before,
+  .mnshop-hero *::after {
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
+  }
+}
