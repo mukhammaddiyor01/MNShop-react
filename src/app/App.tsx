@@ -5,6 +5,7 @@ import { HelpPage } from "./screens/helpPage/index";
 import { OrdersPage } from "./screens/ordersPage/index";
 import { ProductsPage } from "./screens/productsPage/index";
 import { AboutPage } from "./screens/aboutPage/index";
+import { UserPage } from "./screens/userPage/index";
 import { HomeNavbar } from "./components/headers/HomeNavbar";
 import { OtherNavbar } from "./components/headers/OtherNavbar";
 import { Footer } from "./components/footer";
@@ -32,6 +33,9 @@ function App() {
         </Route>
         <Route path="/products">
           <ProductsPage />
+        </Route>
+        <Route path="/member-page">
+          <UserPage />
         </Route>
         <Route path="/">
           <HomePage />
