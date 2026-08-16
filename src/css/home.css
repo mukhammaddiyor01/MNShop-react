@@ -564,6 +564,292 @@
   }
 }
 
+/* ==================================================
+   SOURCE parity — homepage product sections desktop
+   ================================================== */
+
+@media screen and (min-width: 1024px) {
+  .mnshop-product-section {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-product-section--alternate {
+    background: rgba(255, 255, 255, 0.018);
+  }
+
+  .mnshop-product-section__inner {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 96px 48px;
+  }
+
+  .mnshop-product-section__heading {
+    display: flex;
+    margin-bottom: 36px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .mnshop-product-section__heading p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  .mnshop-product-section__heading h2 {
+    margin: 12px 0 0;
+    font-family: "Poppins", "Inter", sans-serif;
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .mnshop-product-section__heading > a {
+    display: flex;
+    color: rgba(255, 255, 255, 0.6);
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 150ms ease;
+  }
+
+  .mnshop-product-section__heading > a:hover {
+    color: #fff;
+  }
+
+  .mnshop-product-section__heading > a svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .mnshop-product-section__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: 28px;
+    row-gap: 40px;
+  }
+
+  .mnshop-sale-section {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: #15120f;
+    color: #fff;
+  }
+
+  .mnshop-sale-section .mnshop-product-section__heading {
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .mnshop-sale-section .mnshop-product-section__heading p {
+    color: #d9b3a0;
+  }
+
+  .mnshop-sale-section .mnshop-product-section__heading > a {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .mnshop-sale-section .mnshop-product-section__heading > a:hover {
+    color: #fff;
+  }
+
+  .mnshop-product-section__heading > a:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 3px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .mnshop-product-section {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-product-section--alternate {
+    background: rgba(255, 255, 255, 0.018);
+  }
+
+  .mnshop-product-section__inner {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 96px 32px;
+  }
+
+  .mnshop-product-section__heading {
+    display: flex;
+    margin-bottom: 36px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .mnshop-product-section__heading p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  .mnshop-product-section__heading h2 {
+    margin: 12px 0 0;
+    font-family: "Poppins", "Inter", sans-serif;
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .mnshop-product-section__heading > a {
+    display: flex;
+    color: rgba(255, 255, 255, 0.6);
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .mnshop-product-section__heading > a svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .mnshop-product-section__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 20px;
+    row-gap: 40px;
+  }
+
+  .mnshop-sale-section {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: #15120f;
+    color: #fff;
+  }
+
+  .mnshop-sale-section .mnshop-product-section__heading {
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .mnshop-sale-section .mnshop-product-section__heading p {
+    color: #d9b3a0;
+  }
+
+  .mnshop-sale-section .mnshop-product-section__heading > a {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .mnshop-product-section__heading > a:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 3px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .mnshop-product-section {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-product-section--alternate {
+    background: rgba(255, 255, 255, 0.018);
+  }
+
+  .mnshop-product-section__inner {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 64px 20px;
+  }
+
+  .mnshop-product-section__heading {
+    display: flex;
+    margin-bottom: 36px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .mnshop-product-section__heading p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  .mnshop-product-section__heading h2 {
+    margin: 12px 0 0;
+    font-family: "Poppins", "Inter", sans-serif;
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 36px;
+  }
+
+  .mnshop-product-section__heading > a {
+    display: flex;
+    color: rgba(255, 255, 255, 0.6);
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .mnshop-product-section__heading > a svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .mnshop-product-section__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    column-gap: 20px;
+    row-gap: 40px;
+  }
+
+  .mnshop-sale-section {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: #15120f;
+    color: #fff;
+  }
+
+  .mnshop-sale-section .mnshop-product-section__heading {
+    display: grid;
+    border-color: rgba(255, 255, 255, 0.2);
+    align-items: initial;
+    justify-content: initial;
+  }
+
+  .mnshop-sale-section .mnshop-product-section__heading p {
+    color: #d9b3a0;
+  }
+
+  .mnshop-sale-section .mnshop-product-section__heading > a {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .mnshop-product-section__heading > a:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 3px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .mnshop-hero__video {
     display: none;
