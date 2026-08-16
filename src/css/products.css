@@ -1,0 +1,218 @@
+/* ==================================================
+   SOURCE parity — product card, all viewports
+   ================================================== */
+
+  .mnshop-product-card {
+    position: relative;
+    min-width: 0;
+  }
+
+  .mnshop-product-card button {
+    border: 0;
+    cursor: pointer;
+  }
+
+  .mnshop-product-card__like {
+    position: absolute;
+    z-index: 10;
+    top: 12px;
+    right: 12px;
+    display: grid;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    background: #fff;
+    color: #000;
+    place-items: center;
+    transition: background-color 150ms ease;
+  }
+
+  .mnshop-product-card__like:hover {
+    background: #3b82f6;
+  }
+
+  .mnshop-product-card__like svg {
+    width: 19px;
+    height: 19px;
+  }
+
+  .mnshop-product-card__like--active svg {
+    color: #f43f5e;
+  }
+
+  .mnshop-product-card__badge {
+    position: absolute;
+    z-index: 10;
+    top: 12px;
+    left: 12px;
+    padding: 6px 12px;
+    background: #000;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
+  .mnshop-product-card__badge--sale {
+    background: #f43f5e;
+  }
+
+  .mnshop-product-card__media-link {
+    display: block;
+  }
+
+  .mnshop-product-card__media {
+    position: relative;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.04);
+    aspect-ratio: 4 / 5;
+  }
+
+  .mnshop-product-card__image {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 500ms ease;
+  }
+
+  .mnshop-product-card__image--primary {
+    opacity: 1;
+  }
+
+  .mnshop-product-card__image--alternate {
+    opacity: 0;
+  }
+
+  .mnshop-product-card:hover .mnshop-product-card__image--primary {
+    opacity: 0;
+  }
+
+  .mnshop-product-card:hover .mnshop-product-card__image--alternate {
+    opacity: 1;
+  }
+
+  .mnshop-product-card__content {
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-product-card__heading-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .mnshop-product-card__eyebrow {
+    margin: 0 0 4px;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
+  .mnshop-product-card h3 {
+    margin: 0;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  .mnshop-product-card__prices {
+    display: flex;
+    margin-top: 6px;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 14px;
+  }
+
+  .mnshop-product-card__prices span:first-child {
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .mnshop-product-card__prices span + span {
+    color: rgba(255, 255, 255, 0.35);
+    text-decoration: line-through;
+  }
+
+  .mnshop-product-card__add {
+    display: grid;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    flex: 0 0 40px;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    background: transparent;
+    color: #fff;
+    place-items: center;
+    transition:
+      border-color 150ms ease,
+      background-color 150ms ease,
+      color 150ms ease;
+  }
+
+  .mnshop-product-card__add:hover {
+    border-color: #fff !important;
+    background: #fff;
+    color: #000;
+  }
+
+  .mnshop-product-card__add svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .mnshop-product-card__meta {
+    display: flex;
+    margin-top: 12px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .mnshop-product-card__colors {
+    display: flex;
+    gap: 6px;
+  }
+
+  .mnshop-product-card__colors span {
+    width: 14px;
+    height: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 9999px;
+  }
+
+  .mnshop-product-card__metrics {
+    display: flex;
+    color: rgba(255, 255, 255, 0.4);
+    gap: 12px;
+    font-size: 11px;
+  }
+
+  .mnshop-product-card__metrics span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .mnshop-product-card__metrics svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  .mnshop-product-card__like:focus-visible,
+  .mnshop-product-card__media-link:focus-visible,
+  .mnshop-product-card__add:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 3px;
+  }
