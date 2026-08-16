@@ -2,8 +2,11 @@ import React from "react";
 import "../css/app.css";
 import { Box, Container, Stack, Typography } from "@mui/material";
 import { Link, Route, Switch } from "react-router-dom";
-import { About } from "./screens/About";
-import { Users } from "./screens/Users";
+import { HomePage } from "./screens/homePage";
+import { HelpPage } from "./screens/helpPage/index";
+import { OrdersPage } from "./screens/ordersPage/index";
+import { ProductsPage } from "./screens/productsPage/index";
+import { AboutPage } from "./screens/aboutPage/index";
 
 function App() {
   return (
@@ -14,10 +17,13 @@ function App() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/about">About</Link>
+            <Link to="/products">ProductsPage</Link>
           </li>
           <li>
-            <Link to="/users">Users</Link>
+            <Link to="/help">HelpPage</Link>
+          </li>
+          <li>
+            <Link to="/about">AboutPage</Link>
           </li>
         </ul>
       </nav>
@@ -26,10 +32,13 @@ function App() {
             renders the first one that matches the current URL. */}
       <Switch>
         <Route path="/about">
-          <About />
+          <AboutPage />
         </Route>
-        <Route path="/users">
-          <Users />
+        <Route path="/help">
+          <HelpPage />
+        </Route>
+        <Route path="/products">
+          <ProductsPage />
         </Route>
         <Route path="/">
           <Home />
