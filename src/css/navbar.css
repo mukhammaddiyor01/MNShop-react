@@ -1311,3 +1311,108 @@
     padding: 16px;
   }
 }
+
+/* ==================================================
+   Buyer Basket trigger — desktop
+   ================================================== */
+
+@media screen and (min-width: 1024px) {
+  .mnshop-basket-trigger.MuiIconButton-root {
+    display: grid;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 1px solid transparent;
+    border-radius: 9999px;
+    background: transparent;
+    color: rgba(248, 250, 252, 0.72);
+    transition:
+      background-color 180ms ease,
+      border-color 180ms ease,
+      color 180ms ease,
+      transform 180ms ease;
+    place-items: center;
+  }
+
+  .mnshop-basket-trigger.MuiIconButton-root:hover {
+    border-color: rgba(59, 130, 246, 0.24);
+    background: rgba(255, 255, 255, 0.08);
+    color: #3b82f6;
+    transform: translateY(-1px);
+  }
+
+  .mnshop-basket-trigger__badge .MuiBadge-badge {
+    min-width: 17px;
+    height: 17px;
+    padding: 0 4px;
+    border: 2px solid #0a0a0a;
+    border-radius: 9999px;
+    background: #3b82f6;
+    color: #f8fafc;
+    font-family: "Inter", sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .mnshop-basket-trigger.MuiIconButton-root:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 3px;
+  }
+}
+
+/* ==================================================
+   Buyer Basket trigger — tablet and mobile
+   ================================================== */
+
+@media screen and (max-width: 1023px) {
+  .mnshop-basket-trigger.MuiIconButton-root {
+    display: grid;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 1px solid transparent;
+    border-radius: 9999px;
+    background: transparent;
+    color: rgba(248, 250, 252, 0.76);
+    touch-action: manipulation;
+    transition:
+      background-color 160ms ease,
+      border-color 160ms ease,
+      color 160ms ease,
+      transform 160ms ease;
+    place-items: center;
+  }
+
+  .mnshop-basket-trigger.MuiIconButton-root:active {
+    border-color: rgba(59, 130, 246, 0.24);
+    background: rgba(255, 255, 255, 0.1);
+    color: #3b82f6;
+    transform: scale(0.96);
+  }
+
+  .mnshop-basket-trigger__badge .MuiBadge-badge {
+    min-width: 16px;
+    height: 16px;
+    padding: 0 3px;
+    border: 2px solid #0a0a0a;
+    border-radius: 9999px;
+    background: #3b82f6;
+    color: #f8fafc;
+    font-family: "Inter", sans-serif;
+    font-size: 9px;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .mnshop-basket-trigger.MuiIconButton-root:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 3px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mnshop-basket-trigger.MuiIconButton-root {
+    transition-duration: 0ms !important;
+  }
+}
