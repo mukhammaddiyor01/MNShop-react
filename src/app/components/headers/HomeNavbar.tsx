@@ -1,25 +1,39 @@
+import CheckroomIcon from "@mui/icons-material/Checkroom";
 import CloseIcon from "@mui/icons-material/Close";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined";
 import MenuIcon from "@mui/icons-material/Menu";
-import PersonIcon from "@mui/icons-material/Person";
-import { useState } from "react";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import SearchIcon from "@mui/icons-material/Search";
+import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
+import { useMemo, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-
-function MnshopLogo({ size }: { size: "sm" }) {
-  return (
-    <span aria-label="MNShop logo">{size === "sm" ? "MN" : "MNShop"}</span>
-  );
-}
+import { products } from "../../data/products";
+import { MnshopLogo } from "../mnshop-logo";
 
 const publicNavigation = [
-  { label: "Home", href: "/" },
-  { label: "Products", href: "/products" },
-  { label: "Help", href: "/help" },
-  { label: "About", href: "/about" },
+  { label: "Home", href: "/", icon: HomeOutlinedIcon },
+  { label: "Products", href: "/products", icon: Inventory2OutlinedIcon },
+  { label: "Help", href: "/help", icon: HelpOutlineIcon },
+  { label: "About", href: "/about", icon: InfoOutlinedIcon },
 ];
 
 export function HomeNavbar() {
   const { pathname } = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [query, setQuery] = useState("");
+
+  const suggestions = useMemo(() => {
+    const normalizedQuery = query.trim().toLowerCase();
+    if (normalizedQuery.length < 2) return [];
+
+    return products
+      .filter((product) => product.name.toLowerCase().includes(normalizedQuery))
+      .slice(0, 5);
+  }, [query]);
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
@@ -27,122 +41,150 @@ export function HomeNavbar() {
   };
 
   return (
-    <header className="mnshop-home-navbar sticky top-0 z-[1000] border-b border-white/10 bg-night/90 backdrop-blur-xl">
-      <div className="mnshop-home-navbar__inner mx-auto flex h-16 max-w-[1440px] items-center justify-between px-4 md:px-8 lg:px-12">
-        {/* Logo */}
-        <Link to="/" className="mnshop-home-navbar__brand flex items-center gap-3">
+    <header className="mnshop-home-header">
+      <div className="mnshop-home-header__inner">
+        <Link to="/" className="mnshop-home-header__brand">
+          <span className="mnshop-home-header__brand-tile" aria-hidden="true">
+            <CheckroomIcon />
+          </span>
           <MnshopLogo size="sm" />
-
-          <span className="mnshop-home-navbar__brand-name hidden font-display text-lg font-black text-white sm:block">
-            MNShop
+          <span className="mnshop-home-header__brand-name">
+            mnshop_blueprint
           </span>
         </Link>
 
-        {/* Desktop navigation */}
-        <nav className="mnshop-home-navbar__desktop-nav hidden items-center gap-7 lg:flex">
+        <nav
+          className="mnshop-home-header__desktop-nav"
+          aria-label="Buyer navigation"
+        >
           {publicNavigation.map((item) => (
             <Link
               key={item.href}
               to={item.href}
-              className={[
-                "mnshop-home-navbar__link",
-                "relative py-5 text-xs font-bold uppercase tracking-[0.12em]",
-                "transition-colors after:absolute after:inset-x-0",
-                "after:bottom-3 after:h-px after:bg-blue",
-                "after:transition-transform",
+              className={`mnshop-home-header__nav-link${
                 isActive(item.href)
-                  ? "mnshop-home-navbar__link--active text-blue after:scale-x-100"
-                  : "text-white/70 after:scale-x-0 hover:text-white hover:after:scale-x-100",
-              ].join(" ")}
+                  ? " mnshop-home-header__nav-link--active"
+                  : ""
+              }`}
             >
               {item.label}
             </Link>
           ))}
         </nav>
 
-        {/* User actions */}
-        <div className="mnshop-home-navbar__actions flex items-center gap-2">
-          <Link
-            to="/login"
-            className="mnshop-home-navbar__login hidden items-center gap-2 rounded-full bg-blue px-5 py-2.5 text-sm font-bold text-white transition hover:bg-blue/80 md:flex"
-          >
-            <PersonIcon sx={{ fontSize: 17 }} />
-            Login
-          </Link>
+        <div className="mnshop-home-header__search">
+          <div className="mnshop-home-header__search-field">
+            <SearchIcon aria-hidden="true" />
+            <input
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Search mnshop_blueprint"
+              aria-label="Search mnshop_blueprint"
+            />
 
+            {suggestions.length > 0 && (
+              <div className="mnshop-home-header__suggestions">
+                {suggestions.map((product) => (
+                  <Link
+                    key={product.id}
+                    to={`/products/${product.id}`}
+                    onClick={() => setQuery("")}
+                  >
+                    {product.name}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div className="mnshop-home-header__actions">
+          <Link
+            to="/login?next=%2Flikes"
+            className="mnshop-home-header__icon-action"
+            aria-label="Liked items"
+          >
+            <FavoriteBorderIcon />
+          </Link>
+          <Link
+            to="/login?next=%2Fcart"
+            className="mnshop-home-header__icon-action"
+            aria-label="Cart"
+          >
+            <ShoppingBagOutlinedIcon />
+          </Link>
+          <Link to="/login" className="mnshop-home-header__login">
+            <PersonOutlineIcon />
+            Sign In
+          </Link>
           <button
             type="button"
+            className="mnshop-home-header__menu-toggle"
             onClick={() => setMobileOpen(true)}
-            aria-label="Open navigation menu"
-            className="mnshop-home-navbar__menu-toggle rounded-full p-2 text-white lg:hidden"
+            aria-label="Open menu"
+            aria-expanded={mobileOpen}
+            aria-controls="mnshop-home-mobile-menu"
           >
             <MenuIcon />
           </button>
         </div>
       </div>
 
-      {/* Mobile navigation */}
       {mobileOpen && (
-        <>
-          <button
-            type="button"
-            aria-label="Close navigation"
-            onClick={() => setMobileOpen(false)}
-            className="mnshop-home-navbar__overlay fixed inset-0 z-[1100] bg-black/60 backdrop-blur-sm lg:hidden"
-          />
+        <aside
+          id="mnshop-home-mobile-menu"
+          className="mnshop-home-header__drawer"
+          aria-label="Mobile buyer navigation"
+        >
+          <div className="mnshop-home-header__drawer-heading">
+            <Link
+              to="/"
+              className="mnshop-home-header__drawer-brand"
+              onClick={() => setMobileOpen(false)}
+            >
+              <MnshopLogo size="sm" />
+              <span>mnshop_blueprint</span>
+            </Link>
+            <button
+              type="button"
+              className="mnshop-home-header__drawer-close"
+              onClick={() => setMobileOpen(false)}
+              aria-label="Close menu"
+            >
+              <CloseIcon />
+            </button>
+          </div>
 
-          <aside className="mnshop-home-navbar__drawer fixed inset-y-0 right-0 z-[1200] w-full max-w-sm border-l border-white/10 bg-night p-5 lg:hidden">
-            <div className="mnshop-home-navbar__drawer-header flex items-center justify-between">
-              <Link
-                to="/"
-                onClick={() => setMobileOpen(false)}
-                className="mnshop-home-navbar__drawer-brand flex items-center gap-3"
-              >
-                <MnshopLogo size="sm" />
+          <nav className="mnshop-home-header__mobile-nav">
+            {publicNavigation.map((item) => {
+              const Icon = item.icon;
 
-                <span className="font-display text-xl font-black">MNShop</span>
-              </Link>
-
-              <button
-                type="button"
-                onClick={() => setMobileOpen(false)}
-                aria-label="Close menu"
-                className="mnshop-home-navbar__drawer-close rounded-full p-2 hover:bg-white/10"
-              >
-                <CloseIcon />
-              </button>
-            </div>
-
-            <nav className="mnshop-home-navbar__mobile-nav mt-8 space-y-2">
-              {publicNavigation.map((item) => (
+              return (
                 <Link
                   key={item.href}
                   to={item.href}
-                  onClick={() => setMobileOpen(false)}
-                  className={[
-                    "mnshop-home-navbar__mobile-link",
-                    "block rounded-lg px-4 py-3 text-lg font-bold transition",
+                  className={`mnshop-home-header__mobile-link${
                     isActive(item.href)
-                      ? "mnshop-home-navbar__mobile-link--active bg-blue/15 text-blue"
-                      : "text-white/70 hover:bg-white/10 hover:text-white",
-                  ].join(" ")}
+                      ? " mnshop-home-header__mobile-link--active"
+                      : ""
+                  }`}
+                  onClick={() => setMobileOpen(false)}
                 >
+                  <Icon aria-hidden="true" />
                   {item.label}
                 </Link>
-              ))}
+              );
+            })}
+          </nav>
 
-            </nav>
-
-            <Link
-              to="/login"
-              onClick={() => setMobileOpen(false)}
-              className="mnshop-home-navbar__mobile-login mt-8 flex w-full items-center justify-center gap-2 rounded-full bg-blue px-5 py-3 font-black text-white"
-            >
-              <PersonIcon sx={{ fontSize: 18 }} />
-              Login
-            </Link>
-          </aside>
-        </>
+          <Link
+            to="/signup"
+            className="mnshop-home-header__mobile-auth"
+            onClick={() => setMobileOpen(false)}
+          >
+            Sign In / Sign Up
+          </Link>
+        </aside>
       )}
     </header>
   );
