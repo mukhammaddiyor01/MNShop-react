@@ -9,6 +9,7 @@ import {
 import { useGlobals } from "../../hooks/useGlobals";
 import BuyerAuthService from "../../services/BuyerAuthService";
 import { GoogleAuthButton } from "../../components/auth/GoogleAuthButton";
+import { AuthWelcomeAnimation } from "../../components/auth/AuthWelcomeAnimation";
 import { sellerPortalUrl } from "../../../lib/config";
 
 const buyerAuthService = new BuyerAuthService();
@@ -109,6 +110,7 @@ export function LoginPage() {
   return (
     <main className="auth-page">
       <form onSubmit={handleSubmit}>
+        <AuthWelcomeAnimation />
         <span className="eyebrow">WELCOME BACK</span>
         <h1>Sign in to MNShop</h1>
         <input

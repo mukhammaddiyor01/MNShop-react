@@ -1,0 +1,29 @@
+/* Buyer auth singularity — no labels, decorative only */
+.mnshop-auth-singularity {
+  width: 188px;
+  height: 108px;
+  margin: 0 auto 18px;
+  overflow: hidden;
+  pointer-events: none;
+  animation: mnshop-auth-content-enter 620ms 90ms ease-out both;
+}
+
+.mnshop-auth-singularity canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (max-width: 1023px) {
+  .mnshop-auth-singularity {
+    width: 160px;
+    height: 92px;
+    margin-bottom: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mnshop-auth-singularity {
+    animation: none;
+  }
+}

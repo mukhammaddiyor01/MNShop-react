@@ -23,6 +23,7 @@
     background-image: url("https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=1800&q=85");
     background-position: center;
     background-size: cover;
+    animation: mnshop-auth-background-drift 18s ease-in-out infinite alternate;
   }
 
   .auth-page::after {
@@ -33,6 +34,7 @@
   }
 
   .auth-page form {
+    position: relative;
     display: flex;
     width: 100%;
     max-width: 576px;
@@ -45,6 +47,19 @@
     flex-direction: column;
     align-self: stretch;
     justify-content: center;
+    animation: mnshop-auth-panel-enter 680ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .auth-page form::before {
+    position: absolute;
+    top: 0;
+    right: 48px;
+    left: 48px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+    box-shadow: 0 0 22px rgba(59, 130, 246, 0.78);
+    content: "";
+    animation: mnshop-auth-accent-glow 3.6s ease-in-out infinite;
   }
 
   .auth-page form > .eyebrow {
@@ -54,6 +69,8 @@
     font-weight: 800;
     letter-spacing: 0.25em;
     text-transform: uppercase;
+    animation: mnshop-auth-content-enter 560ms 150ms ease-out both;
+    text-align: center;
   }
 
   .auth-page form > h1 {
@@ -62,6 +79,8 @@
     font-size: 30px;
     font-weight: 900;
     line-height: 36px;
+    animation: mnshop-auth-content-enter 560ms 220ms ease-out both;
+    text-align: center;
   }
 
   .auth-page form > input {
@@ -76,6 +95,7 @@
     color: #f8fafc;
     font-size: 14px;
     transition: border-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    animation: mnshop-auth-content-enter 500ms 300ms ease-out both;
   }
 
   .auth-page form > h1 + input {
@@ -218,5 +238,37 @@
   :root[data-theme="light"] .auth-page form > .mnshop-google-auth + p,
   :root[data-theme="light"] .auth-page form > .primary-button + p {
     color: rgba(20, 20, 20, 0.5);
+  }
+}
+
+@keyframes mnshop-auth-panel-enter {
+  from { opacity: 0; transform: translate3d(34px, 0, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes mnshop-auth-content-enter {
+  from { opacity: 0; transform: translate3d(0, 12px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes mnshop-auth-background-drift {
+  from { transform: scale(1); }
+  to { transform: scale(1.045); }
+}
+
+@keyframes mnshop-auth-accent-glow {
+  0%, 100% { opacity: 0.32; transform: scaleX(0.72); }
+  50% { opacity: 1; transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .auth-page::before,
+  .auth-page form,
+  .auth-page form::before,
+  .mnshop-auth-singularity,
+  .auth-page form > .eyebrow,
+  .auth-page form > h1,
+  .auth-page form > input {
+    animation: none;
   }
 }
