@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import { useGlobals } from "../../hooks/useGlobals";
 import BuyerAuthService from "../../services/BuyerAuthService";
+import { GoogleAuthButton } from "../../components/auth/GoogleAuthButton";
 
 const buyerAuthService = new BuyerAuthService();
 
@@ -74,6 +75,32 @@ export function LoginPage() {
     }
   };
 
+  const handleGoogleCredential = async (credential: string) => {
+    setLoading(true);
+    setErrorMessage("");
+
+    try {
+      const buyer = await buyerAuthService.signInWithGoogle({ credential });
+      setAuthUser(buyer);
+      history.replace(nextPath);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const responseData = error.response?.data as
+          | { message?: string }
+          | undefined;
+        setErrorMessage(
+          responseData?.message || "Google sign-in could not be completed.",
+        );
+      } else {
+        setErrorMessage(
+          error instanceof Error ? error.message : "Google sign-in failed.",
+        );
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
   if (authUser?.role === "BUYER") {
     return <Redirect to={nextPath} />;
   }
@@ -108,6 +135,11 @@ export function LoginPage() {
         <button className="primary-button" disabled={loading} type="submit">
           {loading ? "Signing in..." : "Sign in"}
         </button>
+        <GoogleAuthButton
+          disabled={loading}
+          onCredential={handleGoogleCredential}
+          onError={setErrorMessage}
+        />
         <p>
           New here? <Link to="/signup">Create account</Link>
         </p>

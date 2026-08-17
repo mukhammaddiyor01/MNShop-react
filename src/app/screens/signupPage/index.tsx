@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FormEvent, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 import {
   Link,
   Redirect,
@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import { useGlobals } from "../../hooks/useGlobals";
 import BuyerAuthService from "../../services/BuyerAuthService";
+import { GoogleAuthButton } from "../../components/auth/GoogleAuthButton";
 
 const buyerAuthService = new BuyerAuthService();
 
@@ -33,6 +34,7 @@ export function SignupPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const formRef = useRef<HTMLFormElement>(null);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -84,13 +86,59 @@ export function SignupPage() {
     }
   };
 
+  const handleGoogleCredential = async (credential: string) => {
+    const form = formRef.current;
+    const formData = form ? new FormData(form) : null;
+    const userNick = String(formData?.get("userNick") || "").trim();
+    const userPhone = String(formData?.get("userPhone") || "").trim();
+    const termsAccepted = formData?.get("termsAccepted") === "on";
+
+    if (!userNick || !userPhone) {
+      setErrorMessage("Enter a username and phone number before using Google.");
+      return;
+    }
+
+    if (!termsAccepted) {
+      setErrorMessage("Please accept the Terms of Service and Privacy Policy.");
+      return;
+    }
+
+    setLoading(true);
+    setErrorMessage("");
+
+    try {
+      const buyer = await buyerAuthService.signInWithGoogle({
+        credential,
+        userNick,
+        userPhone,
+      });
+      setAuthUser(buyer);
+      history.replace(nextPath);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const responseData = error.response?.data as
+          | { message?: string }
+          | undefined;
+        setErrorMessage(
+          responseData?.message || "Google sign-up could not be completed.",
+        );
+      } else {
+        setErrorMessage(
+          error instanceof Error ? error.message : "Google sign-up failed.",
+        );
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
   if (authUser?.role === "BUYER") {
     return <Redirect to={nextPath} />;
   }
 
   return (
     <main className="auth-page">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} ref={formRef}>
         <span className="eyebrow">JOIN MNSHOP</span>
         <h1>Create your buyer account</h1>
         <input
@@ -144,6 +192,11 @@ export function SignupPage() {
         <button className="primary-button" disabled={loading} type="submit">
           {loading ? "Creating account..." : "Create Buyer Account"}
         </button>
+        <GoogleAuthButton
+          disabled={loading}
+          onCredential={handleGoogleCredential}
+          onError={setErrorMessage}
+        />
         <p>
           Already have an account? <Link to="/login">Sign in</Link>
         </p>

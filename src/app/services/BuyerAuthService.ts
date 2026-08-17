@@ -3,6 +3,7 @@ import { serverApi } from "../../lib/config";
 import { UserType } from "../../lib/enums/user.enum";
 import {
   BuyerAuthResponse,
+  GoogleBuyerAuthInput,
   BuyerSignInInput,
   BuyerSignUpInput,
   User,
@@ -51,6 +52,19 @@ class BuyerAuthService {
     const result = await axios.post<BuyerAuthResponse>(
       `${this.path}/signup`,
       { ...input, userType: UserType.BUYER },
+      { withCredentials: true },
+    );
+    const buyer = normalizeBuyer(result.data);
+    localStorage.setItem("userData", JSON.stringify(buyer));
+    return buyer;
+  }
+
+  public async signInWithGoogle(
+    input: GoogleBuyerAuthInput,
+  ): Promise<User> {
+    const result = await axios.post<BuyerAuthResponse>(
+      `${this.path}/auth/google`,
+      input,
       { withCredentials: true },
     );
     const buyer = normalizeBuyer(result.data);

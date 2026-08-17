@@ -1,0 +1,51 @@
+/* Google Identity Services — SOURCE auth visual tokens */
+.mnshop-google-auth {
+  width: 100%;
+}
+
+.mnshop-google-auth__divider {
+  display: flex;
+  margin: 20px 0 16px;
+  color: rgba(255, 255, 255, 0.35);
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.mnshop-google-auth__divider span {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  flex: 1 1 0%;
+}
+
+.mnshop-google-auth__divider b {
+  white-space: nowrap;
+}
+
+.mnshop-google-auth__button {
+  display: flex;
+  min-height: 40px;
+  overflow: hidden;
+  justify-content: center;
+}
+
+.mnshop-google-auth__button > div,
+.mnshop-google-auth__button iframe {
+  max-width: 100% !important;
+}
+
+.mnshop-google-auth__button.is-disabled {
+  pointer-events: none;
+  opacity: 0.55;
+}
+
+:root[data-theme="light"] .mnshop-google-auth__divider {
+  color: rgba(20, 20, 20, 0.35);
+}
+
+:root[data-theme="light"] .mnshop-google-auth__divider span {
+  background: rgba(20, 20, 20, 0.13);
+}

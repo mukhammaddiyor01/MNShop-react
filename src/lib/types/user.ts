@@ -23,6 +23,12 @@ export type BuyerSignUpInput = {
   userPassword: string;
 };
 
+export type GoogleBuyerAuthInput = {
+  credential: string;
+  userNick?: string;
+  userPhone?: string;
+};
+
 export type BuyerApiUser = {
   _id?: string;
   id?: string;
