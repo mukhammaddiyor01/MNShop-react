@@ -1,6 +1,14 @@
 /* Homepage responsive styles — SOURCE parity */
 
 @media screen and (max-width: 1023px) {
+  .checkout-addresses { display: grid; gap: 10px; }
+  .checkout-address { display: flex; padding: 14px; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; background: rgba(255, 255, 255, 0.03); color: #fff; align-items: flex-start; gap: 10px; }
+  .checkout-address.is-selected { border-color: #3b82f6; background: rgba(59, 130, 246, 0.09); }
+  .checkout-address input { margin-top: 3px; accent-color: #3b82f6; }
+  .checkout-address span, .checkout-address small { display: block; }
+  .checkout-address strong { font-size: 13px; }
+  .checkout-address small { margin-top: 4px; color: rgba(255, 255, 255, 0.56); font-size: 11px; line-height: 17px; }
+  .checkout-addresses [role="alert"] { margin: 0; color: #f43f5e; font-size: 12px; }
   .mnshop-likes-page { min-height: calc(100vh - 128px); }
   .mnshop-likes-page__content { width: 100%; padding: 28px 16px; }
   .mnshop-likes-page__content h1 { margin: 0; color: #fff; font-family: var(--font-display); font-size: 36px; font-weight: 900; line-height: 1; }

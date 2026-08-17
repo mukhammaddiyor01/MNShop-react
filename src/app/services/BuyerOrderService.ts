@@ -2,6 +2,14 @@ import axios from "axios";
 import { serverApi } from "../../lib/config";
 import { CartItem } from "../context/ContextProvider";
 
+export type BuyerDeliveryAddress = {
+  fullName: string;
+  phone: string;
+  address: string;
+  city: string;
+  zipCode: string;
+};
+
 export type CreatedBuyerOrder = {
   id: string;
 };
@@ -16,13 +24,25 @@ type CreateOrderResponse = {
 class BuyerOrderService {
   private readonly path = serverApi;
 
-  public async createOrder(items: CartItem[]): Promise<CreatedBuyerOrder> {
+  public async createOrder(
+    items: CartItem[],
+    deliveryAddress: BuyerDeliveryAddress,
+  ): Promise<CreatedBuyerOrder> {
     const result = await axios.post<CreateOrderResponse>(
       `${this.path}/order/create`,
-      items.map((item) => ({
-        productId: item.product.id,
-        itemSubtotal: item.quantity,
-      })),
+      {
+        items: items.map((item) => ({
+          productId: item.product.id,
+          itemSubtotal: item.quantity,
+        })),
+        deliveryAddress: [
+          deliveryAddress.fullName,
+          deliveryAddress.phone,
+          deliveryAddress.address,
+          deliveryAddress.city,
+          deliveryAddress.zipCode,
+        ].join(" · "),
+      },
       { withCredentials: true },
     );
 
