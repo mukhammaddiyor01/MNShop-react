@@ -4,14 +4,17 @@ import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import LogoutIcon from "@mui/icons-material/Logout";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useGlobals } from "../../hooks/useGlobals";
+import { BuyerAddressManager } from "./BuyerAddressManager";
 
 export function BuyerProfileSettings() {
   const { authUser, setAuthUser } = useGlobals();
   const [fullName, setFullName] = useState(authUser?.fullName || "");
   const [phone, setPhone] = useState(authUser?.phone || "");
+  const [avatarPreview, setAvatarPreview] = useState(authUser?.avatar || "");
+  const [isAddressesOpen, setIsAddressesOpen] = useState(false);
   const [saveState, setSaveState] = useState<
     "idle" | "saving" | "success" | "error"
   >("idle");
@@ -21,7 +24,8 @@ export function BuyerProfileSettings() {
   useEffect(() => {
     setFullName(authUser?.fullName || "");
     setPhone(authUser?.phone || "");
-  }, [authUser?.fullName, authUser?.phone]);
+    setAvatarPreview(authUser?.avatar || "");
+  }, [authUser?.avatar, authUser?.fullName, authUser?.phone]);
 
   useEffect(
     () => () => window.clearTimeout(feedbackTimer.current),
@@ -79,11 +83,58 @@ export function BuyerProfileSettings() {
     }
   };
 
+  const handlePhotoChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+
+    if (!file) return;
+
+    if (!['image/jpeg', 'image/png'].includes(file.type)) {
+      setSaveState("error");
+      setFeedback("Choose a JPG or PNG image.");
+      event.target.value = "";
+      return;
+    }
+
+    if (file.size > 2 * 1024 * 1024) {
+      setSaveState("error");
+      setFeedback("Choose an image smaller than 2 MB.");
+      event.target.value = "";
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      const nextAvatar = typeof reader.result === "string" ? reader.result : "";
+
+      if (!nextAvatar) {
+        setSaveState("error");
+        setFeedback("The selected image could not be read.");
+        return;
+      }
+
+      setAvatarPreview(nextAvatar);
+      setAuthUser((current) =>
+        current ? { ...current, avatar: nextAvatar } : current,
+      );
+      setSaveState("success");
+      setFeedback("Profile photo saved on this device.");
+    };
+    reader.onerror = () => {
+      setSaveState("error");
+      setFeedback("The selected image could not be read.");
+    };
+    reader.readAsDataURL(file);
+  };
+
   return (
     <section className="mnshop-buyer-profile-settings">
       <div className="mnshop-buyer-profile-settings__identity">
         <div className="mnshop-buyer-profile-settings__avatar">
-          {initials || "MN"}
+          {avatarPreview ? (
+            <img alt="Profile" src={avatarPreview} />
+          ) : (
+            initials || "MN"
+          )}
         </div>
         <div>
           <p>{authUser.fullName}</p>
@@ -134,7 +185,13 @@ export function BuyerProfileSettings() {
             <label>
               <AddAPhotoOutlinedIcon aria-hidden="true" />
               Photo
-              <input type="file" accept="image/jpeg,image/png" hidden />
+              <input
+                accept="image/jpeg,image/png"
+                aria-label="Choose profile photo"
+                onChange={handlePhotoChange}
+                type="file"
+                hidden
+              />
             </label>
             <button disabled={saveState === "saving"} type="submit">
               <SaveOutlinedIcon aria-hidden="true" />
@@ -144,7 +201,7 @@ export function BuyerProfileSettings() {
         </form>
 
         <div className="mnshop-buyer-profile-settings__shortcuts">
-          <button type="button">
+          <button onClick={() => setIsAddressesOpen(true)} type="button">
             <LocationOnOutlinedIcon aria-hidden="true" />
             My Addresses
             <span>Add, edit, default</span>
@@ -173,6 +230,13 @@ export function BuyerProfileSettings() {
           Log Out
         </button>
       </div>
+      <BuyerAddressManager
+        isOpen={isAddressesOpen}
+        onClose={() => setIsAddressesOpen(false)}
+        userId={authUser.id}
+        userName={authUser.fullName}
+        userPhone={authUser.phone}
+      />
     </section>
   );
 }

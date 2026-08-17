@@ -54,6 +54,13 @@
     place-items: center;
   }
 
+  .mnshop-buyer-profile-settings__avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    object-fit: cover;
+  }
+
   .mnshop-buyer-profile-settings__identity p {
     margin: 0;
   }
@@ -261,6 +268,36 @@
     outline: 2px solid #3b82f6;
     outline-offset: 3px;
   }
+
+  .mnshop-address-modal { position: fixed; inset: 0; z-index: 2000; display: grid; padding: 24px; place-items: center; }
+  .mnshop-address-modal__backdrop { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(8px); }
+  .mnshop-address-modal__panel { position: relative; width: min(100%, 672px); max-height: 86vh; overflow-y: auto; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; background: #0a0a0a; box-shadow: 0 24px 80px rgba(0, 0, 0, 0.48); }
+  .mnshop-address-modal__panel > header { position: sticky; top: 0; z-index: 1; display: flex; padding: 20px 24px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); background: rgba(10, 10, 10, 0.96); align-items: center; justify-content: space-between; }
+  .mnshop-address-modal__panel > header p, .mnshop-address-modal__panel > header h2 { margin: 0; }
+  .mnshop-address-modal__panel > header p, .mnshop-address-modal__form-title { color: #3b82f6; font-size: 11px; font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase; }
+  .mnshop-address-modal__panel > header h2 { margin-top: 6px; font-family: var(--font-display); font-size: 28px; font-weight: 900; }
+  .mnshop-address-modal__panel > header button { display: grid; width: 36px; height: 36px; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 9999px; background: transparent; color: #fff; cursor: pointer; place-items: center; }
+  .mnshop-address-modal__content { display: grid; padding: 24px; gap: 16px; }
+  .mnshop-address-modal__form-title { margin: 0 0 12px; }
+  .mnshop-address-modal__fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .mnshop-address-modal__fields label { display: grid; color: rgba(255, 255, 255, 0.62); gap: 6px; font-size: 12px; font-weight: 700; }
+  .mnshop-address-modal__field-wide { grid-column: 1 / -1; }
+  .mnshop-address-modal__fields input { width: 100%; height: 42px; padding: 0 12px; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 6px; outline: 0; background: rgba(255, 255, 255, 0.05); color: #fff; font: inherit; }
+  .mnshop-address-modal__fields input:focus { border-color: #3b82f6; }
+  .mnshop-address-modal__form-actions, .mnshop-address-modal__item-actions { display: flex; margin-top: 12px; flex-wrap: wrap; gap: 8px; }
+  .mnshop-address-modal__form-actions button, .mnshop-address-modal__item-actions button { min-height: 34px; padding: 7px 10px; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 6px; background: transparent; color: #fff; cursor: pointer; font: inherit; font-size: 12px; font-weight: 800; }
+  .mnshop-address-modal__form-actions button[type="submit"] { border-color: #3b82f6; background: #3b82f6; color: #000; }
+  .mnshop-address-modal__item-actions .is-danger { color: #f43f5e; }
+  .mnshop-address-modal__feedback { margin: 0; color: #3b82f6; font-size: 13px; }
+  .mnshop-address-modal__list { display: grid; gap: 10px; }
+  .mnshop-address-modal__list article { display: flex; padding: 14px; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; background: rgba(255, 255, 255, 0.03); align-items: flex-start; justify-content: space-between; gap: 16px; }
+  .mnshop-address-modal__list article p, .mnshop-address-modal__list article strong, .mnshop-address-modal__list article small { display: block; margin: 0; }
+  .mnshop-address-modal__list article p { color: #3b82f6; font-size: 12px; font-weight: 900; }
+  .mnshop-address-modal__list article p span { margin-left: 6px; color: #000; padding: 2px 6px; border-radius: 9999px; background: #3b82f6; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .mnshop-address-modal__list article strong { margin-top: 8px; font-size: 14px; }
+  .mnshop-address-modal__list article small { margin-top: 4px; color: rgba(255, 255, 255, 0.5); font-size: 12px; line-height: 18px; }
+  .mnshop-address-modal__item-actions { margin-top: 0; justify-content: flex-end; }
+  .mnshop-address-modal__empty { margin: 0; padding: 16px; border: 1px dashed rgba(255, 255, 255, 0.16); color: rgba(255, 255, 255, 0.5); font-size: 13px; text-align: center; }
 
   @keyframes mnshop-profile-enter {
     from {
