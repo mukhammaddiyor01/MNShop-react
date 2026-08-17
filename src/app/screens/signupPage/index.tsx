@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FormEvent, useRef, useState } from "react";
+import { FormEvent, useState } from "react";
 import {
   Link,
   Redirect,
@@ -35,7 +35,6 @@ export function SignupPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const formRef = useRef<HTMLFormElement>(null);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -88,31 +87,11 @@ export function SignupPage() {
   };
 
   const handleGoogleCredential = async (credential: string) => {
-    const form = formRef.current;
-    const formData = form ? new FormData(form) : null;
-    const userNick = String(formData?.get("userNick") || "").trim();
-    const userPhone = String(formData?.get("userPhone") || "").trim();
-    const termsAccepted = formData?.get("termsAccepted") === "on";
-
-    if (!userNick || !userPhone) {
-      setErrorMessage("Enter a username and phone number before using Google.");
-      return;
-    }
-
-    if (!termsAccepted) {
-      setErrorMessage("Please accept the Terms of Service and Privacy Policy.");
-      return;
-    }
-
     setLoading(true);
     setErrorMessage("");
 
     try {
-      const buyer = await buyerAuthService.signInWithGoogle({
-        credential,
-        userNick,
-        userPhone,
-      });
+      const buyer = await buyerAuthService.signInWithGoogle({ credential });
       setAuthUser(buyer);
       history.replace(nextPath);
     } catch (error) {
@@ -139,7 +118,7 @@ export function SignupPage() {
 
   return (
     <main className="auth-page">
-      <form onSubmit={handleSubmit} ref={formRef}>
+      <form onSubmit={handleSubmit}>
         <span className="eyebrow">JOIN MNSHOP</span>
         <h1>Create your buyer account</h1>
         <input
