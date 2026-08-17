@@ -5,6 +5,7 @@ import PublicOutlinedIcon from "@mui/icons-material/PublicOutlined";
 import VerifiedUserOutlinedIcon from "@mui/icons-material/VerifiedUserOutlined";
 import { ElementType } from "react";
 import { Link } from "react-router-dom";
+import "../../../css/about.css";
 
 type SellerStudio = {
   name: string;

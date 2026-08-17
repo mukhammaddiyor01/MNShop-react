@@ -1,5 +1,6 @@
 import React from "react";
 import "../css/app.css";
+import "../css/auth.css";
 import { Route, Switch } from "react-router-dom";
 import { OverviewPage } from "./screens/overviewPage/index";
 import { MessagesPage } from "./screens/messagesPage/index";
@@ -7,6 +8,7 @@ import { OrdersPage } from "./screens/ordersPage/index";
 import { AnalyticsPage } from "./screens/analyticsPage/index";
 import { ProductsPage } from "./screens/productsPage/index";
 import { SettingsPage } from "./screens/settingsPage/index";
+import { SellerAuthPage } from "./screens/authPage";
 
 function App() {
   return (
@@ -14,6 +16,12 @@ function App() {
       {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
       <Switch>
+        <Route exact path="/seller/login">
+          <SellerAuthPage mode="login" />
+        </Route>
+        <Route exact path="/seller/signup">
+          <SellerAuthPage mode="signup" />
+        </Route>
         <Route path="/seller/settings">
           <SettingsPage />
         </Route>

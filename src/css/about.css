@@ -126,6 +126,8 @@
 
   .mnshop-about-statistics__grid {
     display: grid;
+    padding-right: 0;
+    padding-left: 0;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 1px;
     background: rgba(255, 255, 255, 0.1);
@@ -280,6 +282,8 @@
 
   .mnshop-about-values__grid {
     display: grid;
+    padding-right: 0;
+    padding-left: 0;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1px;
     background: rgba(255, 255, 255, 0.1);
@@ -307,14 +311,9 @@
     line-height: 24px;
   }
 
-  .mnshop-about-sellers__heading > a:focus-visible {
-    outline: 2px solid #3b82f6;
-    outline-offset: 3px;
-  }
-
   :root[data-theme="light"] .mnshop-about-purpose__copy,
   :root[data-theme="light"] .mnshop-about-seller__specialty {
-    color: rgba(20, 20, 20, 0.5);
+    color: rgba(20, 20, 20, 0.55);
   }
 
   :root[data-theme="light"] .mnshop-about-statistics,

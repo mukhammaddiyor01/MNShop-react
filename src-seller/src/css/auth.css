@@ -1,0 +1,71 @@
+.mnshop-seller-auth {
+  display: grid;
+  min-height: 100vh;
+  padding: 32px 20px;
+  place-items: center;
+  background:
+    linear-gradient(135deg, rgba(0, 0, 0, 0.86), rgba(0, 0, 0, 0.56)),
+    url("https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=1800&q=85") center / cover;
+  color: #f8fafc;
+}
+
+.mnshop-seller-auth__panel {
+  width: min(100%, 480px);
+  padding: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(10, 10, 10, 0.92);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.36);
+  backdrop-filter: blur(24px);
+}
+
+.mnshop-seller-auth__logo {
+  color: #f8fafc;
+  font-size: 23px;
+  font-weight: 900;
+  letter-spacing: -0.08em;
+  text-decoration: none;
+}
+
+.mnshop-seller-auth__logo span,
+.mnshop-seller-auth__eyebrow,
+.mnshop-seller-auth__switch a,
+.mnshop-seller-auth__buyer-link,
+.mnshop-seller-auth__password-toggle { color: #3b82f6; }
+
+.mnshop-seller-auth__eyebrow {
+  margin: 48px 0 0;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.mnshop-seller-auth h1 {
+  margin: 12px 0 0;
+  font-size: clamp(30px, 4vw, 44px);
+  font-weight: 900;
+  letter-spacing: -0.055em;
+  line-height: 1;
+}
+
+.mnshop-seller-auth__intro { margin: 18px 0 0; color: rgba(255, 255, 255, 0.58); font-size: 14px; line-height: 24px; }
+.mnshop-seller-auth form { margin-top: 32px; }
+.mnshop-seller-auth form label { display: grid; margin-top: 18px; color: rgba(255, 255, 255, 0.72); gap: 8px; font-size: 13px; font-weight: 700; }
+.mnshop-seller-auth form label:first-child { margin-top: 0; }
+.mnshop-seller-auth input { height: 48px; width: 100%; padding: 0 14px; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 0; outline: 0; background: rgba(255, 255, 255, 0.05); color: #f8fafc; font: inherit; }
+.mnshop-seller-auth input:focus { border-color: #3b82f6; }
+.mnshop-seller-auth__password-toggle { display: block; margin: 10px 0 0 auto; padding: 0; border: 0; background: transparent; cursor: pointer; font-size: 12px; font-weight: 700; }
+.mnshop-seller-auth__error { margin: 16px 0 0; color: #fb7185; font-size: 13px; line-height: 20px; }
+.mnshop-seller-auth__submit { width: 100%; min-height: 54px; margin-top: 24px; border: 0; border-radius: 0; background: #3b82f6; color: #000; cursor: pointer; font: inherit; font-size: 15px; font-weight: 900; transition: transform 150ms ease, box-shadow 150ms ease, opacity 150ms ease; }
+.mnshop-seller-auth__submit:hover { transform: scale(1.015); box-shadow: 0 8px 28px rgba(59, 130, 246, 0.35); }
+.mnshop-seller-auth__submit:disabled { cursor: not-allowed; opacity: 0.55; }
+.mnshop-seller-auth__switch { margin: 24px 0 0; color: rgba(255, 255, 255, 0.48); font-size: 14px; text-align: center; }
+.mnshop-seller-auth__switch a, .mnshop-seller-auth__buyer-link { font-weight: 800; text-decoration: none; }
+.mnshop-seller-auth__buyer-link { display: block; margin-top: 24px; font-size: 13px; text-align: center; }
+.mnshop-seller-auth__switch a:hover, .mnshop-seller-auth__buyer-link:hover, .mnshop-seller-auth__password-toggle:hover { text-decoration: underline; }
+
+@media screen and (max-width: 599px) {
+  .mnshop-seller-auth { padding: 0; background: #0a0a0a; }
+  .mnshop-seller-auth__panel { min-height: 100vh; padding: 32px 24px; border: 0; box-shadow: none; }
+  .mnshop-seller-auth__eyebrow { margin-top: 64px; }
+}

@@ -9,6 +9,7 @@ import {
 import { useGlobals } from "../../hooks/useGlobals";
 import BuyerAuthService from "../../services/BuyerAuthService";
 import { GoogleAuthButton } from "../../components/auth/GoogleAuthButton";
+import { sellerPortalUrl } from "../../../lib/config";
 
 const buyerAuthService = new BuyerAuthService();
 
@@ -143,6 +144,9 @@ export function LoginPage() {
         <p>
           New here? <Link to="/signup">Create account</Link>
         </p>
+        <a className="mnshop-auth-seller-link" href={`${sellerPortalUrl}/seller/login`}>
+          Selling with MNShop? Open Seller Studio
+        </a>
       </form>
     </main>
   );

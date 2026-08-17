@@ -18,6 +18,7 @@ import { Footer } from "./components/footer";
 import "../css/navbar.css";
 import "../css/footer.css";
 import "../css/app.css";
+import "../css/auth.css";
 
 function App() {
   const location = useLocation();
