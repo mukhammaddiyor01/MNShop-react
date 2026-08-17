@@ -12,7 +12,7 @@ import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import { useMemo, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { products } from "../../data/products";
 import { useGlobals } from "../../hooks/useGlobals";
 import { MnshopLogo } from "../mnshop-logo";
@@ -32,6 +32,7 @@ const productNavigation = [
 ];
 
 export function OtherNavbar() {
+  const history = useHistory();
   const { pathname, search } = useLocation();
   const { authUser, basket, likedIds, setCartOpen } = useGlobals();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -143,6 +144,7 @@ export function OtherNavbar() {
               type="button"
               className="mnshop-other-header__notification"
               aria-label="Notifications"
+              onClick={() => history.push("/notifications")}
             >
               <NotificationsNoneIcon />
               <span aria-hidden="true" />

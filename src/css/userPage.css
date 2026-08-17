@@ -13,8 +13,8 @@
   }
 
   .mnshop-buyer-profile-settings {
-    width: min(92vw, 380px);
-    padding: 16px;
+    width: min(100%, 1080px);
+    padding: 36px;
     overflow: hidden;
     border: 1px solid var(--glass-border);
     border-radius: 8px;
@@ -271,13 +271,13 @@
 
   .mnshop-address-modal { position: fixed; inset: 0; z-index: 2000; display: grid; padding: 24px; place-items: center; }
   .mnshop-address-modal__backdrop { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(8px); }
-  .mnshop-address-modal__panel { position: relative; width: min(100%, 672px); max-height: 86vh; overflow-y: auto; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; background: #0a0a0a; box-shadow: 0 24px 80px rgba(0, 0, 0, 0.48); }
+  .mnshop-address-modal__panel { position: relative; display: flex; width: min(94vw, 900px); max-height: 90vh; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; background: #0a0a0a; box-shadow: 0 24px 80px rgba(0, 0, 0, 0.48); flex-direction: column; }
   .mnshop-address-modal__panel > header { position: sticky; top: 0; z-index: 1; display: flex; padding: 20px 24px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); background: rgba(10, 10, 10, 0.96); align-items: center; justify-content: space-between; }
   .mnshop-address-modal__panel > header p, .mnshop-address-modal__panel > header h2 { margin: 0; }
   .mnshop-address-modal__panel > header p, .mnshop-address-modal__form-title { color: #3b82f6; font-size: 11px; font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase; }
   .mnshop-address-modal__panel > header h2 { margin-top: 6px; font-family: var(--font-display); font-size: 28px; font-weight: 900; }
   .mnshop-address-modal__panel > header button { display: grid; width: 36px; height: 36px; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 9999px; background: transparent; color: #fff; cursor: pointer; place-items: center; }
-  .mnshop-address-modal__content { display: grid; padding: 24px; gap: 16px; }
+  .mnshop-address-modal__content { display: grid; padding: 24px; overflow-y: auto; flex: 1 1 auto; gap: 16px; min-height: 0; }
   .mnshop-address-modal__form-title { margin: 0 0 12px; }
   .mnshop-address-modal__fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
   .mnshop-address-modal__fields label { display: grid; color: rgba(255, 255, 255, 0.62); gap: 6px; font-size: 12px; font-weight: 700; }
@@ -298,6 +298,46 @@
   .mnshop-address-modal__list article small { margin-top: 4px; color: rgba(255, 255, 255, 0.5); font-size: 12px; line-height: 18px; }
   .mnshop-address-modal__item-actions { margin-top: 0; justify-content: flex-end; }
   .mnshop-address-modal__empty { margin: 0; padding: 16px; border: 1px dashed rgba(255, 255, 255, 0.16); color: rgba(255, 255, 255, 0.5); font-size: 13px; text-align: center; }
+  .mnshop-address-modal__footer-actions { display: flex; padding: 14px 24px; border-top: 1px solid rgba(255, 255, 255, 0.1); background: #0a0a0a; align-items: center; justify-content: space-between; gap: 16px; }
+  .mnshop-address-modal__back { display: inline-flex; width: max-content; min-height: 36px; padding: 8px 0; border: 0; background: transparent; color: rgba(255, 255, 255, 0.65); cursor: pointer; align-items: center; gap: 8px; font: inherit; font-size: 13px; font-weight: 800; }
+  .mnshop-address-modal__back:hover { color: #3b82f6; }
+  .mnshop-address-modal__back svg { width: 17px; height: 17px; }
+  .mnshop-address-modal__done { min-width: 92px; min-height: 40px; border: 1px solid #3b82f6; border-radius: 6px; background: #3b82f6; color: #000; cursor: pointer; font: inherit; font-size: 13px; font-weight: 900; }
+  .mnshop-address-modal__done:hover { background: #60a5fa; border-color: #60a5fa; }
+
+  .mnshop-address-page { width: min(100%, 1440px); min-height: calc(100vh - 160px); margin: 0 auto; padding: 48px; }
+  .mnshop-address-manager { width: min(100%, 1080px); margin: 0 auto; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; background: #0a0a0a; box-shadow: 0 24px 80px rgba(0, 0, 0, 0.32); }
+  .mnshop-address-manager > header { display: flex; min-height: 144px; padding: 32px 36px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); background: linear-gradient(135deg, rgba(59, 130, 246, 0.13), transparent 56%); align-items: flex-end; }
+  .mnshop-address-manager > header > div { text-align: left; }
+  .mnshop-address-manager > header p, .mnshop-address-manager > header h1 { margin: 0; }
+  .mnshop-address-manager > header p { color: #3b82f6; font-size: 11px; font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase; }
+  .mnshop-address-manager > header h1 { margin-top: 8px; font-family: var(--font-display); font-size: 40px; font-weight: 900; line-height: 1; }
+  .mnshop-address-manager__back { display: inline-flex; min-height: 40px; padding: 0; border: 0; background: transparent; color: rgba(255, 255, 255, 0.68); cursor: pointer; align-items: center; gap: 8px; font: inherit; font-size: 13px; font-weight: 800; }
+  .mnshop-address-manager__back:hover { color: #3b82f6; }
+  .mnshop-address-manager__back svg { width: 18px; height: 18px; }
+  .mnshop-address-manager__content { display: grid; padding: 36px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; gap: 36px; }
+  .mnshop-address-manager__content > form { padding-right: 36px; border-right: 1px solid rgba(255, 255, 255, 0.1); }
+  .mnshop-address-manager__content > .mnshop-address-modal__list { max-height: 440px; overflow-y: auto; padding-right: 4px; }
+  .mnshop-address-manager__footer-actions { display: flex; padding: 16px 36px; border-top: 1px solid rgba(255, 255, 255, 0.1); align-items: center; justify-content: flex-start; }
+
+  .mnshop-account-page { width: min(100%, 1440px); min-height: calc(100vh - 160px); margin: 0 auto; padding: 48px; }
+  .mnshop-account-page__panel { width: min(100%, 1080px); margin: 0 auto; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; background: #0a0a0a; box-shadow: 0 24px 80px rgba(0, 0, 0, 0.32); }
+  .mnshop-account-page__panel > header { padding: 32px 36px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); background: linear-gradient(135deg, rgba(59, 130, 246, 0.13), transparent 56%); }
+  .mnshop-account-page__panel > header button { display: inline-flex; padding: 0; border: 0; background: transparent; color: rgba(255, 255, 255, 0.68); cursor: pointer; align-items: center; gap: 8px; font: inherit; font-size: 13px; font-weight: 800; }
+  .mnshop-account-page__panel > header button:hover { color: #3b82f6; }
+  .mnshop-account-page__panel > header button svg { width: 18px; height: 18px; }
+  .mnshop-account-page__panel > header > span { display: block; margin-top: 28px; color: #3b82f6; font-size: 11px; font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase; }
+  .mnshop-account-page__panel > header h1 { margin: 8px 0 0; font-family: var(--font-display); font-size: 40px; font-weight: 900; line-height: 1; }
+  .mnshop-account-page__panel > header p { margin: 14px 0 0; color: rgba(255, 255, 255, 0.58); font-size: 14px; }
+  .mnshop-account-page__list { display: grid; padding: 28px 36px; gap: 12px; }
+  .mnshop-account-page__list article { display: flex; min-height: 92px; padding: 20px; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; background: rgba(255, 255, 255, 0.03); align-items: center; gap: 16px; }
+  .mnshop-account-page__list article > svg { width: 24px; height: 24px; color: #3b82f6; }
+  .mnshop-account-page__list article > div { flex: 1; }
+  .mnshop-account-page__list h2, .mnshop-account-page__list p { margin: 0; }
+  .mnshop-account-page__list h2 { font-size: 15px; font-weight: 900; }
+  .mnshop-account-page__list p { margin-top: 6px; color: rgba(255, 255, 255, 0.52); font-size: 13px; }
+  .mnshop-account-page__list article > span, .mnshop-account-page__list time { color: rgba(255, 255, 255, 0.45); font-size: 12px; font-style: normal; font-weight: 800; white-space: nowrap; }
+  .mnshop-account-page__list article > span.is-ready { color: #3b82f6; }
 
   @keyframes mnshop-profile-enter {
     from {

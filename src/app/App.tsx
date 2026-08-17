@@ -6,9 +6,13 @@ import { OrdersPage } from "./screens/ordersPage/index";
 import { ProductsPage } from "./screens/productsPage/index";
 import { AboutPage } from "./screens/aboutPage/index";
 import { UserPage } from "./screens/userPage/index";
+import { BuyerAddressesPage } from "./screens/userPage/BuyerAddressesPage";
+import { BuyerNotificationsPage } from "./screens/userPage/BuyerNotificationsPage";
+import { BuyerPaymentsPage } from "./screens/userPage/BuyerPaymentsPage";
 import { BuyerMessagePage } from "./screens/messagePage/BuyerMessagePage";
 import { LoginPage } from "./screens/loginPage";
 import { SignupPage } from "./screens/signupPage";
+import { CheckoutPage, LikesPage } from "./screens/sharedPages";
 import { HomeNavbar } from "./components/headers/HomeNavbar";
 import { OtherNavbar } from "./components/headers/OtherNavbar";
 import { CartDrawer } from "./components/headers/Basket";
@@ -39,8 +43,17 @@ function App() {
         <Route path="/chat">
           <BuyerMessagePage />
         </Route>
+        <Route exact path="/notifications">
+          <BuyerNotificationsPage />
+        </Route>
+        <Route exact path="/likes">
+          <LikesPage />
+        </Route>
         <Route path="/orders">
           <OrdersPage />
+        </Route>
+        <Route exact path="/checkout">
+          <CheckoutPage />
         </Route>
         <Route path="/about">
           <AboutPage />
@@ -50,6 +63,12 @@ function App() {
         </Route>
         <Route path="/products">
           <ProductsPage />
+        </Route>
+        <Route exact path="/user-page/addresses">
+          <BuyerAddressesPage />
+        </Route>
+        <Route exact path="/user-page/payments">
+          <BuyerPaymentsPage />
         </Route>
         <Route path="/user-page">
           <UserPage />

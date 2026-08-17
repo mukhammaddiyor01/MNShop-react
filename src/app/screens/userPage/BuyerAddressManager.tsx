@@ -1,4 +1,3 @@
-import CloseIcon from "@mui/icons-material/Close";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { FormEvent, useEffect, useState } from "react";
 
@@ -39,7 +38,6 @@ function readAddresses(userId: string): BuyerAddress[] {
 }
 
 type BuyerAddressManagerProps = {
-  isOpen: boolean;
   onClose: () => void;
   userId: string;
   userName: string;
@@ -47,7 +45,6 @@ type BuyerAddressManagerProps = {
 };
 
 export function BuyerAddressManager({
-  isOpen,
   onClose,
   userId,
   userName,
@@ -59,12 +56,11 @@ export function BuyerAddressManager({
   const [feedback, setFeedback] = useState("");
 
   useEffect(() => {
-    if (!isOpen) return;
     setAddresses(readAddresses(userId));
     setDraft({ ...emptyDraft, fullName: userName, phone: userPhone || "" });
     setEditingId(null);
     setFeedback("");
-  }, [isOpen, userId, userName, userPhone]);
+  }, [userId, userName, userPhone]);
 
   const persist = (nextAddresses: BuyerAddress[]) => {
     setAddresses(nextAddresses);
@@ -137,28 +133,16 @@ export function BuyerAddressManager({
     setFeedback("Address removed.");
   };
 
-  if (!isOpen) return null;
-
   return (
-    <div className="mnshop-address-modal" role="presentation">
-      <div className="mnshop-address-modal__backdrop" onClick={onClose} />
-      <section
-        aria-label="My Addresses"
-        aria-modal="true"
-        className="mnshop-address-modal__panel"
-        role="dialog"
-      >
-        <header>
-          <div>
-            <p>Delivery details</p>
-            <h2>My Addresses</h2>
-          </div>
-          <button aria-label="Close addresses" onClick={onClose} type="button">
-            <CloseIcon aria-hidden="true" />
-          </button>
-        </header>
+    <section className="mnshop-address-manager" aria-label="My Addresses">
+      <header>
+        <div>
+          <p>Delivery details</p>
+          <h1>My Addresses</h1>
+        </div>
+      </header>
 
-        <div className="mnshop-address-modal__content">
+      <div className="mnshop-address-manager__content">
           <form onSubmit={handleSubmit}>
             <p className="mnshop-address-modal__form-title">
               {editingId ? "Edit address" : "Add an address"}
@@ -175,9 +159,8 @@ export function BuyerAddressManager({
               {editingId && <button onClick={() => { setEditingId(null); setDraft({ ...emptyDraft, fullName: userName, phone: userPhone || "" }); }} type="button">Cancel</button>}
               <button type="submit">{editingId ? "Save changes" : "Add address"}</button>
             </div>
+            {feedback && <p className="mnshop-address-modal__feedback" role="status">{feedback}</p>}
           </form>
-
-          {feedback && <p className="mnshop-address-modal__feedback" role="status">{feedback}</p>}
 
           <div className="mnshop-address-modal__list">
             {addresses.length ? addresses.map((address) => (
@@ -196,6 +179,8 @@ export function BuyerAddressManager({
               </article>
             )) : <p className="mnshop-address-modal__empty">Add a delivery address for faster checkout.</p>}
           </div>
+      </div>
+      <footer className="mnshop-address-manager__footer-actions">
           <button
             className="mnshop-address-modal__back"
             onClick={onClose}
@@ -204,8 +189,7 @@ export function BuyerAddressManager({
             <ArrowBackIcon aria-hidden="true" />
             Back to profile
           </button>
-        </div>
-      </section>
-    </div>
+      </footer>
+    </section>
   );
 }

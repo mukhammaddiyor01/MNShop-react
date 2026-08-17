@@ -5,21 +5,24 @@ import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import LogoutIcon from "@mui/icons-material/Logout";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useGlobals } from "../../hooks/useGlobals";
-import { BuyerAddressManager } from "./BuyerAddressManager";
 
 export function BuyerProfileSettings() {
   const { authUser, setAuthUser } = useGlobals();
   const [fullName, setFullName] = useState(authUser?.fullName || "");
   const [phone, setPhone] = useState(authUser?.phone || "");
   const [avatarPreview, setAvatarPreview] = useState(authUser?.avatar || "");
-  const [isAddressesOpen, setIsAddressesOpen] = useState(false);
   const [saveState, setSaveState] = useState<
     "idle" | "saving" | "success" | "error"
   >("idle");
   const [feedback, setFeedback] = useState("");
   const feedbackTimer = useRef<number>();
+  const history = useHistory();
+
+  const openAddresses = () => {
+    history.push("/user-page/addresses");
+  };
 
   useEffect(() => {
     setFullName(authUser?.fullName || "");
@@ -201,12 +204,12 @@ export function BuyerProfileSettings() {
         </form>
 
         <div className="mnshop-buyer-profile-settings__shortcuts">
-          <button onClick={() => setIsAddressesOpen(true)} type="button">
+          <button onClick={openAddresses} type="button">
             <LocationOnOutlinedIcon aria-hidden="true" />
             My Addresses
             <span>Add, edit, default</span>
           </button>
-          <button type="button">
+          <button onClick={() => history.push("/user-page/payments")} type="button">
             <CreditCardOutlinedIcon aria-hidden="true" />
             Payments
             <span>Stripe, Payme, Click</span>
@@ -230,13 +233,6 @@ export function BuyerProfileSettings() {
           Log Out
         </button>
       </div>
-      <BuyerAddressManager
-        isOpen={isAddressesOpen}
-        onClose={() => setIsAddressesOpen(false)}
-        userId={authUser.id}
-        userName={authUser.fullName}
-        userPhone={authUser.phone}
-      />
     </section>
   );
 }
