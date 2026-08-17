@@ -2363,6 +2363,255 @@
 }
 
 /* ==================================================
+   SOURCE parity — buyer profile settings tablet and mobile
+   ================================================== */
+
+@media screen and (max-width: 1023px) {
+  .mnshop-buyer-profile-settings {
+    width: min(92vw, 380px);
+    padding: 16px;
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    background: var(--glass-bg);
+    box-shadow: 0 10px 36px var(--glass-shadow);
+    backdrop-filter: blur(14px);
+    animation: mnshop-profile-enter 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .mnshop-buyer-profile-settings button,
+  .mnshop-buyer-profile-settings input {
+    font: inherit;
+  }
+
+  .mnshop-buyer-profile-settings button {
+    cursor: pointer;
+  }
+
+  .mnshop-buyer-profile-settings__identity {
+    display: flex;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    align-items: center;
+    gap: 12px;
+  }
+
+  .mnshop-buyer-profile-settings__avatar {
+    display: grid;
+    width: 56px;
+    height: 56px;
+    flex: 0 0 56px;
+    border-radius: 9999px;
+    background: #3b82f6;
+    color: #000;
+    font-size: 20px;
+    font-weight: 900;
+    place-items: center;
+  }
+
+  .mnshop-buyer-profile-settings__identity p {
+    margin: 0;
+  }
+
+  .mnshop-buyer-profile-settings__identity p:first-child {
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .mnshop-buyer-profile-settings__identity p:nth-child(2) {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+  }
+
+  .mnshop-buyer-profile-settings__identity p:last-child {
+    margin-top: 4px;
+    color: #3b82f6;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .mnshop-buyer-profile-settings__body {
+    display: grid;
+    margin-top: 16px;
+    gap: 16px;
+  }
+
+  .mnshop-buyer-profile-settings__eyebrow {
+    margin: 0 0 8px;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+  }
+
+  .mnshop-buyer-profile-settings__fields {
+    display: grid;
+    gap: 8px;
+  }
+
+  .mnshop-buyer-profile-settings__fields label {
+    display: block;
+  }
+
+  .mnshop-buyer-profile-settings__fields label > span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .mnshop-buyer-profile-settings__fields input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    outline: 0;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    font-size: 14px;
+  }
+
+  .mnshop-buyer-profile-settings__form-actions {
+    display: flex;
+    margin-top: 8px;
+    gap: 8px;
+  }
+
+  .mnshop-buyer-profile-settings__form-actions > label,
+  .mnshop-buyer-profile-settings__form-actions > button {
+    display: flex;
+    min-height: 40px;
+    padding: 8px;
+    flex: 1;
+    border-radius: 8px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .mnshop-buyer-profile-settings__form-actions > label {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .mnshop-buyer-profile-settings__form-actions > label:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-buyer-profile-settings__form-actions > button {
+    border: 0;
+    background: #3b82f6;
+    color: #000;
+    font-weight: 900;
+  }
+
+  .mnshop-buyer-profile-settings__form-actions svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .mnshop-buyer-profile-settings__shortcuts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .mnshop-buyer-profile-settings__shortcuts button {
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    background: transparent;
+    color: #fff;
+    text-align: left;
+    font-size: 14px;
+  }
+
+  .mnshop-buyer-profile-settings__shortcuts button:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-buyer-profile-settings__shortcuts button > svg {
+    display: block;
+    width: 18px;
+    height: 18px;
+    margin-bottom: 8px;
+    color: #3b82f6;
+  }
+
+  .mnshop-buyer-profile-settings__shortcuts button > span {
+    display: block;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 12px;
+  }
+
+  .mnshop-buyer-profile-settings__orders-link,
+  .mnshop-buyer-profile-settings__logout {
+    display: flex;
+    min-height: 44px;
+    padding: 12px;
+    border-radius: 8px;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .mnshop-buyer-profile-settings__orders-link {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+  }
+
+  .mnshop-buyer-profile-settings__orders-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-buyer-profile-settings__logout {
+    width: 100%;
+    border: 0;
+    background: #f43f5e;
+    color: #fff;
+    justify-content: center;
+    font-weight: 900;
+  }
+
+  .mnshop-buyer-profile-settings__orders-link svg,
+  .mnshop-buyer-profile-settings__logout svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .mnshop-buyer-profile-settings input:focus-visible,
+  .mnshop-buyer-profile-settings label:focus-within,
+  .mnshop-buyer-profile-settings button:focus-visible,
+  .mnshop-buyer-profile-settings a:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 3px;
+  }
+
+  @keyframes mnshop-profile-enter {
+    from {
+      opacity: 0;
+      transform: translateY(12px) scale(0.98);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+}
+
+/* ==================================================
    SOURCE parity — catalog hero tablet
    ================================================== */
 

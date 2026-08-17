@@ -1,0 +1,132 @@
+import AddAPhotoOutlinedIcon from "@mui/icons-material/AddAPhotoOutlined";
+import CreditCardOutlinedIcon from "@mui/icons-material/CreditCardOutlined";
+import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined";
+import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
+import LogoutIcon from "@mui/icons-material/Logout";
+import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
+import { FormEvent, useState } from "react";
+import { Link } from "react-router-dom";
+import { useGlobals } from "../../hooks/useGlobals";
+
+export function BuyerProfileSettings() {
+  const { authUser, setAuthUser } = useGlobals();
+  const [fullName, setFullName] = useState(authUser?.fullName || "");
+  const [phone, setPhone] = useState(authUser?.phone || "");
+
+  if (!authUser || authUser.role !== "BUYER") return null;
+
+  const initials = authUser.fullName
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join("")
+    .toUpperCase();
+
+  const saveProfile = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const nextName = fullName.trim();
+
+    setAuthUser((current) =>
+      current
+        ? {
+            ...current,
+            fullName: nextName || current.fullName,
+            phone: phone.trim(),
+          }
+        : current,
+    );
+  };
+
+  const logout = () => {
+    if (window.confirm("Log out of mnshop_blueprint?")) {
+      setAuthUser(null);
+    }
+  };
+
+  return (
+    <section className="mnshop-buyer-profile-settings">
+      <div className="mnshop-buyer-profile-settings__identity">
+        <div className="mnshop-buyer-profile-settings__avatar">
+          {initials || "MN"}
+        </div>
+        <div>
+          <p>{authUser.fullName}</p>
+          <p>{authUser.email}</p>
+          <p>{authUser.role}</p>
+        </div>
+      </div>
+
+      <div className="mnshop-buyer-profile-settings__body">
+        <form onSubmit={saveProfile}>
+          <p className="mnshop-buyer-profile-settings__eyebrow">
+            Edit Profile
+          </p>
+
+          <div className="mnshop-buyer-profile-settings__fields">
+            <label>
+              <span>Full name</span>
+              <input
+                type="text"
+                value={fullName}
+                onChange={(event) => setFullName(event.target.value)}
+                autoComplete="name"
+              />
+            </label>
+            <label>
+              <span>Phone</span>
+              <input
+                type="tel"
+                value={phone}
+                onChange={(event) => setPhone(event.target.value)}
+                autoComplete="tel"
+              />
+            </label>
+          </div>
+
+          <div className="mnshop-buyer-profile-settings__form-actions">
+            <label>
+              <AddAPhotoOutlinedIcon aria-hidden="true" />
+              Photo
+              <input type="file" accept="image/jpeg,image/png" hidden />
+            </label>
+            <button type="submit">
+              <SaveOutlinedIcon aria-hidden="true" />
+              Save
+            </button>
+          </div>
+        </form>
+
+        <div className="mnshop-buyer-profile-settings__shortcuts">
+          <button type="button">
+            <LocationOnOutlinedIcon aria-hidden="true" />
+            My Addresses
+            <span>Add, edit, default</span>
+          </button>
+          <button type="button">
+            <CreditCardOutlinedIcon aria-hidden="true" />
+            Payments
+            <span>Stripe, Payme, Click</span>
+          </button>
+        </div>
+
+        <Link
+          to="/orders"
+          className="mnshop-buyer-profile-settings__orders-link"
+        >
+          <Inventory2OutlinedIcon aria-hidden="true" />
+          My Orders
+        </Link>
+
+        <button
+          type="button"
+          className="mnshop-buyer-profile-settings__logout"
+          onClick={logout}
+        >
+          <LogoutIcon aria-hidden="true" />
+          Log Out
+        </button>
+      </div>
+    </section>
+  );
+}
