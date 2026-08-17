@@ -1,0 +1,180 @@
+/* ==================================================
+   SOURCE parity — buyer orders desktop
+   ================================================== */
+
+@media screen and (min-width: 1024px) {
+  .mnshop-buyer-orders {
+    width: 100%;
+    max-width: 1152px;
+    margin: 0 auto;
+    padding: 40px 24px;
+  }
+
+  .mnshop-buyer-orders > h1 {
+    margin: 0;
+    font-family: "Poppins", "Inter", sans-serif;
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .mnshop-buyer-orders__loading {
+    margin: 32px 0 0;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .mnshop-buyer-orders__empty,
+  .mnshop-buyer-order {
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    background: var(--glass-bg);
+    box-shadow: 0 10px 36px var(--glass-shadow);
+    backdrop-filter: blur(14px);
+  }
+
+  .mnshop-buyer-orders__empty {
+    margin-top: 32px;
+    padding: 32px;
+    color: rgba(255, 255, 255, 0.55);
+    text-align: center;
+  }
+
+  .mnshop-buyer-orders__list {
+    display: grid;
+    margin-top: 32px;
+    gap: 20px;
+  }
+
+  .mnshop-buyer-order {
+    padding: 20px;
+  }
+
+  .mnshop-buyer-order__heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .mnshop-buyer-order__heading p {
+    margin: 0;
+  }
+
+  .mnshop-buyer-order__heading > div:first-child > p:first-child {
+    color: #fff;
+    font-weight: 900;
+  }
+
+  .mnshop-buyer-order__heading > div:first-child > p:nth-child(2) {
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 14px;
+  }
+
+  .mnshop-buyer-order__heading > div:first-child > p:nth-child(3) {
+    margin-top: 4px;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 12px;
+  }
+
+  .mnshop-buyer-order__status-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .mnshop-buyer-order__status {
+    width: fit-content;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+
+  .mnshop-buyer-order__status--pending {
+    background: #facc15;
+    color: #000;
+  }
+
+  .mnshop-buyer-order__status--processing {
+    background: #3b82f6;
+    color: #fff;
+  }
+
+  .mnshop-buyer-order__status--shipped {
+    background: #a855f7;
+    color: #fff;
+  }
+
+  .mnshop-buyer-order__status--delivered {
+    background: #10b981;
+    color: #fff;
+  }
+
+  .mnshop-buyer-order__status--cancelled {
+    background: #f43f5e;
+    color: #fff;
+  }
+
+  .mnshop-buyer-order__status-actions button {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #fda4af;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .mnshop-buyer-order__status-actions button:hover {
+    color: #fecdd3;
+  }
+
+  .mnshop-buyer-order__timeline {
+    display: grid;
+    margin-top: 24px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .mnshop-buyer-order__step {
+    padding: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  .mnshop-buyer-order__step--active {
+    border-color: #3b82f6;
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+  }
+
+  .mnshop-buyer-order__step svg {
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin-bottom: 8px;
+  }
+
+  .mnshop-buyer-order__step p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .mnshop-buyer-order__tracking {
+    margin: 16px 0 0;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+  }
+
+  .mnshop-buyer-order__tracking strong {
+    color: #3b82f6;
+  }
+
+  .mnshop-buyer-order__status-actions button:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 3px;
+  }
+}
