@@ -2,7 +2,6 @@ import axios from "axios";
 import { serverApi } from "../../lib/config";
 import { UserType } from "../../lib/enums/user.enum";
 import {
-  BuyerApiUser,
   BuyerAuthResponse,
   BuyerSignInInput,
   BuyerSignUpInput,

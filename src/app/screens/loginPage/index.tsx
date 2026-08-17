@@ -1,6 +1,15 @@
-import { FormEvent } from "react";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import axios from "axios";
+import { FormEvent, useState } from "react";
+import {
+  Link,
+  Redirect,
+  useHistory,
+  useLocation,
+} from "react-router-dom";
 import { useGlobals } from "../../hooks/useGlobals";
+import BuyerAuthService from "../../services/BuyerAuthService";
+
+const buyerAuthService = new BuyerAuthService();
 
 function getSafeNextPath(search: string) {
   const requestedPath = new URLSearchParams(search).get("next");
@@ -17,31 +26,87 @@ function getSafeNextPath(search: string) {
 }
 
 export function LoginPage() {
-  const { setAuthUser } = useGlobals();
+  const { authUser, setAuthUser } = useGlobals();
   const history = useHistory();
   const location = useLocation();
   const nextPath = getSafeNextPath(location.search);
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setAuthUser({
-      id: "buyer-mn",
-      fullName: "MNShop Buyer",
-      email: "buyer@mnshop.uz",
-      role: "BUYER",
-    });
-    history.replace(nextPath);
+    const form = new FormData(event.currentTarget);
+    const userNick = String(form.get("userNick") || "").trim();
+    const userPassword = String(form.get("userPassword") || "");
+
+    if (!userNick || !userPassword) {
+      setErrorMessage("Please enter your username and password.");
+      return;
+    }
+
+    setLoading(true);
+    setErrorMessage("");
+
+    try {
+      const buyer = await buyerAuthService.signIn({
+        userNick,
+        userPassword,
+      });
+      setAuthUser(buyer);
+      history.replace(nextPath);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const responseData = error.response?.data as
+          | { message?: string }
+          | undefined;
+        setErrorMessage(
+          responseData?.message ||
+            "We could not sign you in. Please check your details.",
+        );
+      } else {
+        setErrorMessage(
+          error instanceof Error ? error.message : "Sign in failed.",
+        );
+      }
+    } finally {
+      setLoading(false);
+    }
   };
+
+  if (authUser?.role === "BUYER") {
+    return <Redirect to={nextPath} />;
+  }
 
   return (
     <main className="auth-page">
       <form onSubmit={handleSubmit}>
         <span className="eyebrow">WELCOME BACK</span>
         <h1>Sign in to MNShop</h1>
-        <input required type="email" placeholder="Email" />
-        <input required type="password" placeholder="Password" />
-        <button className="primary-button" type="submit">
-          Sign in
+        <input
+          autoComplete="username"
+          name="userNick"
+          placeholder="Username"
+          required
+        />
+        <input
+          autoComplete="current-password"
+          minLength={6}
+          name="userPassword"
+          placeholder="Password"
+          required
+          type={showPassword ? "text" : "password"}
+        />
+        <button
+          aria-label={showPassword ? "Hide password" : "Show password"}
+          onClick={() => setShowPassword((current) => !current)}
+          type="button"
+        >
+          {showPassword ? "Hide password" : "Show password"}
+        </button>
+        {errorMessage && <p role="alert">{errorMessage}</p>}
+        <button className="primary-button" disabled={loading} type="submit">
+          {loading ? "Signing in..." : "Sign in"}
         </button>
         <p>
           New here? <Link to="/signup">Create account</Link>
