@@ -111,6 +111,18 @@
   }
 }
 
+/* Buyer profile page — tablet */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .mnshop-buyer-profile-page {
+    display: flex;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 40px 24px;
+    justify-content: center;
+  }
+}
+
 @media screen and (max-width: 767px) {
   .mnshop-community,
   .mnshop-sellers {
@@ -1950,6 +1962,17 @@
   .mnshop-home-hero__playback:focus-visible {
     outline: 2px solid #3b82f6;
     outline-offset: 3px;
+  }
+}
+
+/* Buyer profile page — mobile */
+@media screen and (max-width: 767px) {
+  .mnshop-buyer-profile-page {
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    padding: 40px 20px;
+    justify-content: center;
   }
 }
 
