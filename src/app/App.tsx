@@ -9,10 +9,11 @@ import { UserPage } from "./screens/userPage/index";
 import { BuyerAddressesPage } from "./screens/userPage/BuyerAddressesPage";
 import { BuyerNotificationsPage } from "./screens/userPage/BuyerNotificationsPage";
 import { BuyerPaymentsPage } from "./screens/userPage/BuyerPaymentsPage";
+import { BuyerLikesPage } from "./screens/likesPage/BuyerLikesPage";
 import { BuyerMessagePage } from "./screens/messagePage/BuyerMessagePage";
 import { LoginPage } from "./screens/loginPage";
 import { SignupPage } from "./screens/signupPage";
-import { CheckoutPage, LikesPage } from "./screens/sharedPages";
+import { CheckoutPage } from "./screens/sharedPages";
 import { HomeNavbar } from "./components/headers/HomeNavbar";
 import { OtherNavbar } from "./components/headers/OtherNavbar";
 import { CartDrawer } from "./components/headers/Basket";
@@ -47,7 +48,7 @@ function App() {
           <BuyerNotificationsPage />
         </Route>
         <Route exact path="/likes">
-          <LikesPage />
+          <BuyerLikesPage />
         </Route>
         <Route path="/orders">
           <OrdersPage />

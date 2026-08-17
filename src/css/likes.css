@@ -1,0 +1,10 @@
+@media screen and (min-width: 1024px) {
+  .mnshop-likes-page { min-height: calc(100vh - 160px); }
+  .mnshop-likes-page__content { width: min(100%, 1280px); margin: 0 auto; padding: 40px 20px; }
+  .mnshop-likes-page__content h1 { margin: 0; color: #fff; font-family: var(--font-display); font-size: 48px; font-weight: 900; line-height: 1; }
+  .mnshop-likes-page__grid { display: grid; margin-top: 32px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .mnshop-likes-page__message, .mnshop-likes-page__empty { margin: 32px 0 0; color: rgba(255, 255, 255, 0.55); font-size: 14px; }
+  .mnshop-likes-page__empty { display: grid; gap: 14px; }
+  .mnshop-likes-page__empty p { margin: 0; }
+  .mnshop-likes-page__empty a { width: max-content; color: #3b82f6; font-size: 13px; font-weight: 800; text-decoration: none; }
+}

@@ -1,7 +1,9 @@
 import TuneIcon from "@mui/icons-material/Tune";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { ProductCard } from "../../components/product/ProductCard";
-import { products } from "../../data/products";
+import { Product } from "../../context/ContextProvider";
+import BuyerProductService from "../../services/BuyerProductService";
 import { CatalogHero, CatalogHeroSlider } from "./CatalogHeroSlider";
 
 type CatalogCategory = "hoodies" | "tshirts" | "caps" | "cups" | "sale";
@@ -80,6 +82,8 @@ const catalogHeroes: Record<CatalogCategory, CatalogHero> = {
   },
 };
 
+const buyerProductService = new BuyerProductService();
+
 function getActiveCategory(value: string | null): CatalogCategory {
   return catalogCategories.includes(value as CatalogCategory)
     ? (value as CatalogCategory)
@@ -88,6 +92,9 @@ function getActiveCategory(value: string | null): CatalogCategory {
 
 export function Products() {
   const location = useLocation();
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loadError, setLoadError] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   const searchParams = new URLSearchParams(location.search);
   const activeCategory = getActiveCategory(searchParams.get("category"));
   const hero = catalogHeroes[activeCategory];
@@ -98,6 +105,26 @@ export function Products() {
           (product) =>
             product.category === productCategoryNames[activeCategory],
         );
+
+  useEffect(() => {
+    let active = true;
+
+    buyerProductService
+      .getProducts()
+      .then((nextProducts) => {
+        if (active) setProducts(nextProducts);
+      })
+      .catch(() => {
+        if (active) setLoadError("Products could not be loaded. Please try again.");
+      })
+      .finally(() => {
+        if (active) setIsLoading(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, []);
 
   return (
     <main className="mnshop-products-catalog">
@@ -173,7 +200,9 @@ export function Products() {
             </div>
 
             <div className="mnshop-catalog__grid">
-              {visibleProducts.map((product) => (
+              {isLoading && <p>Loading products…</p>}
+              {!isLoading && loadError && <p role="alert">{loadError}</p>}
+              {!isLoading && !loadError && visibleProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
             </div>

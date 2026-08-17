@@ -6,11 +6,12 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import StarIcon from "@mui/icons-material/Star";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { Product } from "../../context/ContextProvider";
-import { money, products } from "../../data/products";
+import { money } from "../../data/products";
 import { useGlobals } from "../../hooks/useGlobals";
+import BuyerProductService from "../../services/BuyerProductService";
 
 type ChosenProductParams = {
   productId: string;
@@ -325,7 +326,33 @@ function ProductDetail({ product }: { product: Product }) {
 
 export function ChosenProduct() {
   const { productId } = useParams<ChosenProductParams>();
-  const product = products.find((item) => item.id === productId);
+  const [product, setProduct] = useState<Product | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    let active = true;
+    const productService = new BuyerProductService();
+
+    productService
+      .getProducts()
+      .then((products) => {
+        if (active) setProduct(products.find((item) => item.id === productId) || null);
+      })
+      .catch(() => {
+        if (active) setProduct(null);
+      })
+      .finally(() => {
+        if (active) setIsLoading(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [productId]);
+
+  if (isLoading) {
+    return <main className="mnshop-product-not-found">Loading product…</main>;
+  }
 
   if (!product) {
     return (
