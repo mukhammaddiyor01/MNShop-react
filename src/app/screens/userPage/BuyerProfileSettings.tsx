@@ -4,7 +4,7 @@ import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import LogoutIcon from "@mui/icons-material/Logout";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useGlobals } from "../../hooks/useGlobals";
 
@@ -12,6 +12,21 @@ export function BuyerProfileSettings() {
   const { authUser, setAuthUser } = useGlobals();
   const [fullName, setFullName] = useState(authUser?.fullName || "");
   const [phone, setPhone] = useState(authUser?.phone || "");
+  const [saveState, setSaveState] = useState<
+    "idle" | "saving" | "success" | "error"
+  >("idle");
+  const [feedback, setFeedback] = useState("");
+  const feedbackTimer = useRef<number>();
+
+  useEffect(() => {
+    setFullName(authUser?.fullName || "");
+    setPhone(authUser?.phone || "");
+  }, [authUser?.fullName, authUser?.phone]);
+
+  useEffect(
+    () => () => window.clearTimeout(feedbackTimer.current),
+    [],
+  );
 
   if (!authUser || authUser.role !== "BUYER") return null;
 
@@ -26,16 +41,36 @@ export function BuyerProfileSettings() {
   const saveProfile = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const nextName = fullName.trim();
+    const nextPhone = phone.trim();
 
-    setAuthUser((current) =>
-      current
-        ? {
-            ...current,
-            fullName: nextName || current.fullName,
-            phone: phone.trim(),
-          }
-        : current,
-    );
+    if (!nextName) {
+      setSaveState("error");
+      setFeedback("Enter the name you want to show on MNShop.");
+      return;
+    }
+
+    if (nextPhone && !/^[+0-9][0-9 -]{6,}$/.test(nextPhone)) {
+      setSaveState("error");
+      setFeedback("Enter a valid phone number or leave it blank for now.");
+      return;
+    }
+
+    setSaveState("saving");
+    setFeedback("");
+
+    feedbackTimer.current = window.setTimeout(() => {
+      setAuthUser((current) =>
+        current
+          ? {
+              ...current,
+              fullName: nextName,
+              phone: nextPhone || undefined,
+            }
+          : current,
+      );
+      setSaveState("success");
+      setFeedback("Profile saved on this device.");
+    }, 220);
   };
 
   const logout = () => {
@@ -71,6 +106,7 @@ export function BuyerProfileSettings() {
                 value={fullName}
                 onChange={(event) => setFullName(event.target.value)}
                 autoComplete="name"
+                disabled={saveState === "saving"}
               />
             </label>
             <label>
@@ -80,9 +116,19 @@ export function BuyerProfileSettings() {
                 value={phone}
                 onChange={(event) => setPhone(event.target.value)}
                 autoComplete="tel"
+                disabled={saveState === "saving"}
               />
             </label>
           </div>
+
+          {feedback && (
+            <p
+              className={`mnshop-buyer-profile-settings__feedback is-${saveState}`}
+              role={saveState === "error" ? "alert" : "status"}
+            >
+              {feedback}
+            </p>
+          )}
 
           <div className="mnshop-buyer-profile-settings__form-actions">
             <label>
@@ -90,9 +136,9 @@ export function BuyerProfileSettings() {
               Photo
               <input type="file" accept="image/jpeg,image/png" hidden />
             </label>
-            <button type="submit">
+            <button disabled={saveState === "saving"} type="submit">
               <SaveOutlinedIcon aria-hidden="true" />
-              Save
+              {saveState === "saving" ? "Saving..." : "Save"}
             </button>
           </div>
         </form>

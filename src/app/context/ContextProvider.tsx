@@ -37,10 +37,27 @@ function readAuthUser(): User | null {
   );
 }
 
+function likesStorageKey(user: User | null) {
+  return user ? `mnshopLikes:${user.id}` : "mnshopLikes:guest";
+}
+
+function readLikedIds(user: User | null) {
+  const key = likesStorageKey(user);
+  const scopedValue = localStorage.getItem(key);
+
+  if (scopedValue) return read<string[]>(key, []);
+
+  // Preserve likes saved before buyer-scoped persistence was introduced.
+  return read<string[]>("mnshopLikes", []);
+}
+
 export function ContextProvider({ children }: { children: React.ReactNode }) {
   const [authUser, setAuthUser] = useState<User | null>(readAuthUser);
   const [basket, setBasket] = useState<CartItem[]>(() => read("cartData", []));
-  const [likedIds, setLikedIds] = useState<string[]>(() => read("mnshopLikes", []));
+  const [likedIds, setLikedIds] = useState<string[]>(() => readLikedIds(readAuthUser()));
+  const [likesOwnerId, setLikesOwnerId] = useState<string | null>(
+    readAuthUser()?.id || null,
+  );
   const [orderBuilder, setOrderBuilder] = useState(new Date());
   const [cartOpen, setCartOpen] = useState(false);
 
@@ -49,8 +66,19 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
     else localStorage.removeItem("userData");
     localStorage.removeItem(legacyUserStorageKey);
   }, [authUser]);
-  useEffect(() => localStorage.setItem("cartData", JSON.stringify(basket)), [basket]);
-  useEffect(() => localStorage.setItem("mnshopLikes", JSON.stringify(likedIds)), [likedIds]);
+  useEffect(() => {
+    if (basket.length) localStorage.setItem("cartData", JSON.stringify(basket));
+    else localStorage.removeItem("cartData");
+  }, [basket]);
+  useEffect(() => {
+    const nextOwnerId = authUser?.id || null;
+    setLikedIds(readLikedIds(authUser));
+    setLikesOwnerId(nextOwnerId);
+  }, [authUser]);
+  useEffect(() => {
+    if (likesOwnerId !== (authUser?.id || null)) return;
+    localStorage.setItem(likesStorageKey(authUser), JSON.stringify(likedIds));
+  }, [authUser, likedIds, likesOwnerId]);
 
   const value = useMemo<Globals>(() => ({
     authUser, setAuthUser, basket, orderBuilder, setOrderBuilder, cartOpen, setCartOpen, likedIds,

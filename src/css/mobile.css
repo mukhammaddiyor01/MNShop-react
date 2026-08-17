@@ -647,6 +647,19 @@
   }
 }
 
+/* Buyer profile save feedback — tablet and mobile */
+@media screen and (max-width: 1023px) {
+  .mnshop-buyer-profile-settings__feedback {
+    margin: 10px 0 0;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .mnshop-buyer-profile-settings__feedback.is-success { color: #3b82f6; }
+  .mnshop-buyer-profile-settings__feedback.is-error { color: #f43f5e; }
+  .mnshop-buyer-profile-settings__form-actions > button:disabled { cursor: not-allowed; opacity: 0.55; }
+}
+
 /* Buyer profile page — tablet */
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .mnshop-buyer-profile-page {

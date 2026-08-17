@@ -128,6 +128,20 @@
     gap: 8px;
   }
 
+  .mnshop-buyer-profile-settings__feedback {
+    margin: 10px 0 0;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .mnshop-buyer-profile-settings__feedback.is-success {
+    color: #3b82f6;
+  }
+
+  .mnshop-buyer-profile-settings__feedback.is-error {
+    color: #f43f5e;
+  }
+
   .mnshop-buyer-profile-settings__form-actions > label,
   .mnshop-buyer-profile-settings__form-actions > button {
     display: flex;
@@ -157,6 +171,11 @@
     background: #3b82f6;
     color: #000;
     font-weight: 900;
+  }
+
+  .mnshop-buyer-profile-settings__form-actions > button:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
   }
 
   .mnshop-buyer-profile-settings__form-actions svg {
