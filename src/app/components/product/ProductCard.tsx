@@ -14,11 +14,11 @@ type ProductCardProps = {
 
 export function ProductCard({ product, badge }: ProductCardProps) {
   const history = useHistory();
-  const { authMember, likedIds, toggleLike, onAdd } = useGlobals();
+  const { authUser, likedIds, toggleLike, onAdd } = useGlobals();
   const liked = likedIds.includes(product.id);
 
   const requireBuyer = (action: () => void) => {
-    if (!authMember) {
+    if (!authUser) {
       history.push(
         `/login?next=${encodeURIComponent(
           `${window.location.pathname}${window.location.search}`,
@@ -27,7 +27,7 @@ export function ProductCard({ product, badge }: ProductCardProps) {
       return;
     }
 
-    if (authMember.role !== "BUYER") return;
+    if (authUser.role !== "BUYER") return;
     action();
   };
 

@@ -8,10 +8,10 @@ import { useGlobals } from "../../hooks/useGlobals";
 
 export function MobileBottomNav() {
   const history = useHistory();
-  const { authMember, setCartOpen } = useGlobals();
+  const { authUser, setCartOpen } = useGlobals();
 
   const guard = (action: () => void) => {
-    if (!authMember) {
+    if (!authUser) {
       history.push(
         `/login?next=${encodeURIComponent(
           `${window.location.pathname}${window.location.search}`,
@@ -57,7 +57,7 @@ export function MobileBottomNav() {
         className="mnshop-mobile-bottom-nav__item"
         onClick={() =>
           history.push(
-            authMember ? "/orders" : "/login?next=%2Forders",
+            authUser ? "/orders" : "/login?next=%2Forders",
           )
         }
       >

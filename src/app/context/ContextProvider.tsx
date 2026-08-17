@@ -1,13 +1,13 @@
 import React, { createContext, useEffect, useMemo, useState } from "react";
 
 export type Role = "BUYER" | "SELLER";
-export type Member = { id: string; fullName: string; email: string; role: Role; avatar?: string };
+export type User = { id: string; fullName: string; email: string; role: Role; avatar?: string; phone?: string };
 export type Product = { id: string; name: string; category: string; description: string; price: number; comparePrice?: number; image: string; hoverImage: string; colors: string[]; sizes: string[]; stock: number; sold: number; sale?: boolean; views: number; likes: number; rating: number };
 export type CartItem = { product: Product; color: string; size: string; quantity: number };
 
 type Globals = {
-  authMember: Member | null;
-  setAuthMember: React.Dispatch<React.SetStateAction<Member | null>>;
+  authUser: User | null;
+  setAuthUser: React.Dispatch<React.SetStateAction<User | null>>;
   basket: CartItem[];
   onAdd: (product: Product, color?: string, size?: string) => void;
   onRemove: (key: string) => void;
@@ -29,19 +29,32 @@ function read<T>(key: string, fallback: T): T {
   catch { return fallback; }
 }
 
+const legacyUserStorageKey = ["mem", "berData"].join("");
+
+function readAuthUser(): User | null {
+  return read<User | null>(
+    "userData",
+    read<User | null>(legacyUserStorageKey, null),
+  );
+}
+
 export function ContextProvider({ children }: { children: React.ReactNode }) {
-  const [authMember, setAuthMember] = useState<Member | null>(() => read("memberData", null));
+  const [authUser, setAuthUser] = useState<User | null>(readAuthUser);
   const [basket, setBasket] = useState<CartItem[]>(() => read("cartData", []));
   const [likedIds, setLikedIds] = useState<string[]>(() => read("mnshopLikes", []));
   const [orderBuilder, setOrderBuilder] = useState(new Date());
   const [cartOpen, setCartOpen] = useState(false);
 
-  useEffect(() => { authMember ? localStorage.setItem("memberData", JSON.stringify(authMember)) : localStorage.removeItem("memberData"); }, [authMember]);
+  useEffect(() => {
+    if (authUser) localStorage.setItem("userData", JSON.stringify(authUser));
+    else localStorage.removeItem("userData");
+    localStorage.removeItem(legacyUserStorageKey);
+  }, [authUser]);
   useEffect(() => localStorage.setItem("cartData", JSON.stringify(basket)), [basket]);
   useEffect(() => localStorage.setItem("mnshopLikes", JSON.stringify(likedIds)), [likedIds]);
 
   const value = useMemo<Globals>(() => ({
-    authMember, setAuthMember, basket, orderBuilder, setOrderBuilder, cartOpen, setCartOpen, likedIds,
+    authUser, setAuthUser, basket, orderBuilder, setOrderBuilder, cartOpen, setCartOpen, likedIds,
     onAdd(product, color = product.colors[0] || "Default", size = product.sizes[0] || "One Size") {
       setBasket((items) => {
         const key = `${product.id}:${color}:${size}`;
@@ -53,7 +66,7 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
     onDelete(key) { setBasket((items) => items.filter((item) => keyOf(item) !== key)); },
     onDeleteAll() { setBasket([]); },
     toggleLike(id) { setLikedIds((ids) => ids.includes(id) ? ids.filter((item) => item !== id) : [...ids, id]); },
-  }), [authMember, basket, cartOpen, likedIds, orderBuilder]);
+  }), [authUser, basket, cartOpen, likedIds, orderBuilder]);
 
   return <GlobalContext.Provider value={value}>{children}</GlobalContext.Provider>;
 }

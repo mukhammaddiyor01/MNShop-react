@@ -33,13 +33,13 @@ const productNavigation = [
 
 export function OtherNavbar() {
   const { pathname, search } = useLocation();
-  const { authMember, basket, likedIds, setCartOpen } = useGlobals();
+  const { authUser, basket, likedIds, setCartOpen } = useGlobals();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [query, setQuery] = useState("");
 
   const mainNavigation = useMemo(
     () =>
-      authMember
+      authUser
         ? [
             publicNavigation[0],
             publicNavigation[1],
@@ -51,7 +51,7 @@ export function OtherNavbar() {
             ...publicNavigation.slice(2),
           ]
         : publicNavigation,
-    [authMember],
+    [authUser],
   );
 
   const suggestions = useMemo(() => {
@@ -72,7 +72,7 @@ export function OtherNavbar() {
     return pathname.startsWith(href);
   };
 
-  const initials = authMember?.fullName
+  const initials = authUser?.fullName
     .split(" ")
     .map((part) => part[0])
     .join("")
@@ -138,7 +138,7 @@ export function OtherNavbar() {
         </div>
 
         <div className="mnshop-other-header__actions">
-          {authMember && (
+          {authUser && (
             <button
               type="button"
               className="mnshop-other-header__notification"
@@ -150,7 +150,7 @@ export function OtherNavbar() {
           )}
 
           <Link
-            to={authMember ? "/likes" : "/login?next=%2Flikes"}
+            to={authUser ? "/likes" : "/login?next=%2Flikes"}
             className="mnshop-other-header__icon-action"
             aria-label="Liked items"
           >
@@ -162,7 +162,7 @@ export function OtherNavbar() {
             )}
           </Link>
 
-          {authMember ? (
+          {authUser ? (
             <button
               type="button"
               className="mnshop-other-header__icon-action"
@@ -191,9 +191,9 @@ export function OtherNavbar() {
             </Link>
           )}
 
-          {authMember ? (
+          {authUser ? (
             <Link
-              to="/member-page"
+              to="/user-page"
               className="mnshop-other-header__profile"
               aria-label="My Page"
             >
@@ -297,9 +297,9 @@ export function OtherNavbar() {
               );
             })}
 
-            {authMember && (
+            {authUser && (
               <Link
-                to="/member-page"
+                to="/user-page"
                 className="mnshop-other-header__mobile-link"
                 onClick={() => setMobileOpen(false)}
               >
@@ -309,7 +309,7 @@ export function OtherNavbar() {
             )}
           </nav>
 
-          {!authMember && (
+          {!authUser && (
             <Link
               to="/signup"
               className="mnshop-other-header__mobile-auth"

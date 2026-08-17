@@ -49,7 +49,7 @@ const displayOrderId = (id: string) => {
 };
 
 export function BuyerOrdersClient() {
-  const { authMember } = useGlobals();
+  const { authUser } = useGlobals();
   const [orders, setOrders] = useState<BuyerOrder[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -70,11 +70,11 @@ export function BuyerOrdersClient() {
     });
   };
 
-  if (!authMember) {
+  if (!authUser) {
     return <Redirect to="/login?next=%2Forders" />;
   }
 
-  if (authMember.role !== "BUYER") {
+  if (authUser.role !== "BUYER") {
     return <Redirect to="/" />;
   }
 

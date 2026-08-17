@@ -24,13 +24,13 @@ const publicNavigation = [
 
 export function HomeNavbar() {
   const { pathname } = useLocation();
-  const { authMember, basket, likedIds, setCartOpen } = useGlobals();
+  const { authUser, basket, likedIds, setCartOpen } = useGlobals();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [query, setQuery] = useState("");
 
   const mainNavigation = useMemo(
     () =>
-      authMember
+      authUser
         ? [
             publicNavigation[0],
             publicNavigation[1],
@@ -42,7 +42,7 @@ export function HomeNavbar() {
             ...publicNavigation.slice(2),
           ]
         : publicNavigation,
-    [authMember],
+    [authUser],
   );
 
   const suggestions = useMemo(() => {
@@ -59,7 +59,7 @@ export function HomeNavbar() {
     return pathname.startsWith(href);
   };
 
-  const initials = authMember?.fullName
+  const initials = authUser?.fullName
     .split(" ")
     .map((part) => part[0])
     .join("")
@@ -126,7 +126,7 @@ export function HomeNavbar() {
 
         <div className="mnshop-home-header__actions">
           <Link
-            to={authMember ? "/likes" : "/login?next=%2Flikes"}
+            to={authUser ? "/likes" : "/login?next=%2Flikes"}
             className="mnshop-home-header__icon-action"
             aria-label="Liked items"
           >
@@ -137,7 +137,7 @@ export function HomeNavbar() {
               </span>
             )}
           </Link>
-          {authMember ? (
+          {authUser ? (
             <button
               type="button"
               className="mnshop-home-header__icon-action"
@@ -165,9 +165,9 @@ export function HomeNavbar() {
               )}
             </Link>
           )}
-          {authMember ? (
+          {authUser ? (
             <Link
-              to="/member-page"
+              to="/user-page"
               className="mnshop-home-header__profile"
               aria-label="My Page"
             >
@@ -237,9 +237,9 @@ export function HomeNavbar() {
                 </Link>
               );
             })}
-            {authMember && (
+            {authUser && (
               <Link
-                to="/member-page"
+                to="/user-page"
                 className="mnshop-home-header__mobile-link"
                 onClick={() => setMobileOpen(false)}
               >
@@ -249,7 +249,7 @@ export function HomeNavbar() {
             )}
           </nav>
 
-          {!authMember && (
+          {!authUser && (
             <Link
               to="/signup"
               className="mnshop-home-header__mobile-auth"

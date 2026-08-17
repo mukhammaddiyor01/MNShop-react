@@ -35,7 +35,7 @@ const tabs = ["Description", "Reviews", "Shipping Info"];
 
 function ProductDetail({ product }: { product: Product }) {
   const history = useHistory();
-  const { authMember, likedIds, toggleLike, onAdd } = useGlobals();
+  const { authUser, likedIds, toggleLike, onAdd } = useGlobals();
   const images = Array.from(new Set([product.image, product.hoverImage]));
   const [image, setImage] = useState(images[0]);
   const [color, setColor] = useState(product.colors[0] || "Default");
@@ -46,7 +46,7 @@ function ProductDetail({ product }: { product: Product }) {
   const categoryQuery = categoryQueries[product.category] || "hoodies";
 
   const guardBuyer = (callback: () => void) => {
-    if (!authMember) {
+    if (!authUser) {
       history.push(
         `/login?next=${encodeURIComponent(
           `${window.location.pathname}${window.location.search}`,
@@ -55,7 +55,7 @@ function ProductDetail({ product }: { product: Product }) {
       return;
     }
 
-    if (authMember.role !== "BUYER") return;
+    if (authUser.role !== "BUYER") return;
     callback();
   };
 

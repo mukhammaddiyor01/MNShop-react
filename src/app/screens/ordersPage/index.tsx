@@ -1,5 +1,6 @@
-import { Container } from "@mui/material";
+import "../../../css/order.css";
+import { BuyerOrdersClient } from "./BuyerOrdersClient";
 
 export function OrdersPage() {
-  return <Container>OrdersPage</Container>;
+  return <BuyerOrdersClient />;
 }

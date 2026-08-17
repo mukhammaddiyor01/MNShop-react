@@ -9,7 +9,7 @@ export function ProductCard({ product }: { product: Product }) {
   const globals = useGlobals();
   const history = useHistory();
   const liked = globals.likedIds.includes(product.id);
-  const protect = (action: () => void) => globals.authMember ? action() : history.push(`/login?next=${encodeURIComponent(window.location.pathname)}`);
+  const protect = (action: () => void) => globals.authUser ? action() : history.push(`/login?next=${encodeURIComponent(window.location.pathname)}`);
   return <article className="product-card">
     <Link to={`/products/${product.id}`} className="product-card__media"><img src={product.image} alt={product.name}/><img className="product-card__hover" src={product.hoverImage} alt=""/>{product.sale && <span className="product-card__sale">SALE</span>}</Link>
     <button aria-label="Like product" className={`product-card__like ${liked ? "is-liked" : ""}`} onClick={() => protect(() => globals.toggleLike(product.id))}>{liked ? <Favorite/> : <FavoriteBorder/>}</button>
