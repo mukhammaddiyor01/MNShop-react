@@ -8,6 +8,7 @@ import { AboutPage } from "./screens/aboutPage/index";
 import { UserPage } from "./screens/userPage/index";
 import { BuyerMessagePage } from "./screens/messagePage/BuyerMessagePage";
 import { LoginPage } from "./screens/loginPage";
+import { SignupPage } from "./screens/signupPage";
 import { HomeNavbar } from "./components/headers/HomeNavbar";
 import { OtherNavbar } from "./components/headers/OtherNavbar";
 import { CartDrawer } from "./components/headers/Basket";
@@ -30,6 +31,9 @@ function App() {
       <Switch>
         <Route exact path="/login">
           <LoginPage />
+        </Route>
+        <Route exact path="/signup">
+          <SignupPage />
         </Route>
         <Route path="/chat">
           <BuyerMessagePage />
