@@ -1,7 +1,6 @@
 import React, { createContext, useEffect, useMemo, useState } from "react";
+import { User } from "../../lib/types/user";
 
-export type Role = "BUYER" | "SELLER";
-export type User = { id: string; fullName: string; email: string; role: Role; avatar?: string; phone?: string };
 export type Product = { id: string; name: string; category: string; description: string; price: number; comparePrice?: number; image: string; hoverImage: string; colors: string[]; sizes: string[]; stock: number; sold: number; sale?: boolean; views: number; likes: number; rating: number };
 export type CartItem = { product: Product; color: string; size: string; quantity: number };
 

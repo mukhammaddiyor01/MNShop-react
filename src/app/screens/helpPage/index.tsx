@@ -4,8 +4,14 @@ import LocalShippingOutlinedIcon from "@mui/icons-material/LocalShippingOutlined
 import ReplayOutlinedIcon from "@mui/icons-material/ReplayOutlined";
 import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
 import StraightenOutlinedIcon from "@mui/icons-material/StraightenOutlined";
-import { ElementType } from "react";
-import { Link, Route, Switch, useRouteMatch } from "react-router-dom";
+import { ElementType, useEffect } from "react";
+import {
+  Link,
+  Route,
+  Switch,
+  useLocation,
+  useRouteMatch,
+} from "react-router-dom";
 import { HelpContactActions } from "../../components/HelpContactActions";
 import { HelpTopicDetails } from "./HelpTopicDetails";
 import { helpTopicDetails, HelpTopicSlug } from "./helpTopics";
@@ -45,6 +51,19 @@ const questions = [
 
 export function HelpPage() {
   const { path, url } = useRouteMatch();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (!location.hash) return;
+
+    const frame = window.requestAnimationFrame(() => {
+      document
+        .getElementById(location.hash.slice(1))
+        ?.scrollIntoView({ block: "start" });
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [location.hash]);
 
   return (
     <Switch>
@@ -73,30 +92,32 @@ function HelpOverview({ baseUrl }: { baseUrl: string }) {
       </section>
 
       <section className="mnshop-help-topics">
-        <div className="mnshop-help-container mnshop-help-topics__grid">
-          {helpTopicDetails.map((topic) => {
-            const Icon = helpTopicIcons[topic.slug];
+        <div className="mnshop-help-container">
+          <div className="mnshop-help-topics__grid">
+            {helpTopicDetails.map((topic) => {
+              const Icon = helpTopicIcons[topic.slug];
 
-            return (
-              <Link
-                className="mnshop-help-topic__link"
-                key={topic.slug}
-                to={`${baseUrl}/${topic.slug}`}
-              >
-                <article className="mnshop-help-topic">
-                  <Icon aria-hidden="true" />
-                  <h2>{topic.title}</h2>
-                  <p>{topic.summary}</p>
-                </article>
-              </Link>
-            );
-          })}
+              return (
+                <Link
+                  className="mnshop-help-topic__link"
+                  key={topic.slug}
+                  to={`${baseUrl}/${topic.slug}`}
+                >
+                  <article className="mnshop-help-topic">
+                    <Icon aria-hidden="true" />
+                    <h2>{topic.title}</h2>
+                    <p>{topic.summary}</p>
+                  </article>
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </section>
 
       <section className="mnshop-help-support">
         <div className="mnshop-help-container mnshop-help-support__grid">
-          <div className="mnshop-help-faq">
+          <div className="mnshop-help-faq" id="quick-answers">
             <p className="mnshop-help-eyebrow">Quick answers</p>
             <div className="mnshop-help-faq__list">
               {questions.map(({ question, answer }) => (
@@ -108,7 +129,7 @@ function HelpOverview({ baseUrl }: { baseUrl: string }) {
             </div>
           </div>
 
-          <div className="mnshop-help-contact">
+          <div className="mnshop-help-contact" id="contact">
             <p className="mnshop-help-eyebrow">Still need help?</p>
             <h2>Start a conversation</h2>
             <p className="mnshop-help-contact__description">

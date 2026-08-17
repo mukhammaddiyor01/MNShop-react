@@ -23,7 +23,7 @@ export function HelpContactActions() {
       <button type="button" onClick={() => openConversation("admin")}>
         <HeadsetMicOutlinedIcon aria-hidden="true" />
         <span>
-          <strong>Contact MN Support</strong>
+          <strong>Contact MNShop</strong>
           <small>Write directly to an admin</small>
         </span>
       </button>

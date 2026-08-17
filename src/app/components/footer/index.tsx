@@ -12,7 +12,12 @@ const quickLinks = [
   { label: "Sale", href: "/products?category=sale" },
 ];
 
-const helpLinks = ["FAQ", "Size Guide", "Return Policy", "Contact"];
+const helpLinks = [
+  { label: "FAQ", href: "/help#quick-answers" },
+  { label: "Size Guide", href: "/help/size-guide" },
+  { label: "Return Policy", href: "/help/returns" },
+  { label: "Contact", href: "/help#contact" },
+];
 
 export function Footer() {
   return (
@@ -50,8 +55,8 @@ export function Footer() {
             <h2 className="mnshop-footer__title">Help</h2>
             <div className="mnshop-footer__links">
               {helpLinks.map((item) => (
-                <Link key={item} to="/help">
-                  {item}
+                <Link key={item.label} to={item.href}>
+                  {item.label}
                 </Link>
               ))}
             </div>

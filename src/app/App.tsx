@@ -6,6 +6,8 @@ import { OrdersPage } from "./screens/ordersPage/index";
 import { ProductsPage } from "./screens/productsPage/index";
 import { AboutPage } from "./screens/aboutPage/index";
 import { UserPage } from "./screens/userPage/index";
+import { BuyerMessagePage } from "./screens/messagePage/BuyerMessagePage";
+import { LoginPage } from "./screens/loginPage";
 import { HomeNavbar } from "./components/headers/HomeNavbar";
 import { OtherNavbar } from "./components/headers/OtherNavbar";
 import { CartDrawer } from "./components/headers/Basket";
@@ -26,6 +28,12 @@ function App() {
       {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
       <Switch>
+        <Route exact path="/login">
+          <LoginPage />
+        </Route>
+        <Route path="/chat">
+          <BuyerMessagePage />
+        </Route>
         <Route path="/orders">
           <OrdersPage />
         </Route>

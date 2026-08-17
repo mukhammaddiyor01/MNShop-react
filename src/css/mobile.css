@@ -111,6 +111,542 @@
   }
 }
 
+/* SOURCE parity — Buyer message page tablet */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .mnshop-message-page {
+    background: var(--page-bg);
+    color: var(--page-text);
+  }
+
+  .mnshop-message-container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 40px 24px;
+  }
+
+  .mnshop-message-container > h1 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .mnshop-message-panel {
+    display: grid;
+    min-height: 650px;
+    margin-top: 32px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+  }
+
+  .mnshop-message-conversations {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .mnshop-message-conversation {
+    display: flex;
+    width: 100%;
+    padding: 16px 20px;
+    color: inherit;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    text-decoration: none;
+  }
+
+  .mnshop-message-conversation:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-message-conversation.is-active {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+  }
+
+  .mnshop-message-conversation > span,
+  .mnshop-message-conversation strong,
+  .mnshop-message-conversation small {
+    display: block;
+  }
+
+  .mnshop-message-conversation strong {
+    font-weight: 700;
+  }
+
+  .mnshop-message-conversation small {
+    margin-top: 3px;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  .mnshop-message-conversation.is-active small {
+    color: rgba(59, 130, 246, 0.72);
+  }
+
+  .mnshop-message-conversation > b {
+    min-width: 22px;
+    padding: 1px 8px;
+    border-radius: 9999px;
+    background: #f43f5e;
+    color: #f8fafc;
+    font-size: 12px;
+    font-weight: 900;
+    line-height: 20px;
+    text-align: center;
+  }
+
+  .mnshop-message-thread {
+    display: flex;
+    min-width: 0;
+    min-height: 560px;
+    flex-direction: column;
+  }
+
+  .mnshop-message-thread > header {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-message-thread > header p {
+    margin: 0;
+    font-weight: 900;
+  }
+
+  .mnshop-message-thread > header small {
+    display: block;
+    margin-top: 2px;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .mnshop-message-thread__messages {
+    display: flex;
+    min-height: 0;
+    padding: 20px;
+    overflow-y: auto;
+    flex: 1 1 0%;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .mnshop-message-bubble {
+    display: flex;
+  }
+
+  .mnshop-message-bubble.is-buyer {
+    justify-content: flex-end;
+  }
+
+  .mnshop-message-bubble.is-participant {
+    justify-content: flex-start;
+  }
+
+  .mnshop-message-bubble > div {
+    max-width: 78%;
+    padding: 12px 16px;
+    border-radius: 8px;
+  }
+
+  .mnshop-message-bubble.is-buyer > div {
+    background: #3b82f6;
+    color: #000;
+  }
+
+  .mnshop-message-bubble.is-participant > div {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-message-bubble p,
+  .mnshop-message-bubble time {
+    display: block;
+    margin: 0;
+  }
+
+  .mnshop-message-bubble p {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .mnshop-message-bubble time {
+    margin-top: 4px;
+    font-size: 11px;
+    opacity: 0.6;
+  }
+
+  .mnshop-message-typing {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .mnshop-message-composer {
+    display: flex;
+    padding: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    gap: 8px;
+  }
+
+  .mnshop-message-composer button {
+    display: inline-flex;
+    width: 48px;
+    height: 48px;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 9999px;
+    background: transparent;
+    color: var(--page-text);
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mnshop-message-composer button:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-message-composer button:last-child {
+    border-color: #3b82f6;
+    background: #3b82f6;
+    color: #000;
+  }
+
+  .mnshop-message-composer button > svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .mnshop-message-composer input {
+    min-width: 0;
+    padding: 0 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 9999px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--page-text);
+    flex: 1 1 0%;
+  }
+
+  .mnshop-message-composer input::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  .mnshop-message-composer input:focus {
+    border-color: #3b82f6;
+  }
+
+  :root[data-theme="light"] .mnshop-message-panel,
+  :root[data-theme="light"] .mnshop-message-conversations,
+  :root[data-theme="light"] .mnshop-message-thread > header,
+  :root[data-theme="light"] .mnshop-message-composer {
+    border-color: rgba(20, 20, 20, 0.13);
+  }
+
+  :root[data-theme="light"] .mnshop-message-conversations,
+  :root[data-theme="light"] .mnshop-message-composer input {
+    background: rgba(20, 20, 20, 0.055);
+  }
+
+  :root[data-theme="light"] .mnshop-message-conversation:hover,
+  :root[data-theme="light"] .mnshop-message-bubble.is-participant > div,
+  :root[data-theme="light"] .mnshop-message-composer button:hover {
+    background: rgba(20, 20, 20, 0.055);
+  }
+
+  :root[data-theme="light"] .mnshop-message-conversation small,
+  :root[data-theme="light"] .mnshop-message-thread > header small {
+    color: rgba(20, 20, 20, 0.45);
+  }
+
+  :root[data-theme="light"] .mnshop-message-typing,
+  :root[data-theme="light"] .mnshop-message-composer input::placeholder {
+    color: rgba(20, 20, 20, 0.35);
+  }
+
+  :root[data-theme="light"] .mnshop-message-composer button,
+  :root[data-theme="light"] .mnshop-message-composer input {
+    border-color: rgba(20, 20, 20, 0.13);
+  }
+
+  :root[data-theme="light"] .mnshop-message-composer input:focus {
+    border-color: #3b82f6;
+  }
+}
+
+/* SOURCE parity — Buyer message page mobile */
+@media screen and (max-width: 767px) {
+  .mnshop-message-page {
+    background: var(--page-bg);
+    color: var(--page-text);
+  }
+
+  .mnshop-message-container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+
+  .mnshop-message-container > h1 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .mnshop-message-panel {
+    display: grid;
+    min-height: 650px;
+    margin-top: 32px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+  }
+
+  .mnshop-message-conversations {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .mnshop-message-conversation {
+    display: flex;
+    width: 100%;
+    padding: 16px 20px;
+    color: inherit;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    text-decoration: none;
+  }
+
+  .mnshop-message-conversation:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-message-conversation.is-active {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+  }
+
+  .mnshop-message-conversation > span,
+  .mnshop-message-conversation strong,
+  .mnshop-message-conversation small {
+    display: block;
+  }
+
+  .mnshop-message-conversation strong {
+    font-weight: 700;
+  }
+
+  .mnshop-message-conversation small {
+    margin-top: 3px;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  .mnshop-message-conversation.is-active small {
+    color: rgba(59, 130, 246, 0.72);
+  }
+
+  .mnshop-message-conversation > b {
+    min-width: 22px;
+    padding: 1px 8px;
+    border-radius: 9999px;
+    background: #f43f5e;
+    color: #f8fafc;
+    font-size: 12px;
+    font-weight: 900;
+    line-height: 20px;
+    text-align: center;
+  }
+
+  .mnshop-message-thread {
+    display: flex;
+    min-width: 0;
+    min-height: 560px;
+    flex-direction: column;
+  }
+
+  .mnshop-message-thread > header {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-message-thread > header p {
+    margin: 0;
+    font-weight: 900;
+  }
+
+  .mnshop-message-thread > header small {
+    display: block;
+    margin-top: 2px;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .mnshop-message-thread__messages {
+    display: flex;
+    min-height: 0;
+    padding: 20px;
+    overflow-y: auto;
+    flex: 1 1 0%;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .mnshop-message-bubble {
+    display: flex;
+  }
+
+  .mnshop-message-bubble.is-buyer {
+    justify-content: flex-end;
+  }
+
+  .mnshop-message-bubble.is-participant {
+    justify-content: flex-start;
+  }
+
+  .mnshop-message-bubble > div {
+    max-width: 78%;
+    padding: 12px 16px;
+    border-radius: 8px;
+  }
+
+  .mnshop-message-bubble.is-buyer > div {
+    background: #3b82f6;
+    color: #000;
+  }
+
+  .mnshop-message-bubble.is-participant > div {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-message-bubble p,
+  .mnshop-message-bubble time {
+    display: block;
+    margin: 0;
+  }
+
+  .mnshop-message-bubble p {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .mnshop-message-bubble time {
+    margin-top: 4px;
+    font-size: 11px;
+    opacity: 0.6;
+  }
+
+  .mnshop-message-typing {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .mnshop-message-composer {
+    display: flex;
+    padding: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    gap: 8px;
+  }
+
+  .mnshop-message-composer button {
+    display: inline-flex;
+    width: 48px;
+    height: 48px;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 9999px;
+    background: transparent;
+    color: var(--page-text);
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mnshop-message-composer button:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-message-composer button:last-child {
+    border-color: #3b82f6;
+    background: #3b82f6;
+    color: #000;
+  }
+
+  .mnshop-message-composer button > svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .mnshop-message-composer input {
+    min-width: 0;
+    padding: 0 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 9999px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--page-text);
+    flex: 1 1 0%;
+  }
+
+  .mnshop-message-composer input::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  .mnshop-message-composer input:focus {
+    border-color: #3b82f6;
+  }
+
+  :root[data-theme="light"] .mnshop-message-panel,
+  :root[data-theme="light"] .mnshop-message-conversations,
+  :root[data-theme="light"] .mnshop-message-thread > header,
+  :root[data-theme="light"] .mnshop-message-composer {
+    border-color: rgba(20, 20, 20, 0.13);
+  }
+
+  :root[data-theme="light"] .mnshop-message-conversations,
+  :root[data-theme="light"] .mnshop-message-composer input {
+    background: rgba(20, 20, 20, 0.055);
+  }
+
+  :root[data-theme="light"] .mnshop-message-conversation:hover,
+  :root[data-theme="light"] .mnshop-message-bubble.is-participant > div,
+  :root[data-theme="light"] .mnshop-message-composer button:hover {
+    background: rgba(20, 20, 20, 0.055);
+  }
+
+  :root[data-theme="light"] .mnshop-message-conversation small,
+  :root[data-theme="light"] .mnshop-message-thread > header small {
+    color: rgba(20, 20, 20, 0.45);
+  }
+
+  :root[data-theme="light"] .mnshop-message-typing,
+  :root[data-theme="light"] .mnshop-message-composer input::placeholder {
+    color: rgba(20, 20, 20, 0.35);
+  }
+
+  :root[data-theme="light"] .mnshop-message-composer button,
+  :root[data-theme="light"] .mnshop-message-composer input {
+    border-color: rgba(20, 20, 20, 0.13);
+  }
+
+  :root[data-theme="light"] .mnshop-message-composer input:focus {
+    border-color: #3b82f6;
+  }
+}
+
 /* Buyer profile page — tablet */
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .mnshop-buyer-profile-page {
@@ -3283,6 +3819,362 @@
 
   .mnshop-about-seller {
     grid-template-columns: 0.8fr 1fr;
+  }
+}
+
+/* Help topic details — tablet */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .mnshop-help-topic-page {
+    min-height: 100vh;
+    background: var(--page-bg);
+    color: var(--page-text);
+  }
+
+  .mnshop-help-topic-detail__hero {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-help-topic-detail__hero-inner {
+    padding-top: 96px;
+    padding-bottom: 96px;
+  }
+
+  .mnshop-help-topic-detail__back {
+    display: inline-flex;
+    margin-bottom: 32px;
+    color: #3b82f6;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .mnshop-help-topic-detail__back:hover {
+    text-decoration: underline;
+  }
+
+  .mnshop-help-topic-detail__back svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .mnshop-help-topic-detail__hero h1 {
+    max-width: 896px;
+    margin: 16px 0 0;
+    font-family: var(--font-display);
+    font-size: 72px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .mnshop-help-topic-detail__summary {
+    max-width: 672px;
+    margin: 20px 0 0;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .mnshop-help-topic-detail__sections {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
+  .mnshop-help-topic-detail__sections::before {
+    position: absolute;
+    z-index: 0;
+    top: 56px;
+    right: 24px;
+    bottom: 56px;
+    left: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.1);
+    content: "";
+    pointer-events: none;
+  }
+
+  .mnshop-help-topic-detail__sections article {
+    position: relative;
+    z-index: 1;
+    padding: 32px;
+    background: #0a0a0a;
+  }
+
+  .mnshop-help-topic-detail__sections article > span {
+    color: #3b82f6;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+  }
+
+  .mnshop-help-topic-detail__sections h2 {
+    margin: 20px 0 0;
+    font-size: 20px;
+    font-weight: 900;
+  }
+
+  .mnshop-help-topic-detail__sections p,
+  .mnshop-help-topic-detail__sections li {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  .mnshop-help-topic-detail__sections p {
+    margin: 8px 0 0;
+  }
+
+  .mnshop-help-topic-detail__sections ul {
+    display: grid;
+    margin: 16px 0 0;
+    padding-left: 20px;
+    gap: 8px;
+  }
+
+  .mnshop-help-topic-detail__contact {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.025);
+  }
+
+  .mnshop-help-topic-detail__contact-inner {
+    display: grid;
+    gap: 40px;
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
+  .mnshop-help-topic-detail__contact .mnshop-help-eyebrow {
+    letter-spacing: 0.35em;
+  }
+
+  .mnshop-help-topic-detail__contact h2 {
+    margin: 12px 0 0;
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 36px;
+  }
+
+  .mnshop-help-topic-detail__contact-inner > div:first-child > p:last-child {
+    max-width: 672px;
+    margin: 12px 0 0;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  :root[data-theme="light"] .mnshop-help-topic-detail__hero,
+  :root[data-theme="light"] .mnshop-help-topic-detail__sections::before,
+  :root[data-theme="light"] .mnshop-help-topic-detail__contact {
+    border-color: rgba(20, 20, 20, 0.13);
+  }
+
+  :root[data-theme="light"] .mnshop-help-topic-detail__summary {
+    color: rgba(20, 20, 20, 0.55);
+  }
+
+  :root[data-theme="light"] .mnshop-help-topic-detail__sections::before,
+  :root[data-theme="light"] .mnshop-help-topic-detail__contact {
+    background: rgba(20, 20, 20, 0.055);
+  }
+
+  :root[data-theme="light"]
+    .mnshop-help-topic-detail__sections
+    article {
+    background: rgba(247, 246, 242, 0.94);
+  }
+
+  :root[data-theme="light"] .mnshop-help-topic-detail__sections p,
+  :root[data-theme="light"] .mnshop-help-topic-detail__sections li,
+  :root[data-theme="light"]
+    .mnshop-help-topic-detail__contact-inner
+    > div:first-child
+    > p:last-child {
+    color: rgba(20, 20, 20, 0.5);
+  }
+}
+
+/* Help topic details — mobile */
+@media screen and (max-width: 767px) {
+  .mnshop-help-topic-page {
+    min-height: 100vh;
+    background: var(--page-bg);
+    color: var(--page-text);
+  }
+
+  .mnshop-help-topic-detail__hero {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-help-topic-detail__hero-inner {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .mnshop-help-topic-detail__back {
+    display: inline-flex;
+    margin-bottom: 32px;
+    color: #3b82f6;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .mnshop-help-topic-detail__back:hover {
+    text-decoration: underline;
+  }
+
+  .mnshop-help-topic-detail__back svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .mnshop-help-topic-detail__hero h1 {
+    max-width: 896px;
+    margin: 16px 0 0;
+    font-family: var(--font-display);
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .mnshop-help-topic-detail__summary {
+    max-width: 672px;
+    margin: 20px 0 0;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .mnshop-help-topic-detail__sections {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1px;
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
+  .mnshop-help-topic-detail__sections::before {
+    position: absolute;
+    z-index: 0;
+    top: 56px;
+    right: 20px;
+    bottom: 56px;
+    left: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.1);
+    content: "";
+    pointer-events: none;
+  }
+
+  .mnshop-help-topic-detail__sections article {
+    position: relative;
+    z-index: 1;
+    padding: 24px;
+    background: #0a0a0a;
+  }
+
+  .mnshop-help-topic-detail__sections article > span {
+    color: #3b82f6;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+  }
+
+  .mnshop-help-topic-detail__sections h2 {
+    margin: 20px 0 0;
+    font-size: 20px;
+    font-weight: 900;
+  }
+
+  .mnshop-help-topic-detail__sections p,
+  .mnshop-help-topic-detail__sections li {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  .mnshop-help-topic-detail__sections p {
+    margin: 8px 0 0;
+  }
+
+  .mnshop-help-topic-detail__sections ul {
+    display: grid;
+    margin: 16px 0 0;
+    padding-left: 20px;
+    gap: 8px;
+  }
+
+  .mnshop-help-topic-detail__contact {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.025);
+  }
+
+  .mnshop-help-topic-detail__contact-inner {
+    display: grid;
+    gap: 40px;
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
+  .mnshop-help-topic-detail__contact .mnshop-help-eyebrow {
+    letter-spacing: 0.35em;
+  }
+
+  .mnshop-help-topic-detail__contact h2 {
+    margin: 12px 0 0;
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 36px;
+  }
+
+  .mnshop-help-topic-detail__contact-inner > div:first-child > p:last-child {
+    max-width: 672px;
+    margin: 12px 0 0;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  :root[data-theme="light"] .mnshop-help-topic-detail__hero,
+  :root[data-theme="light"] .mnshop-help-topic-detail__sections::before,
+  :root[data-theme="light"] .mnshop-help-topic-detail__contact {
+    border-color: rgba(20, 20, 20, 0.13);
+  }
+
+  :root[data-theme="light"] .mnshop-help-topic-detail__summary {
+    color: rgba(20, 20, 20, 0.55);
+  }
+
+  :root[data-theme="light"] .mnshop-help-topic-detail__sections::before,
+  :root[data-theme="light"] .mnshop-help-topic-detail__contact {
+    background: rgba(20, 20, 20, 0.055);
+  }
+
+  :root[data-theme="light"]
+    .mnshop-help-topic-detail__sections
+    article {
+    background: rgba(247, 246, 242, 0.94);
+  }
+
+  :root[data-theme="light"] .mnshop-help-topic-detail__sections p,
+  :root[data-theme="light"] .mnshop-help-topic-detail__sections li,
+  :root[data-theme="light"]
+    .mnshop-help-topic-detail__contact-inner
+    > div:first-child
+    > p:last-child {
+    color: rgba(20, 20, 20, 0.5);
   }
 }
 
