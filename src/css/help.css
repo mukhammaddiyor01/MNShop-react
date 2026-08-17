@@ -1,0 +1,283 @@
+/* SOURCE parity — Help page desktop */
+@media screen and (min-width: 1024px) {
+  .mnshop-help-page {
+    min-height: 100vh;
+    background: var(--page-bg);
+    color: var(--page-text);
+  }
+
+  .mnshop-help-container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+
+  .mnshop-help-hero {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-help-hero__inner {
+    padding-top: 96px;
+    padding-bottom: 96px;
+  }
+
+  .mnshop-help-eyebrow {
+    margin: 0;
+    color: #3b82f6;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+  }
+
+  .mnshop-help-support .mnshop-help-eyebrow {
+    letter-spacing: 0.35em;
+  }
+
+  .mnshop-help-hero h1 {
+    max-width: 896px;
+    margin: 16px 0 0;
+    font-family: var(--font-display);
+    font-size: 72px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .mnshop-help-hero__description {
+    max-width: 672px;
+    margin: 20px 0 0;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .mnshop-help-topics {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
+  .mnshop-help-topics__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-help-topic {
+    padding: 32px;
+    background: #0a0a0a;
+  }
+
+  .mnshop-help-topic > svg {
+    width: 26px;
+    height: 26px;
+    color: #3b82f6;
+  }
+
+  .mnshop-help-topic h2 {
+    margin: 20px 0 0;
+    font-size: 20px;
+    font-weight: 900;
+  }
+
+  .mnshop-help-topic p {
+    margin: 8px 0 0;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  .mnshop-help-support {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.025);
+  }
+
+  .mnshop-help-support__grid {
+    display: grid;
+    grid-template-columns: 1fr 0.8fr;
+    gap: 40px;
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
+  .mnshop-help-faq__list {
+    margin-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-help-faq__list details {
+    padding: 20px 0;
+  }
+
+  .mnshop-help-faq__list details + details {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-help-faq__list summary {
+    padding-right: 32px;
+    cursor: pointer;
+    font-weight: 700;
+    list-style: none;
+  }
+
+  .mnshop-help-faq__list summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .mnshop-help-faq__list details p {
+    max-width: 672px;
+    margin: 12px 0 0;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  .mnshop-help-contact {
+    padding-left: 40px;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-help-contact h2 {
+    margin: 12px 0 0;
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 36px;
+  }
+
+  .mnshop-help-contact__description {
+    margin: 12px 0 24px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  .mnshop-help-contact__actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .mnshop-help-contact__actions button {
+    display: flex;
+    min-height: 80px;
+    padding: 16px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--page-text);
+    cursor: pointer;
+    align-items: center;
+    gap: 16px;
+    text-align: left;
+    transition-property:
+      color,
+      background-color,
+      border-color,
+      text-decoration-color,
+      fill,
+      stroke,
+      opacity,
+      box-shadow,
+      transform,
+      filter,
+      backdrop-filter;
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .mnshop-help-contact__actions button:first-child {
+    border-color: rgba(59, 130, 246, 0.35);
+    background: #3b82f6;
+    color: #000;
+  }
+
+  .mnshop-help-contact__actions button:hover {
+    transform: translateY(-4px);
+  }
+
+  .mnshop-help-contact__actions button:first-child:hover {
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.22);
+  }
+
+  .mnshop-help-contact__actions button:last-child:hover {
+    border-color: #3b82f6;
+  }
+
+  .mnshop-help-contact__actions button > svg {
+    width: 24px;
+    height: 24px;
+    flex: 0 0 24px;
+  }
+
+  .mnshop-help-contact__actions button:last-child > svg {
+    color: #3b82f6;
+  }
+
+  .mnshop-help-contact__actions button span,
+  .mnshop-help-contact__actions button strong,
+  .mnshop-help-contact__actions button small {
+    display: block;
+  }
+
+  .mnshop-help-contact__actions button strong {
+    font-weight: 900;
+  }
+
+  .mnshop-help-contact__actions button small {
+    margin-top: 2px;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .mnshop-help-contact__actions button:first-child small {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  :root[data-theme="light"] .mnshop-help-hero,
+  :root[data-theme="light"] .mnshop-help-topics__grid,
+  :root[data-theme="light"] .mnshop-help-support,
+  :root[data-theme="light"] .mnshop-help-faq__list,
+  :root[data-theme="light"] .mnshop-help-faq__list details + details,
+  :root[data-theme="light"] .mnshop-help-contact {
+    border-color: rgba(20, 20, 20, 0.13);
+  }
+
+  :root[data-theme="light"] .mnshop-help-topic p,
+  :root[data-theme="light"] .mnshop-help-faq__list details p,
+  :root[data-theme="light"] .mnshop-help-contact__description {
+    color: rgba(20, 20, 20, 0.5);
+  }
+
+  :root[data-theme="light"] .mnshop-help-hero__description {
+    color: rgba(20, 20, 20, 0.55);
+  }
+
+  :root[data-theme="light"] .mnshop-help-topics__grid,
+  :root[data-theme="light"] .mnshop-help-support {
+    background: rgba(20, 20, 20, 0.055);
+  }
+
+  :root[data-theme="light"] .mnshop-help-topic {
+    background: rgba(247, 246, 242, 0.94);
+  }
+
+  :root[data-theme="light"] .mnshop-help-contact__actions button:last-child {
+    border-color: rgba(20, 20, 20, 0.13);
+    background: rgba(20, 20, 20, 0.055);
+    color: #141414;
+  }
+
+  :root[data-theme="light"]
+    .mnshop-help-contact__actions
+    button:last-child
+    small {
+    color: rgba(20, 20, 20, 0.45);
+  }
+}

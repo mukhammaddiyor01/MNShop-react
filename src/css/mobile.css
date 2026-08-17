@@ -1976,6 +1976,1296 @@
   }
 }
 
+/* SOURCE parity — Help page tablet */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .mnshop-help-page {
+    min-height: 100vh;
+    background: var(--page-bg);
+    color: var(--page-text);
+  }
+
+  .mnshop-help-container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+
+  .mnshop-help-hero {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-help-hero__inner {
+    padding-top: 96px;
+    padding-bottom: 96px;
+  }
+
+  .mnshop-help-eyebrow {
+    margin: 0;
+    color: #3b82f6;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+  }
+
+  .mnshop-help-support .mnshop-help-eyebrow {
+    letter-spacing: 0.35em;
+  }
+
+  .mnshop-help-hero h1 {
+    max-width: 896px;
+    margin: 16px 0 0;
+    font-family: var(--font-display);
+    font-size: 72px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .mnshop-help-hero__description {
+    max-width: 672px;
+    margin: 20px 0 0;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .mnshop-help-topics {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
+  .mnshop-help-topics__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-help-topic {
+    padding: 32px;
+    background: #0a0a0a;
+  }
+
+  .mnshop-help-topic > svg {
+    width: 26px;
+    height: 26px;
+    color: #3b82f6;
+  }
+
+  .mnshop-help-topic h2 {
+    margin: 20px 0 0;
+    font-size: 20px;
+    font-weight: 900;
+  }
+
+  .mnshop-help-topic p {
+    margin: 8px 0 0;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  .mnshop-help-support {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.025);
+  }
+
+  .mnshop-help-support__grid {
+    display: grid;
+    gap: 40px;
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
+  .mnshop-help-faq__list {
+    margin-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-help-faq__list details {
+    padding: 20px 0;
+  }
+
+  .mnshop-help-faq__list details + details {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-help-faq__list summary {
+    padding-right: 32px;
+    cursor: pointer;
+    font-weight: 700;
+    list-style: none;
+  }
+
+  .mnshop-help-faq__list summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .mnshop-help-faq__list details p {
+    max-width: 672px;
+    margin: 12px 0 0;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  .mnshop-help-contact h2 {
+    margin: 12px 0 0;
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 36px;
+  }
+
+  .mnshop-help-contact__description {
+    margin: 12px 0 24px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  .mnshop-help-contact__actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .mnshop-help-contact__actions button {
+    display: flex;
+    min-height: 80px;
+    padding: 16px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--page-text);
+    cursor: pointer;
+    align-items: center;
+    gap: 16px;
+    text-align: left;
+    transition-property:
+      color,
+      background-color,
+      border-color,
+      text-decoration-color,
+      fill,
+      stroke,
+      opacity,
+      box-shadow,
+      transform,
+      filter,
+      backdrop-filter;
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .mnshop-help-contact__actions button:first-child {
+    border-color: rgba(59, 130, 246, 0.35);
+    background: #3b82f6;
+    color: #000;
+  }
+
+  .mnshop-help-contact__actions button:hover {
+    transform: translateY(-4px);
+  }
+
+  .mnshop-help-contact__actions button:first-child:hover {
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.22);
+  }
+
+  .mnshop-help-contact__actions button:last-child:hover {
+    border-color: #3b82f6;
+  }
+
+  .mnshop-help-contact__actions button > svg {
+    width: 24px;
+    height: 24px;
+    flex: 0 0 24px;
+  }
+
+  .mnshop-help-contact__actions button:last-child > svg {
+    color: #3b82f6;
+  }
+
+  .mnshop-help-contact__actions button span,
+  .mnshop-help-contact__actions button strong,
+  .mnshop-help-contact__actions button small {
+    display: block;
+  }
+
+  .mnshop-help-contact__actions button strong {
+    font-weight: 900;
+  }
+
+  .mnshop-help-contact__actions button small {
+    margin-top: 2px;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .mnshop-help-contact__actions button:first-child small {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  :root[data-theme="light"] .mnshop-help-hero,
+  :root[data-theme="light"] .mnshop-help-topics__grid,
+  :root[data-theme="light"] .mnshop-help-support,
+  :root[data-theme="light"] .mnshop-help-faq__list,
+  :root[data-theme="light"] .mnshop-help-faq__list details + details {
+    border-color: rgba(20, 20, 20, 0.13);
+  }
+
+  :root[data-theme="light"] .mnshop-help-topic p,
+  :root[data-theme="light"] .mnshop-help-faq__list details p,
+  :root[data-theme="light"] .mnshop-help-contact__description {
+    color: rgba(20, 20, 20, 0.5);
+  }
+
+  :root[data-theme="light"] .mnshop-help-hero__description {
+    color: rgba(20, 20, 20, 0.55);
+  }
+
+  :root[data-theme="light"] .mnshop-help-topics__grid,
+  :root[data-theme="light"] .mnshop-help-support {
+    background: rgba(20, 20, 20, 0.055);
+  }
+
+  :root[data-theme="light"] .mnshop-help-topic {
+    background: rgba(247, 246, 242, 0.94);
+  }
+
+  :root[data-theme="light"] .mnshop-help-contact__actions button:last-child {
+    border-color: rgba(20, 20, 20, 0.13);
+    background: rgba(20, 20, 20, 0.055);
+    color: #141414;
+  }
+
+  :root[data-theme="light"]
+    .mnshop-help-contact__actions
+    button:last-child
+    small {
+    color: rgba(20, 20, 20, 0.45);
+  }
+}
+
+/* SOURCE parity — Help page mobile */
+@media screen and (max-width: 767px) {
+  .mnshop-help-page {
+    min-height: 100vh;
+    background: var(--page-bg);
+    color: var(--page-text);
+  }
+
+  .mnshop-help-container {
+    width: 100%;
+    margin: 0 auto;
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .mnshop-help-hero {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-help-hero__inner {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .mnshop-help-eyebrow {
+    margin: 0;
+    color: #3b82f6;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+  }
+
+  .mnshop-help-support .mnshop-help-eyebrow {
+    letter-spacing: 0.35em;
+  }
+
+  .mnshop-help-hero h1 {
+    max-width: 896px;
+    margin: 16px 0 0;
+    font-family: var(--font-display);
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .mnshop-help-hero__description {
+    max-width: 672px;
+    margin: 20px 0 0;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .mnshop-help-topics {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
+  .mnshop-help-topics__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-help-topic {
+    padding: 24px;
+    background: #0a0a0a;
+  }
+
+  .mnshop-help-topic > svg {
+    width: 26px;
+    height: 26px;
+    color: #3b82f6;
+  }
+
+  .mnshop-help-topic h2 {
+    margin: 20px 0 0;
+    font-size: 20px;
+    font-weight: 900;
+  }
+
+  .mnshop-help-topic p {
+    margin: 8px 0 0;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  .mnshop-help-support {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.025);
+  }
+
+  .mnshop-help-support__grid {
+    display: grid;
+    gap: 40px;
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
+  .mnshop-help-faq__list {
+    margin-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-help-faq__list details {
+    padding: 20px 0;
+  }
+
+  .mnshop-help-faq__list details + details {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-help-faq__list summary {
+    padding-right: 32px;
+    cursor: pointer;
+    font-weight: 700;
+    list-style: none;
+  }
+
+  .mnshop-help-faq__list summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .mnshop-help-faq__list details p {
+    max-width: 672px;
+    margin: 12px 0 0;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  .mnshop-help-contact h2 {
+    margin: 12px 0 0;
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 36px;
+  }
+
+  .mnshop-help-contact__description {
+    margin: 12px 0 24px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  .mnshop-help-contact__actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .mnshop-help-contact__actions button {
+    display: flex;
+    min-height: 80px;
+    padding: 16px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--page-text);
+    cursor: pointer;
+    align-items: center;
+    gap: 16px;
+    text-align: left;
+    transition-property:
+      color,
+      background-color,
+      border-color,
+      text-decoration-color,
+      fill,
+      stroke,
+      opacity,
+      box-shadow,
+      transform,
+      filter,
+      backdrop-filter;
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .mnshop-help-contact__actions button:first-child {
+    border-color: rgba(59, 130, 246, 0.35);
+    background: #3b82f6;
+    color: #000;
+  }
+
+  .mnshop-help-contact__actions button:hover {
+    transform: translateY(-4px);
+  }
+
+  .mnshop-help-contact__actions button:first-child:hover {
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.22);
+  }
+
+  .mnshop-help-contact__actions button:last-child:hover {
+    border-color: #3b82f6;
+  }
+
+  .mnshop-help-contact__actions button > svg {
+    width: 24px;
+    height: 24px;
+    flex: 0 0 24px;
+  }
+
+  .mnshop-help-contact__actions button:last-child > svg {
+    color: #3b82f6;
+  }
+
+  .mnshop-help-contact__actions button span,
+  .mnshop-help-contact__actions button strong,
+  .mnshop-help-contact__actions button small {
+    display: block;
+  }
+
+  .mnshop-help-contact__actions button strong {
+    font-weight: 900;
+  }
+
+  .mnshop-help-contact__actions button small {
+    margin-top: 2px;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .mnshop-help-contact__actions button:first-child small {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  :root[data-theme="light"] .mnshop-help-hero,
+  :root[data-theme="light"] .mnshop-help-topics__grid,
+  :root[data-theme="light"] .mnshop-help-support,
+  :root[data-theme="light"] .mnshop-help-faq__list,
+  :root[data-theme="light"] .mnshop-help-faq__list details + details {
+    border-color: rgba(20, 20, 20, 0.13);
+  }
+
+  :root[data-theme="light"] .mnshop-help-topic p,
+  :root[data-theme="light"] .mnshop-help-faq__list details p,
+  :root[data-theme="light"] .mnshop-help-contact__description {
+    color: rgba(20, 20, 20, 0.5);
+  }
+
+  :root[data-theme="light"] .mnshop-help-hero__description {
+    color: rgba(20, 20, 20, 0.55);
+  }
+
+  :root[data-theme="light"] .mnshop-help-topics__grid,
+  :root[data-theme="light"] .mnshop-help-support {
+    background: rgba(20, 20, 20, 0.055);
+  }
+
+  :root[data-theme="light"] .mnshop-help-topic {
+    background: rgba(247, 246, 242, 0.94);
+  }
+
+  :root[data-theme="light"] .mnshop-help-contact__actions button:last-child {
+    border-color: rgba(20, 20, 20, 0.13);
+    background: rgba(20, 20, 20, 0.055);
+    color: #141414;
+  }
+
+  :root[data-theme="light"]
+    .mnshop-help-contact__actions
+    button:last-child
+    small {
+    color: rgba(20, 20, 20, 0.45);
+  }
+}
+
+@media screen and (min-width: 640px) and (max-width: 767px) {
+  .mnshop-help-contact__actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* SOURCE parity — About page tablet */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .mnshop-about-page {
+    min-height: 100vh;
+    background: var(--page-bg);
+    color: var(--page-text);
+  }
+
+  .mnshop-about-container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+
+  .mnshop-about-eyebrow {
+    margin: 0;
+    color: #3b82f6;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+  }
+
+  .mnshop-about-hero {
+    position: relative;
+    min-height: 72vh;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: #f8fafc;
+  }
+
+  .mnshop-about-hero__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .mnshop-about-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      #000 0%,
+      rgba(0, 0, 0, 0.75) 50%,
+      rgba(0, 0, 0, 0.15) 100%
+    );
+  }
+
+  .mnshop-about-hero__inner {
+    position: relative;
+    display: flex;
+    min-height: 72vh;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    align-items: flex-end;
+  }
+
+  .mnshop-about-hero__inner > div {
+    max-width: 768px;
+  }
+
+  .mnshop-about-hero .mnshop-about-eyebrow {
+    letter-spacing: 0.42em;
+  }
+
+  .mnshop-about-hero h1 {
+    margin: 16px 0 0;
+    font-family: var(--font-display);
+    font-size: 96px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .mnshop-about-hero__description {
+    max-width: 672px;
+    margin: 24px 0 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 18px;
+    line-height: 32px;
+  }
+
+  .mnshop-about-purpose {
+    display: grid;
+    gap: 40px;
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .mnshop-about-purpose h2,
+  .mnshop-about-sellers__heading h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 60px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .mnshop-about-purpose h2 {
+    margin-top: 16px;
+  }
+
+  .mnshop-about-purpose__copy {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 16px;
+    line-height: 32px;
+  }
+
+  .mnshop-about-purpose__copy p {
+    margin: 0;
+  }
+
+  .mnshop-about-statistics {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.025);
+  }
+
+  .mnshop-about-statistics__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-about-statistics__grid > div {
+    padding: 36px 20px;
+    background: #0a0a0a;
+    text-align: center;
+  }
+
+  .mnshop-about-statistics strong {
+    color: #3b82f6;
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 900;
+    line-height: 40px;
+  }
+
+  .mnshop-about-statistics p {
+    margin: 8px 0 0;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .mnshop-about-sellers {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .mnshop-about-sellers__heading {
+    display: flex;
+    margin-bottom: 32px;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .mnshop-about-sellers__heading h2 {
+    margin-top: 12px;
+  }
+
+  .mnshop-about-sellers__heading > a {
+    display: flex;
+    color: #3b82f6;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .mnshop-about-sellers__heading > a:hover {
+    text-decoration: underline;
+  }
+
+  .mnshop-about-sellers__heading > a svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .mnshop-about-sellers__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .mnshop-about-seller {
+    display: grid;
+    grid-template-columns: 0.8fr 1fr;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .mnshop-about-seller__media {
+    min-height: 256px;
+    overflow: hidden;
+  }
+
+  .mnshop-about-seller__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 500ms ease;
+  }
+
+  .mnshop-about-seller:hover .mnshop-about-seller__media img {
+    transform: scale(1.05);
+  }
+
+  .mnshop-about-seller__content {
+    display: flex;
+    padding: 24px;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .mnshop-about-seller__location {
+    display: flex;
+    margin: 0;
+    color: #3b82f6;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .mnshop-about-seller__location svg {
+    width: 14px;
+    height: 14px;
+    flex: 0 0 14px;
+  }
+
+  .mnshop-about-seller h3 {
+    margin: 16px 0 0;
+    font-size: 24px;
+    font-weight: 900;
+  }
+
+  .mnshop-about-seller__specialty {
+    margin: 12px 0 0;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  .mnshop-about-seller__metrics {
+    display: flex;
+    margin-top: 32px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    gap: 24px;
+    font-size: 14px;
+  }
+
+  .mnshop-about-seller__metrics strong {
+    color: #fff;
+  }
+
+  .mnshop-about-seller__metrics small {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: inherit;
+  }
+
+  .mnshop-about-values {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-about-values__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-about-values article {
+    padding: 32px;
+    background: #0a0a0a;
+  }
+
+  .mnshop-about-values article > svg {
+    color: #3b82f6;
+  }
+
+  .mnshop-about-values h3 {
+    margin: 20px 0 0;
+    font-size: 20px;
+    font-weight: 900;
+  }
+
+  .mnshop-about-values p {
+    margin: 8px 0 0;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  .mnshop-about-sellers__heading > a:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 3px;
+  }
+
+  :root[data-theme="light"] .mnshop-about-purpose__copy,
+  :root[data-theme="light"] .mnshop-about-seller__specialty {
+    color: rgba(20, 20, 20, 0.5);
+  }
+
+  :root[data-theme="light"] .mnshop-about-statistics,
+  :root[data-theme="light"] .mnshop-about-statistics__grid,
+  :root[data-theme="light"] .mnshop-about-values,
+  :root[data-theme="light"] .mnshop-about-seller,
+  :root[data-theme="light"] .mnshop-about-seller__metrics {
+    border-color: rgba(20, 20, 20, 0.13);
+  }
+
+  :root[data-theme="light"] .mnshop-about-statistics,
+  :root[data-theme="light"] .mnshop-about-statistics__grid,
+  :root[data-theme="light"] .mnshop-about-values__grid {
+    background: rgba(20, 20, 20, 0.055);
+  }
+
+  :root[data-theme="light"] .mnshop-about-statistics__grid > div,
+  :root[data-theme="light"] .mnshop-about-values article {
+    background: rgba(247, 246, 242, 0.94);
+  }
+
+  :root[data-theme="light"] .mnshop-about-statistics p,
+  :root[data-theme="light"] .mnshop-about-seller__metrics small {
+    color: rgba(20, 20, 20, 0.4);
+  }
+
+  :root[data-theme="light"] .mnshop-about-seller {
+    background: rgba(20, 20, 20, 0.055);
+  }
+
+  :root[data-theme="light"] .mnshop-about-seller__metrics strong {
+    color: #141414;
+  }
+
+  :root[data-theme="light"] .mnshop-about-values p {
+    color: rgba(20, 20, 20, 0.45);
+  }
+}
+
+/* SOURCE parity — About page mobile */
+@media screen and (max-width: 767px) {
+  .mnshop-about-page {
+    min-height: 100vh;
+    background: var(--page-bg);
+    color: var(--page-text);
+  }
+
+  .mnshop-about-container {
+    width: 100%;
+    margin: 0 auto;
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .mnshop-about-eyebrow {
+    margin: 0;
+    color: #3b82f6;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+  }
+
+  .mnshop-about-hero {
+    position: relative;
+    min-height: 72vh;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: #f8fafc;
+  }
+
+  .mnshop-about-hero__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .mnshop-about-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      #000 0%,
+      rgba(0, 0, 0, 0.75) 50%,
+      rgba(0, 0, 0, 0.15) 100%
+    );
+  }
+
+  .mnshop-about-hero__inner {
+    position: relative;
+    display: flex;
+    min-height: 72vh;
+    padding-top: 64px;
+    padding-bottom: 64px;
+    align-items: flex-end;
+  }
+
+  .mnshop-about-hero__inner > div {
+    max-width: 768px;
+  }
+
+  .mnshop-about-hero .mnshop-about-eyebrow {
+    letter-spacing: 0.42em;
+  }
+
+  .mnshop-about-hero h1 {
+    margin: 16px 0 0;
+    font-family: var(--font-display);
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .mnshop-about-hero__description {
+    max-width: 672px;
+    margin: 24px 0 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 18px;
+    line-height: 32px;
+  }
+
+  .mnshop-about-purpose {
+    display: grid;
+    gap: 40px;
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .mnshop-about-purpose h2,
+  .mnshop-about-sellers__heading h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 900;
+    line-height: 40px;
+  }
+
+  .mnshop-about-purpose h2 {
+    margin-top: 16px;
+  }
+
+  .mnshop-about-purpose__copy {
+    display: grid;
+    gap: 32px;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 16px;
+    line-height: 32px;
+  }
+
+  .mnshop-about-purpose__copy p {
+    margin: 0;
+  }
+
+  .mnshop-about-statistics {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.025);
+  }
+
+  .mnshop-about-statistics__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    padding-right: 0;
+    padding-left: 0;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-about-statistics__grid > div {
+    padding: 36px 20px;
+    background: #0a0a0a;
+    text-align: center;
+  }
+
+  .mnshop-about-statistics strong {
+    color: #3b82f6;
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 36px;
+  }
+
+  .mnshop-about-statistics p {
+    margin: 8px 0 0;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .mnshop-about-sellers {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .mnshop-about-sellers__heading {
+    display: flex;
+    margin-bottom: 32px;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .mnshop-about-sellers__heading h2 {
+    margin-top: 12px;
+  }
+
+  .mnshop-about-sellers__heading > a {
+    display: none;
+    color: #3b82f6;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .mnshop-about-sellers__heading > a:hover {
+    text-decoration: underline;
+  }
+
+  .mnshop-about-sellers__heading > a svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .mnshop-about-sellers__grid {
+    display: grid;
+    gap: 20px;
+  }
+
+  .mnshop-about-seller {
+    display: grid;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .mnshop-about-seller__media {
+    min-height: 256px;
+    overflow: hidden;
+  }
+
+  .mnshop-about-seller__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition-property:
+      color,
+      background-color,
+      border-color,
+      text-decoration-color,
+      fill,
+      stroke,
+      opacity,
+      box-shadow,
+      transform,
+      filter,
+      backdrop-filter;
+    transition-duration: 500ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .mnshop-about-seller:hover .mnshop-about-seller__media img {
+    transform: scale(1.05);
+  }
+
+  .mnshop-about-seller__content {
+    display: flex;
+    padding: 24px;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .mnshop-about-seller__location {
+    display: flex;
+    margin: 0;
+    color: #3b82f6;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .mnshop-about-seller__location svg {
+    width: 14px;
+    height: 14px;
+    flex: 0 0 14px;
+  }
+
+  .mnshop-about-seller h3 {
+    margin: 16px 0 0;
+    font-size: 24px;
+    font-weight: 900;
+  }
+
+  .mnshop-about-seller__specialty {
+    margin: 12px 0 0;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  .mnshop-about-seller__metrics {
+    display: flex;
+    margin-top: 32px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    gap: 24px;
+    font-size: 14px;
+  }
+
+  .mnshop-about-seller__metrics strong {
+    color: #fff;
+  }
+
+  .mnshop-about-seller__metrics small {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: inherit;
+  }
+
+  .mnshop-about-values {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-about-values__grid {
+    display: grid;
+    gap: 1px;
+    padding-right: 0;
+    padding-left: 0;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .mnshop-about-values article {
+    padding: 32px;
+    background: #0a0a0a;
+  }
+
+  .mnshop-about-values article > svg {
+    color: #3b82f6;
+  }
+
+  .mnshop-about-values h3 {
+    margin: 20px 0 0;
+    font-size: 20px;
+    font-weight: 900;
+  }
+
+  .mnshop-about-values p {
+    margin: 8px 0 0;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  :root[data-theme="light"] .mnshop-about-purpose__copy,
+  :root[data-theme="light"] .mnshop-about-seller__specialty {
+    color: rgba(20, 20, 20, 0.5);
+  }
+
+  :root[data-theme="light"] .mnshop-about-statistics,
+  :root[data-theme="light"] .mnshop-about-statistics__grid,
+  :root[data-theme="light"] .mnshop-about-values,
+  :root[data-theme="light"] .mnshop-about-seller,
+  :root[data-theme="light"] .mnshop-about-seller__metrics {
+    border-color: rgba(20, 20, 20, 0.13);
+  }
+
+  :root[data-theme="light"] .mnshop-about-statistics,
+  :root[data-theme="light"] .mnshop-about-statistics__grid,
+  :root[data-theme="light"] .mnshop-about-values__grid {
+    background: rgba(20, 20, 20, 0.055);
+  }
+
+  :root[data-theme="light"] .mnshop-about-statistics__grid > div,
+  :root[data-theme="light"] .mnshop-about-values article {
+    background: rgba(247, 246, 242, 0.94);
+  }
+
+  :root[data-theme="light"] .mnshop-about-statistics p,
+  :root[data-theme="light"] .mnshop-about-seller__metrics small {
+    color: rgba(20, 20, 20, 0.4);
+  }
+
+  :root[data-theme="light"] .mnshop-about-seller {
+    background: rgba(20, 20, 20, 0.055);
+  }
+
+  :root[data-theme="light"] .mnshop-about-seller__metrics strong {
+    color: #141414;
+  }
+
+  :root[data-theme="light"] .mnshop-about-values p {
+    color: rgba(20, 20, 20, 0.45);
+  }
+}
+
+@media screen and (min-width: 640px) and (max-width: 767px) {
+  .mnshop-about-purpose__copy {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .mnshop-about-sellers__heading > a {
+    display: flex;
+  }
+
+  .mnshop-about-seller {
+    grid-template-columns: 0.8fr 1fr;
+  }
+}
+
 /* ==================================================
    SOURCE parity — products catalog mobile
    ================================================== */
