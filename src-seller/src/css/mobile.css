@@ -195,6 +195,39 @@
 }
 
 @media screen and (max-width: 1023px) {
+  .mnshop-seller-overview, .mnshop-seller-settings, .mnshop-seller-messages, .mnshop-seller-analytics { margin: 20px; }
+  .mnshop-seller-overview__stats { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .mnshop-seller-overview__panels, .mnshop-seller-analytics__content { grid-template-columns: 1fr; }
+  .mnshop-seller-messages__workspace { min-height: 500px; }
+}
+
+@media screen and (max-width: 767px) {
+  .mnshop-seller-overview, .mnshop-seller-settings, .mnshop-seller-messages, .mnshop-seller-analytics { margin: 16px; }
+  .mnshop-seller-overview__stats, .mnshop-seller-analytics__metrics { gap: 10px; }
+  .mnshop-seller-overview__stats article, .mnshop-seller-overview__panels > article, .mnshop-seller-analytics__metrics article, .mnshop-seller-analytics__content > article { padding: 16px; }
+  .mnshop-seller-overview__stats strong { font-size: 20px; }
+  .mnshop-seller-overview__activity { align-items: flex-start; flex-direction: column; }
+  .mnshop-seller-settings__fields { grid-template-columns: 1fr; padding: 16px; }
+  .mnshop-seller-settings__identity { padding: 16px; }
+  .mnshop-seller-settings form > footer { align-items: flex-start; flex-direction: column; padding: 14px 16px; }
+  .mnshop-seller-settings form button { width: 100%; }
+  .mnshop-seller-messages h2, .mnshop-seller-settings h2, .mnshop-seller-analytics h2 { font-size: 28px; }
+  .mnshop-seller-messages__workspace { grid-template-columns: 1fr; min-height: auto; }
+  .mnshop-seller-messages__workspace > aside { display: flex; overflow-x: auto; gap: 6px; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.1); padding: 10px; }
+  .mnshop-seller-messages__inbox-head { display: none; }
+  .mnshop-seller-messages__workspace > aside button { display: flex; width: max-content; gap: 7px; padding: 7px; }
+  .mnshop-seller-messages__workspace > aside button small, .mnshop-seller-messages__workspace > aside button em { display: none; }
+  .mnshop-seller-messages__workspace > article { min-height: 385px; }
+  .mnshop-seller-messages__workspace > article > header { padding: 13px; }
+  .mnshop-seller-messages__workspace > article > header > p { display: none; }
+  .mnshop-seller-messages__thread { padding: 16px; }
+  .mnshop-seller-messages__bubble { max-width: 88%; }
+  .mnshop-seller-analytics__metrics { grid-template-columns: 1fr; }
+  .mnshop-seller-analytics__list > div { grid-template-columns: 1fr; gap: 8px; }
+  .mnshop-seller-analytics__list > div > p { white-space: normal; }
+}
+
+@media screen and (max-width: 1023px) {
   .mnshop-seller-orders-page { padding: 36px 0 56px; }
   .mnshop-seller-orders-page__heading h1 { font-size: 32px; }
   .mnshop-seller-orders-page__search { min-width: 220px; }

@@ -1,0 +1,37 @@
+.mnshop-seller-messages { color: #f8fafc; }
+.mnshop-seller-messages > header > span, .mnshop-seller-messages__note { color: #3b82f6; font-size: 11px; font-weight: 900; letter-spacing: .22em; text-transform: uppercase; }
+.mnshop-seller-messages h2 { margin: 8px 0 0; color: #fff; font-family: "Poppins", "Inter", sans-serif; font-size: 32px; line-height: 1; }
+.mnshop-seller-messages > header > p { margin: 11px 0 22px; color: rgba(255,255,255,.46); font-size: 14px; }
+.mnshop-seller-messages__workspace { display: grid; grid-template-columns: 270px minmax(0,1fr); min-height: 530px; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; background: rgba(20,20,20,.72); box-shadow: 0 16px 44px rgba(0,0,0,.22); overflow: hidden; }
+.mnshop-seller-messages__workspace > aside { border-right: 1px solid rgba(255,255,255,.1); padding: 12px; }
+.mnshop-seller-messages__inbox-head { display: flex; justify-content: space-between; align-items: center; padding: 7px 8px 14px; }
+.mnshop-seller-messages__inbox-head strong { color: #fff; font-size: 14px; }
+.mnshop-seller-messages__inbox-head span { display: grid; min-width: 21px; height: 21px; place-items: center; border-radius: 999px; background: rgba(59,130,246,.18); color: #93c5fd; font-size: 11px; font-weight: 900; }
+.mnshop-seller-messages__workspace > aside button { display: grid; grid-template-columns: 34px minmax(0,1fr) auto; width: 100%; align-items: center; gap: 9px; border: 0; border-radius: 7px; background: transparent; padding: 11px 8px; color: inherit; cursor: pointer; text-align: left; }
+.mnshop-seller-messages__workspace > aside button:hover { background: rgba(255,255,255,.055); }
+.mnshop-seller-messages__workspace > aside button.is-active { background: rgba(59,130,246,.14); }
+.mnshop-seller-messages__workspace i { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 50%; background: rgba(59,130,246,.2); color: #93c5fd; font-size: 11px; font-style: normal; font-weight: 900; }
+.mnshop-seller-messages__workspace > aside button span { min-width: 0; }
+.mnshop-seller-messages__workspace > aside button strong, .mnshop-seller-messages__workspace > aside button small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mnshop-seller-messages__workspace > aside button strong { color: #fff; font-size: 12px; }
+.mnshop-seller-messages__workspace > aside button small { margin-top: 4px; color: rgba(255,255,255,.44); font-size: 11px; }
+.mnshop-seller-messages__workspace > aside button em { color: #60a5fa; font-size: 10px; font-style: normal; font-weight: 800; }
+.mnshop-seller-messages__workspace > article { display: grid; grid-template-rows: auto 1fr auto; min-width: 0; }
+.mnshop-seller-messages__workspace > article > header { display: flex; align-items: center; justify-content: space-between; gap: 14px; border-bottom: 1px solid rgba(255,255,255,.1); padding: 16px 19px; }
+.mnshop-seller-messages__workspace > article > header > div { display: flex; align-items: center; gap: 9px; }
+.mnshop-seller-messages__workspace > article > header strong, .mnshop-seller-messages__workspace > article > header small { display: block; }
+.mnshop-seller-messages__workspace > article > header strong { color: #fff; font-size: 14px; }
+.mnshop-seller-messages__workspace > article > header small { margin-top: 3px; color: rgba(255,255,255,.44); font-size: 11px; }
+.mnshop-seller-messages__workspace > article > header p { margin: 0; color: rgba(255,255,255,.44); font-size: 12px; }
+.mnshop-seller-messages__thread { display: flex; flex-direction: column; justify-content: flex-end; gap: 11px; padding: 22px; }
+.mnshop-seller-messages__bubble { width: fit-content; max-width: min(430px, 78%); border-radius: 9px; padding: 11px 13px; }
+.mnshop-seller-messages__bubble.is-buyer { align-self: flex-start; background: rgba(255,255,255,.075); }
+.mnshop-seller-messages__bubble.is-seller { align-self: flex-end; background: #3b82f6; color: #071425; }
+.mnshop-seller-messages__bubble p { margin: 0; font-size: 13px; line-height: 1.5; }
+.mnshop-seller-messages__bubble time { display: block; margin-top: 6px; color: rgba(255,255,255,.42); font-size: 10px; }
+.mnshop-seller-messages__bubble.is-seller time { color: rgba(7,20,37,.67); }
+.mnshop-seller-messages__workspace form { display: flex; gap: 8px; border-top: 1px solid rgba(255,255,255,.1); padding: 14px; }
+.mnshop-seller-messages__workspace form input { min-width: 0; flex: 1; border: 1px solid rgba(255,255,255,.12); border-radius: 999px; outline: none; background: rgba(255,255,255,.04); padding: 11px 14px; color: #fff; font: inherit; font-size: 13px; }
+.mnshop-seller-messages__workspace form input:focus { border-color: #3b82f6; }
+.mnshop-seller-messages__workspace form button { display: grid; width: 39px; height: 39px; place-items: center; border: 0; border-radius: 50%; background: #3b82f6; color: #071425; cursor: pointer; }
+.mnshop-seller-messages__note { display: block; margin: 13px 0 0; color: rgba(255,255,255,.36); font-size: 9px; letter-spacing: .1em; }

@@ -1,0 +1,22 @@
+.mnshop-seller-settings { color: #f8fafc; }
+.mnshop-seller-settings > header > span, .mnshop-seller-settings form > footer > span { color: #3b82f6; font-size: 11px; font-weight: 900; letter-spacing: .22em; text-transform: uppercase; }
+.mnshop-seller-settings h2 { margin: 8px 0 0; color: #fff; font-family: "Poppins", "Inter", sans-serif; font-size: 32px; line-height: 1; }
+.mnshop-seller-settings > header > p { margin: 11px 0 22px; color: rgba(255,255,255,.46); font-size: 14px; }
+.mnshop-seller-settings form { border: 1px solid rgba(255,255,255,.1); border-radius: 8px; background: rgba(20,20,20,.72); box-shadow: 0 16px 44px rgba(0,0,0,.22); overflow: hidden; }
+.mnshop-seller-settings__identity { display: flex; align-items: center; gap: 13px; border-bottom: 1px solid rgba(255,255,255,.1); padding: 20px; }
+.mnshop-seller-settings__monogram { display: grid; width: 44px; height: 44px; place-items: center; border-radius: 50%; background: #3b82f6; color: #071425; font-size: 17px; font-weight: 950; }
+.mnshop-seller-settings__identity strong, .mnshop-seller-settings__identity small { display: block; }
+.mnshop-seller-settings__identity strong { color: #fff; font-size: 15px; }
+.mnshop-seller-settings__identity small { margin-top: 3px; color: rgba(255,255,255,.45); font-size: 12px; }
+.mnshop-seller-settings__notice { margin: 20px 20px 0; border: 1px solid rgba(255,255,255,.1); border-radius: 7px; padding: 12px; color: rgba(255,255,255,.6); font-size: 13px; }
+.mnshop-seller-settings__notice.is-error { border-color: rgba(244,63,94,.45); color: #fda4af; }
+.mnshop-seller-settings__fields { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; padding: 20px; }
+.mnshop-seller-settings label { display: grid; gap: 8px; color: rgba(255,255,255,.58); font-size: 12px; font-weight: 800; }
+.mnshop-seller-settings input, .mnshop-seller-settings textarea { box-sizing: border-box; width: 100%; border: 1px solid rgba(255,255,255,.12); border-radius: 7px; outline: none; background: rgba(255,255,255,.045); padding: 12px; color: #fff; font: inherit; font-size: 14px; resize: vertical; transition: border-color .16s ease, background .16s ease; }
+.mnshop-seller-settings input:focus, .mnshop-seller-settings textarea:focus { border-color: #3b82f6; background: rgba(59,130,246,.06); }
+.mnshop-seller-settings__description { grid-column: 1 / -1; }
+.mnshop-seller-settings form > footer { display: flex; min-height: 72px; align-items: center; justify-content: space-between; gap: 18px; border-top: 1px solid rgba(255,255,255,.1); padding: 14px 20px; }
+.mnshop-seller-settings form > footer > span { letter-spacing: .08em; }
+.mnshop-seller-settings form button { border: 0; border-radius: 999px; background: #3b82f6; padding: 11px 17px; color: #071425; cursor: pointer; font: inherit; font-size: 12px; font-weight: 900; transition: background .16s ease, transform .16s ease; }
+.mnshop-seller-settings form button:hover:not(:disabled) { background: #60a5fa; transform: translateY(-1px); }
+.mnshop-seller-settings form button:disabled { cursor: not-allowed; opacity: .65; }

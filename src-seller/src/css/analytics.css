@@ -1,0 +1,35 @@
+.mnshop-seller-analytics { color: #f8fafc; }
+.mnshop-seller-analytics > header > span { color: #3b82f6; font-size: 11px; font-weight: 900; letter-spacing: .22em; text-transform: uppercase; }
+.mnshop-seller-analytics h2 { margin: 8px 0 0; color: #fff; font-family: "Poppins", "Inter", sans-serif; font-size: 32px; line-height: 1; }
+.mnshop-seller-analytics > header > p { margin: 11px 0 22px; color: rgba(255,255,255,.46); font-size: 14px; }
+.mnshop-seller-analytics__notice { border: 1px solid rgba(255,255,255,.1); border-radius: 8px; background: rgba(20,20,20,.72); padding: 20px; color: rgba(255,255,255,.58); font-size: 14px; }
+.mnshop-seller-analytics__notice.is-error { border-color: rgba(244,63,94,.45); color: #fda4af; }
+.mnshop-seller-analytics__metrics { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; }
+.mnshop-seller-analytics__metrics article, .mnshop-seller-analytics__content > article { border: 1px solid rgba(255,255,255,.1); border-radius: 8px; background: rgba(20,20,20,.72); box-shadow: 0 16px 44px rgba(0,0,0,.22); }
+.mnshop-seller-analytics__metrics article { padding: 20px; }
+.mnshop-seller-analytics__metrics svg { color: #3b82f6; }
+.mnshop-seller-analytics__metrics p { margin: 15px 0 0; color: rgba(255,255,255,.45); font-size: 13px; }
+.mnshop-seller-analytics__metrics strong { display: block; margin-top: 6px; color: #fff; font-size: 24px; }
+.mnshop-seller-analytics__metrics small { display: block; margin-top: 6px; color: rgba(255,255,255,.37); font-size: 11px; }
+.mnshop-seller-analytics__content { display: grid; grid-template-columns: minmax(0,1fr) 300px; gap: 16px; margin-top: 16px; }
+.mnshop-seller-analytics__content > article { padding: 20px; }
+.mnshop-seller-analytics__content > article > header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.mnshop-seller-analytics h3 { margin: 0; color: #fff; font-size: 17px; }
+.mnshop-seller-analytics h3 + p, .mnshop-seller-analytics__content header p { margin: 5px 0 0; color: rgba(255,255,255,.43); font-size: 12px; }
+.mnshop-seller-analytics__content > article > header > span { border-radius: 999px; background: rgba(59,130,246,.14); padding: 5px 8px; color: #93c5fd; font-size: 10px; font-weight: 800; white-space: nowrap; }
+.mnshop-seller-analytics__list { margin-top: 18px; }
+.mnshop-seller-analytics__list > div { display: grid; grid-template-columns: minmax(155px,1fr) minmax(90px,1.1fr) auto; align-items: center; gap: 14px; border-top: 1px solid rgba(255,255,255,.09); padding: 13px 0; }
+.mnshop-seller-analytics__product { display: flex; align-items: center; min-width: 0; gap: 10px; }
+.mnshop-seller-analytics__product img { width: 35px; height: 40px; border-radius: 6px; object-fit: cover; }
+.mnshop-seller-analytics__product span { min-width: 0; }
+.mnshop-seller-analytics__product strong, .mnshop-seller-analytics__product small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mnshop-seller-analytics__product strong { color: #fff; font-size: 12px; }
+.mnshop-seller-analytics__product small { margin-top: 4px; color: rgba(255,255,255,.42); font-size: 10px; }
+.mnshop-seller-analytics__bar { height: 6px; overflow: hidden; border-radius: 999px; background: rgba(255,255,255,.09); }
+.mnshop-seller-analytics__bar i { display: block; height: 100%; border-radius: inherit; background: #3b82f6; }
+.mnshop-seller-analytics__list > div > p { margin: 0; color: rgba(255,255,255,.42); font-size: 10px; white-space: nowrap; }
+.mnshop-seller-analytics__list b { color: #fff; }
+.mnshop-seller-analytics__orders > div { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; border-bottom: 1px solid rgba(255,255,255,.08); padding-bottom: 12px; }
+.mnshop-seller-analytics__orders > div span { color: rgba(255,255,255,.56); font-size: 13px; }
+.mnshop-seller-analytics__orders > div strong { display: grid; min-width: 26px; height: 26px; place-items: center; border-radius: 50%; background: rgba(59,130,246,.14); color: #93c5fd; font-size: 12px; }
+.mnshop-seller-analytics__empty { margin: 22px 0 4px; color: rgba(255,255,255,.44); font-size: 13px; }

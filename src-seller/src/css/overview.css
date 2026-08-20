@@ -25,6 +25,3 @@
 .mnshop-seller-overview__actions button:hover { background: rgba(255,255,255,.09); }
 .mnshop-seller-overview__actions button:first-child:hover { background: #60a5fa; }
 .mnshop-seller-overview__empty { margin: 18px 0 0; color: rgba(255,255,255,.45); font-size: 14px; }
-
-@media screen and (max-width: 1023px) { .mnshop-seller-overview { margin: 20px; } .mnshop-seller-overview__stats { grid-template-columns: repeat(2, minmax(0,1fr)); } .mnshop-seller-overview__panels { grid-template-columns: 1fr; } }
-@media screen and (max-width: 560px) { .mnshop-seller-overview { margin: 16px; } .mnshop-seller-overview__stats { gap: 10px; } .mnshop-seller-overview__stats article { padding: 15px; } .mnshop-seller-overview__stats strong { font-size: 20px; } .mnshop-seller-overview__panels > article { padding: 16px; } .mnshop-seller-overview__activity { align-items: flex-start; flex-direction: column; } }
