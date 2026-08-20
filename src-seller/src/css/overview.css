@@ -1,0 +1,30 @@
+.mnshop-seller-overview { color: #f8fafc; }
+.mnshop-seller-overview__stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.mnshop-seller-overview__stats article, .mnshop-seller-overview__panels > article { border: 1px solid rgba(255,255,255,.1); border-radius: 8px; background: rgba(20,20,20,.72); box-shadow: 0 16px 44px rgba(0,0,0,.22); backdrop-filter: blur(14px); }
+.mnshop-seller-overview__stats article { padding: 20px; }
+.mnshop-seller-overview__stats svg { margin-bottom: 18px; color: #3b82f6; }
+.mnshop-seller-overview__stats p { margin: 0; color: rgba(255,255,255,.45); font-size: 13px; }
+.mnshop-seller-overview__stats strong { display: block; margin-top: 6px; color: #fff; font-size: 25px; line-height: 1.1; }
+.mnshop-seller-overview__message { margin: 18px 0 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; background: rgba(20,20,20,.72); padding: 22px; color: rgba(255,255,255,.58); font-size: 14px; }
+.mnshop-seller-overview__message[role="alert"] { color: #fda4af; }
+.mnshop-seller-overview__panels { display: grid; grid-template-columns: minmax(0,1fr) 360px; gap: 16px; margin-top: 16px; }
+.mnshop-seller-overview__panels > article { padding: 20px; }
+.mnshop-seller-overview h2 { margin: 0; color: #fff; font-family: "Poppins", "Inter", sans-serif; font-size: 23px; line-height: 1.1; }
+.mnshop-seller-overview__activity { display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-top: 14px; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 13px; }
+.mnshop-seller-overview__activity span { display: grid; gap: 4px; }
+.mnshop-seller-overview__activity strong { color: #fff; font-size: 13px; }
+.mnshop-seller-overview__activity small { color: rgba(255,255,255,.45); font-size: 12px; }
+.mnshop-seller-overview__status { border-radius: 999px; padding: 5px 9px; font-size: 10px; font-weight: 900; letter-spacing: .06em; }
+.mnshop-seller-overview__status--pending { background: rgba(250,204,21,.15); color: #fde68a; }
+.mnshop-seller-overview__status--processing { background: rgba(59,130,246,.16); color: #93c5fd; }
+.mnshop-seller-overview__status--shipped { background: rgba(168,85,247,.16); color: #d8b4fe; }
+.mnshop-seller-overview__status--delivered { background: rgba(16,185,129,.16); color: #6ee7b7; }
+.mnshop-seller-overview__actions { display: grid; gap: 9px; margin-top: 16px; }
+.mnshop-seller-overview__actions button { border: 1px solid rgba(255,255,255,.1); border-radius: 8px; background: transparent; padding: 13px; color: #fff; cursor: pointer; font: inherit; font-size: 13px; font-weight: 800; text-align: left; }
+.mnshop-seller-overview__actions button:first-child { border-color: #3b82f6; background: #3b82f6; color: #071425; }
+.mnshop-seller-overview__actions button:hover { background: rgba(255,255,255,.09); }
+.mnshop-seller-overview__actions button:first-child:hover { background: #60a5fa; }
+.mnshop-seller-overview__empty { margin: 18px 0 0; color: rgba(255,255,255,.45); font-size: 14px; }
+
+@media screen and (max-width: 1023px) { .mnshop-seller-overview { margin: 20px; } .mnshop-seller-overview__stats { grid-template-columns: repeat(2, minmax(0,1fr)); } .mnshop-seller-overview__panels { grid-template-columns: 1fr; } }
+@media screen and (max-width: 560px) { .mnshop-seller-overview { margin: 16px; } .mnshop-seller-overview__stats { gap: 10px; } .mnshop-seller-overview__stats article { padding: 15px; } .mnshop-seller-overview__stats strong { font-size: 20px; } .mnshop-seller-overview__panels > article { padding: 16px; } .mnshop-seller-overview__activity { align-items: flex-start; flex-direction: column; } }

@@ -5,6 +5,7 @@ export type SellerOrder = {
   buyerId: string;
   items: Array<{
     productId: string;
+    name: string;
     quantity: number;
     price: number;
   }>;
@@ -35,6 +36,10 @@ type SellerOrderDto = {
     itemQuantity?: number;
     itemPrice?: number;
   }>;
+  productData?: Array<{
+    _id?: string;
+    productName?: string;
+  }>;
   orderAddress?: string;
   orderSubtotal?: number;
   orderShippingFee?: number;
@@ -60,6 +65,9 @@ const normalizeOrder = (order: SellerOrderDto): SellerOrder => ({
   buyerId: String(order.buyerId || ""),
   items: (order.orderItems || []).map((item) => ({
     productId: String(item.productId || ""),
+    name: (order.productData || []).find(
+      (product) => String(product._id) === String(item.productId),
+    )?.productName || "Product",
     quantity: Number(item.itemQuantity || 0),
     price: Number(item.itemPrice || 0),
   })),

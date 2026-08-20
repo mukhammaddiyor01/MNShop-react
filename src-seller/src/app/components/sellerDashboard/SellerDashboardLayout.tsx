@@ -29,8 +29,8 @@ export function SellerDashboardLayout({ children }: SellerDashboardLayoutProps) 
           <Link to="/seller/" className="mnshop-seller-dashboard__brand">
             <span aria-hidden="true">MN</span>
             <div>
-              <p>MNShop</p>
-              <strong>Seller</strong>
+              <p>MNShop Seller</p>
+              <strong>Studio</strong>
             </div>
           </Link>
           <p className="mnshop-seller-dashboard__approval">Approved Seller</p>
