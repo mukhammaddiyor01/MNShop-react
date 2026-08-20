@@ -5,8 +5,10 @@ import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined";
 import MessageOutlinedIcon from "@mui/icons-material/MessageOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
-import { ReactNode } from "react";
-import { Link, useLocation } from "react-router-dom";
+import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
+import { ReactNode, useState } from "react";
+import { Link, useHistory, useLocation } from "react-router-dom";
+import { useSellerGlobals } from "../../context/ContextProvider";
 
 type SellerDashboardLayoutProps = { children: ReactNode };
 
@@ -21,6 +23,15 @@ const navigation = [
 
 export function SellerDashboardLayout({ children }: SellerDashboardLayoutProps) {
   const location = useLocation();
+  const history = useHistory();
+  const { seller, logout } = useSellerGlobals();
+  const [loggingOut, setLoggingOut] = useState(false);
+
+  const handleLogout = async () => {
+    setLoggingOut(true);
+    try { await logout(); }
+    finally { history.replace("/seller/login"); setLoggingOut(false); }
+  };
 
   return (
     <section className="mnshop-seller-dashboard">
@@ -33,7 +44,7 @@ export function SellerDashboardLayout({ children }: SellerDashboardLayoutProps) 
               <strong>Studio</strong>
             </div>
           </Link>
-          <p className="mnshop-seller-dashboard__approval">Approved Seller</p>
+          <p className="mnshop-seller-dashboard__approval">{seller?.sellerNick || "Approved"} · Seller Studio</p>
 
           <nav aria-label="Seller dashboard navigation">
             {navigation.map((item) => {
@@ -57,6 +68,10 @@ export function SellerDashboardLayout({ children }: SellerDashboardLayoutProps) 
           <a className="mnshop-seller-dashboard__buyer-link" href="/">
             Continue as buyer
           </a>
+          <button className="mnshop-seller-dashboard__logout" type="button" onClick={handleLogout} disabled={loggingOut}>
+            <LogoutRoundedIcon aria-hidden="true" fontSize="small" />
+            {loggingOut ? "Signing out…" : "Sign out"}
+          </button>
         </aside>
 
         <div className="mnshop-seller-dashboard__content">

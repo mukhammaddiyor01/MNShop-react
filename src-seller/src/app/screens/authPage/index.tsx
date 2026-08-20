@@ -2,6 +2,7 @@ import axios from "axios";
 import { FormEvent, useState } from "react";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import SellerAuthService from "../../services/SellerAuthService";
+import { useSellerGlobals } from "../../context/ContextProvider";
 
 type SellerAuthPageProps = {
   mode: "login" | "signup";
@@ -9,23 +10,13 @@ type SellerAuthPageProps = {
 
 const sellerAuthService = new SellerAuthService();
 
-function getStoredSeller() {
-  try {
-    return JSON.parse(localStorage.getItem("sellerData") || "null") as {
-      userType?: string;
-    } | null;
-  } catch {
-    return null;
-  }
-}
-
 export function SellerAuthPage({ mode }: SellerAuthPageProps) {
   const history = useHistory();
+  const { seller, authReady, setSeller } = useSellerGlobals();
   const isSignup = mode === "signup";
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const signedInSeller = getStoredSeller();
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -69,7 +60,8 @@ export function SellerAuthPage({ mode }: SellerAuthPageProps) {
         return;
       }
 
-      await sellerAuthService.signIn({ sellerNick, sellerPassword });
+      const signedInSeller = await sellerAuthService.signIn({ sellerNick, sellerPassword });
+      setSeller(signedInSeller);
       history.replace("/seller/");
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -88,7 +80,7 @@ export function SellerAuthPage({ mode }: SellerAuthPageProps) {
     }
   };
 
-  if (signedInSeller?.userType === "SELLER") {
+  if (authReady && seller?.userType === "SELLER") {
     return <Redirect to="/seller/" />;
   }
 
@@ -166,7 +158,7 @@ export function SellerAuthPage({ mode }: SellerAuthPageProps) {
             {isSignup ? "Sign in" : "Create account"}
           </Link>
         </p>
-        <a className="mnshop-seller-auth__buyer-link" href={process.env.REACT_APP_BUYER_STOREFRONT_URL || "http://localhost:1214"}>
+        <a className="mnshop-seller-auth__buyer-link" href={process.env.REACT_APP_BUYER_STOREFRONT_URL || "http://localhost:1213"}>
           Continue as a buyer
         </a>
       </section>

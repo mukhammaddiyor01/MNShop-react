@@ -2,7 +2,7 @@ import React from "react";
 import "../css/app.css";
 import "../css/auth.css";
 import "../css/mobile.css";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import { OverviewPage } from "./screens/overviewPage/index";
 import { MessagesPage } from "./screens/messagesPage/index";
 import { OrdersPage } from "./screens/ordersPage/index";
@@ -11,6 +11,23 @@ import { ProductsPage } from "./screens/productsPage/index";
 import { SettingsPage } from "./screens/settingsPage/index";
 import { SellerAuthPage } from "./screens/authPage";
 import { SellerDashboardLayout } from "./components/sellerDashboard/SellerDashboardLayout";
+import { useSellerGlobals } from "./context/ContextProvider";
+
+function SellerDashboardRoutes() {
+  const { seller, authReady } = useSellerGlobals();
+
+  if (!authReady) return <main className="mnshop-seller-auth-state">Checking your Seller Studio session…</main>;
+  if (!seller || seller.userType !== "SELLER") return <Redirect to="/seller/login" />;
+
+  return <SellerDashboardLayout><Switch>
+    <Route path="/seller/settings"><SettingsPage /></Route>
+    <Route path="/seller/analytics"><AnalyticsPage /></Route>
+    <Route path="/seller/orders"><OrdersPage /></Route>
+    <Route path="/seller/messages"><MessagesPage /></Route>
+    <Route path="/seller/products"><ProductsPage /></Route>
+    <Route path="/seller/"><OverviewPage /></Route>
+  </Switch></SellerDashboardLayout>;
+}
 
 function App() {
   return (
@@ -25,16 +42,7 @@ function App() {
           <SellerAuthPage mode="signup" />
         </Route>
         <Route path="/seller/">
-          <SellerDashboardLayout>
-            <Switch>
-              <Route path="/seller/settings"><SettingsPage /></Route>
-              <Route path="/seller/analytics"><AnalyticsPage /></Route>
-              <Route path="/seller/orders"><OrdersPage /></Route>
-              <Route path="/seller/messages"><MessagesPage /></Route>
-              <Route path="/seller/products"><ProductsPage /></Route>
-              <Route path="/seller/"><OverviewPage /></Route>
-            </Switch>
-          </SellerDashboardLayout>
+          <SellerDashboardRoutes />
         </Route>
       </Switch>
     </>

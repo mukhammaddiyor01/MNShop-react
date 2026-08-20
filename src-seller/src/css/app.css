@@ -78,6 +78,10 @@
   .mnshop-seller-dashboard__sidebar nav a.is-active { background: #3b82f6; color: #0a0a0a; }
   .mnshop-seller-dashboard__buyer-link { display: inline-flex; margin: 20px 4px 2px; color: rgba(255, 255, 255, .42); font-size: 12px; text-decoration: none; }
   .mnshop-seller-dashboard__buyer-link:hover { color: #3b82f6; }
+  .mnshop-seller-dashboard__logout { display: flex; width: 100%; margin-top: 12px; border: 1px solid rgba(255,255,255,.1); border-radius: 7px; background: transparent; padding: 10px; color: rgba(255,255,255,.62); cursor: pointer; align-items: center; gap: 8px; font: inherit; font-size: 12px; font-weight: 800; }
+  .mnshop-seller-dashboard__logout:hover { border-color: rgba(59,130,246,.55); color: #93c5fd; }
+  .mnshop-seller-dashboard__logout:disabled { cursor: wait; opacity: .65; }
+  .mnshop-seller-auth-state { display: grid; min-height: 100vh; background: #0a0a0a; color: rgba(255,255,255,.6); place-items: center; font-size: 14px; }
   .mnshop-seller-dashboard__content { min-width: 0; }
   .mnshop-seller-dashboard__topbar { margin-bottom: 24px; border: 1px solid rgba(255, 255, 255, .1); border-radius: 8px; background: rgba(255, 255, 255, .03); padding: 20px; }
   .mnshop-seller-dashboard__topbar p { margin: 0; color: #3b82f6; font-size: 11px; font-weight: 900; letter-spacing: .28em; text-transform: uppercase; }

@@ -41,6 +41,21 @@ class SellerAuthService {
 
     return result.data.seller as Seller;
   }
+
+  public async getCurrentSeller(): Promise<Seller> {
+    const result = await axios.get(`${serverApi}/seller/auth/me`, {
+      withCredentials: true,
+    });
+    return result.data.seller as Seller;
+  }
+
+  public async logout(): Promise<void> {
+    try {
+      await axios.post(`${serverApi}/seller/logout`, {}, { withCredentials: true });
+    } finally {
+      localStorage.removeItem("sellerData");
+    }
+  }
 }
 
 export default SellerAuthService;
