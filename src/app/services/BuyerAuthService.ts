@@ -25,10 +25,31 @@ function normalizeBuyer(data: BuyerAuthResponse): User {
     fullName: buyer.userNick,
     email: buyer.userEmail,
     role: UserType.BUYER,
-    avatar: buyer.userImage,
+    avatar: normalizeBuyerImage(buyer.userImage),
     phone: buyer.userPhone,
   };
 }
+
+function normalizeBuyerImage(image?: string): string | undefined {
+  if (!image) return undefined;
+
+  if (
+    image.startsWith("http://") ||
+    image.startsWith("https://") ||
+    image.startsWith("data:") ||
+    image.startsWith("blob:")
+  ) {
+    return image;
+  }
+
+  return `${serverApi}/${image.replace(/^\//, "")}`;
+}
+
+export type BuyerProfileUpdateInput = {
+  fullName: string;
+  phone?: string;
+  image?: File;
+};
 
 class BuyerAuthService {
   private readonly path: string;
@@ -76,6 +97,35 @@ class BuyerAuthService {
     const result = await axios.get<BuyerAuthResponse>(
       `${this.path}/auth/me`,
       { withCredentials: true },
+    );
+    const buyer = normalizeBuyer(result.data);
+    localStorage.setItem("userData", JSON.stringify(buyer));
+    return buyer;
+  }
+
+  public async updateProfile(
+    input: BuyerProfileUpdateInput,
+  ): Promise<User> {
+    const formData = new FormData();
+    formData.append("userNick", input.fullName);
+
+    if (input.phone) {
+      formData.append("userPhone", input.phone);
+    }
+
+    if (input.image) {
+      formData.append("userImage", input.image);
+    }
+
+    const result = await axios.post<BuyerAuthResponse>(
+      `${this.path}/user/update`,
+      formData,
+      {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      },
     );
     const buyer = normalizeBuyer(result.data);
     localStorage.setItem("userData", JSON.stringify(buyer));

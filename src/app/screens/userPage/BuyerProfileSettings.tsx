@@ -1,3 +1,4 @@
+import axios from "axios";
 import AddAPhotoOutlinedIcon from "@mui/icons-material/AddAPhotoOutlined";
 import CreditCardOutlinedIcon from "@mui/icons-material/CreditCardOutlined";
 import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined";
@@ -21,7 +22,8 @@ export function BuyerProfileSettings() {
   >("idle");
   const [feedback, setFeedback] = useState("");
   const [loggingOut, setLoggingOut] = useState(false);
-  const feedbackTimer = useRef<number>();
+  const [selectedImage, setSelectedImage] = useState<File>();
+  const previewObjectUrl = useRef<string>();
   const history = useHistory();
 
   const openAddresses = () => {
@@ -34,10 +36,13 @@ export function BuyerProfileSettings() {
     setAvatarPreview(authUser?.avatar || "");
   }, [authUser?.avatar, authUser?.fullName, authUser?.phone]);
 
-  useEffect(
-    () => () => window.clearTimeout(feedbackTimer.current),
-    [],
-  );
+  useEffect(() => {
+    return () => {
+      if (previewObjectUrl.current) {
+        URL.revokeObjectURL(previewObjectUrl.current);
+      }
+    };
+  }, []);
 
   if (!authUser || authUser.role !== "BUYER") return null;
 
@@ -49,7 +54,7 @@ export function BuyerProfileSettings() {
     .join("")
     .toUpperCase();
 
-  const saveProfile = (event: FormEvent<HTMLFormElement>) => {
+  const saveProfile = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const nextName = fullName.trim();
     const nextPhone = phone.trim();
@@ -69,19 +74,36 @@ export function BuyerProfileSettings() {
     setSaveState("saving");
     setFeedback("");
 
-    feedbackTimer.current = window.setTimeout(() => {
-      setAuthUser((current) =>
-        current
-          ? {
-              ...current,
-              fullName: nextName,
-              phone: nextPhone || undefined,
-            }
-          : current,
-      );
+    try {
+      const updatedBuyer = await buyerAuthService.updateProfile({
+        fullName: nextName,
+        phone: nextPhone || undefined,
+        image: selectedImage,
+      });
+
+      if (previewObjectUrl.current) {
+        URL.revokeObjectURL(previewObjectUrl.current);
+        previewObjectUrl.current = undefined;
+      }
+
+      setSelectedImage(undefined);
+      setAuthUser(updatedBuyer);
+      setAvatarPreview(updatedBuyer.avatar || "");
       setSaveState("success");
-      setFeedback("Profile saved on this device.");
-    }, 220);
+      setFeedback("Profile updated successfully.");
+    } catch (error) {
+      const responseData = axios.isAxiosError(error)
+        ? (error.response?.data as { message?: string } | undefined)
+        : undefined;
+
+      setSaveState("error");
+      setFeedback(
+        responseData?.message ||
+          (error instanceof Error
+            ? error.message
+            : "Profile could not be updated."),
+      );
+    }
   };
 
   const logout = async () => {
@@ -118,28 +140,16 @@ export function BuyerProfileSettings() {
       return;
     }
 
-    const reader = new FileReader();
-    reader.onload = () => {
-      const nextAvatar = typeof reader.result === "string" ? reader.result : "";
+    if (previewObjectUrl.current) {
+      URL.revokeObjectURL(previewObjectUrl.current);
+    }
 
-      if (!nextAvatar) {
-        setSaveState("error");
-        setFeedback("The selected image could not be read.");
-        return;
-      }
-
-      setAvatarPreview(nextAvatar);
-      setAuthUser((current) =>
-        current ? { ...current, avatar: nextAvatar } : current,
-      );
-      setSaveState("success");
-      setFeedback("Profile photo saved on this device.");
-    };
-    reader.onerror = () => {
-      setSaveState("error");
-      setFeedback("The selected image could not be read.");
-    };
-    reader.readAsDataURL(file);
+    const nextPreview = URL.createObjectURL(file);
+    previewObjectUrl.current = nextPreview;
+    setSelectedImage(file);
+    setAvatarPreview(nextPreview);
+    setSaveState("idle");
+    setFeedback("Photo selected. Press Save to update your profile.");
   };
 
   return (

@@ -612,6 +612,56 @@
   }
 }
 
+/* ==================================================
+   SOURCE parity — mobile bottom navigation
+   ================================================== */
+
+@media screen and (max-width: 767px) {
+  .mnshop-mobile-bottom-nav {
+    position: fixed;
+    z-index: 900;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: grid;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(10, 10, 10, 0.9);
+    grid-template-columns: repeat(auto-fit, minmax(64px, 1fr));
+    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(24px);
+  }
+
+  .mnshop-mobile-bottom-nav__item {
+    display: grid;
+    padding: 8px 0;
+    border: 0;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.65);
+    cursor: pointer;
+    font-family: "Inter", sans-serif;
+    font-size: 11px;
+    text-decoration: none;
+    place-items: center;
+    gap: 4px;
+  }
+
+  .mnshop-mobile-bottom-nav__item svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .mnshop-mobile-bottom-nav__item:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: -2px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .mnshop-mobile-bottom-nav {
+    display: none;
+  }
+}
+
 /* SOURCE parity — Buyer message page tablet */
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .mnshop-message-page {

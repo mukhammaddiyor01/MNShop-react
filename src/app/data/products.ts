@@ -1,4 +1,5 @@
 import { Product } from "../context/ContextProvider";
+import { formatKrw } from "../../lib/currency";
 
 export const products: Product[] = [
   { id: "midnight-hoodie", name: "Midnight Seoul Hoodie", category: "Hoodies", description: "Premium South Korea-inspired streetwear made for Uzbek customers: soft handfeel, durable stitching, and a clean fit that works from campus to night market.", price: 890000, comparePrice: 1050000, image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=85", hoverImage: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=900&q=85", colors: ["#0a0a0a", "#e5e7eb"], sizes: ["S", "M", "L", "XL"], stock: 18, sold: 60, sale: true, views: 1248, likes: 214, rating: 4.4 },
@@ -7,4 +8,4 @@ export const products: Product[] = [
   { id: "studio-cup", name: "MN Studio Cup", category: "Cups", description: "Premium South Korea-inspired streetwear made for Uzbek customers: soft handfeel, durable stitching, and a clean fit that works from campus to night market.", price: 180000, image: "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?auto=format&fit=crop&w=900&q=85", hoverImage: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=900&q=85", colors: ["#f8fafc", "#111111"], sizes: ["400 ml"], stock: 42, sold: 20, views: 401, likes: 62, rating: 4.4 },
 ];
 
-export const money = (value: number) => new Intl.NumberFormat("uz-UZ").format(value) + " so‘m";
+export const money = formatKrw;

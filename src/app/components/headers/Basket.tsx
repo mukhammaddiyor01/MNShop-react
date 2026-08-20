@@ -2,11 +2,9 @@ import AddIcon from "@mui/icons-material/Add";
 import CloseIcon from "@mui/icons-material/Close";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { Link } from "react-router-dom";
+import { calculateDeliveryFee } from "../../../lib/delivery";
 import { money } from "../../data/products";
 import { useGlobals } from "../../hooks/useGlobals";
-
-const deliveryFee = 45_000;
-const freeDeliveryFrom = 1_000_000;
 
 export function CartDrawer() {
   const {
@@ -22,8 +20,7 @@ export function CartDrawer() {
     (sum, item) => sum + item.product.price * item.quantity,
     0,
   );
-  const delivery =
-    subtotal === 0 || subtotal >= freeDeliveryFrom ? 0 : deliveryFee;
+  const delivery = calculateDeliveryFee(subtotal);
   const total = subtotal + delivery;
 
   if (!cartOpen) return null;

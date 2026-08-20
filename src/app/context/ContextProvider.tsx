@@ -145,6 +145,30 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   useEffect(() => {
+    const interceptorId = axios.interceptors.response.use(
+      (response) => response,
+      (error: unknown) => {
+        if (
+          axios.isAxiosError(error) &&
+          error.response?.status === 401
+        ) {
+          localStorage.removeItem("userData");
+          localStorage.removeItem(legacyUserStorageKey);
+          localStorage.removeItem(authSessionExpiryKey);
+          setCartOpen(false);
+          setAuthUser(null);
+        }
+
+        return Promise.reject(error);
+      },
+    );
+
+    return () => {
+      axios.interceptors.response.eject(interceptorId);
+    };
+  }, []);
+
+  useEffect(() => {
     if (!authUser) {
       localStorage.removeItem("userData");
       localStorage.removeItem(authSessionExpiryKey);

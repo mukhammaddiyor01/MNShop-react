@@ -6,6 +6,7 @@ import TaskAltOutlinedIcon from "@mui/icons-material/TaskAltOutlined";
 import { Link, Redirect } from "react-router-dom";
 import { useEffect, useMemo, useState } from "react";
 import "../../../css/checkout.css";
+import { calculateDeliveryFee } from "../../../lib/delivery";
 import { CartItem } from "../../context/ContextProvider";
 import { money } from "../../data/products";
 import { useGlobals } from "../../hooks/useGlobals";
@@ -82,7 +83,7 @@ export function CheckoutPage() {
       ),
     [basket],
   );
-  const deliveryFee = subtotal > 0 ? 0 : 0;
+  const deliveryFee = calculateDeliveryFee(subtotal);
   const total = subtotal + deliveryFee;
   const selectedAddress = addresses.find(
     (address) => address.id === selectedAddressId,

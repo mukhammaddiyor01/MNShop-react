@@ -3,25 +3,11 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useGlobals } from "../../hooks/useGlobals";
 
 export function MobileBottomNav() {
-  const history = useHistory();
   const { authUser, setCartOpen } = useGlobals();
-
-  const guard = (action: () => void) => {
-    if (!authUser) {
-      history.push(
-        `/login?next=${encodeURIComponent(
-          `${window.location.pathname}${window.location.search}`,
-        )}`,
-      );
-      return;
-    }
-
-    action();
-  };
 
   return (
     <nav
@@ -36,34 +22,31 @@ export function MobileBottomNav() {
         <SearchIcon aria-hidden="true" />
         Products
       </Link>
-      <button
-        type="button"
-        className="mnshop-mobile-bottom-nav__item"
-        onClick={() => guard(() => history.push("/likes"))}
-      >
-        <FavoriteBorderIcon aria-hidden="true" />
-        Likes
-      </button>
-      <button
-        type="button"
-        className="mnshop-mobile-bottom-nav__item"
-        onClick={() => guard(() => setCartOpen(true))}
-      >
-        <ShoppingBagOutlinedIcon aria-hidden="true" />
-        Cart
-      </button>
-      <button
-        type="button"
-        className="mnshop-mobile-bottom-nav__item"
-        onClick={() =>
-          history.push(
-            authUser ? "/orders" : "/login?next=%2Forders",
-          )
-        }
-      >
-        <PersonOutlineIcon aria-hidden="true" />
-        Profile
-      </button>
+      {authUser ? (
+        <>
+          <Link to="/likes" className="mnshop-mobile-bottom-nav__item">
+            <FavoriteBorderIcon aria-hidden="true" />
+            Likes
+          </Link>
+          <button
+            type="button"
+            className="mnshop-mobile-bottom-nav__item"
+            onClick={() => setCartOpen(true)}
+          >
+            <ShoppingBagOutlinedIcon aria-hidden="true" />
+            Cart
+          </button>
+          <Link to="/user-page" className="mnshop-mobile-bottom-nav__item">
+            <PersonOutlineIcon aria-hidden="true" />
+            Profile
+          </Link>
+        </>
+      ) : (
+        <Link to="/login" className="mnshop-mobile-bottom-nav__item">
+          <PersonOutlineIcon aria-hidden="true" />
+          Sign In
+        </Link>
+      )}
     </nav>
   );
 }

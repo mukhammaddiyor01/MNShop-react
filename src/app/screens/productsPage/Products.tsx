@@ -163,8 +163,8 @@ export function Products() {
                 defaultValue="800000"
               />
               <div>
-                <span>100K</span>
-                <span>800K UZS</span>
+                <span>100K KRW</span>
+                <span>800K KRW</span>
               </div>
             </div>
 
