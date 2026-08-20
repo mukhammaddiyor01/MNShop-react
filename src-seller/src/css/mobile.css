@@ -175,6 +175,13 @@
   .mnshop-seller-product-editor label { display: grid; gap: 7px; color: rgba(255, 255, 255, .62); font-size: 12px; font-weight: 700; }
   .mnshop-seller-product-editor input, .mnshop-seller-product-editor textarea, .mnshop-seller-product-editor select { box-sizing: border-box; width: 100%; border: 1px solid rgba(255, 255, 255, .12); border-radius: 7px; background: rgba(255, 255, 255, .05); padding: 11px; color: #fff; font: inherit; }
   .mnshop-seller-product-editor textarea { min-height: 80px; }
+  .mnshop-seller-product-editor__color-options { display: grid; gap: 9px; margin: 0; border: 1px solid rgba(255,255,255,.12); border-radius: 7px; padding: 12px; }
+  .mnshop-seller-product-editor__color-options legend { padding: 0 5px; color: rgba(255,255,255,.62); font-size: 12px; font-weight: 700; }
+  .mnshop-seller-product-editor__color-options > div { display: flex; flex-wrap: wrap; gap: 8px; }
+  .mnshop-seller-product-editor__color-options label { display: inline-flex; align-items: center; gap: 7px; color: rgba(255,255,255,.72); font-size: 12px; }
+  .mnshop-seller-product-editor__color-options input { accent-color: #3b82f6; }
+  .mnshop-seller-product-editor__color-options span { width: 13px; height: 13px; border: 1px solid rgba(255,255,255,.35); border-radius: 50%; }
+  .mnshop-seller-product-editor__color-options .is-black { background: #0a0a0a; }.mnshop-seller-product-editor__color-options .is-white { background: #f8fafc; }.mnshop-seller-product-editor__color-options .is-red { background: #ef4444; }.mnshop-seller-product-editor__color-options .is-blue { background: #3b82f6; }
   .mnshop-seller-product-editor__body > button { border: 0; border-radius: 999px; background: #3b82f6; padding: 13px; color: #080808; font: inherit; font-weight: 900; }
 }
 

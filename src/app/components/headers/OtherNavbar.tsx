@@ -1,5 +1,4 @@
 import CheckroomIcon from "@mui/icons-material/Checkroom";
-import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 import CloseIcon from "@mui/icons-material/Close";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
@@ -179,12 +178,6 @@ export function OtherNavbar() {
 
           {authUser ? (
             <>
-              {authUser.role === "ADMIN" && (
-                <a href="/admin" className="mnshop-other-header__admin-link">
-                  <AdminPanelSettingsOutlinedIcon aria-hidden="true" />
-                  Admin dashboard
-                </a>
-              )}
               <Link
                 to="/user-page"
                 className="mnshop-other-header__profile"
@@ -293,12 +286,6 @@ export function OtherNavbar() {
 
             {authUser && (
               <>
-                {authUser.role === "ADMIN" && (
-                  <a href="/admin" className="mnshop-other-header__mobile-link">
-                    <AdminPanelSettingsOutlinedIcon aria-hidden="true" />
-                    Admin dashboard
-                  </a>
-                )}
                 <Link
                   to="/user-page"
                   className="mnshop-other-header__mobile-link"

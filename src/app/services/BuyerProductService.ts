@@ -58,9 +58,10 @@ const normalizeProduct = (product: ApiProduct): Product => {
       : undefined,
     image,
     hoverImage: imageUrl(product.productImages?.[1] || product.productImages?.[0]),
-    colors: (product.productColors || []).map(
-      (color) => colorValues[color] || color.toLowerCase(),
-    ),
+    colors: (product.productColors || []).map((color) => {
+      const normalizedColor = String(color).trim().toUpperCase();
+      return colorValues[normalizedColor] || String(color).trim().toLowerCase();
+    }),
     sizes: product.productSizes || ["One Size"],
     stock: product.productLeftCount,
     sold: product.productSold || 0,

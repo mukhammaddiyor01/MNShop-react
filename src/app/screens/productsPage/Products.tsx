@@ -1,5 +1,5 @@
 import TuneIcon from "@mui/icons-material/Tune";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { ProductCard } from "../../components/product/ProductCard";
 import { useAppDispatch, useAppSelector } from "../../hooks";
@@ -93,6 +93,20 @@ const catalogHeroes: Record<CatalogCategory, CatalogHero> = {
 };
 
 const buyerProductService = new BuyerProductService();
+const colorNames: Record<string, string> = {
+  "#0a0a0a": "Black",
+  "#111111": "Black",
+  black: "Black",
+  "#f8fafc": "White",
+  "#ffffff": "White",
+  white: "White",
+  "#ef4444": "Red",
+  red: "Red",
+  "#3b82f6": "Blue",
+  blue: "Blue",
+};
+
+const colorLabel = (color: string) => colorNames[color.toLowerCase()] || color;
 
 function getActiveCategory(value: string | null): CatalogCategory {
   return catalogCategories.includes(value as CatalogCategory)
@@ -106,10 +120,11 @@ export function Products() {
   const products = useAppSelector(retrieveCatalogProducts);
   const loadError = useAppSelector(retrieveCatalogProductsError);
   const isLoading = useAppSelector(retrieveCatalogProductsLoading);
+  const [selectedColors, setSelectedColors] = useState<string[]>([]);
   const searchParams = new URLSearchParams(location.search);
   const activeCategory = getActiveCategory(searchParams.get("category"));
   const hero = catalogHeroes[activeCategory];
-  const visibleProducts =
+  const categoryProducts =
     activeCategory === "sale"
       ? products.filter((product) => product.sale)
       : products.filter(
@@ -133,8 +148,8 @@ export function Products() {
           dispatch(
             setCatalogProductsError(
               "Products could not be loaded. Please try again.",
-            ),
-          );
+          ),
+        );
         }
       })
       .finally(() => {
@@ -145,6 +160,23 @@ export function Products() {
       active = false;
     };
   }, [dispatch]);
+
+  const availableColors = Array.from(
+    new Set(categoryProducts.flatMap((product) => product.colors)),
+  );
+  const visibleProducts = selectedColors.length
+    ? categoryProducts.filter((product) =>
+        product.colors.some((color) => selectedColors.includes(color)),
+      )
+    : categoryProducts;
+
+  const toggleColor = (color: string) => {
+    setSelectedColors((current) =>
+      current.includes(color)
+        ? current.filter((item) => item !== color)
+        : [...current, color],
+    );
+  };
 
   return (
     <main className="mnshop-products-catalog">
@@ -190,13 +222,18 @@ export function Products() {
 
             <div className="mnshop-catalog__color-filter">
               <p>Colors</p>
-              {["Black", "Cream", "Gold", "Red"].map((color) => (
+              {availableColors.map((color) => (
                 <label key={color}>
-                  <input type="checkbox" />
-                  <span style={{ backgroundColor: color.toLowerCase() }} />
-                  {color}
+                  <input
+                    type="checkbox"
+                    checked={selectedColors.includes(color)}
+                    onChange={() => toggleColor(color)}
+                  />
+                  <span style={{ backgroundColor: color }} />
+                  {colorLabel(color)}
                 </label>
               ))}
+              {!availableColors.length && <small>No color variants available.</small>}
             </div>
 
             {activeCategory !== "cups" && (

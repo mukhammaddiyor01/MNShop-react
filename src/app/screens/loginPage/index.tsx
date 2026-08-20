@@ -149,6 +149,10 @@ export function LoginPage() {
         <a className="mnshop-auth-seller-link" href={`${sellerPortalUrl}/seller/login`}>
           Selling with MNShop? Open Seller Studio
         </a>
+        <a className="mnshop-auth-admin-link" href="/admin">
+          <span aria-hidden="true">MN</span>
+          <span><strong>Admin access</strong><small>Open MNShop control center</small></span>
+        </a>
       </form>
     </main>
   );

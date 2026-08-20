@@ -16,6 +16,13 @@ import {
 } from "./slice";
 
 const sellerProductService = new SellerProductService();
+const availableColors = ["BLACK", "WHITE", "RED", "BLUE"] as const;
+const colorLabels: Record<(typeof availableColors)[number], string> = {
+  BLACK: "Black",
+  WHITE: "White",
+  RED: "Red",
+  BLUE: "Blue",
+};
 
 const formatKrw = (value: number) =>
   `${new Intl.NumberFormat("en-US").format(value)} KRW`;
@@ -183,6 +190,7 @@ function ProductEditor({ product, onClose, onSaved }: { product: SellerProduct |
   const [status, setStatus] = useState(product?.status || "PAUSE");
   const [price, setPrice] = useState(String(product?.price || ""));
   const [stock, setStock] = useState(String(product?.stock || ""));
+  const [colors, setColors] = useState<string[]>(product?.colors || ["BLACK"]);
   const [image, setImage] = useState<File | null>(null);
   const [error, setError] = useState("");
   const [saving, setSaving] = useState(false);
@@ -191,16 +199,16 @@ function ProductEditor({ product, onClose, onSaved }: { product: SellerProduct |
     event.preventDefault();
     const parsedPrice = Number(price);
     const parsedStock = Number(stock);
-    if (!name.trim() || !Number.isFinite(parsedPrice) || !Number.isInteger(parsedStock) || (!product && !image)) {
-      setError("Name, price, stock, and an image are required.");
+    if (!name.trim() || !Number.isFinite(parsedPrice) || !Number.isInteger(parsedStock) || colors.length === 0 || (!product && !image)) {
+      setError("Name, price, stock, at least one color, and an image are required.");
       return;
     }
     setSaving(true);
     setError("");
     try {
       const saved = product
-        ? await sellerProductService.updateProduct(product.id, { productName: name.trim(), productDesc: description.trim(), productType: type, productStatus: status, productPrice: parsedPrice, productLeftCount: parsedStock })
-        : await sellerProductService.createProduct({ name: name.trim(), description: description.trim(), type, status, price: parsedPrice, stock: parsedStock, colors: ["BLACK"], sizes: ["M"], image: image! });
+        ? await sellerProductService.updateProduct(product.id, { productName: name.trim(), productDesc: description.trim(), productType: type, productStatus: status, productPrice: parsedPrice, productLeftCount: parsedStock, productColors: colors })
+        : await sellerProductService.createProduct({ name: name.trim(), description: description.trim(), type, status, price: parsedPrice, stock: parsedStock, colors, sizes: ["M"], image: image! });
       onSaved(saved, !product);
     } catch {
       setError("The product could not be saved. Check the fields and try again.");
@@ -209,5 +217,7 @@ function ProductEditor({ product, onClose, onSaved }: { product: SellerProduct |
     }
   };
 
-  return <div className="mnshop-seller-product-editor" role="dialog" aria-modal="true" aria-label={product ? "Edit product" : "Add new product"}><form onSubmit={submit}><header><div><span>Catalog editor</span><h2>{product ? "Edit Product" : "Add New Product"}</h2></div><button type="button" onClick={onClose} aria-label="Close product editor">×</button></header><div className="mnshop-seller-product-editor__body"><label>Product name<input value={name} onChange={(event) => setName(event.target.value)} /></label><label>Description<textarea value={description} onChange={(event) => setDescription(event.target.value)} /></label><div><label>Category<select value={type} onChange={(event) => setType(event.target.value)}><option value="TSHIRT">T-shirt</option><option value="HOODIE">Hoodie</option><option value="CAPS">Cap</option><option value="MUGS">Cup</option></select></label><label>Status<select value={status} onChange={(event) => setStatus(event.target.value)}><option value="ACTIVE">Active</option><option value="PAUSE">Draft</option></select></label></div><div><label>Price (KRW)<input min="1" type="number" value={price} onChange={(event) => setPrice(event.target.value)} /></label><label>Stock<input min="0" type="number" value={stock} onChange={(event) => setStock(event.target.value)} /></label></div>{!product && <label>Product image<input accept="image/*" type="file" onChange={(event) => setImage(event.target.files?.[0] || null)} /></label>}{error && <p role="alert">{error}</p>}<button type="submit" disabled={saving}>{saving ? "Saving…" : "Save Product"}</button></div></form></div>;
+  const toggleColor = (color: string) => setColors((current) => current.includes(color) ? current.filter((item) => item !== color) : [...current, color]);
+
+  return <div className="mnshop-seller-product-editor" role="dialog" aria-modal="true" aria-label={product ? "Edit product" : "Add new product"}><form onSubmit={submit}><header><div><span>Catalog editor</span><h2>{product ? "Edit Product" : "Add New Product"}</h2></div><button type="button" onClick={onClose} aria-label="Close product editor">×</button></header><div className="mnshop-seller-product-editor__body"><label>Product name<input value={name} onChange={(event) => setName(event.target.value)} /></label><label>Description<textarea value={description} onChange={(event) => setDescription(event.target.value)} /></label><div><label>Category<select value={type} onChange={(event) => setType(event.target.value)}><option value="TSHIRT">T-shirt</option><option value="HOODIE">Hoodie</option><option value="CAPS">Cap</option><option value="MUGS">Cup</option></select></label><label>Status<select value={status} onChange={(event) => setStatus(event.target.value)}><option value="ACTIVE">Active</option><option value="PAUSE">Draft</option></select></label></div><div><label>Price (KRW)<input min="1" type="number" value={price} onChange={(event) => setPrice(event.target.value)} /></label><label>Stock<input min="0" type="number" value={stock} onChange={(event) => setStock(event.target.value)} /></label></div><fieldset className="mnshop-seller-product-editor__color-options"><legend>Available colors</legend><div>{availableColors.map((color) => <label key={color}><input type="checkbox" checked={colors.includes(color)} onChange={() => toggleColor(color)} /><span className={`is-${color.toLowerCase()}`} aria-hidden="true" />{colorLabels[color]}</label>)}</div></fieldset>{!product && <label>Product image<input accept="image/*" type="file" onChange={(event) => setImage(event.target.files?.[0] || null)} /></label>}{error && <p role="alert">{error}</p>}<button type="submit" disabled={saving}>{saving ? "Saving…" : "Save Product"}</button></div></form></div>;
 }

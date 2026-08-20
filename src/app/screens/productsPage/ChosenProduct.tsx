@@ -29,7 +29,13 @@ const colorNames: Record<string, string> = {
   "#111111": "Black",
   "#e5e7eb": "Cream",
   "#f8fafc": "Cream",
+  "#ffffff": "White",
+  "#ef4444": "Red",
   "#3b82f6": "Blue",
+  black: "Black",
+  white: "White",
+  red: "Red",
+  blue: "Blue",
 };
 
 const tabs = ["Description", "Reviews", "Shipping Info"];
@@ -46,6 +52,12 @@ function ProductDetail({ product }: { product: Product }) {
   const liked = likedIds.includes(product.id);
   const likeCount = getProductLikeCount(product.id, product.likes);
   const categoryQuery = categoryQueries[product.category] || "hoodies";
+
+  useEffect(() => {
+    setColor(product.colors[0] || "Default");
+    setSize(product.sizes[0] || "One Size");
+    setQuantity(1);
+  }, [product.id, product.colors, product.sizes]);
 
   const guardBuyer = (callback: () => void) => {
     if (!authUser) {
