@@ -1,0 +1,144 @@
+.mnshop-seller-orders-page {
+  min-height: 100vh;
+  padding: 48px 0 72px;
+  background: #080808;
+  color: #f8fafc;
+}
+
+.mnshop-seller-orders-page__heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.mnshop-seller-orders-page__heading span {
+  color: #3b82f6;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+}
+
+.mnshop-seller-orders-page__heading h1 {
+  margin: 8px 0 0;
+  color: #fff;
+  font-family: "Poppins", "Inter", sans-serif;
+  font-size: 36px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.mnshop-seller-orders-page__heading p {
+  margin: 10px 0 0;
+  color: rgba(255, 255, 255, .45);
+  font-size: 14px;
+}
+
+.mnshop-seller-orders-page__heading > strong {
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: 999px;
+  padding: 8px 12px;
+  color: rgba(255, 255, 255, .72);
+  font-size: 12px;
+}
+
+.mnshop-seller-orders-page__table-wrap {
+  overflow-x: auto;
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: 8px;
+  background: rgba(17, 17, 17, .68);
+  box-shadow: 0 16px 44px rgba(0, 0, 0, .28);
+  backdrop-filter: blur(14px);
+}
+
+.mnshop-seller-orders-page__table-wrap > p {
+  margin: 0;
+  padding: 28px;
+  color: rgba(255, 255, 255, .58);
+  font-size: 14px;
+}
+
+.mnshop-seller-orders-page__table-wrap > p[role="alert"] { color: #fb7185; }
+
+.mnshop-seller-orders-page table {
+  width: 100%;
+  min-width: 1120px;
+  border-collapse: collapse;
+  color: rgba(255, 255, 255, .8);
+  font-size: 14px;
+  text-align: left;
+}
+
+.mnshop-seller-orders-page th {
+  padding: 16px;
+  color: rgba(255, 255, 255, .45);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.mnshop-seller-orders-page td {
+  border-top: 1px solid rgba(255, 255, 255, .1);
+  padding: 14px 16px;
+  vertical-align: middle;
+}
+
+.mnshop-seller-orders-page tbody tr { transition: background 160ms ease; }
+.mnshop-seller-orders-page tbody tr:hover { background: rgba(255, 255, 255, .045); }
+
+.mnshop-seller-orders-page td > strong,
+.mnshop-seller-orders-page td > span,
+.mnshop-seller-orders-page td > form + span {
+  display: block;
+}
+
+.mnshop-seller-orders-page td > strong { color: #fff; font-size: 13px; }
+.mnshop-seller-orders-page td > span { margin-top: 5px; color: rgba(255, 255, 255, .42); font-size: 12px; line-height: 1.4; }
+
+.mnshop-seller-orders-page__pill {
+  display: inline-flex;
+  border-radius: 999px;
+  padding: 5px 9px;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .06em;
+}
+
+.mnshop-seller-orders-page__pill--paid,
+.mnshop-seller-orders-page__pill--delivered { background: rgba(16, 185, 129, .16); color: #6ee7b7; }
+.mnshop-seller-orders-page__pill--pending { background: rgba(250, 204, 21, .15); color: #fde68a; }
+.mnshop-seller-orders-page__pill--processing { background: rgba(59, 130, 246, .15); color: #93c5fd; }
+.mnshop-seller-orders-page__pill--shipped { background: rgba(168, 85, 247, .16); color: #d8b4fe; }
+.mnshop-seller-orders-page__pill--failed { background: rgba(244, 63, 94, .16); color: #fda4af; }
+
+.mnshop-seller-orders-page form { display: flex; min-width: 280px; gap: 8px; }
+.mnshop-seller-orders-page input {
+  width: 142px;
+  border: 1px solid rgba(255, 255, 255, .13);
+  border-radius: 6px;
+  outline: none;
+  background: rgba(0, 0, 0, .24);
+  padding: 9px 10px;
+  color: #fff;
+  font: inherit;
+  font-size: 12px;
+}
+
+.mnshop-seller-orders-page input:focus { border-color: rgba(59, 130, 246, .8); }
+.mnshop-seller-orders-page button {
+  border: 0;
+  border-radius: 6px;
+  background: #2563eb;
+  padding: 9px 11px;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.mnshop-seller-orders-page button:hover:not(:disabled) { background: #3b82f6; }
+.mnshop-seller-orders-page button:disabled { cursor: wait; opacity: .64; }

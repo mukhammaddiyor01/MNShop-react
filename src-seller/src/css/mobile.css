@@ -122,3 +122,16 @@
     border-radius: 0;
   }
 }
+
+@media screen and (max-width: 1023px) {
+  .mnshop-seller-orders-page { padding: 36px 0 56px; }
+  .mnshop-seller-orders-page__heading h1 { font-size: 32px; }
+}
+
+@media screen and (max-width: 767px) {
+  .mnshop-seller-orders-page { padding: 28px 0 40px; }
+  .mnshop-seller-orders-page__heading { align-items: flex-start; flex-direction: column; gap: 14px; }
+  .mnshop-seller-orders-page__heading h1 { font-size: 28px; }
+  .mnshop-seller-orders-page__table-wrap { border-right: 0; border-left: 0; border-radius: 0; }
+  .mnshop-seller-orders-page__table-wrap > p { padding: 24px; }
+}
