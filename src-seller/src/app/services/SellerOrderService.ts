@@ -20,6 +20,13 @@ export type SellerOrder = {
   updatedAt: string;
 };
 
+export type DeliveryStatus =
+  | "PENDING"
+  | "PROCESSING"
+  | "SHIPPED"
+  | "DELIVERED"
+  | "FAILED";
+
 type SellerOrderDto = {
   _id: string;
   buyerId?: string;
@@ -78,6 +85,20 @@ class SellerOrderService {
     );
 
     return (result.data.data || []).map(normalizeOrder);
+  }
+
+  public async updateDeliveryStatus(
+    orderId: string,
+    deliveryStatus: DeliveryStatus,
+    trackingNumber?: string,
+  ): Promise<SellerOrder> {
+    const result = await axios.post<{ data: SellerOrderDto }>(
+      `${this.path}/seller/order/${orderId}/delivery`,
+      { deliveryStatus, trackingNumber },
+      { withCredentials: true },
+    );
+
+    return normalizeOrder(result.data.data);
   }
 }
 

@@ -14,6 +14,7 @@ export type SellerProduct = {
   stock: number;
   sold: number;
   views: number;
+  likes: number;
   rating: number;
   featured: boolean;
   sale: boolean;
@@ -34,6 +35,7 @@ type SellerProductDto = {
   productSold?: number;
   productViews?: number;
   productviews?: number;
+  productLikes?: number;
   productRating?: number;
   productFeatured?: boolean;
   productSale?: boolean;
@@ -66,6 +68,7 @@ const normalizeProduct = (product: SellerProductDto): SellerProduct => ({
   stock: Number(product.productLeftCount || 0),
   sold: Number(product.productSold || 0),
   views: Number(product.productViews ?? product.productviews ?? 0),
+  likes: Number(product.productLikes || 0),
   rating: Number(product.productRating || 0),
   featured: Boolean(product.productFeatured),
   sale: Boolean(product.productSale),
