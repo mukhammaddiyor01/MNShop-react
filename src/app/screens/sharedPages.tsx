@@ -5,9 +5,14 @@ import { ProductGrid } from "../components/ShopUI";
 import { products, money } from "../data/products";
 import { useGlobals } from "../hooks/useGlobals";
 import BuyerOrderService from "../services/BuyerOrderService";
+import BuyerPaymentService, {
+  PreparedBuyerPayment,
+} from "../services/BuyerPaymentService";
+import { openTossPaymentWindow } from "../services/TossPaymentWindow";
 
 export function HomeContent() { return <main><section className="trust-strip"><div><b>Direct from Korea</b><span>Curated Seoul quality</span></div><div><b>Secure checkout</b><span>Protected payments</span></div><div><b>Fast Uzbekistan delivery</b><span>Tracked to your door</span></div></section><section className="content-section"><div className="section-heading"><span className="eyebrow">CURATED FOR YOU</span><h2>The newest drop</h2><Link to="/products">View all →</Link></div><ProductGrid/></section><section className="brand-story"><span className="eyebrow">OUR BLUEPRINT</span><h2>Two cities.<br/>One street language.</h2><p>MNShop connects Seoul’s design culture with Tashkent’s independent spirit.</p></section></main>; }
 const buyerOrderService = new BuyerOrderService();
+const buyerPaymentService = new BuyerPaymentService();
 
 type CheckoutAddress = {
   id: string;
@@ -33,8 +38,11 @@ export function CheckoutPage() {
   const g = useGlobals();
   const [step, setStep] = useState(1);
   const [isCreatingOrder, setIsCreatingOrder] = useState(false);
+  const [isPreparingPayment, setIsPreparingPayment] = useState(false);
   const [createOrderError, setCreateOrderError] = useState("");
   const [createdOrderId, setCreatedOrderId] = useState("");
+  const [preparedPayment, setPreparedPayment] = useState<PreparedBuyerPayment | null>(null);
+  const [paymentWindowError, setPaymentWindowError] = useState("");
   const [addresses, setAddresses] = useState<CheckoutAddress[]>([]);
   const [selectedAddressId, setSelectedAddressId] = useState("");
   const [deliveryError, setDeliveryError] = useState("");
@@ -80,6 +88,7 @@ export function CheckoutPage() {
       const order = await buyerOrderService.createOrder(g.basket, selectedAddress);
       setCreatedOrderId(order.id);
       g.setOrderBuilder(new Date());
+      await preparePayment(order.id);
     } catch (error) {
       const responseData = axios.isAxiosError(error)
         ? (error.response?.data as { message?: string } | undefined)
@@ -93,13 +102,43 @@ export function CheckoutPage() {
     }
   };
 
+  const preparePayment = async (orderId: string) => {
+    setCreateOrderError("");
+    setIsPreparingPayment(true);
+
+    try {
+      const payment = await buyerPaymentService.preparePayment(orderId);
+      setPreparedPayment(payment);
+    } catch (error) {
+      const responseData = axios.isAxiosError(error)
+        ? (error.response?.data as { message?: string } | undefined)
+        : undefined;
+      setCreateOrderError(
+        responseData?.message || "We could not prepare your payment.",
+      );
+    } finally {
+      setIsPreparingPayment(false);
+    }
+  };
+
+  const requestTossPayment = async () => {
+    if (!preparedPayment || !g.authUser) return;
+
+    setPaymentWindowError("");
+    try {
+      await openTossPaymentWindow(preparedPayment, g.authUser);
+    } catch {
+      setPaymentWindowError("The Toss test payment window could not be opened.");
+    }
+  };
+
   if (!g.authUser) return <Redirect to="/login?next=%2Fcheckout" />;
 
   if (!g.basket.length) {
     return <main className="page-shell"><div className="empty-state"><h2>Your cart is empty</h2><Link to="/products">Start shopping</Link></div></main>;
   }
 
-  return <main className="page-shell narrow"><span className="eyebrow">SECURE CHECKOUT</span><h1>Complete your order</h1><div className="steps">{["Summary", "Delivery", "Payment", "Confirm"].map((label, index) => <span className={step >= index + 1 ? "active" : ""} key={label}>{index + 1}. {label}</span>)}</div><div className="checkout-card">{step === 1 && <><>{g.basket.map((item) => <div className="summary-row" key={`${item.product.id}:${item.color}:${item.size}`}><span>{item.product.name} × {item.quantity}</span><b>{money(item.product.price * item.quantity)}</b></div>)}</><div className="summary-row total"><span>Total</span><b>{money(subtotal)}</b></div></>}{step === 2 && <div className="checkout-addresses">{addresses.length > 0 ? <>{addresses.map((address) => <label className={selectedAddressId === address.id ? "checkout-address is-selected" : "checkout-address"} key={address.id}><input checked={selectedAddressId === address.id} name="delivery-address" onChange={() => setSelectedAddressId(address.id)} type="radio" /><span><strong>{address.label}{address.isDefault ? " · Default" : ""}</strong><small>{address.fullName} · {address.phone}</small><small>{address.address}, {address.city}, {address.zipCode}</small></span></label>)}</> : <div className="empty-state"><p>Add a delivery address before checkout.</p><Link to="/user-page/addresses">Manage addresses</Link></div>}{deliveryError && <p role="alert">{deliveryError}</p>}</div>}{step === 3 && <div className="payment-methods"><button className="active" type="button">Toss Payments · Card</button></div>}{step === 4 && <div className="success-state"><h2>Ready to create your order?</h2><p>The server will verify current prices, stock, delivery and the final total before payment.</p>{createdOrderId && <p role="status">Order created. Payment setup is the next step.</p>}{createOrderError && <p role="alert">{createOrderError}</p>}</div>}<button className="primary-button" type="button" disabled={isCreatingOrder || Boolean(createdOrderId)} onClick={() => step < 4 ? continueCheckout() : void createOrder()}>{step < 4 ? "Continue" : isCreatingOrder ? "Creating order…" : createdOrderId ? "Order created" : "Create order"}</button></div></main>;
+  return <main className="page-shell narrow"><span className="eyebrow">SECURE CHECKOUT</span><h1>Complete your order</h1><div className="steps">{["Summary", "Delivery", "Payment", "Confirm"].map((label, index) => <span className={step >= index + 1 ? "active" : ""} key={label}>{index + 1}. {label}</span>)}</div><div className="checkout-card">{step === 1 && <><>{g.basket.map((item) => <div className="summary-row" key={`${item.product.id}:${item.color}:${item.size}`}><span>{item.product.name} × {item.quantity}</span><b>{money(item.product.price * item.quantity)}</b></div>)}</><div className="summary-row total"><span>Total</span><b>{money(subtotal)}</b></div></>}{step === 2 && <div className="checkout-addresses">{addresses.length > 0 ? <>{addresses.map((address) => <label className={selectedAddressId === address.id ? "checkout-address is-selected" : "checkout-address"} key={address.id}><input checked={selectedAddressId === address.id} name="delivery-address" onChange={() => setSelectedAddressId(address.id)} type="radio" /><span><strong>{address.label}{address.isDefault ? " · Default" : ""}</strong><small>{address.fullName} · {address.phone}</small><small>{address.address}, {address.city}, {address.zipCode}</small></span></label>)}</> : <div className="empty-state"><p>Add a delivery address before checkout.</p><Link to="/user-page/addresses">Manage addresses</Link></div>}{deliveryError && <p role="alert">{deliveryError}</p>}</div>}{step === 3 && <div className="payment-methods"><button className="active" type="button">Toss Payments · Card</button></div>}{step === 4 && <div className="success-state"><h2>Ready to create your order?</h2><p>The server will verify current prices, stock, delivery and the final total before payment.</p>{preparedPayment && <p role="status">Payment ready: {preparedPayment.orderName} · {preparedPayment.amount} {preparedPayment.currency}</p>}{createOrderError && <p role="alert">{createOrderError}</p>}{paymentWindowError && <p role="alert">{paymentWindowError}</p>}</div>}<button className="primary-button" type="button" disabled={isCreatingOrder || isPreparingPayment || Boolean(preparedPayment)} onClick={() => step < 4 ? continueCheckout() : createdOrderId ? void preparePayment(createdOrderId) : void createOrder()}>{step < 4 ? "Continue" : isCreatingOrder ? "Creating order…" : isPreparingPayment ? "Preparing payment…" : preparedPayment ? "Payment ready" : createdOrderId ? "Retry payment setup" : "Create order"}</button>{preparedPayment && <button className="primary-button" type="button" onClick={() => void requestTossPayment()}>Pay with Toss test</button>}</div></main>;
 }
 export function OrdersContent(){const g=useGlobals();if(!g.authUser)return <Redirect to="/login?next=%2Forders"/>;const orders=JSON.parse(localStorage.getItem("mnshopOrders")||"[]");return <main className="page-shell narrow"><span className="eyebrow">YOUR PURCHASES</span><h1>Orders</h1>{orders.length?orders.map((o:any)=><article className="order-card" key={o.id}><header><div><b>{o.id}</b><small>{new Date(o.date).toLocaleDateString()}</small></div><span className={`status status--${o.status}`}>{o.status}</span></header><div className="order-items">{o.items.map((i:any)=><span key={i.product.id}>{i.product.name} × {i.quantity}</span>)}</div><footer><span>Total</span><b>{money(o.total)}</b></footer></article>):<div className="empty-state"><h2>No orders yet</h2><p>Your order history will appear here.</p><Link to="/products">Explore products</Link></div>}</main>}
 export function LikesPage(){const g=useGlobals();if(!g.authUser)return <Redirect to="/login?next=%2Flikes"/>;return <main className="page-shell"><div className="section-heading"><div><span className="eyebrow">SAVED FOR LATER</span><h1>Liked products</h1></div></div>{g.likedIds.length?<ProductGrid list={products.filter(p=>g.likedIds.includes(p.id))}/>:<div className="empty-state"><h2>No liked products</h2><Link to="/products">Find your style</Link></div>}</main>}

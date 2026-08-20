@@ -101,6 +101,12 @@
   }
 }
 @media screen and (min-width: 1024px) {
+  .mnshop-payment-result { display: grid; min-height: calc(100vh - 160px); padding: 48px; place-items: center; }
+  .mnshop-payment-result section { width: min(100%, 560px); padding: 40px; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; background: #0a0a0a; box-shadow: 0 24px 80px rgba(0, 0, 0, 0.32); text-align: center; }
+  .mnshop-payment-result h1 { margin: 0; color: #fff; font-family: var(--font-display); font-size: 36px; font-weight: 900; }
+  .mnshop-payment-result p { margin: 16px 0 0; color: rgba(255, 255, 255, 0.58); font-size: 14px; line-height: 22px; }
+  .mnshop-payment-result p[role="alert"] { color: #f43f5e; }
+  .mnshop-payment-result a { display: inline-flex; min-height: 42px; margin-top: 24px; padding: 0 18px; border-radius: 6px; background: #3b82f6; color: #000; align-items: center; font-size: 13px; font-weight: 900; text-decoration: none; }
   .checkout-addresses { display: grid; gap: 10px; }
   .checkout-address { display: flex; padding: 16px; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; background: rgba(255, 255, 255, 0.03); color: #fff; cursor: pointer; align-items: flex-start; gap: 12px; }
   .checkout-address.is-selected { border-color: #3b82f6; background: rgba(59, 130, 246, 0.09); }

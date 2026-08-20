@@ -10,10 +10,12 @@ import { BuyerAddressesPage } from "./screens/userPage/BuyerAddressesPage";
 import { BuyerNotificationsPage } from "./screens/userPage/BuyerNotificationsPage";
 import { BuyerPaymentsPage } from "./screens/userPage/BuyerPaymentsPage";
 import { BuyerLikesPage } from "./screens/likesPage/BuyerLikesPage";
+import { BuyerPaymentFailPage } from "./screens/paymentPage/BuyerPaymentFailPage";
+import { BuyerPaymentSuccessPage } from "./screens/paymentPage/BuyerPaymentSuccessPage";
 import { BuyerMessagePage } from "./screens/messagePage/BuyerMessagePage";
+import { CheckoutPage } from "./screens/checkoutPage";
 import { LoginPage } from "./screens/loginPage";
 import { SignupPage } from "./screens/signupPage";
-import { CheckoutPage } from "./screens/sharedPages";
 import { HomeNavbar } from "./components/headers/HomeNavbar";
 import { OtherNavbar } from "./components/headers/OtherNavbar";
 import { CartDrawer } from "./components/headers/Basket";
@@ -46,6 +48,12 @@ function App() {
         </Route>
         <Route exact path="/notifications">
           <BuyerNotificationsPage />
+        </Route>
+        <Route exact path="/payment/success">
+          <BuyerPaymentSuccessPage />
+        </Route>
+        <Route exact path="/payment/fail">
+          <BuyerPaymentFailPage />
         </Route>
         <Route exact path="/likes">
           <BuyerLikesPage />

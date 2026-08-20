@@ -1,0 +1,493 @@
+@media screen and (min-width: 1024px) {
+  .mnshop-checkout-page {
+    min-height: calc(100vh - 160px);
+    background: var(--page-bg);
+    color: var(--page-text);
+  }
+
+  .mnshop-checkout-shell {
+    width: min(100%, 1152px);
+    margin: 0 auto;
+    padding: 40px 24px 64px;
+  }
+
+  .mnshop-checkout-heading h1 {
+    margin: 0;
+    color: #f8fafc;
+    font-family: var(--font-display);
+    font-size: 60px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .mnshop-checkout-heading p {
+    max-width: 620px;
+    margin: 16px 0 0;
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 15px;
+    line-height: 24px;
+  }
+
+  .mnshop-checkout-grid {
+    display: grid;
+    margin-top: 32px;
+    grid-template-columns: minmax(0, 1fr) 360px;
+    gap: 24px;
+    align-items: start;
+  }
+
+  .mnshop-checkout-panel,
+  .mnshop-checkout-total,
+  .mnshop-checkout-empty {
+    border-radius: 8px;
+  }
+
+  .mnshop-checkout-panel {
+    padding: 20px;
+  }
+
+  .mnshop-checkout-steps {
+    display: grid;
+    margin-bottom: 24px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .mnshop-checkout-steps button {
+    min-height: 36px;
+    padding: 0 12px;
+    border: 0;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.55);
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 900;
+    transition:
+      background 160ms ease,
+      color 160ms ease,
+      transform 160ms ease;
+  }
+
+  .mnshop-checkout-steps button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.82);
+  }
+
+  .mnshop-checkout-steps button.is-active {
+    background: #3b82f6;
+    color: #000;
+  }
+
+  .mnshop-checkout-step-title {
+    display: flex;
+    margin-bottom: 18px;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .mnshop-checkout-step-title span {
+    display: grid;
+    width: 36px;
+    height: 36px;
+    border-radius: 9999px;
+    background: rgba(59, 130, 246, 0.12);
+    color: #3b82f6;
+    font-size: 12px;
+    font-weight: 900;
+    place-items: center;
+  }
+
+  .mnshop-checkout-step-title h2 {
+    margin: 0;
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .mnshop-checkout-items {
+    display: grid;
+    gap: 12px;
+  }
+
+  .mnshop-checkout-item {
+    display: grid;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    grid-template-columns: 56px minmax(0, 1fr) auto;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .mnshop-checkout-item img {
+    width: 56px;
+    height: 64px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  .mnshop-checkout-item h3 {
+    margin: 0;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 900;
+  }
+
+  .mnshop-checkout-item p {
+    margin: 6px 0 0;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .mnshop-checkout-item strong {
+    color: #3b82f6;
+    font-size: 14px;
+    font-weight: 900;
+    white-space: nowrap;
+  }
+
+  .mnshop-checkout-delivery,
+  .mnshop-checkout-payment,
+  .mnshop-checkout-confirm {
+    display: grid;
+    gap: 12px;
+  }
+
+  .mnshop-checkout-delivery > svg,
+  .mnshop-checkout-payment > svg,
+  .mnshop-checkout-confirm > svg {
+    color: #3b82f6;
+    font-size: 32px;
+  }
+
+  .mnshop-checkout-addresses {
+    display: grid;
+    gap: 10px;
+  }
+
+  .mnshop-checkout-address {
+    display: flex;
+    padding: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    color: #fff;
+    cursor: pointer;
+    gap: 12px;
+    align-items: flex-start;
+    transition:
+      border-color 160ms ease,
+      background 160ms ease;
+  }
+
+  .mnshop-checkout-address.is-selected {
+    border-color: #3b82f6;
+    background: rgba(59, 130, 246, 0.1);
+  }
+
+  .mnshop-checkout-address input {
+    margin-top: 3px;
+    accent-color: #3b82f6;
+  }
+
+  .mnshop-checkout-address span,
+  .mnshop-checkout-address small {
+    display: block;
+  }
+
+  .mnshop-checkout-address strong {
+    font-size: 14px;
+    font-weight: 900;
+  }
+
+  .mnshop-checkout-address small {
+    margin-top: 5px;
+    color: rgba(255, 255, 255, 0.56);
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .mnshop-checkout-address-empty {
+    padding: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .mnshop-checkout-address-empty p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 13px;
+  }
+
+  .mnshop-checkout-address-empty a {
+    display: inline-flex;
+    margin-top: 12px;
+    color: #3b82f6;
+    font-size: 13px;
+    font-weight: 900;
+    text-decoration: none;
+  }
+
+  .mnshop-checkout-delivery p[role="alert"],
+  .mnshop-checkout-error {
+    margin: 0;
+    color: #f43f5e;
+    font-size: 13px;
+    line-height: 20px;
+  }
+
+  .mnshop-checkout-payment {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .mnshop-checkout-payment > svg {
+    grid-column: 1 / -1;
+  }
+
+  .mnshop-checkout-payment button {
+    display: grid;
+    min-height: 96px;
+    padding: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.72);
+    cursor: pointer;
+    text-align: left;
+    align-content: center;
+    gap: 6px;
+    transition:
+      border-color 160ms ease,
+      background 160ms ease,
+      color 160ms ease;
+  }
+
+  .mnshop-checkout-payment button.is-active {
+    border-color: #3b82f6;
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+  }
+
+  .mnshop-checkout-payment button:disabled {
+    cursor: not-allowed;
+    opacity: 0.48;
+  }
+
+  .mnshop-checkout-payment button span {
+    font-size: 13px;
+    font-weight: 900;
+  }
+
+  .mnshop-checkout-payment button small {
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .mnshop-checkout-confirm h2 {
+    margin: 0;
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 900;
+  }
+
+  .mnshop-checkout-confirm > p {
+    max-width: 580px;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .mnshop-checkout-confirm-card {
+    display: grid;
+    max-width: 520px;
+    padding: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    gap: 5px;
+  }
+
+  .mnshop-checkout-confirm-card span {
+    color: #3b82f6;
+    font-size: 11px;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+
+  .mnshop-checkout-confirm-card strong {
+    color: #fff;
+    font-size: 15px;
+    font-weight: 900;
+  }
+
+  .mnshop-checkout-confirm-card small {
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .mnshop-checkout-status {
+    padding: 12px 14px;
+    border-radius: 8px;
+    background: rgba(34, 197, 94, 0.1);
+    color: #22c55e !important;
+    font-weight: 800;
+  }
+
+  .mnshop-checkout-actions {
+    display: flex;
+    margin-top: 24px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .mnshop-checkout-primary,
+  .mnshop-checkout-secondary,
+  .mnshop-checkout-empty a {
+    display: inline-flex;
+    min-height: 44px;
+    padding: 0 24px;
+    border: 0;
+    border-radius: 9999px;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 900;
+    text-decoration: none;
+    transition:
+      background 160ms ease,
+      color 160ms ease,
+      opacity 160ms ease,
+      transform 160ms ease;
+  }
+
+  .mnshop-checkout-primary,
+  .mnshop-checkout-empty a {
+    background: #3b82f6;
+    color: #000;
+    cursor: pointer;
+  }
+
+  .mnshop-checkout-primary:hover,
+  .mnshop-checkout-empty a:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+  }
+
+  .mnshop-checkout-primary:disabled {
+    cursor: not-allowed;
+    opacity: 0.58;
+    transform: none;
+  }
+
+  .mnshop-checkout-secondary {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.72);
+    cursor: pointer;
+  }
+
+  .mnshop-checkout-total {
+    position: sticky;
+    top: 96px;
+    display: grid;
+    padding: 20px;
+    gap: 16px;
+  }
+
+  .mnshop-checkout-total > p {
+    margin: 0;
+    color: #3b82f6;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+  }
+
+  .mnshop-checkout-total > strong {
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: 40px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .mnshop-checkout-total div {
+    display: flex;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 14px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .mnshop-checkout-total span {
+    color: rgba(255, 255, 255, 0.52);
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .mnshop-checkout-total b {
+    color: #fff;
+    font-size: 13px;
+    font-weight: 900;
+  }
+
+  .mnshop-checkout-total address {
+    display: grid;
+    margin: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 14px;
+    font-style: normal;
+    gap: 5px;
+  }
+
+  .mnshop-checkout-total address strong {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 900;
+  }
+
+  .mnshop-checkout-total address small {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .mnshop-checkout-empty {
+    display: grid;
+    width: min(100% - 48px, 560px);
+    min-height: 360px;
+    margin: 56px auto;
+    padding: 40px;
+    place-items: center;
+    text-align: center;
+  }
+
+  .mnshop-checkout-empty svg {
+    color: #3b82f6;
+    font-size: 54px;
+  }
+
+  .mnshop-checkout-empty h1 {
+    margin: 16px 0 0;
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: 40px;
+    font-weight: 900;
+  }
+
+  .mnshop-checkout-empty p {
+    margin: 10px 0 0;
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 14px;
+    line-height: 22px;
+  }
+}
