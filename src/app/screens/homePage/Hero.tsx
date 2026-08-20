@@ -116,7 +116,7 @@ export function Hero() {
         className="mnshop-home-hero__scroll-link"
         aria-label="Best seller mahsulotlariga o'tish"
       >
-        Kolleksiyani ko&apos;rish
+        View the Collections
         <ArrowDownwardIcon aria-hidden="true" />
       </a>
 

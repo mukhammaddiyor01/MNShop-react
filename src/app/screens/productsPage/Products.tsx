@@ -1,10 +1,20 @@
 import TuneIcon from "@mui/icons-material/Tune";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { ProductCard } from "../../components/product/ProductCard";
-import { Product } from "../../context/ContextProvider";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 import BuyerProductService from "../../services/BuyerProductService";
 import { CatalogHero, CatalogHeroSlider } from "./CatalogHeroSlider";
+import {
+  retrieveCatalogProducts,
+  retrieveCatalogProductsError,
+  retrieveCatalogProductsLoading,
+} from "./selector";
+import {
+  setCatalogProducts,
+  setCatalogProductsError,
+  setCatalogProductsLoading,
+} from "./slice";
 
 type CatalogCategory = "hoodies" | "tshirts" | "caps" | "cups" | "sale";
 
@@ -92,9 +102,10 @@ function getActiveCategory(value: string | null): CatalogCategory {
 
 export function Products() {
   const location = useLocation();
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loadError, setLoadError] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  const dispatch = useAppDispatch();
+  const products = useAppSelector(retrieveCatalogProducts);
+  const loadError = useAppSelector(retrieveCatalogProductsError);
+  const isLoading = useAppSelector(retrieveCatalogProductsLoading);
   const searchParams = new URLSearchParams(location.search);
   const activeCategory = getActiveCategory(searchParams.get("category"));
   const hero = catalogHeroes[activeCategory];
@@ -109,22 +120,31 @@ export function Products() {
   useEffect(() => {
     let active = true;
 
+    dispatch(setCatalogProductsLoading(true));
+    dispatch(setCatalogProductsError(""));
+
     buyerProductService
       .getProducts()
       .then((nextProducts) => {
-        if (active) setProducts(nextProducts);
+        if (active) dispatch(setCatalogProducts(nextProducts));
       })
       .catch(() => {
-        if (active) setLoadError("Products could not be loaded. Please try again.");
+        if (active) {
+          dispatch(
+            setCatalogProductsError(
+              "Products could not be loaded. Please try again.",
+            ),
+          );
+        }
       })
       .finally(() => {
-        if (active) setIsLoading(false);
+        if (active) dispatch(setCatalogProductsLoading(false));
       });
 
     return () => {
       active = false;
     };
-  }, []);
+  }, [dispatch]);
 
   return (
     <main className="mnshop-products-catalog">

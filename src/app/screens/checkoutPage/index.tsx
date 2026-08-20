@@ -3,7 +3,7 @@ import CreditCardOutlinedIcon from "@mui/icons-material/CreditCardOutlined";
 import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import TaskAltOutlinedIcon from "@mui/icons-material/TaskAltOutlined";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import { useEffect, useMemo, useState } from "react";
 import "../../../css/checkout.css";
 import { calculateDeliveryFee } from "../../../lib/delivery";
@@ -15,6 +15,7 @@ import BuyerPaymentService, {
   PreparedBuyerPayment,
 } from "../../services/BuyerPaymentService";
 import { openTossPaymentWindow } from "../../services/TossPaymentWindow";
+import { MockTossPaymentModal } from "./MockTossPaymentModal";
 
 type CheckoutAddress = {
   id: string;
@@ -57,8 +58,11 @@ const readCheckoutAddresses = (userId: string): CheckoutAddress[] => {
 const cartKey = (item: CartItem) =>
   `${item.product.id}:${item.color}:${item.size}`;
 
+const isMongoObjectId = (value: string) => /^[a-f\d]{24}$/i.test(value);
+
 export function CheckoutPage() {
-  const { authUser, basket, setOrderBuilder } = useGlobals();
+  const { authUser, basket, onDelete, setOrderBuilder } = useGlobals();
+  const history = useHistory();
   const [step, setStep] = useState<CheckoutStep>(1);
   const [addresses, setAddresses] = useState<CheckoutAddress[]>([]);
   const [selectedAddressId, setSelectedAddressId] = useState("");
@@ -70,10 +74,17 @@ export function CheckoutPage() {
     useState<PreparedBuyerPayment | null>(null);
   const [isCreatingOrder, setIsCreatingOrder] = useState(false);
   const [isPreparingPayment, setIsPreparingPayment] = useState(false);
+  const [isMockPaymentOpen, setIsMockPaymentOpen] = useState(false);
+  const [isMockPaymentSubmitting, setIsMockPaymentSubmitting] = useState(false);
+  const [mockPaymentError, setMockPaymentError] = useState("");
 
   const subtotal = useMemo(
     () =>
       basket.reduce((sum, item) => sum + item.product.price * item.quantity, 0),
+    [basket],
+  );
+  const unavailableItems = useMemo(
+    () => basket.filter((item) => !isMongoObjectId(item.product.id)),
     [basket],
   );
   const deliveryFee = calculateDeliveryFee(subtotal);
@@ -98,6 +109,8 @@ export function CheckoutPage() {
     setPreparedPayment(null);
     setPaymentWindowError("");
     setCreateOrderError("");
+    setIsMockPaymentOpen(false);
+    setMockPaymentError("");
   }, [basket, selectedAddressId]);
 
   if (!authUser) return <Redirect to="/login?next=%2Fcheckout" />;
@@ -156,6 +169,14 @@ export function CheckoutPage() {
   };
 
   const createOrder = async () => {
+    if (unavailableItems.length) {
+      setStep(1);
+      setCreateOrderError(
+        "Remove unavailable items saved from the older catalog before creating the order.",
+      );
+      return;
+    }
+
     if (!selectedAddress) {
       setStep(2);
       setDeliveryError("Select a delivery address before creating the order.");
@@ -191,12 +212,44 @@ export function CheckoutPage() {
     if (!preparedPayment) return;
 
     setPaymentWindowError("");
+
+    if (preparedPayment.mockMode) {
+      setMockPaymentError("");
+      setIsMockPaymentOpen(true);
+      return;
+    }
+
     try {
       await openTossPaymentWindow(preparedPayment, authUser);
     } catch {
       setPaymentWindowError(
         "The Toss test payment window could not be opened.",
       );
+    }
+  };
+
+  const confirmMockPayment = async () => {
+    if (!preparedPayment || !preparedPayment.mockMode) return;
+
+    setMockPaymentError("");
+    setIsMockPaymentSubmitting(true);
+
+    try {
+      await buyerPaymentService.mockConfirmPayment(preparedPayment.orderId);
+      setIsMockPaymentOpen(false);
+      history.replace("/payment/success?mock=true", {
+        mockPaymentConfirmed: true,
+      });
+    } catch (error) {
+      const responseData = axios.isAxiosError(error)
+        ? (error.response?.data as { message?: string } | undefined)
+        : undefined;
+
+      setMockPaymentError(
+        responseData?.message || "The test payment could not be completed.",
+      );
+    } finally {
+      setIsMockPaymentSubmitting(false);
     }
   };
 
@@ -262,6 +315,29 @@ export function CheckoutPage() {
                     <strong>{money(item.product.price * item.quantity)}</strong>
                   </article>
                 ))}
+
+                {unavailableItems.length > 0 && (
+                  <div className="mnshop-checkout-address-empty">
+                    <p className="mnshop-checkout-error" role="alert">
+                      {unavailableItems.length} item
+                      {unavailableItems.length === 1 ? " is" : "s are"} from
+                      an older catalog and cannot be ordered. Remove
+                      {unavailableItems.length === 1 ? " it" : " them"}, then
+                      add the current product again.
+                    </p>
+                    <button
+                      className="mnshop-checkout-secondary"
+                      onClick={() =>
+                        unavailableItems.forEach((item) =>
+                          onDelete(cartKey(item)),
+                        )
+                      }
+                      type="button"
+                    >
+                      Remove unavailable items
+                    </button>
+                  </div>
+                )}
               </div>
             )}
 
@@ -404,7 +480,9 @@ export function CheckoutPage() {
                   onClick={() => void requestTossPayment()}
                   type="button"
                 >
-                  Pay with Toss test
+                  {preparedPayment.mockMode
+                    ? "Open test payment"
+                    : "Pay with Toss test"}
                 </button>
               )}
             </div>
@@ -435,6 +513,22 @@ export function CheckoutPage() {
           </aside>
         </div>
       </section>
+
+      {preparedPayment?.mockMode && isMockPaymentOpen && (
+        <MockTossPaymentModal
+          amount={preparedPayment.amount}
+          currency={preparedPayment.currency}
+          error={mockPaymentError}
+          isSubmitting={isMockPaymentSubmitting}
+          onClose={() => {
+            if (isMockPaymentSubmitting) return;
+            setIsMockPaymentOpen(false);
+            setMockPaymentError("");
+          }}
+          onConfirm={() => void confirmMockPayment()}
+          orderName={preparedPayment.orderName}
+        />
+      )}
     </main>
   );
 }

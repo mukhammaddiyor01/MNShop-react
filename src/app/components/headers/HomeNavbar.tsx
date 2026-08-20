@@ -11,8 +11,10 @@ import SearchIcon from "@mui/icons-material/Search";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import { useMemo, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { products } from "../../data/products";
+import { useAppSelector } from "../../hooks";
 import { useGlobals } from "../../hooks/useGlobals";
+import { retrieveHomeProducts } from "../../screens/homePage/selector";
+import { retrieveCatalogProducts } from "../../screens/productsPage/selector";
 import { MnshopLogo } from "../mnshop-logo";
 
 const publicNavigation = [
@@ -25,8 +27,13 @@ const publicNavigation = [
 export function HomeNavbar() {
   const { pathname } = useLocation();
   const { authUser, basket, likedIds, setCartOpen } = useGlobals();
+  const catalogProducts = useAppSelector(retrieveCatalogProducts);
+  const homeProducts = useAppSelector(retrieveHomeProducts);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const searchableProducts = catalogProducts.length
+    ? catalogProducts
+    : homeProducts;
 
   const mainNavigation = useMemo(
     () =>
@@ -49,10 +56,10 @@ export function HomeNavbar() {
     const normalizedQuery = query.trim().toLowerCase();
     if (normalizedQuery.length < 2) return [];
 
-    return products
+    return searchableProducts
       .filter((product) => product.name.toLowerCase().includes(normalizedQuery))
       .slice(0, 5);
-  }, [query]);
+  }, [query, searchableProducts]);
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";

@@ -4,10 +4,15 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { ProductCard } from "../../components/product/ProductCard";
-import { products } from "../../data/products";
+import { useAppSelector } from "../../hooks";
+import { retrieveHomeProducts } from "./selector";
 
 export function BestSellers() {
   const railRef = useRef<HTMLDivElement>(null);
+  const products = useAppSelector(retrieveHomeProducts);
+  const bestSellers = [...products]
+    .sort((first, second) => second.sold - first.sold)
+    .slice(0, 4);
 
   const scroll = (direction: number) => {
     railRef.current?.scrollBy({
@@ -47,7 +52,7 @@ export function BestSellers() {
       </div>
 
       <div ref={railRef} className="mnshop-best-sellers__rail no-scrollbar">
-        {products.slice(0, 4).map((product) => (
+        {bestSellers.map((product) => (
           <ProductCard
             key={product.id}
             product={product}

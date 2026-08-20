@@ -491,3 +491,230 @@
     line-height: 22px;
   }
 }
+
+@media screen and (min-width: 1024px) {
+  .mnshop-mock-payment {
+    position: fixed;
+    z-index: 2500;
+    inset: 0;
+    display: grid;
+    padding: 32px;
+    place-items: center;
+  }
+
+  .mnshop-mock-payment__backdrop {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: rgba(0, 0, 0, 0.72);
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+  }
+
+  .mnshop-mock-payment__dialog {
+    position: relative;
+    width: min(100%, 560px);
+    max-height: 86vh;
+    overflow-y: auto;
+    border-radius: 8px;
+    background: rgba(10, 10, 10, 0.94);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
+    color: #f8fafc;
+  }
+
+  .mnshop-mock-payment__header {
+    position: sticky;
+    z-index: 1;
+    top: 0;
+    display: flex;
+    padding: 20px 22px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(10, 10, 10, 0.92);
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    backdrop-filter: blur(24px);
+  }
+
+  .mnshop-mock-payment__header span {
+    color: #3b82f6;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+  }
+
+  .mnshop-mock-payment__header h2 {
+    margin: 6px 0 0;
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 1.2;
+  }
+
+  .mnshop-mock-payment__header button {
+    display: inline-grid;
+    width: 40px;
+    height: 40px;
+    flex: 0 0 auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.72);
+    cursor: pointer;
+    place-items: center;
+    transition:
+      border-color 160ms ease,
+      background 160ms ease,
+      color 160ms ease;
+  }
+
+  .mnshop-mock-payment__header button:hover {
+    border-color: rgba(59, 130, 246, 0.7);
+    background: rgba(59, 130, 246, 0.12);
+    color: #3b82f6;
+  }
+
+  .mnshop-mock-payment__header button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  .mnshop-mock-payment__summary {
+    display: flex;
+    margin: 22px 22px 0;
+    padding: 16px;
+    border: 1px solid rgba(59, 130, 246, 0.32);
+    border-radius: 8px;
+    background: rgba(59, 130, 246, 0.1);
+    align-items: center;
+    gap: 14px;
+  }
+
+  .mnshop-mock-payment__summary > svg {
+    color: #3b82f6;
+    font-size: 30px;
+  }
+
+  .mnshop-mock-payment__summary div {
+    display: grid;
+    min-width: 0;
+    gap: 4px;
+  }
+
+  .mnshop-mock-payment__summary span {
+    overflow: hidden;
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 12px;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .mnshop-mock-payment__summary strong {
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 900;
+  }
+
+  .mnshop-mock-payment__warning {
+    margin: 14px 22px 0;
+    padding: 12px 14px;
+    border: 1px solid rgba(244, 63, 94, 0.28);
+    border-radius: 8px;
+    background: rgba(244, 63, 94, 0.08);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 19px;
+  }
+
+  .mnshop-mock-payment form {
+    display: grid;
+    padding: 20px 22px 22px;
+    gap: 14px;
+  }
+
+  .mnshop-mock-payment form label {
+    display: grid;
+    gap: 7px;
+  }
+
+  .mnshop-mock-payment form label > span {
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  .mnshop-mock-payment form input {
+    width: 100%;
+    min-height: 48px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0 14px;
+    color: #fff;
+    transition:
+      border-color 160ms ease,
+      background 160ms ease,
+      box-shadow 160ms ease;
+  }
+
+  .mnshop-mock-payment form input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  .mnshop-mock-payment form input:focus {
+    border-color: #3b82f6;
+    background: rgba(59, 130, 246, 0.07);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.14);
+  }
+
+  .mnshop-mock-payment__row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .mnshop-mock-payment__error {
+    margin: 0;
+    color: #f43f5e;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 18px;
+  }
+
+  .mnshop-mock-payment__submit {
+    display: inline-flex;
+    min-height: 48px;
+    margin-top: 2px;
+    border: 0;
+    border-radius: 9999px;
+    background: #3b82f6;
+    color: #000;
+    cursor: pointer;
+    font-weight: 900;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    transition:
+      background 160ms ease,
+      transform 160ms ease;
+  }
+
+  .mnshop-mock-payment__submit:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+  }
+
+  .mnshop-mock-payment__submit:disabled {
+    cursor: not-allowed;
+    opacity: 0.58;
+    transform: none;
+  }
+}

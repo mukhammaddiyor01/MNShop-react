@@ -10,13 +10,26 @@ export type PreparedBuyerPayment = {
   orderName: string;
   successUrl: string;
   failUrl: string;
+  mockMode: boolean;
+};
+
+type PreparedPaymentResponseData = Omit<
+  PreparedBuyerPayment,
+  "clientKey" | "mockMode"
+> & {
+  clientKey?: string;
+  mockMode?: boolean;
 };
 
 type PreparePaymentResponse = {
-  data?: PreparedBuyerPayment;
+  data?: PreparedPaymentResponseData;
 };
 
 type ConfirmPaymentResponse = {
+  data?: unknown;
+};
+
+type MockConfirmPaymentResponse = {
   data?: unknown;
 };
 
@@ -30,11 +43,21 @@ class BuyerPaymentService {
       { withCredentials: true },
     );
 
-    if (!result.data.data) {
+    const payment = result.data.data;
+
+    if (!payment) {
       throw new Error("The server did not return payment setup details");
     }
 
-    return result.data.data;
+    if (!payment.mockMode && !payment.clientKey) {
+      throw new Error("The server did not return a Toss client key");
+    }
+
+    return {
+      ...payment,
+      clientKey: payment.clientKey || "",
+      mockMode: Boolean(payment.mockMode),
+    };
   }
 
   public async confirmPayment(input: {
@@ -45,6 +68,14 @@ class BuyerPaymentService {
     await axios.post<ConfirmPaymentResponse>(
       `${this.path}/payment/confirm`,
       input,
+      { withCredentials: true },
+    );
+  }
+
+  public async mockConfirmPayment(orderId: string): Promise<void> {
+    await axios.post<MockConfirmPaymentResponse>(
+      `${this.path}/payment/mock-confirm`,
+      { orderId },
       { withCredentials: true },
     );
   }

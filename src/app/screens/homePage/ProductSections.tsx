@@ -1,7 +1,8 @@
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { Link } from "react-router-dom";
 import { ProductCard } from "../../components/product/ProductCard";
-import { products } from "../../data/products";
+import { useAppSelector } from "../../hooks";
+import { retrieveHomeProducts } from "./selector";
 
 const categories = [
   { id: "tshirts", label: "T-Shirts", productCategory: "T-Shirts" },
@@ -11,6 +12,7 @@ const categories = [
 ];
 
 export function ProductSections() {
+  const products = useAppSelector(retrieveHomeProducts);
   const saleProducts = products.filter((product) => product.sale).slice(0, 4);
 
   return (

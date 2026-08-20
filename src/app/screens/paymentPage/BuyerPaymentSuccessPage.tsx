@@ -17,6 +17,28 @@ export function BuyerPaymentSuccessPage() {
     if (!authUser) return;
     if (hasConfirmed.current) return;
     const query = new URLSearchParams(location.search);
+    const isMockPayment = query.get("mock") === "true";
+    const navigationState = location.state as
+      | { mockPaymentConfirmed?: boolean }
+      | undefined;
+
+    if (isMockPayment) {
+      if (!navigationState?.mockPaymentConfirmed) {
+        setError(
+          "The test payment result is unavailable. Check My Orders before trying again.",
+        );
+        return;
+      }
+
+      hasConfirmed.current = true;
+      onDeleteAll();
+      setOrderBuilder(new Date());
+      setStatus("Test payment confirmed. Opening your orders…");
+      const timer = window.setTimeout(() => history.replace("/orders"), 850);
+
+      return () => window.clearTimeout(timer);
+    }
+
     const paymentKey = query.get("paymentKey");
     const orderId = query.get("orderId");
     const amount = Number(query.get("amount"));
@@ -45,7 +67,14 @@ export function BuyerPaymentSuccessPage() {
     return () => {
       active = false;
     };
-  }, [authUser, history, location.search, onDeleteAll, setOrderBuilder]);
+  }, [
+    authUser,
+    history,
+    location.search,
+    location.state,
+    onDeleteAll,
+    setOrderBuilder,
+  ]);
 
   if (!authUser) return <Redirect to="/login?next=%2Fpayment%2Fsuccess" />;
 

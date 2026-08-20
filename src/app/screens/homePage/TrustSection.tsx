@@ -2,7 +2,8 @@ import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import StarIcon from "@mui/icons-material/Star";
 import { Link } from "react-router-dom";
-import { products } from "../../data/products";
+import { useAppSelector } from "../../hooks";
+import { retrieveHomeProducts } from "./selector";
 
 const buyerStats = [
   ["2.4K+", "Active buyers"],
@@ -13,15 +14,27 @@ const buyerStats = [
 const buyerInitials = ["AK", "MS", "SA", "NY", "DI"];
 
 const sellerBenefits = [
-  ["01", "Verified sellers", "Seller holati va mahsulot egasi ochiq ko'rsatiladi."],
-  ["02", "Delivery updates", "Koreyadan jo'natilgandan keyin order bosqichlari kuzatiladi."],
-  ["03", "Direct answers", "O'lcham, material va stock haqida sellerga yozing."],
+  [
+    "01",
+    "Verified sellers",
+    "Can see the status of Seller and the owner of Product.",
+  ],
+  ["02", "Delivery updates", "Delivery process will be showen."],
+  [
+    "03",
+    "Direct answers",
+    "If you have questions about size, material and quantity of product, Contact Seller.",
+  ],
 ];
 
 export function TrustSection() {
+  const products = useAppSelector(retrieveHomeProducts);
   const sellerProduct =
     products.find((product) => product.category === "T-Shirts") || products[0];
-  const sellerImage = sellerProduct.hoverImage || sellerProduct.image;
+  const sellerImage =
+    sellerProduct?.hoverImage ||
+    sellerProduct?.image ||
+    "/images/product-placeholder.png";
 
   return (
     <>
@@ -98,9 +111,9 @@ export function TrustSection() {
                   Small Korean studios. Clear buying from Uzbekistan.
                 </h2>
                 <p className="mnshop-sellers__description">
-                  Har bir seller o&apos;z kolleksiyasini boshqaradi. MNShop esa
-                  mahsulot ma&apos;lumoti, buyurtma kuzatuvi va ikki tomonlama
-                  muloqotni bitta joyda saqlaydi.
+                  Every seller controls their collection. But MNShop can control
+                  product information, order contolling, and conversation
+                  between buyer and seller.
                 </p>
               </div>
 
