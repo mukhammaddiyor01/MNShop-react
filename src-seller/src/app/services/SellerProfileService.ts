@@ -7,6 +7,7 @@ export type SellerProfile = {
   phone: string;
   description: string;
   address: string;
+  image: string;
 };
 
 type SellerProfileDto = {
@@ -16,6 +17,7 @@ type SellerProfileDto = {
   sellerPhone?: string;
   sellerDesc?: string;
   sellerAddress?: string;
+  sellerImage?: string;
 };
 
 type SellerProfileResponse = { data?: SellerProfileDto };
@@ -36,6 +38,7 @@ const normalizeProfile = (seller: SellerProfileDto): SellerProfile => ({
   phone: seller.sellerPhone || "",
   description: seller.sellerDesc || "",
   address: seller.sellerAddress || "",
+  image: seller.sellerImage || "",
 });
 
 class SellerProfileService {
@@ -48,16 +51,21 @@ class SellerProfileService {
     return normalizeProfile(result.data.data);
   }
 
-  public async updateProfile(input: SellerProfileUpdate): Promise<SellerProfile> {
+  public async updateProfile(
+    input: SellerProfileUpdate,
+    image?: File | null,
+  ): Promise<SellerProfile> {
+    const formData = new FormData();
+    formData.append("sellerNick", input.nick);
+    formData.append("sellerEmail", input.email);
+    formData.append("sellerPhone", input.phone);
+    formData.append("sellerDesc", input.description);
+    formData.append("sellerAddress", input.address);
+    if (image) formData.append("sellerImage", image);
+
     const result = await axios.post<SellerProfileResponse>(
       `${serverApi}/seller/profile/update`,
-      {
-        sellerNick: input.nick,
-        sellerEmail: input.email,
-        sellerPhone: input.phone,
-        sellerDesc: input.description,
-        sellerAddress: input.address,
-      },
+      formData,
       { withCredentials: true },
     );
     if (!result.data.data) throw new Error("Updated seller profile was not returned.");

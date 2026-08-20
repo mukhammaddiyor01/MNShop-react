@@ -4,7 +4,13 @@
 .mnshop-seller-settings > header > p { margin: 11px 0 22px; color: rgba(255,255,255,.46); font-size: 14px; }
 .mnshop-seller-settings form { border: 1px solid rgba(255,255,255,.1); border-radius: 8px; background: rgba(20,20,20,.72); box-shadow: 0 16px 44px rgba(0,0,0,.22); overflow: hidden; }
 .mnshop-seller-settings__identity { display: flex; align-items: center; gap: 13px; border-bottom: 1px solid rgba(255,255,255,.1); padding: 20px; }
+.mnshop-seller-settings__image-wrap { position: relative; width: 52px; height: 52px; flex: 0 0 52px; }
 .mnshop-seller-settings__monogram { display: grid; width: 44px; height: 44px; place-items: center; border-radius: 50%; background: #3b82f6; color: #071425; font-size: 17px; font-weight: 950; }
+.mnshop-seller-settings__image-wrap .mnshop-seller-settings__monogram, .mnshop-seller-settings__image { width: 52px; height: 52px; }
+.mnshop-seller-settings__image { display: block; border: 1px solid rgba(255,255,255,.16); border-radius: 50%; object-fit: cover; background: rgba(255,255,255,.05); }
+.mnshop-seller-settings__image-action { position: absolute; right: -9px; bottom: -4px; display: grid; min-height: 23px; place-items: center; border: 1px solid rgba(255,255,255,.2); border-radius: 999px; background: #172034; padding: 0 7px; color: #bfdbfe; cursor: pointer; font-size: 9px; font-weight: 900; line-height: 1; white-space: nowrap; }
+.mnshop-seller-settings__image-action:hover { border-color: rgba(96,165,250,.85); background: #213253; color: #fff; }
+.mnshop-seller-settings__image-action input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
 .mnshop-seller-settings__identity strong, .mnshop-seller-settings__identity small { display: block; }
 .mnshop-seller-settings__identity strong { color: #fff; font-size: 15px; }
 .mnshop-seller-settings__identity small { margin-top: 3px; color: rgba(255,255,255,.45); font-size: 12px; }

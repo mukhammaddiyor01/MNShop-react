@@ -31,6 +31,8 @@ export function SettingsPage() {
   const error = useAppSelector(retrieveSellerSettingsError);
   const saved = useAppSelector(retrieveSellerSettingsSaved);
   const [form, setForm] = useState<SellerProfileUpdate>(blankForm);
+  const [profileImage, setProfileImage] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState("");
 
   useEffect(() => {
     let active = true;
@@ -55,14 +57,37 @@ export function SettingsPage() {
     if (saved) dispatch(setSellerSettingsSaved(false));
   };
 
+  const selectProfileImage = (event: ChangeEvent<HTMLInputElement>) => {
+    const image = event.target.files?.[0] || null;
+    if (!image) return;
+    if (!image.type.startsWith("image/")) {
+      dispatch(setSellerSettingsError("Please choose an image file for your store profile."));
+      event.target.value = "";
+      return;
+    }
+    setProfileImage(image);
+    if (saved) dispatch(setSellerSettingsSaved(false));
+  };
+
+  useEffect(() => {
+    if (!profileImage) {
+      setImagePreview("");
+      return;
+    }
+    const previewUrl = URL.createObjectURL(profileImage);
+    setImagePreview(previewUrl);
+    return () => URL.revokeObjectURL(previewUrl);
+  }, [profileImage]);
+
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     dispatch(setSellerSettingsSaving(true));
     dispatch(setSellerSettingsError(""));
     dispatch(setSellerSettingsSaved(false));
     try {
-      const updated = await sellerProfileService.updateProfile(form);
+      const updated = await sellerProfileService.updateProfile(form, profileImage);
       dispatch(setSellerSettingsProfile(updated));
+      setProfileImage(null);
       dispatch(setSellerSettingsSaved(true));
     } catch {
       dispatch(setSellerSettingsError("We could not save your seller details. Please try again."));
@@ -71,5 +96,10 @@ export function SettingsPage() {
     }
   };
 
-  return <main className="mnshop-seller-settings"><header><span>Seller account</span><h2>Settings</h2><p>Keep the store details your buyers see accurate and up to date.</p></header><form onSubmit={submit}><section className="mnshop-seller-settings__identity"><div className="mnshop-seller-settings__monogram" aria-hidden="true">{(form.nick || "M").slice(0, 1).toUpperCase()}</div><div><strong>{form.nick || "MNShop Seller"}</strong><small>Approved seller account</small></div></section>{loading && <p className="mnshop-seller-settings__notice" role="status">Loading your account details…</p>}{error && <p className="mnshop-seller-settings__notice is-error" role="alert">{error}</p>}<section className="mnshop-seller-settings__fields"><label>Store name<input name="nick" value={form.nick} onChange={change} required maxLength={40} /></label><label>Email address<input name="email" type="email" value={form.email} onChange={change} required /></label><label>Phone number<input name="phone" value={form.phone} onChange={change} maxLength={30} /></label><label>Store location<input name="address" value={form.address} onChange={change} maxLength={100} /></label><label className="mnshop-seller-settings__description">About your store<textarea name="description" value={form.description} onChange={change} maxLength={500} rows={5} placeholder="Tell buyers a little about your store." /></label></section><footer>{saved && <span role="status">Changes saved to your seller account.</span>}<button type="submit" disabled={loading || saving}>{saving ? "Saving…" : "Save changes"}</button></footer></form></main>;
+  const storedImage = profile?.image
+    ? `${(process.env.REACT_APP_API_URL || "http://localhost:1213").replace(/\/$/, "")}/${profile.image.replace(/^\//, "")}`
+    : "";
+  const visibleImage = imagePreview || storedImage;
+
+  return <main className="mnshop-seller-settings"><header><span>Seller account</span><h2>Settings</h2><p>Keep the store details your buyers see accurate and up to date.</p></header><form onSubmit={submit}><section className="mnshop-seller-settings__identity"><div className="mnshop-seller-settings__image-wrap">{visibleImage ? <img className="mnshop-seller-settings__image" src={visibleImage} alt={`${form.nick || "Seller"} profile`} /> : <div className="mnshop-seller-settings__monogram" aria-hidden="true">{(form.nick || "M").slice(0, 1).toUpperCase()}</div>}<label className="mnshop-seller-settings__image-action" htmlFor="seller-profile-image">Change photo<input id="seller-profile-image" type="file" accept="image/*" onChange={selectProfileImage} /></label></div><div><strong>{form.nick || "MNShop Seller"}</strong><small>Approved seller account</small></div></section>{loading && <p className="mnshop-seller-settings__notice" role="status">Loading your account details…</p>}{error && <p className="mnshop-seller-settings__notice is-error" role="alert">{error}</p>}<section className="mnshop-seller-settings__fields"><label>Store name<input name="nick" value={form.nick} onChange={change} required maxLength={40} /></label><label>Email address<input name="email" type="email" value={form.email} onChange={change} required /></label><label>Phone number<input name="phone" value={form.phone} onChange={change} maxLength={30} /></label><label>Store location<input name="address" value={form.address} onChange={change} maxLength={100} /></label><label className="mnshop-seller-settings__description">About your store<textarea name="description" value={form.description} onChange={change} maxLength={500} rows={5} placeholder="Tell buyers a little about your store." /></label></section><footer>{saved && <span role="status">Changes saved to your seller account.</span>}<button type="submit" disabled={loading || saving}>{saving ? "Saving…" : "Save changes"}</button></footer></form></main>;
 }
