@@ -107,7 +107,7 @@ export function BuyerProfileSettings() {
   };
 
   const logout = async () => {
-    if (!window.confirm("Log out of mnshop_blueprint?")) return;
+    if (!window.confirm("Log out of MNShop?")) return;
 
     setLoggingOut(true);
 
@@ -126,7 +126,7 @@ export function BuyerProfileSettings() {
 
     if (!file) return;
 
-    if (!['image/jpeg', 'image/png'].includes(file.type)) {
+    if (!["image/jpeg", "image/png"].includes(file.type)) {
       setSaveState("error");
       setFeedback("Choose a JPG or PNG image.");
       event.target.value = "";
@@ -171,9 +171,7 @@ export function BuyerProfileSettings() {
 
       <div className="mnshop-buyer-profile-settings__body">
         <form onSubmit={saveProfile}>
-          <p className="mnshop-buyer-profile-settings__eyebrow">
-            Edit Profile
-          </p>
+          <p className="mnshop-buyer-profile-settings__eyebrow">Edit Profile</p>
 
           <div className="mnshop-buyer-profile-settings__fields">
             <label>
@@ -232,7 +230,10 @@ export function BuyerProfileSettings() {
             My Addresses
             <span>Add, edit, default</span>
           </button>
-          <button onClick={() => history.push("/user-page/payments")} type="button">
+          <button
+            onClick={() => history.push("/user-page/payments")}
+            type="button"
+          >
             <CreditCardOutlinedIcon aria-hidden="true" />
             Payments
             <span>Stripe, Payme, Click</span>

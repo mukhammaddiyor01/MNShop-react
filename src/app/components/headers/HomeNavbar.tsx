@@ -74,9 +74,7 @@ export function HomeNavbar() {
             <CheckroomIcon />
           </span>
           <MnshopLogo size="sm" />
-          <span className="mnshop-home-header__brand-name">
-            mnshop_blueprint
-          </span>
+          <span className="mnshop-home-header__brand-name">MNShop</span>
         </Link>
 
         <nav
@@ -104,8 +102,8 @@ export function HomeNavbar() {
             <input
               value={query}
               onChange={(event) => setQuery(event.target.value)}
-              placeholder="Search mnshop_blueprint"
-              aria-label="Search mnshop_blueprint"
+              placeholder="Search MNShop Products"
+              aria-label="Search MNShop Products"
             />
 
             {suggestions.length > 0 && (
@@ -194,7 +192,7 @@ export function HomeNavbar() {
               onClick={() => setMobileOpen(false)}
             >
               <MnshopLogo size="sm" />
-              <span>mnshop_blueprint</span>
+              <span>MNShop</span>
             </Link>
             <button
               type="button"

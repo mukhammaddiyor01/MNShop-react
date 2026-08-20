@@ -58,11 +58,7 @@ const cartKey = (item: CartItem) =>
   `${item.product.id}:${item.color}:${item.size}`;
 
 export function CheckoutPage() {
-  const {
-    authUser,
-    basket,
-    setOrderBuilder,
-  } = useGlobals();
+  const { authUser, basket, setOrderBuilder } = useGlobals();
   const [step, setStep] = useState<CheckoutStep>(1);
   const [addresses, setAddresses] = useState<CheckoutAddress[]>([]);
   const [selectedAddressId, setSelectedAddressId] = useState("");
@@ -77,10 +73,7 @@ export function CheckoutPage() {
 
   const subtotal = useMemo(
     () =>
-      basket.reduce(
-        (sum, item) => sum + item.product.price * item.quantity,
-        0,
-      ),
+      basket.reduce((sum, item) => sum + item.product.price * item.quantity, 0),
     [basket],
   );
   const deliveryFee = calculateDeliveryFee(subtotal);
@@ -174,7 +167,10 @@ export function CheckoutPage() {
     setIsCreatingOrder(true);
 
     try {
-      const order = await buyerOrderService.createOrder(basket, selectedAddress);
+      const order = await buyerOrderService.createOrder(
+        basket,
+        selectedAddress,
+      );
       setCreatedOrderId(order.id);
       setOrderBuilder(new Date());
       await preparePayment(order.id);
@@ -198,7 +194,9 @@ export function CheckoutPage() {
     try {
       await openTossPaymentWindow(preparedPayment, authUser);
     } catch {
-      setPaymentWindowError("The Toss test payment window could not be opened.");
+      setPaymentWindowError(
+        "The Toss test payment window could not be opened.",
+      );
     }
   };
 
@@ -321,11 +319,11 @@ export function CheckoutPage() {
                 </button>
                 <button disabled type="button">
                   <span>Payme</span>
-                  <small>Coming after backend method is ready</small>
+                  <small>Coming soon for Uzbekistan</small>
                 </button>
                 <button disabled type="button">
                   <span>Click</span>
-                  <small>Coming after backend method is ready</small>
+                  <small>Coming soon for Uzbekistan</small>
                 </button>
               </div>
             )}
@@ -385,7 +383,9 @@ export function CheckoutPage() {
               <button
                 className="mnshop-checkout-primary"
                 disabled={
-                  isCreatingOrder || isPreparingPayment || Boolean(preparedPayment)
+                  isCreatingOrder ||
+                  isPreparingPayment ||
+                  Boolean(preparedPayment)
                 }
                 onClick={() =>
                   step < 4

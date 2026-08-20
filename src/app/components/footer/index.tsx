@@ -26,16 +26,13 @@ export function Footer() {
         <section className="mnshop-footer__brand" aria-label="About MNShop">
           <Link to="/" className="mnshop-footer__brand-link">
             <MnshopLogo size="xl" />
-            <span className="mnshop-footer__brand-name">
-              mnshop_blueprint
-            </span>
+            <span className="mnshop-footer__brand-name">MNShop</span>
           </Link>
           <p className="mnshop-footer__tagline">
-            Koreyadan O&apos;zbekistonga premium streetwear.
+            Our Goal: Customer satisfaction and integrity{" "}
           </p>
           <p className="mnshop-footer__description">
-            T-shirts, hoodies, caps, and cups with a clean K-culture
-            streetwear identity.
+            T-shirts, hoodies, caps, and cups with a design made by you Alone!
           </p>
         </section>
 
@@ -65,13 +62,13 @@ export function Footer() {
 
         <section className="mnshop-footer__contact" aria-label="Contact MNShop">
           <h2 className="mnshop-footer__title">Contact</h2>
-          <p>+82 10 2400 2024</p>
+          <p>+82 10 6649 6777</p>
           <p>Seoul, South Korea</p>
-          <p>hello@mnshop_blueprint.uz</p>
+          <p>mnshop2001@gmail.com</p>
 
           <div className="mnshop-footer__socials">
             <a
-              href="https://instagram.com/mnshop_blueprint.uz"
+              href="https://instagram.com/mnshop.uz"
               target="_blank"
               rel="noreferrer"
               aria-label="Instagram"
@@ -79,7 +76,7 @@ export function Footer() {
               <InstagramIcon />
             </a>
             <a
-              href="https://t.me/mnshop_blueprintkorea"
+              href="https://t.me/mnshopkorea"
               target="_blank"
               rel="noreferrer"
               aria-label="Telegram"
@@ -87,7 +84,7 @@ export function Footer() {
               <SendOutlinedIcon />
             </a>
             <a
-              href="https://www.tiktok.com/@mnshop_blueprint"
+              href="https://www.tiktok.com/@mnshopuz?is_from_webapp=1&sender_device=pc"
               target="_blank"
               rel="noreferrer"
               aria-label="TikTok"
@@ -99,7 +96,7 @@ export function Footer() {
       </div>
 
       <div className="mnshop-footer__bottom">
-        <p>© 2024 mnshop_blueprint. All rights reserved.</p>
+        <p>© 2024 MNShop. All rights reserved.</p>
         <div>
           <Link to="/help">Privacy Policy</Link>
           <Link to="/help">Terms of Service</Link>

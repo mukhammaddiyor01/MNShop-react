@@ -88,9 +88,7 @@ export function OtherNavbar() {
             <CheckroomIcon />
           </span>
           <MnshopLogo size="sm" />
-          <span className="mnshop-other-header__brand-name">
-            mnshop_blueprint
-          </span>
+          <span className="mnshop-other-header__brand-name">MNShop</span>
         </Link>
 
         <nav
@@ -118,8 +116,8 @@ export function OtherNavbar() {
             <input
               value={query}
               onChange={(event) => setQuery(event.target.value)}
-              placeholder="Search mnshop_blueprint"
-              aria-label="Search mnshop_blueprint"
+              placeholder="Search MNShop Products"
+              aria-label="Search MNShop Products"
             />
 
             {suggestions.length > 0 && (
@@ -251,7 +249,7 @@ export function OtherNavbar() {
               onClick={() => setMobileOpen(false)}
             >
               <MnshopLogo size="sm" />
-              <span>mnshop_blueprint</span>
+              <span>MNShop</span>
             </Link>
             <button
               type="button"

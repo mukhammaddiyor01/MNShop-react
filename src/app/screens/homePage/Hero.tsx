@@ -87,9 +87,8 @@ export function Hero() {
             </p>
             <h1 id="mnshop-home-hero-title">MNShop</h1>
             <p className="mnshop-home-hero__description">
-              Koreyada yaratilgan grafik streetwear. O&apos;zbekistonga
-              tanlangan kolleksiyalar, aniq o&apos;lcham va
-              to&apos;g&apos;ridan-to&apos;g&apos;ri yetkazib berish.
+              Feel the Uzbek vibe in our Products! Bring your ideas into
+              Reality! Wear Nationality in your clothes!
             </p>
           </div>
 
@@ -104,7 +103,7 @@ export function Hero() {
                 <ArrowForwardIcon aria-hidden="true" />
               </Link>
               <Link to="/products">
-                <span>Barcha mahsulotlar</span>
+                <span>All Products</span>
                 <span>04 categories</span>
               </Link>
             </div>

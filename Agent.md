@@ -242,33 +242,33 @@ Har seller feature server data ishlatsa `slice.ts` va `selector.ts`ga ega bo‘l
 
 Buyer:
 
-| Route | Screen | Auth |
-|---|---|---|
-| `/` | HomePage | public |
-| `/products` | Products | public |
+| Route                  | Screen        | Auth                       |
+| ---------------------- | ------------- | -------------------------- |
+| `/`                    | HomePage      | public                     |
+| `/products`            | Products      | public                     |
 | `/products/:productId` | ChosenProduct | public; mutation protected |
-| `/cart` | CartPage | buyer |
-| `/checkout` | CheckoutPage | buyer |
-| `/orders` | OrdersPage | buyer |
-| `/likes` | LikesPage | buyer |
-| `/chat` | ChatPage | buyer |
-| `/member-page` | UserPage | buyer |
-| `/help` | HelpPage | public |
-| `/about` | AboutPage | public |
-| `/login` | Login | public |
-| `/signup` | Signup | public |
+| `/cart`                | CartPage      | buyer                      |
+| `/checkout`            | CheckoutPage  | buyer                      |
+| `/orders`              | OrdersPage    | buyer                      |
+| `/likes`               | LikesPage     | buyer                      |
+| `/chat`                | ChatPage      | buyer                      |
+| `/member-page`         | UserPage      | buyer                      |
+| `/help`                | HelpPage      | public                     |
+| `/about`               | AboutPage     | public                     |
+| `/login`               | Login         | public                     |
+| `/signup`              | Signup        | public                     |
 
 Seller:
 
-| Route | Screen |
-|---|---|
-| `/seller/login` | SellerLogin |
-| `/seller/` yoki `/seller/overview` | OverviewPage |
-| `/seller/products` | ProductsPage |
-| `/seller/orders` | OrdersPage |
-| `/seller/messages` | MessagesPage |
-| `/seller/analytics` | AnalyticsPage |
-| `/seller/settings` | SettingsPage |
+| Route                              | Screen        |
+| ---------------------------------- | ------------- |
+| `/seller/login`                    | SellerLogin   |
+| `/seller/` yoki `/seller/overview` | OverviewPage  |
+| `/seller/products`                 | ProductsPage  |
+| `/seller/orders`                   | OrdersPage    |
+| `/seller/messages`                 | MessagesPage  |
+| `/seller/analytics`                | AnalyticsPage |
+| `/seller/settings`                 | SettingsPage  |
 
 Guest protected route/action uchun redirect:
 
@@ -341,8 +341,8 @@ Persistent keylar mavjud loyiha bilan mos bo‘lishi kerak:
 
 - `memberData` — Burak-compatible auth snapshot;
 - `cartData` — Burak-compatible cart snapshot;
-- `mnshop_blueprint-auth` — mavjud auth snapshot bo‘lsa saqlanadi;
-- `mnshop_blueprint-store` — mavjud shop snapshot bo‘lsa saqlanadi;
+- `mnshop-auth` — mavjud auth snapshot bo‘lsa saqlanadi;
+- `mnshop-store` — mavjud shop snapshot bo‘lsa saqlanadi;
 - theme va language mavjud MNShop keylari bilan saqlanadi.
 
 Migration davrida ikki format bo‘lsa, bitta canonical modelga defensive normalize qilinadi; foydalanuvchi cart/auth ma’lumoti jimgina o‘chirib yuborilmaydi.
@@ -363,7 +363,8 @@ Component endpoint string yig‘maydi va Axios’ni bevosita chaqirmaydi. Barcha
 Base config:
 
 ```ts
-export const serverApi = process.env.REACT_APP_API_URL ?? "http://localhost:3000";
+export const serverApi =
+  process.env.REACT_APP_API_URL ?? "http://localhost:3000";
 ```
 
 Credential talab qiladigan request:
@@ -375,23 +376,23 @@ axios.post(url, payload, { withCredentials: true });
 
 MNShop API contract:
 
-| Method | Endpoint | Vazifa |
-|---|---|---|
-| POST | `/api/auth/signin` | role-aware login |
-| POST | `/api/auth/signup` | buyer/seller signup |
-| POST | `/api/auth/logout` | session logout |
-| GET | `/api/products` | catalog list/filter/search |
-| POST | `/api/products/:slug/like` | buyer like/unlike |
-| POST | `/api/products/:slug/view` | unique buyer view |
-| GET | `/api/orders` | buyer orders |
-| POST | `/api/orders` | create order |
-| PATCH | `/api/orders/:id` | buyer pending cancel |
-| GET | `/api/seller/products` | seller-owned products |
-| POST | `/api/seller/products` | create product |
-| PATCH | `/api/seller/products/:id` | edit/publish/draft product |
-| DELETE | `/api/seller/products/:id` | soft-delete/inactive |
-| GET | `/api/seller/orders` | seller-owned order items |
-| PATCH | `/api/seller/orders/:id` | allowed fulfillment transition |
+| Method | Endpoint                   | Vazifa                         |
+| ------ | -------------------------- | ------------------------------ |
+| POST   | `/api/auth/signin`         | role-aware login               |
+| POST   | `/api/auth/signup`         | buyer/seller signup            |
+| POST   | `/api/auth/logout`         | session logout                 |
+| GET    | `/api/products`            | catalog list/filter/search     |
+| POST   | `/api/products/:slug/like` | buyer like/unlike              |
+| POST   | `/api/products/:slug/view` | unique buyer view              |
+| GET    | `/api/orders`              | buyer orders                   |
+| POST   | `/api/orders`              | create order                   |
+| PATCH  | `/api/orders/:id`          | buyer pending cancel           |
+| GET    | `/api/seller/products`     | seller-owned products          |
+| POST   | `/api/seller/products`     | create product                 |
+| PATCH  | `/api/seller/products/:id` | edit/publish/draft product     |
+| DELETE | `/api/seller/products/:id` | soft-delete/inactive           |
+| GET    | `/api/seller/orders`       | seller-owned order items       |
+| PATCH  | `/api/seller/orders/:id`   | allowed fulfillment transition |
 
 Backend boshqa base path ishlatsa service adapter o‘zgaradi; View/UI contracti o‘zgarmaydi.
 
@@ -450,18 +451,18 @@ processing -> cancelled
 
 Burak dizayni ishlatilmaydi. Quyidagi MNShop tokenlari majburiy:
 
-| Token | Qiymat |
-|---|---:|
-| `night` | `#0a0a0a` |
-| `carbon` | `#111111` |
-| `gold` | `#3b82f6` |
-| `blue` | `#3b82f6` |
-| `blue-hover` | `#2563eb` |
-| `ember` | `#f43f5e` |
-| dark text | `#f8fafc` |
+| Token            |    Qiymat |
+| ---------------- | --------: |
+| `night`          | `#0a0a0a` |
+| `carbon`         | `#111111` |
+| `gold`           | `#3b82f6` |
+| `blue`           | `#3b82f6` |
+| `blue-hover`     | `#2563eb` |
+| `ember`          | `#f43f5e` |
+| dark text        | `#f8fafc` |
 | light background | `#f7f6f2` |
-| light secondary | `#eeece6` |
-| light text | `#141414` |
+| light secondary  | `#eeece6` |
+| light text       | `#141414` |
 
 Muhim: `gold` tarixiy token nomi, amalda ko‘k. Sariqqa almashtirilmaydi.
 
