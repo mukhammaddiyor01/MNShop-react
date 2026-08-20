@@ -10,6 +10,7 @@ import { AnalyticsPage } from "./screens/analyticsPage/index";
 import { ProductsPage } from "./screens/productsPage/index";
 import { SettingsPage } from "./screens/settingsPage/index";
 import { SellerAuthPage } from "./screens/authPage";
+import { SellerDashboardLayout } from "./components/sellerDashboard/SellerDashboardLayout";
 
 function App() {
   return (
@@ -23,23 +24,17 @@ function App() {
         <Route exact path="/seller/signup">
           <SellerAuthPage mode="signup" />
         </Route>
-        <Route path="/seller/settings">
-          <SettingsPage />
-        </Route>
-        <Route path="/seller/analytics">
-          <AnalyticsPage />
-        </Route>
-        <Route path="/seller/orders">
-          <OrdersPage />
-        </Route>
-        <Route path="/seller/messages">
-          <MessagesPage />
-        </Route>
-        <Route path="/seller/products">
-          <ProductsPage />
-        </Route>
         <Route path="/seller/">
-          <OverviewPage />
+          <SellerDashboardLayout>
+            <Switch>
+              <Route path="/seller/settings"><SettingsPage /></Route>
+              <Route path="/seller/analytics"><AnalyticsPage /></Route>
+              <Route path="/seller/orders"><OrdersPage /></Route>
+              <Route path="/seller/messages"><MessagesPage /></Route>
+              <Route path="/seller/products"><ProductsPage /></Route>
+              <Route path="/seller/"><OverviewPage /></Route>
+            </Switch>
+          </SellerDashboardLayout>
         </Route>
       </Switch>
     </>
