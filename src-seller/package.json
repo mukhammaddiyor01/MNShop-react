@@ -31,7 +31,7 @@
     "@types/react-dom": "18.2.18"
   },
   "scripts": {
-    "start": "PUBLIC_URL=/seller WDS_SOCKET_PATH=/seller/sockjs-node PORT=1215 react-scripts start",
+    "start": "PUBLIC_URL=/seller PORT=1215 react-scripts start",
     "build": "PUBLIC_URL=/seller react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

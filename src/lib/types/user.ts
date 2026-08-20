@@ -1,6 +1,6 @@
 import { UserStatus, UserType } from "../enums/user.enum";
 
-export type UserRole = "BUYER" | "SELLER";
+export type UserRole = "BUYER" | "SELLER" | "ADMIN";
 
 export type User = {
   id: string;

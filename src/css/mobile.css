@@ -845,6 +845,13 @@
   }
 }
 
+@media screen and (max-width: 1023px) {
+  .mnshop-home-header__admin-link,
+  .mnshop-other-header__admin-link {
+    display: none;
+  }
+}
+
 /* ==================================================
    SOURCE parity — mobile bottom navigation
    ================================================== */

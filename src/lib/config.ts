@@ -3,5 +3,5 @@ export const serverApi = (
 ).replace(/\/$/, "");
 
 export const sellerPortalUrl = (
-  process.env.REACT_APP_SELLER_PORTAL_URL || "http://localhost:1215"
+  process.env.REACT_APP_SELLER_PORTAL_URL || "http://localhost:1213"
 ).replace(/\/$/, "");
