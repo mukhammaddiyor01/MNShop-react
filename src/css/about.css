@@ -217,6 +217,18 @@
     transition: transform 500ms ease;
   }
 
+  .mnshop-about-seller__media > span {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    min-height: 256px;
+    place-items: center;
+    background: linear-gradient(135deg, #1d4ed8, #0b1630);
+    color: #dbeafe;
+    font-size: 56px;
+    font-weight: 900;
+  }
+
   .mnshop-about-seller:hover .mnshop-about-seller__media img {
     transform: scale(1.05);
   }

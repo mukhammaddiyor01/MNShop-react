@@ -3,52 +3,16 @@ import AutoAwesomeOutlinedIcon from "@mui/icons-material/AutoAwesomeOutlined";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import PublicOutlinedIcon from "@mui/icons-material/PublicOutlined";
 import VerifiedUserOutlinedIcon from "@mui/icons-material/VerifiedUserOutlined";
-import { ElementType } from "react";
+import { ElementType, useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import BuyerSellerService, { SellerStudio } from "../../services/BuyerSellerService";
 import "../../../css/about.css";
-
-type SellerStudio = {
-  name: string;
-  city: string;
-  specialty: string;
-  image: string;
-  products: number;
-  rating: string;
-};
 
 type AboutValue = {
   icon: ElementType;
   title: string;
   text: string;
 };
-
-const sellerStudios: SellerStudio[] = [
-  {
-    name: "Seoul Studio",
-    city: "Seoul, South Korea",
-    specialty: "Oversized hoodies and heavyweight T-shirts",
-    image:
-      "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=900&q=80",
-    products: 18,
-    rating: "4.9",
-  },
-  {
-    name: "Busan Objects",
-    city: "Busan, South Korea",
-    specialty: "Caps, cups, and everyday accessories",
-    image:
-      "https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=900&q=80",
-    products: 18,
-    rating: "4.8",
-  },
-];
-
-const statistics = [
-  ["36+", "Selected products"],
-  ["2", "Korean sellers"],
-  ["4.8", "Average rating"],
-  ["UZ · KR", "One community"],
-];
 
 const aboutValues: AboutValue[] = [
   {
@@ -69,6 +33,37 @@ const aboutValues: AboutValue[] = [
 ];
 
 export function AboutPage() {
+  const [sellerStudios, setSellerStudios] = useState<SellerStudio[]>([]);
+  const [studiosLoading, setStudiosLoading] = useState(true);
+  const [studiosError, setStudiosError] = useState("");
+
+  useEffect(() => {
+    let active = true;
+    const sellerService = new BuyerSellerService();
+
+    sellerService.getSellerStudios()
+      .then((studios) => { if (active) setSellerStudios(studios); })
+      .catch(() => { if (active) setStudiosError("Seller studios are unavailable right now."); })
+      .finally(() => { if (active) setStudiosLoading(false); });
+
+    return () => { active = false; };
+  }, []);
+
+  const statistics = useMemo(() => {
+    const totalProducts = sellerStudios.reduce((total, seller) => total + seller.products, 0);
+    const ratedStudios = sellerStudios.filter((seller) => seller.rating > 0);
+    const averageRating = ratedStudios.length
+      ? (ratedStudios.reduce((total, seller) => total + seller.rating, 0) / ratedStudios.length).toFixed(1)
+      : "—";
+
+    return [
+      [studiosLoading ? "—" : String(totalProducts), "Selected products"],
+      [studiosLoading ? "—" : String(sellerStudios.length), "Korean sellers"],
+      [studiosLoading ? "—" : averageRating, "Average rating"],
+      ["UZ · KR", "One community"],
+    ];
+  }, [sellerStudios, studiosLoading]);
+
   return (
     <main className="mnshop-about-page">
       <section className="mnshop-about-hero">
@@ -133,10 +128,12 @@ export function AboutPage() {
         </div>
 
         <div className="mnshop-about-sellers__grid">
-          {sellerStudios.map((seller) => (
-            <article className="mnshop-about-seller" key={seller.name}>
+          {studiosLoading && <p>Loading seller studios…</p>}
+          {studiosError && <p>{studiosError}</p>}
+          {!studiosLoading && !studiosError && sellerStudios.map((seller) => (
+            <article className="mnshop-about-seller" key={seller.id}>
               <div className="mnshop-about-seller__media">
-                <img src={seller.image} alt={seller.name} loading="lazy" />
+                {seller.image ? <img src={seller.image} alt={seller.name} loading="lazy" /> : <span>{seller.name.slice(0, 1).toUpperCase()}</span>}
               </div>
               <div className="mnshop-about-seller__content">
                 <div>
@@ -154,7 +151,7 @@ export function AboutPage() {
                     <strong>{seller.products}</strong> <small>products</small>
                   </span>
                   <span>
-                    <strong>{seller.rating}</strong> <small>rating</small>
+                    <strong>{seller.rating > 0 ? seller.rating.toFixed(1) : "—"}</strong> <small>rating</small>
                   </span>
                 </div>
               </div>
