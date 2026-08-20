@@ -140,57 +140,42 @@ export function OtherNavbar() {
 
         <div className="mnshop-other-header__actions">
           {authUser && (
-            <button
-              type="button"
-              className="mnshop-other-header__notification"
-              aria-label="Notifications"
-              onClick={() => history.push("/notifications")}
-            >
-              <NotificationsNoneIcon />
-              <span aria-hidden="true" />
-            </button>
-          )}
-
-          <Link
-            to={authUser ? "/likes" : "/login?next=%2Flikes"}
-            className="mnshop-other-header__icon-action"
-            aria-label="Liked items"
-          >
-            <FavoriteBorderIcon />
-            {likedIds.length > 0 && (
-              <span className="mnshop-other-header__action-count">
-                {likedIds.length}
-              </span>
-            )}
-          </Link>
-
-          {authUser ? (
-            <button
-              type="button"
-              className="mnshop-other-header__icon-action"
-              aria-label="Cart"
-              onClick={() => setCartOpen(true)}
-            >
-              <ShoppingBagOutlinedIcon />
-              {basket.length > 0 && (
-                <span className="mnshop-other-header__action-count">
-                  {basket.length}
-                </span>
-              )}
-            </button>
-          ) : (
-            <Link
-              to="/login?next=%2Fcart"
-              className="mnshop-other-header__icon-action"
-              aria-label="Cart"
-            >
-              <ShoppingBagOutlinedIcon />
-              {basket.length > 0 && (
-                <span className="mnshop-other-header__action-count">
-                  {basket.length}
-                </span>
-              )}
-            </Link>
+            <>
+              <button
+                type="button"
+                className="mnshop-other-header__notification"
+                aria-label="Notifications"
+                onClick={() => history.push("/notifications")}
+              >
+                <NotificationsNoneIcon />
+                <span aria-hidden="true" />
+              </button>
+              <Link
+                to="/likes"
+                className="mnshop-other-header__icon-action"
+                aria-label="Liked items"
+              >
+                <FavoriteBorderIcon />
+                {likedIds.length > 0 && (
+                  <span className="mnshop-other-header__action-count">
+                    {likedIds.length}
+                  </span>
+                )}
+              </Link>
+              <button
+                type="button"
+                className="mnshop-other-header__icon-action"
+                aria-label="Cart"
+                onClick={() => setCartOpen(true)}
+              >
+                <ShoppingBagOutlinedIcon />
+                {basket.length > 0 && (
+                  <span className="mnshop-other-header__action-count">
+                    {basket.length}
+                  </span>
+                )}
+              </button>
+            </>
           )}
 
           {authUser ? (

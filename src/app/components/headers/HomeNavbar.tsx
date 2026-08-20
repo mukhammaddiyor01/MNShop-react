@@ -125,45 +125,34 @@ export function HomeNavbar() {
         </div>
 
         <div className="mnshop-home-header__actions">
-          <Link
-            to={authUser ? "/likes" : "/login?next=%2Flikes"}
-            className="mnshop-home-header__icon-action"
-            aria-label="Liked items"
-          >
-            <FavoriteBorderIcon />
-            {likedIds.length > 0 && (
-              <span className="mnshop-home-header__action-count">
-                {likedIds.length}
-              </span>
-            )}
-          </Link>
-          {authUser ? (
-            <button
-              type="button"
-              className="mnshop-home-header__icon-action"
-              aria-label="Cart"
-              onClick={() => setCartOpen(true)}
-            >
-              <ShoppingBagOutlinedIcon />
-              {basket.length > 0 && (
-                <span className="mnshop-home-header__action-count">
-                  {basket.length}
-                </span>
-              )}
-            </button>
-          ) : (
-            <Link
-              to="/login?next=%2Fcart"
-              className="mnshop-home-header__icon-action"
-              aria-label="Cart"
-            >
-              <ShoppingBagOutlinedIcon />
-              {basket.length > 0 && (
-                <span className="mnshop-home-header__action-count">
-                  {basket.length}
-                </span>
-              )}
-            </Link>
+          {authUser && (
+            <>
+              <Link
+                to="/likes"
+                className="mnshop-home-header__icon-action"
+                aria-label="Liked items"
+              >
+                <FavoriteBorderIcon />
+                {likedIds.length > 0 && (
+                  <span className="mnshop-home-header__action-count">
+                    {likedIds.length}
+                  </span>
+                )}
+              </Link>
+              <button
+                type="button"
+                className="mnshop-home-header__icon-action"
+                aria-label="Cart"
+                onClick={() => setCartOpen(true)}
+              >
+                <ShoppingBagOutlinedIcon />
+                {basket.length > 0 && (
+                  <span className="mnshop-home-header__action-count">
+                    {basket.length}
+                  </span>
+                )}
+              </button>
+            </>
           )}
           {authUser ? (
             <Link
