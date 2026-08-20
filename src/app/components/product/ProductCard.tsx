@@ -14,8 +14,9 @@ type ProductCardProps = {
 
 export function ProductCard({ product, badge }: ProductCardProps) {
   const history = useHistory();
-  const { authUser, likedIds, toggleLike, onAdd } = useGlobals();
+  const { authUser, likedIds, getProductLikeCount, toggleLike, onAdd } = useGlobals();
   const liked = likedIds.includes(product.id);
+  const likeCount = getProductLikeCount(product.id, product.likes);
 
   const requireBuyer = (action: () => void) => {
     if (!authUser) {
@@ -119,7 +120,7 @@ export function ProductCard({ product, badge }: ProductCardProps) {
             </span>
             <span>
               <FavoriteBorderIcon aria-hidden="true" />
-              {product.likes.toLocaleString()}
+              {likeCount.toLocaleString()}
             </span>
           </div>
         </div>

@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { createContext, useEffect, useMemo, useState } from "react";
 import { User } from "../../lib/types/user";
 import BuyerAuthService from "../services/BuyerAuthService";
+import BuyerProductService from "../services/BuyerProductService";
 
 export type Product = { id: string; name: string; category: string; description: string; price: number; comparePrice?: number; image: string; hoverImage: string; colors: string[]; sizes: string[]; stock: number; sold: number; sale?: boolean; views: number; likes: number; rating: number };
 export type CartItem = { product: Product; color: string; size: string; quantity: number };
@@ -19,7 +20,8 @@ type Globals = {
   cartOpen: boolean;
   setCartOpen: React.Dispatch<React.SetStateAction<boolean>>;
   likedIds: string[];
-  toggleLike: (id: string) => void;
+  getProductLikeCount: (id: string, fallback: number) => number;
+  toggleLike: (id: string) => Promise<void>;
 };
 
 export const GlobalContext = createContext<Globals | null>(null);
@@ -27,6 +29,7 @@ const keyOf = (item: CartItem) => `${item.product.id}:${item.color}:${item.size}
 const authSessionExpiryKey = "mnshopAuthExpiresAt";
 const authSessionDurationMs = 3 * 60 * 60 * 1000;
 const buyerAuthService = new BuyerAuthService();
+const buyerProductService = new BuyerProductService();
 
 function read<T>(key: string, fallback: T): T {
   try { const value = localStorage.getItem(key); return value ? JSON.parse(value) : fallback; }
@@ -111,6 +114,7 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
   const [likesOwnerId, setLikesOwnerId] = useState<string | null>(
     initialAuthUser?.id || null,
   );
+  const [productLikeCounts, setProductLikeCounts] = useState<Record<string, number>>({});
   const [orderBuilder, setOrderBuilder] = useState(new Date());
   const [cartOpen, setCartOpen] = useState(false);
 
@@ -238,16 +242,32 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
       setCartOwnerId(null);
       setLikedIds([]);
       setLikesOwnerId(null);
+      setProductLikeCounts({});
       setCartOpen(false);
       localStorage.removeItem("cartData");
       return;
     }
 
     const nextOwnerId = authUser?.id || null;
+    let active = true;
     setBasket(readBasket(authUser));
     setCartOwnerId(nextOwnerId);
-    setLikedIds(readLikedIds(authUser));
+    const storedLikedIds = readLikedIds(authUser);
+    setLikedIds(storedLikedIds);
     setLikesOwnerId(nextOwnerId);
+
+    buyerProductService
+      .getMyLikedProductIds()
+      .then((nextLikedIds) => {
+        if (active) setLikedIds(nextLikedIds);
+      })
+      .catch(() => {
+        // Keep the buyer-scoped local cache available when the network is unavailable.
+      });
+
+    return () => {
+      active = false;
+    };
   }, [authReady, authUser]);
   useEffect(() => {
     const key = cartStorageKey(authUser);
@@ -273,6 +293,7 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
 
   const value = useMemo<Globals>(() => ({
     authUser, setAuthUser, basket, orderBuilder, setOrderBuilder, cartOpen, setCartOpen, likedIds,
+    getProductLikeCount(id, fallback) { return productLikeCounts[id] ?? fallback; },
     onAdd(product, color = product.colors[0] || "Default", size = product.sizes[0] || "One Size") {
       if (!authUser) return;
       setBasket((items) => {
@@ -284,8 +305,16 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
     onRemove(key) { if (authUser) setBasket((items) => items.flatMap((item) => keyOf(item) !== key ? [item] : item.quantity > 1 ? [{ ...item, quantity: item.quantity - 1 }] : [])); },
     onDelete(key) { if (authUser) setBasket((items) => items.filter((item) => keyOf(item) !== key)); },
     onDeleteAll() { if (authUser) setBasket([]); },
-    toggleLike(id) { if (authUser) setLikedIds((ids) => ids.includes(id) ? ids.filter((item) => item !== id) : [...ids, id]); },
-  }), [authUser, basket, cartOpen, likedIds, orderBuilder]);
+    async toggleLike(id) {
+      if (!authUser) return;
+
+      const result = await buyerProductService.toggleLike(id);
+      setLikedIds((ids) => result.isLiked
+        ? [...new Set([...ids, id])]
+        : ids.filter((item) => item !== id));
+      setProductLikeCounts((counts) => ({ ...counts, [id]: result.productLikes }));
+    },
+  }), [authUser, basket, cartOpen, likedIds, orderBuilder, productLikeCounts]);
 
   return (
     <GlobalContext.Provider value={value}>

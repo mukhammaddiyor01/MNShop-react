@@ -36,7 +36,7 @@ const tabs = ["Description", "Reviews", "Shipping Info"];
 
 function ProductDetail({ product }: { product: Product }) {
   const history = useHistory();
-  const { authUser, likedIds, toggleLike, onAdd } = useGlobals();
+  const { authUser, likedIds, getProductLikeCount, toggleLike, onAdd } = useGlobals();
   const images = Array.from(new Set([product.image, product.hoverImage]));
   const [image, setImage] = useState(images[0]);
   const [color, setColor] = useState(product.colors[0] || "Default");
@@ -44,6 +44,7 @@ function ProductDetail({ product }: { product: Product }) {
   const [quantity, setQuantity] = useState(1);
   const [tab, setTab] = useState("Description");
   const liked = likedIds.includes(product.id);
+  const likeCount = getProductLikeCount(product.id, product.likes);
   const categoryQuery = categoryQueries[product.category] || "hoodies";
 
   const guardBuyer = (callback: () => void) => {
@@ -155,7 +156,7 @@ function ProductDetail({ product }: { product: Product }) {
             </span>
             <span>
               <FavoriteBorderIcon aria-hidden="true" />
-              {(product.likes + (liked ? 1 : 0)).toLocaleString()} likes
+              {likeCount.toLocaleString()} likes
             </span>
             <span>{product.sold} sold</span>
           </div>
@@ -336,6 +337,7 @@ function ProductDetail({ product }: { product: Product }) {
 
 export function ChosenProduct() {
   const { productId } = useParams<ChosenProductParams>();
+  const { authUser } = useGlobals();
   const [product, setProduct] = useState<Product | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -346,7 +348,21 @@ export function ChosenProduct() {
     productService
       .getProducts()
       .then((products) => {
-        if (active) setProduct(products.find((item) => item.id === productId) || null);
+        const selectedProduct = products.find((item) => item.id === productId) || null;
+        if (!active) return;
+
+        setProduct(selectedProduct);
+
+        if (selectedProduct && authUser?.role === "BUYER") {
+          productService
+            .registerProductView(productId)
+            .then((viewedProduct) => {
+              if (active) setProduct(viewedProduct);
+            })
+            .catch(() => {
+              // Browsing remains available if the metric request cannot be recorded.
+            });
+        }
       })
       .catch(() => {
         if (active) setProduct(null);
@@ -358,7 +374,7 @@ export function ChosenProduct() {
     return () => {
       active = false;
     };
-  }, [productId]);
+  }, [authUser?.role, productId]);
 
   if (isLoading) {
     return <main className="mnshop-product-not-found">Loading product…</main>;
