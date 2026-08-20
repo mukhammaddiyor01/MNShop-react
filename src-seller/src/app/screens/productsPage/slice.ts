@@ -20,6 +20,11 @@ const sellerProductsPageSlice = createSlice({
     setSellerProducts(state, action: PayloadAction<SellerProduct[]>) {
       state.products = action.payload;
     },
+    replaceSellerProduct(state, action: PayloadAction<SellerProduct>) {
+      state.products = state.products.map((product) =>
+        product.id === action.payload.id ? action.payload : product,
+      );
+    },
     setSellerProductsLoading(state, action: PayloadAction<boolean>) {
       state.loading = action.payload;
     },
@@ -31,6 +36,7 @@ const sellerProductsPageSlice = createSlice({
 
 export const {
   setSellerProducts,
+  replaceSellerProduct,
   setSellerProductsLoading,
   setSellerProductsError,
 } = sellerProductsPageSlice.actions;

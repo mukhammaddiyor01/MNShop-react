@@ -45,6 +45,15 @@ type SellerProductsResponse = {
   data?: SellerProductDto[];
 };
 
+export type SellerProductUpdate = {
+  productStatus?: string;
+  productName?: string;
+  productDesc?: string;
+  productPrice?: number;
+  productDiscountPrice?: number;
+  productLeftCount?: number;
+};
+
 const serverApi = (
   process.env.REACT_APP_API_URL || "http://localhost:1213"
 ).replace(/\/$/, "");
@@ -84,6 +93,19 @@ class SellerProductService {
     );
 
     return (result.data.data || []).map(normalizeProduct);
+  }
+
+  public async updateProduct(
+    productId: string,
+    input: SellerProductUpdate,
+  ): Promise<SellerProduct> {
+    const result = await axios.post<{ data: SellerProductDto }>(
+      `${this.path}/seller/product/${productId}`,
+      input,
+      { withCredentials: true },
+    );
+
+    return normalizeProduct(result.data.data);
   }
 }
 

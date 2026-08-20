@@ -53,6 +53,31 @@
     font-size: 14px;
   }
 
+  .mnshop-seller-products-page__search {
+    display: grid;
+    gap: 7px;
+    margin-top: 18px;
+    color: rgba(255, 255, 255, .45);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  .mnshop-seller-products-page__search input {
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 999px;
+    outline: none;
+    background: rgba(255, 255, 255, .05);
+    padding: 11px 14px;
+    color: #fff;
+    font: inherit;
+    font-size: 12px;
+    letter-spacing: normal;
+    text-transform: none;
+  }
+
   .mnshop-seller-products-page__table-wrap {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
@@ -122,6 +147,18 @@
     background: rgba(59, 130, 246, 0.12);
     padding: 5px 9px;
     color: #3b82f6;
+    font-size: 11px;
+    font-weight: 900;
+  }
+
+  .mnshop-seller-products-page__table-wrap td:last-child button {
+    border: 1px solid rgba(216, 181, 106, .48);
+    border-radius: 999px;
+    background: transparent;
+    padding: 7px 10px;
+    color: #d8b56a;
+    cursor: pointer;
+    font: inherit;
     font-size: 11px;
     font-weight: 900;
   }
