@@ -215,7 +215,11 @@
   .mnshop-seller-overview__stats strong { font-size: 20px; }
   .mnshop-seller-overview__activity { align-items: flex-start; flex-direction: column; }
   .mnshop-seller-settings__fields { grid-template-columns: 1fr; padding: 16px; }
-  .mnshop-seller-settings__identity { padding: 16px; }
+  .mnshop-seller-settings__identity { align-items: flex-start; gap: 14px; padding: 16px; }
+  .mnshop-seller-settings__image-wrap, .mnshop-seller-settings__monogram, .mnshop-seller-settings__image { width: 72px; height: 72px; }
+  .mnshop-seller-settings__image-wrap { flex-basis: 72px; }
+  .mnshop-seller-settings__monogram { font-size: 23px; }
+  .mnshop-seller-settings__identity-copy > p { margin: 6px 0 11px; font-size: 11px; }
   .mnshop-seller-settings form > footer { align-items: flex-start; flex-direction: column; padding: 14px 16px; }
   .mnshop-seller-settings form button { width: 100%; }
   .mnshop-seller-messages h2, .mnshop-seller-settings h2, .mnshop-seller-analytics h2 { font-size: 28px; }

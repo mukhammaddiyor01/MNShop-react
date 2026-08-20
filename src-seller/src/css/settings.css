@@ -3,14 +3,15 @@
 .mnshop-seller-settings h2 { margin: 8px 0 0; color: #fff; font-family: "Poppins", "Inter", sans-serif; font-size: 32px; line-height: 1; }
 .mnshop-seller-settings > header > p { margin: 11px 0 22px; color: rgba(255,255,255,.46); font-size: 14px; }
 .mnshop-seller-settings form { border: 1px solid rgba(255,255,255,.1); border-radius: 8px; background: rgba(20,20,20,.72); box-shadow: 0 16px 44px rgba(0,0,0,.22); overflow: hidden; }
-.mnshop-seller-settings__identity { display: flex; align-items: center; gap: 13px; border-bottom: 1px solid rgba(255,255,255,.1); padding: 20px; }
-.mnshop-seller-settings__image-wrap { position: relative; width: 52px; height: 52px; flex: 0 0 52px; }
-.mnshop-seller-settings__monogram { display: grid; width: 44px; height: 44px; place-items: center; border-radius: 50%; background: #3b82f6; color: #071425; font-size: 17px; font-weight: 950; }
-.mnshop-seller-settings__image-wrap .mnshop-seller-settings__monogram, .mnshop-seller-settings__image { width: 52px; height: 52px; }
-.mnshop-seller-settings__image { display: block; border: 1px solid rgba(255,255,255,.16); border-radius: 50%; object-fit: cover; background: rgba(255,255,255,.05); }
-.mnshop-seller-settings__image-action { position: absolute; right: -9px; bottom: -4px; display: grid; min-height: 23px; place-items: center; border: 1px solid rgba(255,255,255,.2); border-radius: 999px; background: #172034; padding: 0 7px; color: #bfdbfe; cursor: pointer; font-size: 9px; font-weight: 900; line-height: 1; white-space: nowrap; }
-.mnshop-seller-settings__image-action:hover { border-color: rgba(96,165,250,.85); background: #213253; color: #fff; }
-.mnshop-seller-settings__image-action input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.mnshop-seller-settings__identity { display: flex; align-items: center; gap: 20px; border-bottom: 1px solid rgba(255,255,255,.1); padding: 24px 20px; }
+.mnshop-seller-settings__image-wrap { width: 88px; height: 88px; flex: 0 0 88px; }
+.mnshop-seller-settings__monogram { display: grid; width: 88px; height: 88px; place-items: center; overflow: hidden; border: 1px solid rgba(147,197,253,.42); border-radius: 50%; background: #3b82f6; box-shadow: inset 0 0 0 5px rgba(7,20,37,.2); color: #071425; font-size: 28px; font-weight: 950; }
+.mnshop-seller-settings__image { display: block; width: 88px; height: 88px; border: 1px solid rgba(255,255,255,.16); border-radius: 50%; object-fit: cover; background: rgba(255,255,255,.05); box-shadow: inset 0 0 0 5px rgba(7,20,37,.2); }
+.mnshop-seller-settings__identity-copy { min-width: 0; }
+.mnshop-seller-settings__identity-copy > p { max-width: 480px; margin: 7px 0 13px; color: rgba(255,255,255,.42); font-size: 12px; line-height: 1.55; }
+.mnshop-seller-settings__image-action { display: inline-flex !important; min-height: 34px; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,.2); border-radius: 4px; background: rgba(255,255,255,.025); padding: 0 13px; color: #dbeafe !important; cursor: pointer; font-size: 11px !important; font-weight: 900 !important; line-height: 1; transition: border-color .16s ease, background .16s ease, color .16s ease; }
+.mnshop-seller-settings__image-action:hover { border-color: #60a5fa; background: rgba(59,130,246,.12); color: #fff !important; }
+.mnshop-seller-settings__image-action input { position: absolute; width: 1px !important; height: 1px; opacity: 0; pointer-events: none; }
 .mnshop-seller-settings__identity strong, .mnshop-seller-settings__identity small { display: block; }
 .mnshop-seller-settings__identity strong { color: #fff; font-size: 15px; }
 .mnshop-seller-settings__identity small { margin-top: 3px; color: rgba(255,255,255,.45); font-size: 12px; }
