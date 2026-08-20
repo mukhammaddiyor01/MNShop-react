@@ -71,6 +71,30 @@ class BuyerAuthService {
     localStorage.setItem("userData", JSON.stringify(buyer));
     return buyer;
   }
+
+  public async getCurrentBuyer(): Promise<User> {
+    const result = await axios.get<BuyerAuthResponse>(
+      `${this.path}/auth/me`,
+      { withCredentials: true },
+    );
+    const buyer = normalizeBuyer(result.data);
+    localStorage.setItem("userData", JSON.stringify(buyer));
+    return buyer;
+  }
+
+  public async logout(): Promise<void> {
+    try {
+      await axios.post(
+        `${this.path}/logout`,
+        {},
+        { withCredentials: true },
+      );
+    } finally {
+      localStorage.removeItem("userData");
+      localStorage.removeItem("mnshopAuthExpiresAt");
+      localStorage.removeItem(["mem", "berData"].join(""));
+    }
+  }
 }
 
 export default BuyerAuthService;

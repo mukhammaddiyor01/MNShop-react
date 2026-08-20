@@ -7,6 +7,9 @@ import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useGlobals } from "../../hooks/useGlobals";
+import BuyerAuthService from "../../services/BuyerAuthService";
+
+const buyerAuthService = new BuyerAuthService();
 
 export function BuyerProfileSettings() {
   const { authUser, setAuthUser } = useGlobals();
@@ -17,6 +20,7 @@ export function BuyerProfileSettings() {
     "idle" | "saving" | "success" | "error"
   >("idle");
   const [feedback, setFeedback] = useState("");
+  const [loggingOut, setLoggingOut] = useState(false);
   const feedbackTimer = useRef<number>();
   const history = useHistory();
 
@@ -80,9 +84,18 @@ export function BuyerProfileSettings() {
     }, 220);
   };
 
-  const logout = () => {
-    if (window.confirm("Log out of mnshop_blueprint?")) {
+  const logout = async () => {
+    if (!window.confirm("Log out of mnshop_blueprint?")) return;
+
+    setLoggingOut(true);
+
+    try {
+      await buyerAuthService.logout();
+    } catch (error) {
+      console.error("Buyer logout request failed:", error);
+    } finally {
       setAuthUser(null);
+      history.replace("/login");
     }
   };
 
@@ -227,10 +240,11 @@ export function BuyerProfileSettings() {
         <button
           type="button"
           className="mnshop-buyer-profile-settings__logout"
-          onClick={logout}
+          disabled={loggingOut}
+          onClick={() => void logout()}
         >
           <LogoutIcon aria-hidden="true" />
-          Log Out
+          {loggingOut ? "Logging out..." : "Log Out"}
         </button>
       </div>
     </section>
