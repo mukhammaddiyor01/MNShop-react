@@ -22,6 +22,8 @@ type Globals = {
 
 export const GlobalContext = createContext<Globals | null>(null);
 const keyOf = (item: CartItem) => `${item.product.id}:${item.color}:${item.size}`;
+const authSessionExpiryKey = "mnshopAuthExpiresAt";
+const authSessionDurationMs = 3 * 60 * 60 * 1000;
 
 function read<T>(key: string, fallback: T): T {
   try { const value = localStorage.getItem(key); return value ? JSON.parse(value) : fallback; }
@@ -31,10 +33,23 @@ function read<T>(key: string, fallback: T): T {
 const legacyUserStorageKey = ["mem", "berData"].join("");
 
 function readAuthUser(): User | null {
-  return read<User | null>(
+  const user = read<User | null>(
     "userData",
     read<User | null>(legacyUserStorageKey, null),
   );
+
+  if (!user) return null;
+
+  const expiresAt = Number(localStorage.getItem(authSessionExpiryKey));
+
+  if (!Number.isFinite(expiresAt) || expiresAt <= Date.now()) {
+    localStorage.removeItem("userData");
+    localStorage.removeItem(legacyUserStorageKey);
+    localStorage.removeItem(authSessionExpiryKey);
+    return null;
+  }
+
+  return user;
 }
 
 function likesStorageKey(user: User | null) {
@@ -62,9 +77,66 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
   const [cartOpen, setCartOpen] = useState(false);
 
   useEffect(() => {
-    if (authUser) localStorage.setItem("userData", JSON.stringify(authUser));
-    else localStorage.removeItem("userData");
+    if (!authUser) {
+      localStorage.removeItem("userData");
+      localStorage.removeItem(authSessionExpiryKey);
+      localStorage.removeItem(legacyUserStorageKey);
+      return;
+    }
+
+    localStorage.setItem("userData", JSON.stringify(authUser));
     localStorage.removeItem(legacyUserStorageKey);
+
+    const storedExpiry = Number(localStorage.getItem(authSessionExpiryKey));
+    const expiresAt =
+      Number.isFinite(storedExpiry) && storedExpiry > Date.now()
+        ? storedExpiry
+        : Date.now() + authSessionDurationMs;
+
+    localStorage.setItem(authSessionExpiryKey, String(expiresAt));
+
+    const expireSession = () => {
+      localStorage.removeItem("userData");
+      localStorage.removeItem(legacyUserStorageKey);
+      localStorage.removeItem(authSessionExpiryKey);
+      setCartOpen(false);
+      setAuthUser(null);
+
+      const currentPath = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+
+      if (
+        window.location.pathname !== "/login" &&
+        window.location.pathname !== "/signup"
+      ) {
+        window.location.replace(
+          `/login?next=${encodeURIComponent(currentPath)}`,
+        );
+      }
+    };
+
+    const checkSession = () => {
+      const currentExpiry = Number(
+        localStorage.getItem(authSessionExpiryKey),
+      );
+
+      if (!Number.isFinite(currentExpiry) || currentExpiry <= Date.now()) {
+        expireSession();
+      }
+    };
+
+    const timeoutId = window.setTimeout(
+      expireSession,
+      Math.max(0, expiresAt - Date.now()),
+    );
+
+    window.addEventListener("focus", checkSession);
+    document.addEventListener("visibilitychange", checkSession);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+      window.removeEventListener("focus", checkSession);
+      document.removeEventListener("visibilitychange", checkSession);
+    };
   }, [authUser]);
   useEffect(() => {
     if (basket.length) localStorage.setItem("cartData", JSON.stringify(basket));

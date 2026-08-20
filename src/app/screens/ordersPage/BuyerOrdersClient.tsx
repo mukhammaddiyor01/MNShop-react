@@ -2,11 +2,24 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined";
 import LocalShippingOutlinedIcon from "@mui/icons-material/LocalShippingOutlined";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Redirect } from "react-router-dom";
-import { CartItem } from "../../context/ContextProvider";
 import { money } from "../../data/products";
 import { useGlobals } from "../../hooks/useGlobals";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import BuyerHistoryService, {
+  BuyerOrderHistory,
+} from "../../services/BuyerHistoryService";
+import {
+  retrieveBuyerOrders,
+  retrieveBuyerOrdersError,
+  retrieveBuyerOrdersLoading,
+} from "./selector";
+import {
+  setBuyerOrders,
+  setBuyerOrdersError,
+  setBuyerOrdersLoading,
+} from "./slice";
 
 type BuyerOrderStatus =
   | "pending"
@@ -14,15 +27,6 @@ type BuyerOrderStatus =
   | "shipped"
   | "delivered"
   | "cancelled";
-
-type BuyerOrder = {
-  id: string;
-  date: string;
-  total: number;
-  status: BuyerOrderStatus;
-  items: CartItem[];
-  trackingNumber?: string;
-};
 
 const orderSteps = [
   { status: "pending", label: "Order Placed", icon: AccessTimeIcon },
@@ -34,41 +38,84 @@ const orderSteps = [
 const orderStatusRank = (status: BuyerOrderStatus) =>
   orderSteps.findIndex((step) => step.status === status);
 
-const readOrders = (): BuyerOrder[] => {
-  try {
-    const stored = JSON.parse(localStorage.getItem("mnshopOrders") || "[]");
-    return Array.isArray(stored) ? stored : [];
-  } catch {
-    return [];
-  }
-};
-
 const displayOrderId = (id: string) => {
   const normalized = id.replace(/^MN-/i, "");
   return `MN-${normalized.slice(-6).toUpperCase()}`;
 };
 
+const normalizeOrderStatus = (order: BuyerOrderHistory): BuyerOrderStatus => {
+  const orderStatus = (order.orderStatus || "pending").toLowerCase();
+  const status = (
+    orderStatus === "cancelled"
+      ? orderStatus
+      : order.orderDeliveryStatus || orderStatus
+  ).toLowerCase();
+
+  if (
+    status === "processing" ||
+    status === "shipped" ||
+    status === "delivered" ||
+    status === "cancelled"
+  ) {
+    return status;
+  }
+
+  return "pending";
+};
+
+const orderItemSummary = (order: BuyerOrderHistory) => {
+  const productsById = new Map(
+    (order.productData || []).map((product) => [product._id, product]),
+  );
+
+  return (order.orderItems || [])
+    .map((item) => {
+      const product = productsById.get(String(item.productId));
+      return `${product?.productName || "Product"} × ${item.itemQuantity}`;
+    })
+    .join(", ");
+};
+
 export function BuyerOrdersClient() {
-  const { authUser } = useGlobals();
-  const [orders, setOrders] = useState<BuyerOrder[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { authUser, orderBuilder } = useGlobals();
+  const dispatch = useAppDispatch();
+  const orders = useAppSelector(retrieveBuyerOrders);
+  const loading = useAppSelector(retrieveBuyerOrdersLoading);
+  const error = useAppSelector(retrieveBuyerOrdersError);
 
   useEffect(() => {
-    setOrders(readOrders());
-    setLoading(false);
-  }, []);
+    if (!authUser || authUser.role !== "BUYER") return;
 
-  const cancelOrder = (orderId: string) => {
-    setOrders((current) => {
-      const updated = current.map((order) =>
-        order.id === orderId && order.status === "pending"
-          ? { ...order, status: "cancelled" as const }
-          : order,
-      );
-      localStorage.setItem("mnshopOrders", JSON.stringify(updated));
-      return updated;
-    });
-  };
+    const buyerHistoryService = new BuyerHistoryService();
+    let active = true;
+
+    dispatch(setBuyerOrdersLoading(true));
+    dispatch(setBuyerOrdersError(""));
+
+    buyerHistoryService
+      .getOrders()
+      .then((result) => {
+        if (active) dispatch(setBuyerOrders(result));
+      })
+      .catch((requestError: unknown) => {
+        if (!active) return;
+        dispatch(setBuyerOrders([]));
+        dispatch(
+          setBuyerOrdersError(
+            requestError instanceof Error
+              ? requestError.message
+              : "Could not load orders",
+          ),
+        );
+      })
+      .finally(() => {
+        if (active) dispatch(setBuyerOrdersLoading(false));
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [authUser, dispatch, orderBuilder]);
 
   if (!authUser) {
     return <Redirect to="/login?next=%2Forders" />;
@@ -86,7 +133,13 @@ export function BuyerOrdersClient() {
         <p className="mnshop-buyer-orders__loading">Loading orders…</p>
       )}
 
-      {!loading && orders.length === 0 && (
+      {!loading && error && (
+        <div className="mnshop-buyer-orders__empty" role="alert">
+          {error}
+        </div>
+      )}
+
+      {!loading && !error && orders.length === 0 && (
         <div className="mnshop-buyer-orders__empty">
           You have not placed an order yet.
         </div>
@@ -94,51 +147,37 @@ export function BuyerOrdersClient() {
 
       <div className="mnshop-buyer-orders__list">
         {orders.map((order) => {
-          const rank = orderStatusRank(order.status);
+          const status = normalizeOrderStatus(order);
+          const rank = orderStatusRank(status);
 
           return (
-            <article key={order.id} className="mnshop-buyer-order">
+            <article key={order._id} className="mnshop-buyer-order">
               <div className="mnshop-buyer-order__heading">
                 <div>
-                  <p>{displayOrderId(order.id)}</p>
+                  <p>{displayOrderId(order._id)}</p>
                   <p>
-                    {order.date
-                      ? new Date(order.date).toLocaleDateString()
+                    {order.createdAt
+                      ? new Date(order.createdAt).toLocaleDateString()
                       : "Today"}
                     <span> · </span>
-                    {money(order.total)}
+                    {money(order.orderTotal)}
                   </p>
-                  <p>
-                    {order.items
-                      .map(
-                        (item) =>
-                          `${item.product.name} × ${item.quantity}`,
-                      )
-                      .join(", ")}
-                  </p>
+                  <p>{orderItemSummary(order)}</p>
                 </div>
 
                 <div className="mnshop-buyer-order__status-actions">
                   <span
-                    className={`mnshop-buyer-order__status mnshop-buyer-order__status--${order.status}`}
+                    className={`mnshop-buyer-order__status mnshop-buyer-order__status--${status}`}
                   >
-                    {order.status}
+                    {status}
                   </span>
-                  {order.status === "pending" && (
-                    <button
-                      type="button"
-                      onClick={() => cancelOrder(order.id)}
-                    >
-                      Cancel
-                    </button>
-                  )}
                 </div>
               </div>
 
               <div className="mnshop-buyer-order__timeline">
                 {orderSteps.map((step, index) => {
                   const Icon = step.icon;
-                  const active = order.status !== "cancelled" && index <= rank;
+                  const active = status !== "cancelled" && index <= rank;
 
                   return (
                     <div
@@ -154,9 +193,9 @@ export function BuyerOrdersClient() {
                 })}
               </div>
 
-              {order.trackingNumber && (
+              {order.orderTrackingNumber && (
                 <p className="mnshop-buyer-order__tracking">
-                  Tracking: <strong>{order.trackingNumber}</strong>
+                  Tracking: <strong>{order.orderTrackingNumber}</strong>
                 </p>
               )}
             </article>

@@ -5,10 +5,20 @@ export type BuyerOrderHistory = {
   _id: string;
   orderTotal: number;
   orderStatus: string;
+  orderDeliveryStatus?: string;
+  orderPaymentStatus?: string;
   orderTrackingNumber?: string;
   createdAt: string;
-  orderItems?: Array<{ productId: string; itemQuantity: number }>;
-  productData?: Array<{ _id: string; productName: string }>;
+  orderItems?: Array<{
+    productId: string;
+    itemQuantity: number;
+    itemPrice?: number;
+  }>;
+  productData?: Array<{
+    _id: string;
+    productName: string;
+    productImages?: string[];
+  }>;
 };
 
 export type BuyerPaymentHistory = {
