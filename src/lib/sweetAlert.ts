@@ -1,10 +1,9 @@
 /** SweetAlertHandling **/
 import Swal from "sweetalert2";
-import { Messages } from "../lib/config";
 
 export const sweetErrorHandling = async (err: any) => {
   const error = err.response?.data ?? err;
-  const message = error?.message ?? Messages.error1;
+  const message = error?.message ?? "Something went wrong. Please try again.";
   await Swal.fire({
     icon: "error",
     text: message,
