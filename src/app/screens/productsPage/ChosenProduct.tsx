@@ -68,6 +68,16 @@ function ProductDetail({ product }: { product: Product }) {
     });
   };
 
+  const buyNow = () => {
+    guardBuyer(() => {
+      for (let item = 0; item < quantity; item += 1) {
+        onAdd(product, color, size);
+      }
+
+      history.push("/checkout");
+    });
+  };
+
   return (
     <section className="mnshop-product-detail">
       <nav className="mnshop-product-detail__breadcrumb" aria-label="Breadcrumb">
@@ -242,7 +252,7 @@ function ProductDetail({ product }: { product: Product }) {
           </div>
 
           <div className="mnshop-product-info__secondary-actions">
-            <button type="button" onClick={addSelectedToCart}>
+            <button type="button" onClick={buyNow}>
               Buy Now
             </button>
             <button

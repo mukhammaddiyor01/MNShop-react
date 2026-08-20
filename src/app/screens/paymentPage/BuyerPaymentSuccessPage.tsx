@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, Redirect, useHistory, useLocation } from "react-router-dom";
 import { useGlobals } from "../../hooks/useGlobals";
 import BuyerPaymentService from "../../services/BuyerPaymentService";
@@ -12,6 +12,14 @@ export function BuyerPaymentSuccessPage() {
   const [error, setError] = useState("");
   const [status, setStatus] = useState("Confirming your payment…");
   const hasConfirmed = useRef(false);
+  const redirectTimer = useRef<number | null>(null);
+
+  const scheduleOrdersRedirect = useCallback(() => {
+    if (redirectTimer.current !== null) return;
+    redirectTimer.current = window.setTimeout(() => {
+      history.replace("/orders");
+    }, 850);
+  }, [history]);
 
   useEffect(() => {
     if (!authUser) return;
@@ -34,9 +42,8 @@ export function BuyerPaymentSuccessPage() {
       onDeleteAll();
       setOrderBuilder(new Date());
       setStatus("Test payment confirmed. Opening your orders…");
-      const timer = window.setTimeout(() => history.replace("/orders"), 850);
-
-      return () => window.clearTimeout(timer);
+      scheduleOrdersRedirect();
+      return;
     }
 
     const paymentKey = query.get("paymentKey");
@@ -58,7 +65,7 @@ export function BuyerPaymentSuccessPage() {
         onDeleteAll();
         setOrderBuilder(new Date());
         setStatus("Payment confirmed. Opening your orders…");
-        window.setTimeout(() => history.replace("/orders"), 850);
+        scheduleOrdersRedirect();
       })
       .catch(() => {
         if (active) setError("Payment could not be confirmed. Please contact MNShop support.");
@@ -73,8 +80,15 @@ export function BuyerPaymentSuccessPage() {
     location.search,
     location.state,
     onDeleteAll,
+    scheduleOrdersRedirect,
     setOrderBuilder,
   ]);
+
+  useEffect(() => () => {
+    if (redirectTimer.current !== null) {
+      window.clearTimeout(redirectTimer.current);
+    }
+  }, []);
 
   if (!authUser) return <Redirect to="/login?next=%2Fpayment%2Fsuccess" />;
 
