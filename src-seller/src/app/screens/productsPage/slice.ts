@@ -20,6 +20,9 @@ const sellerProductsPageSlice = createSlice({
     setSellerProducts(state, action: PayloadAction<SellerProduct[]>) {
       state.products = action.payload;
     },
+    prependSellerProduct(state, action: PayloadAction<SellerProduct>) {
+      state.products.unshift(action.payload);
+    },
     replaceSellerProduct(state, action: PayloadAction<SellerProduct>) {
       state.products = state.products.map((product) =>
         product.id === action.payload.id ? action.payload : product,
@@ -36,6 +39,7 @@ const sellerProductsPageSlice = createSlice({
 
 export const {
   setSellerProducts,
+  prependSellerProduct,
   replaceSellerProduct,
   setSellerProductsLoading,
   setSellerProductsError,

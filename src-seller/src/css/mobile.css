@@ -77,6 +77,7 @@
     letter-spacing: normal;
     text-transform: none;
   }
+  .mnshop-seller-products-page__create { display: inline-flex; margin-top: 14px; border: 0; border-radius: 999px; background: #d8b56a; padding: 11px 15px; color: #080808; cursor: pointer; font: inherit; font-size: 12px; font-weight: 900; }
 
   .mnshop-seller-products-page__table-wrap {
     overflow-x: auto;
@@ -162,6 +163,19 @@
     font-size: 11px;
     font-weight: 900;
   }
+
+  .mnshop-seller-product-editor { position: fixed; z-index: 1000; inset: 0; display: grid; place-items: end center; background: rgba(0, 0, 0, .72); padding: 0; backdrop-filter: blur(8px); }
+  .mnshop-seller-product-editor form { width: 100%; max-height: 90vh; overflow-y: auto; border: 1px solid rgba(255, 255, 255, .12); border-radius: 12px 12px 0 0; background: #111; }
+  .mnshop-seller-product-editor header { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255, 255, 255, .1); padding: 18px; }
+  .mnshop-seller-product-editor header span { color: #d8b56a; font-size: 10px; font-weight: 900; letter-spacing: .18em; text-transform: uppercase; }
+  .mnshop-seller-product-editor h2 { margin: 6px 0 0; color: #fff; font-size: 24px; }
+  .mnshop-seller-product-editor header button { border: 0; background: transparent; color: #fff; font-size: 28px; }
+  .mnshop-seller-product-editor__body { display: grid; gap: 15px; padding: 18px; }
+  .mnshop-seller-product-editor__body > div { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .mnshop-seller-product-editor label { display: grid; gap: 7px; color: rgba(255, 255, 255, .62); font-size: 12px; font-weight: 700; }
+  .mnshop-seller-product-editor input, .mnshop-seller-product-editor textarea, .mnshop-seller-product-editor select { box-sizing: border-box; width: 100%; border: 1px solid rgba(255, 255, 255, .12); border-radius: 7px; background: rgba(255, 255, 255, .05); padding: 11px; color: #fff; font: inherit; }
+  .mnshop-seller-product-editor textarea { min-height: 80px; }
+  .mnshop-seller-product-editor__body > button { border: 0; border-radius: 999px; background: #d8b56a; padding: 13px; color: #080808; font: inherit; font-weight: 900; }
 }
 
 @media screen and (max-width: 767px) {

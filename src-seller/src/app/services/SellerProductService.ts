@@ -52,6 +52,22 @@ export type SellerProductUpdate = {
   productPrice?: number;
   productDiscountPrice?: number;
   productLeftCount?: number;
+  productType?: string;
+  productColors?: string[];
+  productSizes?: string[];
+};
+
+export type SellerProductCreate = {
+  name: string;
+  description: string;
+  type: string;
+  status: string;
+  price: number;
+  discountPrice?: number;
+  stock: number;
+  colors: string[];
+  sizes: string[];
+  image: File;
 };
 
 const serverApi = (
@@ -102,6 +118,31 @@ class SellerProductService {
     const result = await axios.post<{ data: SellerProductDto }>(
       `${this.path}/seller/product/${productId}`,
       input,
+      { withCredentials: true },
+    );
+
+    return normalizeProduct(result.data.data);
+  }
+
+  public async createProduct(input: SellerProductCreate): Promise<SellerProduct> {
+    const formData = new FormData();
+    formData.append("productName", input.name);
+    formData.append("productDesc", input.description);
+    formData.append("productType", input.type);
+    formData.append("productStatus", input.status);
+    formData.append("productPrice", String(input.price));
+    formData.append("productLeftCount", String(input.stock));
+    formData.append("productColors", input.colors.join(","));
+    formData.append("productSizes", input.sizes.join(","));
+    formData.append("productImages", input.image);
+
+    if (input.discountPrice !== undefined) {
+      formData.append("productDiscountPrice", String(input.discountPrice));
+    }
+
+    const result = await axios.post<{ data: SellerProductDto }>(
+      `${this.path}/seller/product/create`,
+      formData,
       { withCredentials: true },
     );
 
