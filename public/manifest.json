@@ -1,3 +1,15 @@
 {
-  "name": "MNSop"
+  "short_name": "MNShop",
+  "name": "MNShop — Korean products for Uzbekistan",
+  "icons": [
+    {
+      "src": "icons/mnlogo.png",
+      "sizes": "1254x1254",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#080808",
+  "background_color": "#080808"
 }
