@@ -55,6 +55,7 @@ export type SellerProductUpdate = {
   productType?: string;
   productColors?: string[];
   productSizes?: string[];
+  productSale?: boolean;
 };
 
 export type SellerProductCreate = {
@@ -64,6 +65,7 @@ export type SellerProductCreate = {
   status: string;
   price: number;
   discountPrice?: number;
+  sale: boolean;
   stock: number;
   colors: string[];
   sizes: string[];
@@ -134,6 +136,7 @@ class SellerProductService {
     formData.append("productLeftCount", String(input.stock));
     formData.append("productColors", input.colors.join(","));
     formData.append("productSizes", input.sizes.join(","));
+    formData.append("productSale", String(input.sale));
     input.images.forEach((image) => formData.append("productImages", image));
 
     if (input.discountPrice !== undefined) {
