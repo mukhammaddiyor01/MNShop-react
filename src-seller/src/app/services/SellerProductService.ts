@@ -67,7 +67,7 @@ export type SellerProductCreate = {
   stock: number;
   colors: string[];
   sizes: string[];
-  image: File;
+  images: File[];
 };
 
 const serverApi = (
@@ -134,7 +134,7 @@ class SellerProductService {
     formData.append("productLeftCount", String(input.stock));
     formData.append("productColors", input.colors.join(","));
     formData.append("productSizes", input.sizes.join(","));
-    formData.append("productImages", input.image);
+    input.images.forEach((image) => formData.append("productImages", image));
 
     if (input.discountPrice !== undefined) {
       formData.append("productDiscountPrice", String(input.discountPrice));
