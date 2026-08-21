@@ -204,18 +204,19 @@ function ProductEditor({ product, onClose, onSaved }: { product: SellerProduct |
 
   const selectImages = (event: ChangeEvent<HTMLInputElement>) => {
     const nextImages = Array.from(event.target.files || []);
-    if (nextImages.length > 10) {
-      setError("You can upload up to 10 product images.");
-      event.target.value = "";
-      return;
-    }
     if (nextImages.some((image) => !image.type.startsWith("image/"))) {
       setError("Only image files can be uploaded.");
       event.target.value = "";
       return;
     }
-    setImages(nextImages);
+    if (images.length + nextImages.length > 10) {
+      setError(`You can upload up to 10 product images. ${10 - images.length} slot(s) remaining.`);
+      event.target.value = "";
+      return;
+    }
+    setImages((current) => [...current, ...nextImages]);
     setError("");
+    event.target.value = "";
   };
 
   const removeImage = (index: number) => {
