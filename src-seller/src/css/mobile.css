@@ -185,7 +185,11 @@
   .mnshop-seller-product-editor__body > .mnshop-seller-product-editor__image-previews { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
   .mnshop-seller-product-editor__image-previews figure { position: relative; aspect-ratio: 1; margin: 0; overflow: hidden; border: 1px solid rgba(255,255,255,.14); border-radius: 6px; }
   .mnshop-seller-product-editor__image-previews img { display: block; width: 100%; height: 100%; object-fit: cover; }
-  .mnshop-seller-product-editor__image-previews button { position: absolute; top: 4px; right: 4px; display: grid; width: 22px; height: 22px; place-items: center; border: 1px solid rgba(255,255,255,.22); border-radius: 50%; background: rgba(8,8,8,.82); color: #fff; font-size: 16px; line-height: 1; }
+  .mnshop-seller-product-editor__remove-image { position: absolute; top: 4px; right: 4px; display: grid; width: 22px; height: 22px; place-items: center; border: 1px solid rgba(255,255,255,.22); border-radius: 50%; background: rgba(8,8,8,.82); color: #fff; font-size: 16px; line-height: 1; }
+  .mnshop-seller-product-editor__image-order { position: absolute; right: 4px; bottom: 4px; display: flex; overflow: hidden; border: 1px solid rgba(255,255,255,.22); border-radius: 5px; background: rgba(8,8,8,.82); }
+  .mnshop-seller-product-editor__image-order button { display: grid; width: 22px; height: 22px; place-items: center; border: 0; border-right: 1px solid rgba(255,255,255,.18); background: transparent; color: #fff; font-size: 12px; line-height: 1; }
+  .mnshop-seller-product-editor__image-order button:last-child { border-right: 0; }
+  .mnshop-seller-product-editor__image-order button:disabled { opacity: .38; }
   .mnshop-seller-product-editor__body > button { border: 0; border-radius: 999px; background: #3b82f6; padding: 13px; color: #080808; font: inherit; font-weight: 900; }
 }
 
