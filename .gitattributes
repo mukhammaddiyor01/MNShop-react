@@ -1,0 +1,2 @@
+# Browser-recorder exports are generated assets, not application source.
+public/video/*.html linguist-generated=true
