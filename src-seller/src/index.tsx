@@ -8,10 +8,15 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import "./css/index.css";
 import { BrowserRouter as Router } from "react-router-dom";
-import theme from "./app/MaterialTheme";
+import { getTheme } from "./app/MaterialTheme";
 import { SellerContextProvider } from "./app/context/ContextProvider";
-import { SitePreferencesProvider } from "./app/context/SitePreferencesProvider";
+import { SitePreferencesProvider, useSitePreferences } from "./app/context/SitePreferencesProvider";
 import "./css/preferences.css";
+
+function PreferenceThemeProvider({ children }: { children: React.ReactNode }) {
+  const { theme } = useSitePreferences();
+  return <ThemeProvider theme={getTheme(theme)}><CssBaseline />{children}</ThemeProvider>;
+}
 
 // Global integration => REDUX
 ReactDOM.render(
@@ -19,12 +24,11 @@ ReactDOM.render(
     <Provider store={store}>
       <SellerContextProvider>
         <SitePreferencesProvider>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
+          <PreferenceThemeProvider>
             <Router>
               <App />
             </Router>
-          </ThemeProvider>
+          </PreferenceThemeProvider>
         </SitePreferencesProvider>
       </SellerContextProvider>
     </Provider>

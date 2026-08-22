@@ -204,7 +204,14 @@ function ProductDetail({ product }: { product: Product }) {
                   }
                   onClick={() => setColor(item)}
                 >
-                  <span style={{ background: item }} />
+                  <span
+                    data-light-color={
+                      ["#f8fafc", "#ffffff", "white"].includes(item.toLowerCase())
+                        ? "true"
+                        : undefined
+                    }
+                    style={{ background: item }}
+                  />
                   {colorNames[item.toLowerCase()] || item}
                 </button>
               ))}

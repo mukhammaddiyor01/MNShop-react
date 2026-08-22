@@ -108,6 +108,11 @@ export function ProductCard({ product, badge }: ProductCardProps) {
               <span
                 key={color}
                 title={color}
+                data-light-color={
+                  ["#f8fafc", "#ffffff", "white"].includes(color.toLowerCase())
+                    ? "true"
+                    : undefined
+                }
                 style={{ background: color }}
               />
             ))}

@@ -6597,6 +6597,11 @@
   .auth-page form > .mnshop-auth-admin-link > span:last-child { display: grid; gap: 2px; }
   .auth-page form > .mnshop-auth-admin-link strong { color: #fff; font-size: 12px; }
   .auth-page form > .mnshop-auth-admin-link small { color: rgba(219,234,254,.65); font-size: 10px; }
+
+  :root[data-theme="light"] .auth-page form > .mnshop-auth-seller-link { color: rgba(20,20,20,.7); }
+  :root[data-theme="light"] .auth-page form > .mnshop-auth-admin-link { border-color: rgba(37,99,235,.28); background: #eff6ff; color: #1e3a8a; }
+  :root[data-theme="light"] .auth-page form > .mnshop-auth-admin-link strong { color: #172554; }
+  :root[data-theme="light"] .auth-page form > .mnshop-auth-admin-link small { color: rgba(30,58,138,.68); }
 }
 
 /* SOURCE parity — Buyer sign-in and sign-up mobile */
@@ -6662,4 +6667,9 @@
   .auth-page form > .mnshop-auth-admin-link > span:last-child { display: grid; gap: 2px; }
   .auth-page form > .mnshop-auth-admin-link strong { color: #fff; font-size: 12px; }
   .auth-page form > .mnshop-auth-admin-link small { color: rgba(219,234,254,.65); font-size: 10px; }
+
+  :root[data-theme="light"] .auth-page form > .mnshop-auth-seller-link { color: rgba(20,20,20,.7); }
+  :root[data-theme="light"] .auth-page form > .mnshop-auth-admin-link { border-color: rgba(37,99,235,.28); background: #eff6ff; color: #1e3a8a; }
+  :root[data-theme="light"] .auth-page form > .mnshop-auth-admin-link strong { color: #172554; }
+  :root[data-theme="light"] .auth-page form > .mnshop-auth-admin-link small { color: rgba(30,58,138,.68); }
 }

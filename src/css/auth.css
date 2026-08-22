@@ -270,6 +270,34 @@
   :root[data-theme="light"] .auth-page form > .primary-button + p {
     color: rgba(20, 20, 20, 0.5);
   }
+
+  :root[data-theme="light"] .auth-page form > .mnshop-auth-seller-link {
+    color: rgba(20, 20, 20, 0.7);
+  }
+
+  :root[data-theme="light"] .auth-page form > .mnshop-auth-seller-link:hover {
+    color: #2563eb;
+  }
+
+  :root[data-theme="light"] .auth-page form > .mnshop-auth-admin-link {
+    border-color: rgba(37, 99, 235, 0.28);
+    background: #eff6ff;
+    color: #1e3a8a;
+    box-shadow: 0 8px 22px rgba(37, 99, 235, 0.09);
+  }
+
+  :root[data-theme="light"] .auth-page form > .mnshop-auth-admin-link strong {
+    color: #172554;
+  }
+
+  :root[data-theme="light"] .auth-page form > .mnshop-auth-admin-link small {
+    color: rgba(30, 58, 138, 0.68);
+  }
+
+  :root[data-theme="light"] .auth-page form > .mnshop-auth-admin-link:hover {
+    border-color: #2563eb;
+    background: #dbeafe;
+  }
 }
 
 @keyframes mnshop-auth-panel-enter {

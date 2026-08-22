@@ -120,9 +120,6 @@
   }
 }
 
-
-
-
 /* ==================================================
    SOURCE parity — best sellers desktop
    ================================================== */
@@ -201,7 +198,9 @@
     color: #fff;
     cursor: pointer;
     place-items: center;
-    transition: background-color 150ms ease, color 150ms ease;
+    transition:
+      background-color 150ms ease,
+      color 150ms ease;
   }
 
   .mnshop-best-sellers__heading-actions button:hover {
@@ -230,8 +229,6 @@
     outline-offset: 3px;
   }
 }
-
-
 
 /* ==================================================
    SOURCE parity — homepage product sections desktop
@@ -335,8 +332,6 @@
     outline-offset: 3px;
   }
 }
-
-
 
 @media (prefers-reduced-motion: reduce) {
   .mnshop-hero__video {
@@ -605,16 +600,14 @@
   }
 
   .mnshop-sellers__secondary-action {
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(17, 3, 3, 0.2);
     font-weight: 600;
   }
 
   .mnshop-sellers__secondary-action:hover {
-    border-color: #fff;
+    border-color: #1a0505;
   }
 }
-
-
 
 /* ==================================================
    SOURCE parity — homepage video hero desktop
@@ -763,7 +756,9 @@
     font-size: 14px;
     font-weight: 700;
     text-decoration: none;
-    transition: background-color 150ms ease, color 150ms ease;
+    transition:
+      background-color 150ms ease,
+      color 150ms ease;
   }
 
   .mnshop-home-hero__actions a:first-child {
@@ -832,7 +827,9 @@
     color: #fff;
     cursor: pointer;
     place-items: center;
-    transition: background-color 150ms ease, color 150ms ease;
+    transition:
+      background-color 150ms ease,
+      color 150ms ease;
   }
 
   .mnshop-home-hero__playback:hover {
@@ -877,6 +874,3 @@
     animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
   }
 }
-
-
-

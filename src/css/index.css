@@ -158,6 +158,706 @@ textarea {
   color: rgba(20, 20, 20, 0.72);
 }
 
+/* Buyer light mode — content surfaces stay in sync with the MUI theme. */
+:root[data-theme="light"] .mnshop-homepage,
+:root[data-theme="light"] .mnshop-catalog,
+:root[data-theme="light"] .mnshop-product-detail,
+:root[data-theme="light"] .mnshop-likes-page,
+:root[data-theme="light"] .mnshop-checkout-page,
+:root[data-theme="light"] .mnshop-buyer-profile-page,
+:root[data-theme="light"] .mnshop-address-page,
+:root[data-theme="light"] .mnshop-account-page {
+  background: var(--page-bg);
+  color: var(--page-text);
+}
+
+:root[data-theme="light"] .mnshop-best-sellers__heading,
+:root[data-theme="light"] .mnshop-product-section,
+:root[data-theme="light"] .mnshop-product-section__heading,
+:root[data-theme="light"] .mnshop-community,
+:root[data-theme="light"] .mnshop-sellers,
+:root[data-theme="light"] .mnshop-community__stats,
+:root[data-theme="light"] .mnshop-sellers__content,
+:root[data-theme="light"] .mnshop-sellers__benefits,
+:root[data-theme="light"] .mnshop-sellers__benefit,
+:root[data-theme="light"] .mnshop-product-card__content {
+  border-color: rgba(20, 20, 20, 0.14);
+}
+
+:root[data-theme="light"] .mnshop-product-section--alternate {
+  background: rgba(20, 20, 20, 0.025);
+}
+
+:root[data-theme="light"] .mnshop-best-sellers__heading h2,
+:root[data-theme="light"] .mnshop-product-section__heading h2,
+:root[data-theme="light"] .mnshop-community h2,
+:root[data-theme="light"] .mnshop-sellers h2,
+:root[data-theme="light"] .mnshop-sellers__benefit h3,
+:root[data-theme="light"] .mnshop-community__stat strong,
+:root[data-theme="light"] .mnshop-product-card h3,
+:root[data-theme="light"] .mnshop-product-card__prices span:first-child,
+:root[data-theme="light"] .mnshop-catalog h2,
+:root[data-theme="light"] .mnshop-product-detail h1,
+:root[data-theme="light"] .mnshop-product-detail h2 {
+  color: #141414;
+}
+
+:root[data-theme="light"] .mnshop-best-sellers__heading p,
+:root[data-theme="light"] .mnshop-product-section__heading p,
+:root[data-theme="light"] .mnshop-community__eyebrow,
+:root[data-theme="light"] .mnshop-sellers__eyebrow,
+:root[data-theme="light"] .mnshop-community__description,
+:root[data-theme="light"] .mnshop-sellers__description,
+:root[data-theme="light"] .mnshop-community__trusted-copy,
+:root[data-theme="light"] .mnshop-community__stat span,
+:root[data-theme="light"] .mnshop-sellers__benefit p,
+:root[data-theme="light"] .mnshop-product-card__eyebrow,
+:root[data-theme="light"] .mnshop-product-card__metrics {
+  color: rgba(20, 20, 20, 0.55);
+}
+
+:root[data-theme="light"] .mnshop-product-card__add,
+:root[data-theme="light"] .mnshop-best-sellers__heading-actions button {
+  border-color: rgba(20, 20, 20, 0.18) !important;
+  color: #141414;
+}
+
+/* Catalog filters use explicit dark-mode text colors in every breakpoint. */
+:root[data-theme="light"] .mnshop-catalog__heading,
+:root[data-theme="light"] .mnshop-catalog__filters,
+:root[data-theme="light"] .mnshop-catalog__results-heading {
+  border-color: rgba(20, 20, 20, 0.14);
+}
+
+:root[data-theme="light"] .mnshop-catalog__heading > div > p,
+:root[data-theme="light"] .mnshop-catalog__price-filter > div,
+:root[data-theme="light"] .mnshop-catalog__results-heading p,
+:root[data-theme="light"] .mnshop-catalog__results-heading span,
+:root[data-theme="light"] .mnshop-catalog__color-filter > small {
+  color: rgba(20, 20, 20, 0.58);
+}
+
+:root[data-theme="light"] .mnshop-catalog__sort {
+  border-color: rgba(20, 20, 20, 0.18);
+  background: #fff;
+  color: rgba(20, 20, 20, 0.78);
+  box-shadow: 0 8px 24px rgba(20, 20, 20, 0.06);
+}
+
+:root[data-theme="light"] .mnshop-catalog__sort select,
+:root[data-theme="light"] .mnshop-catalog__sort option {
+  background: #fff;
+  color: #141414;
+}
+
+:root[data-theme="light"] .mnshop-catalog__price-filter > label,
+:root[data-theme="light"] .mnshop-catalog__color-filter > p,
+:root[data-theme="light"] .mnshop-catalog__size-filter > p {
+  color: #141414;
+}
+
+:root[data-theme="light"] .mnshop-catalog__color-filter > label {
+  color: rgba(20, 20, 20, 0.72);
+}
+
+:root[data-theme="light"] .mnshop-catalog__color-filter > label:hover {
+  color: #141414;
+}
+
+:root[data-theme="light"] .mnshop-catalog__color-filter label > span,
+:root[data-theme="light"] .mnshop-catalog__size-filter button {
+  border-color: rgba(20, 20, 20, 0.2);
+}
+
+:root[data-theme="light"] .mnshop-catalog__size-filter button {
+  background: #fff;
+  color: #141414;
+}
+
+:root[data-theme="light"] .mnshop-catalog__size-filter button:hover {
+  border-color: #2563eb;
+  background: #2563eb;
+  color: #fff;
+}
+
+:root[data-theme="light"] .mnshop-sellers__secondary-action {
+  border-color: rgba(20, 20, 20, 0.2);
+  background: #fff;
+  color: #141414;
+  box-shadow: 0 8px 24px rgba(20, 20, 20, 0.07);
+}
+
+:root[data-theme="light"] .mnshop-sellers__secondary-action svg {
+  color: #2563eb;
+}
+
+:root[data-theme="light"] .mnshop-sellers__secondary-action:hover {
+  border-color: #2563eb;
+  background: #2563eb;
+  color: #fff;
+}
+
+:root[data-theme="light"] .mnshop-sellers__secondary-action:hover svg {
+  color: #fff;
+}
+
+/* Product colors — pale swatches must remain visible on every surface. */
+[data-light-color="true"] {
+  border-color: rgba(20, 20, 20, 0.42) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(20, 20, 20, 0.12),
+    0 0 0 1px rgba(255, 255, 255, 0.34);
+}
+
+.mnshop-product-options__color--active [data-light-color="true"] {
+  border-color: #2563eb !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(20, 20, 20, 0.12),
+    0 0 0 2px #2563eb;
+}
+
+/* Product cards and product details share the same light-mode contrast. */
+:root[data-theme="light"] .mnshop-product-info {
+  color: #141414;
+}
+
+:root[data-theme="light"] .mnshop-product-info h1,
+:root[data-theme="light"] .mnshop-product-info__prices p:first-child,
+:root[data-theme="light"] .mnshop-product-info__availability strong,
+:root[data-theme="light"] .mnshop-product-purchase__quantity span {
+  color: #141414;
+}
+
+:root[data-theme="light"] .mnshop-product-info__prices p:first-child {
+  color: #141414 !important;
+}
+
+:root[data-theme="light"] .mnshop-product-info__prices,
+:root[data-theme="light"] .mnshop-product-info__metrics {
+  border-color: rgba(20, 20, 20, 0.14);
+}
+
+:root[data-theme="light"] .mnshop-product-info__metrics span,
+:root[data-theme="light"] .mnshop-product-info__metrics span:first-child svg {
+  color: rgba(20, 20, 20, 0.62);
+}
+
+:root[data-theme="light"] .mnshop-product-info__like {
+  border-color: rgba(20, 20, 20, 0.18);
+  background: #fff;
+  color: #141414;
+  box-shadow: 0 7px 20px rgba(20, 20, 20, 0.06);
+}
+
+:root[data-theme="light"] .mnshop-product-info__like:hover {
+  border-color: #2563eb;
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+:root[data-theme="light"] .mnshop-product-card__colors span,
+:root[data-theme="light"] .mnshop-product-options__color > span {
+  border-color: rgba(20, 20, 20, 0.28);
+}
+
+:root[data-theme="light"] .mnshop-product-detail__breadcrumb,
+:root[data-theme="light"] .mnshop-product-detail__breadcrumb a,
+:root[data-theme="light"] .mnshop-product-info__heading > div > p,
+:root[data-theme="light"] .mnshop-product-info__metrics,
+:root[data-theme="light"] .mnshop-product-info__description,
+:root[data-theme="light"] .mnshop-product-info__availability p,
+:root[data-theme="light"] .mnshop-product-options > p,
+:root[data-theme="light"] .mnshop-product-options__size-heading > p,
+:root[data-theme="light"] .mnshop-product-options__size-heading > button,
+:root[data-theme="light"] .mnshop-product-info__prices p + p {
+  color: rgba(20, 20, 20, 0.58);
+}
+
+:root[data-theme="light"] .mnshop-product-info__metrics,
+:root[data-theme="light"] .mnshop-product-info__availability,
+:root[data-theme="light"] .mnshop-product-info__availability > div + div,
+:root[data-theme="light"] .mnshop-product-purchase__quantity {
+  border-color: rgba(20, 20, 20, 0.14);
+}
+
+:root[data-theme="light"] .mnshop-product-info__availability strong,
+:root[data-theme="light"] .mnshop-product-purchase__quantity button {
+  color: #141414;
+}
+
+:root[data-theme="light"] .mnshop-product-options__color,
+:root[data-theme="light"] .mnshop-product-options__size,
+:root[data-theme="light"] .mnshop-product-info__secondary-actions button {
+  border-color: rgba(20, 20, 20, 0.18);
+  background: #fff;
+  color: rgba(20, 20, 20, 0.76);
+}
+
+:root[data-theme="light"] .mnshop-product-options__color:hover,
+:root[data-theme="light"] .mnshop-product-options__size:hover,
+:root[data-theme="light"] .mnshop-product-info__secondary-actions button:hover {
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+:root[data-theme="light"] .mnshop-product-options__color--active,
+:root[data-theme="light"] .mnshop-product-options__size--active {
+  border-color: #2563eb !important;
+  background: #eff6ff !important;
+  color: #1d4ed8 !important;
+  box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.16);
+}
+
+:root[data-theme="light"] .mnshop-product-purchase__quantity {
+  background: #fff;
+  box-shadow: 0 7px 20px rgba(20, 20, 20, 0.05);
+}
+
+:root[data-theme="light"] .mnshop-product-purchase__add {
+  background: #2563eb;
+  color: #fff;
+}
+
+:root[data-theme="light"] .mnshop-product-purchase__add:hover {
+  background: #1d4ed8;
+}
+
+:root[data-theme="light"] .mnshop-product-tabs,
+:root[data-theme="light"] .mnshop-product-tabs__list,
+:root[data-theme="light"] .mnshop-product-reviews article {
+  border-color: rgba(20, 20, 20, 0.14);
+}
+
+:root[data-theme="light"] .mnshop-product-tabs__tab,
+:root[data-theme="light"] .mnshop-product-tabs__content,
+:root[data-theme="light"] .mnshop-product-reviews article > div:first-child span {
+  color: rgba(20, 20, 20, 0.6);
+}
+
+:root[data-theme="light"] .mnshop-product-tabs__tab:hover,
+:root[data-theme="light"] .mnshop-product-tabs__tab--active,
+:root[data-theme="light"] .mnshop-product-reviews strong {
+  color: #141414;
+}
+
+:root[data-theme="light"] .mnshop-product-tabs__tab--active {
+  border-bottom-color: #2563eb;
+}
+
+:root[data-theme="light"] .mnshop-product-reviews > button {
+  border-color: rgba(20, 20, 20, 0.18);
+  background: #fff;
+  color: #141414;
+}
+
+:root[data-theme="light"] .mnshop-product-gallery__thumbnail {
+  border-color: rgba(20, 20, 20, 0.16);
+  background: #fff;
+}
+
+:root[data-theme="light"] .mnshop-product-gallery__thumbnail--active {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 1px #2563eb;
+}
+
+/* Authenticated buyer pages: consistent white cards, dark copy and soft borders. */
+:root[data-theme="light"] .mnshop-likes-page__content h1,
+:root[data-theme="light"] .mnshop-buyer-orders > h1,
+:root[data-theme="light"] .mnshop-checkout-heading h1,
+:root[data-theme="light"] .mnshop-checkout-step-title h2,
+:root[data-theme="light"] .mnshop-checkout-item h3,
+:root[data-theme="light"] .mnshop-checkout-confirm h2,
+:root[data-theme="light"] .mnshop-checkout-confirm-card strong,
+:root[data-theme="light"] .mnshop-checkout-total > strong,
+:root[data-theme="light"] .mnshop-checkout-total b,
+:root[data-theme="light"] .mnshop-checkout-total address strong,
+:root[data-theme="light"] .mnshop-checkout-empty h1,
+:root[data-theme="light"] .mnshop-buyer-order__heading > div:first-child > p:first-child {
+  color: #141414;
+}
+
+:root[data-theme="light"] .mnshop-likes-page__message,
+:root[data-theme="light"] .mnshop-likes-page__empty,
+:root[data-theme="light"] .mnshop-buyer-orders__loading,
+:root[data-theme="light"] .mnshop-buyer-orders__empty,
+:root[data-theme="light"] .mnshop-buyer-order__heading > div:first-child > p:nth-child(2),
+:root[data-theme="light"] .mnshop-buyer-order__heading > div:first-child > p:nth-child(3),
+:root[data-theme="light"] .mnshop-buyer-order__tracking,
+:root[data-theme="light"] .mnshop-checkout-heading p,
+:root[data-theme="light"] .mnshop-checkout-item p,
+:root[data-theme="light"] .mnshop-checkout-address small,
+:root[data-theme="light"] .mnshop-checkout-address-empty p,
+:root[data-theme="light"] .mnshop-checkout-confirm > p,
+:root[data-theme="light"] .mnshop-checkout-confirm-card small,
+:root[data-theme="light"] .mnshop-checkout-total span,
+:root[data-theme="light"] .mnshop-checkout-total address small,
+:root[data-theme="light"] .mnshop-checkout-empty p {
+  color: rgba(20, 20, 20, 0.58);
+}
+
+:root[data-theme="light"] .mnshop-buyer-orders__empty,
+:root[data-theme="light"] .mnshop-buyer-order,
+:root[data-theme="light"] .mnshop-checkout-panel,
+:root[data-theme="light"] .mnshop-checkout-total,
+:root[data-theme="light"] .mnshop-checkout-empty,
+:root[data-theme="light"] .mnshop-checkout-item,
+:root[data-theme="light"] .mnshop-checkout-address,
+:root[data-theme="light"] .mnshop-checkout-address-empty,
+:root[data-theme="light"] .mnshop-checkout-confirm-card {
+  border-color: rgba(20, 20, 20, 0.12);
+  background: #fff;
+  color: #141414;
+  box-shadow: 0 12px 34px rgba(20, 20, 20, 0.06);
+}
+
+:root[data-theme="light"] .mnshop-buyer-order__step,
+:root[data-theme="light"] .mnshop-checkout-secondary,
+:root[data-theme="light"] .mnshop-checkout-payment button,
+:root[data-theme="light"] .mnshop-checkout-steps button {
+  border-color: rgba(20, 20, 20, 0.14);
+  background: rgba(20, 20, 20, 0.045);
+  color: rgba(20, 20, 20, 0.68);
+}
+
+:root[data-theme="light"] .mnshop-checkout-address.is-selected,
+:root[data-theme="light"] .mnshop-checkout-payment button.is-active,
+:root[data-theme="light"] .mnshop-buyer-order__step--active {
+  border-color: #2563eb;
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+:root[data-theme="light"] .mnshop-checkout-total div,
+:root[data-theme="light"] .mnshop-checkout-total address {
+  border-color: rgba(20, 20, 20, 0.12);
+}
+
+/* Buyer profile, address, payment and notification surfaces. */
+:root[data-theme="light"] .mnshop-buyer-profile-settings,
+:root[data-theme="light"] .mnshop-address-manager,
+:root[data-theme="light"] .mnshop-account-page__panel,
+:root[data-theme="light"] .mnshop-address-modal__panel {
+  border-color: rgba(20, 20, 20, 0.12);
+  background: #fff;
+  color: #141414;
+  box-shadow: 0 18px 52px rgba(20, 20, 20, 0.1);
+}
+
+:root[data-theme="light"] .mnshop-address-manager > header,
+:root[data-theme="light"] .mnshop-account-page__panel > header,
+:root[data-theme="light"] .mnshop-address-modal__panel > header,
+:root[data-theme="light"] .mnshop-address-modal__footer-actions {
+  border-color: rgba(20, 20, 20, 0.11);
+  background-color: #fff;
+}
+
+:root[data-theme="light"] .mnshop-buyer-profile-settings__identity,
+:root[data-theme="light"] .mnshop-address-manager__content > form,
+:root[data-theme="light"] .mnshop-address-manager__footer-actions {
+  border-color: rgba(20, 20, 20, 0.11);
+}
+
+:root[data-theme="light"] .mnshop-buyer-profile-settings__identity p:first-child,
+:root[data-theme="light"] .mnshop-buyer-profile-settings__form-actions > label,
+:root[data-theme="light"] .mnshop-address-manager__back,
+:root[data-theme="light"] .mnshop-address-modal__back,
+:root[data-theme="light"] .mnshop-address-modal__panel > header button,
+:root[data-theme="light"] .mnshop-account-page__panel > header button {
+  color: #141414;
+}
+
+:root[data-theme="light"] .mnshop-buyer-profile-settings__identity p:nth-child(2),
+:root[data-theme="light"] .mnshop-buyer-profile-settings__eyebrow,
+:root[data-theme="light"] .mnshop-address-modal__fields label,
+:root[data-theme="light"] .mnshop-address-modal__list article small,
+:root[data-theme="light"] .mnshop-address-modal__empty,
+:root[data-theme="light"] .mnshop-account-page__panel > header p,
+:root[data-theme="light"] .mnshop-account-page__list p,
+:root[data-theme="light"] .mnshop-account-page__list article > span,
+:root[data-theme="light"] .mnshop-account-page__list time {
+  color: rgba(20, 20, 20, 0.56);
+}
+
+:root[data-theme="light"] .mnshop-buyer-profile-settings__fields input,
+:root[data-theme="light"] .mnshop-address-modal__fields input {
+  border-color: rgba(20, 20, 20, 0.14);
+  background: #f7f7f5;
+  color: #141414;
+}
+
+:root[data-theme="light"] .mnshop-address-modal__list article,
+:root[data-theme="light"] .mnshop-account-page__list article {
+  border-color: rgba(20, 20, 20, 0.11);
+  background: #fafafa;
+}
+
+:root[data-theme="light"] .mnshop-buyer-profile-settings__shortcuts button,
+:root[data-theme="light"] .mnshop-buyer-profile-settings__orders-link,
+:root[data-theme="light"] .mnshop-address-modal__form-actions button,
+:root[data-theme="light"] .mnshop-address-modal__item-actions button {
+  border-color: rgba(20, 20, 20, 0.13);
+  background: #fafafa;
+  color: #141414;
+}
+
+:root[data-theme="light"] .mnshop-buyer-profile-settings__shortcuts button:hover,
+:root[data-theme="light"] .mnshop-buyer-profile-settings__orders-link:hover,
+:root[data-theme="light"] .mnshop-address-modal__form-actions button:hover,
+:root[data-theme="light"] .mnshop-address-modal__item-actions button:hover {
+  border-color: rgba(37, 99, 235, 0.32);
+  background: #eff6ff;
+}
+
+:root[data-theme="light"] .mnshop-buyer-profile-settings__shortcuts button > span {
+  color: rgba(20, 20, 20, 0.56);
+}
+
+:root[data-theme="light"] .mnshop-payment-result section {
+  border-color: rgba(20, 20, 20, 0.12);
+  background: #fff;
+  color: #141414;
+  box-shadow: 0 18px 52px rgba(20, 20, 20, 0.1);
+}
+
+:root[data-theme="light"] .mnshop-payment-result h1,
+:root[data-theme="light"] .checkout-address strong {
+  color: #141414;
+}
+
+:root[data-theme="light"] .mnshop-payment-result p,
+:root[data-theme="light"] .checkout-address small {
+  color: rgba(20, 20, 20, 0.58);
+}
+
+:root[data-theme="light"] .checkout-address {
+  border-color: rgba(20, 20, 20, 0.12);
+  background: #fff;
+  color: #141414;
+}
+
+:root[data-theme="light"] .checkout-address.is-selected {
+  border-color: #2563eb;
+  background: #eff6ff;
+}
+
+/* Light navigation: opaque enough to keep every control readable over media. */
+:root[data-theme="light"] .mnshop-home-header,
+:root[data-theme="light"] .mnshop-other-header {
+  border-color: rgba(20, 20, 20, 0.1);
+  background: rgba(250, 249, 246, 0.94);
+  color: #141414;
+  box-shadow: 0 10px 32px rgba(20, 20, 20, 0.06);
+}
+
+:root[data-theme="light"] .mnshop-home-header__nav-link,
+:root[data-theme="light"] .mnshop-other-header__nav-link,
+:root[data-theme="light"] .mnshop-home-header__icon-action,
+:root[data-theme="light"] .mnshop-other-header__icon-action,
+:root[data-theme="light"] .mnshop-other-header__notification,
+:root[data-theme="light"] .mnshop-home-header__menu-toggle,
+:root[data-theme="light"] .mnshop-other-header__menu-toggle {
+  color: rgba(20, 20, 20, 0.7) !important;
+}
+
+:root[data-theme="light"] .mnshop-home-header__nav-link:hover,
+:root[data-theme="light"] .mnshop-other-header__nav-link:hover {
+  color: #141414 !important;
+}
+
+:root[data-theme="light"] .mnshop-home-header__search-field input,
+:root[data-theme="light"] .mnshop-other-header__search-field input {
+  border-color: rgba(20, 20, 20, 0.14);
+  background: rgba(20, 20, 20, 0.035);
+  color: #141414;
+}
+
+:root[data-theme="light"] .mnshop-home-header__search-field > svg,
+:root[data-theme="light"] .mnshop-other-header__search-field > svg,
+:root[data-theme="light"] .mnshop-home-header__search-field input::placeholder,
+:root[data-theme="light"] .mnshop-other-header__search-field input::placeholder {
+  color: rgba(20, 20, 20, 0.42);
+}
+
+:root[data-theme="light"] .mnshop-home-header .site-control-button,
+:root[data-theme="light"] .mnshop-home-header .site-language-button,
+:root[data-theme="light"] .mnshop-other-header .site-control-button,
+:root[data-theme="light"] .mnshop-other-header .site-language-button {
+  border: 1px solid rgba(20, 20, 20, 0.16);
+  background: #fff;
+  box-shadow: 0 5px 16px rgba(20, 20, 20, 0.08);
+  color: #1f2937;
+}
+
+:root[data-theme="light"] .mnshop-home-header .site-control-button:hover,
+:root[data-theme="light"] .mnshop-home-header .site-language-button:hover,
+:root[data-theme="light"] .mnshop-other-header .site-control-button:hover,
+:root[data-theme="light"] .mnshop-other-header .site-language-button:hover {
+  border-color: #3b82f6;
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+:root[data-theme="light"] .mnshop-other-header__product-bar {
+  border-color: rgba(20, 20, 20, 0.1);
+  background: rgba(238, 236, 230, 0.96);
+}
+
+:root[data-theme="light"] .mnshop-other-header__category-link {
+  color: rgba(20, 20, 20, 0.62) !important;
+}
+
+:root[data-theme="light"] .mnshop-other-header__category-link:hover,
+:root[data-theme="light"] .mnshop-other-header__category-link--active {
+  color: #141414 !important;
+}
+
+:root[data-theme="light"] .mnshop-home-header__drawer,
+:root[data-theme="light"] .mnshop-other-header__drawer {
+  border-color: rgba(20, 20, 20, 0.12);
+  background: #faf9f6;
+  color: #141414;
+}
+
+:root[data-theme="light"] .mnshop-home-header__suggestions,
+:root[data-theme="light"] .mnshop-other-header__suggestions {
+  border-color: rgba(20, 20, 20, 0.12);
+  background: #fff;
+}
+
+:root[data-theme="light"] .mnshop-home-header__suggestions a,
+:root[data-theme="light"] .mnshop-other-header__suggestions a {
+  color: rgba(20, 20, 20, 0.76);
+}
+
+:root[data-theme="light"] .mnshop-home-header__suggestions a:hover,
+:root[data-theme="light"] .mnshop-other-header__suggestions a:hover {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+:root[data-theme="light"] .mnshop-home-header__login,
+:root[data-theme="light"] .mnshop-other-header__login {
+  border-color: #2563eb;
+  background: #2563eb;
+  color: #fff !important;
+}
+
+:root[data-theme="light"] .mnshop-home-header__login:hover,
+:root[data-theme="light"] .mnshop-other-header__login:hover {
+  border-color: #1d4ed8;
+  background: #1d4ed8;
+  color: #fff !important;
+}
+
+:root[data-theme="light"] .mnshop-cart-drawer {
+  border-color: rgba(20, 20, 20, 0.12);
+  background: #f7f6f2;
+  color: #141414;
+  box-shadow: -18px 0 60px rgba(20, 20, 20, 0.14);
+}
+
+:root[data-theme="light"] .mnshop-cart-drawer__header,
+:root[data-theme="light"] .mnshop-cart-drawer__footer {
+  border-color: rgba(20, 20, 20, 0.12);
+}
+
+:root[data-theme="light"] .mnshop-cart-drawer__close,
+:root[data-theme="light"] .mnshop-cart-drawer__quantity button,
+:root[data-theme="light"] .mnshop-cart-drawer__summary .mnshop-cart-drawer__total {
+  color: #141414;
+}
+
+:root[data-theme="light"] .mnshop-cart-drawer__close:hover,
+:root[data-theme="light"] .mnshop-cart-drawer__close:active {
+  background: rgba(20, 20, 20, 0.07);
+}
+
+:root[data-theme="light"] .mnshop-cart-drawer__empty,
+:root[data-theme="light"] .mnshop-cart-drawer__variant,
+:root[data-theme="light"] .mnshop-cart-drawer__summary,
+:root[data-theme="light"] .mnshop-cart-drawer__continue {
+  color: rgba(20, 20, 20, 0.6) !important;
+}
+
+:root[data-theme="light"] .mnshop-cart-drawer__item,
+:root[data-theme="light"] .mnshop-cart-drawer__quantity {
+  border-color: rgba(20, 20, 20, 0.12);
+  background: #fff;
+}
+
+:root[data-theme="light"] .mnshop-cart-drawer__checkout {
+  background: #2563eb;
+  color: #fff !important;
+}
+
+:root[data-theme="light"] .mnshop-cart-drawer__continue:hover {
+  color: #141414 !important;
+}
+
+:root[data-theme="light"] .mnshop-mobile-bottom-nav {
+  border-color: rgba(20, 20, 20, 0.12);
+  background: rgba(250, 249, 246, 0.94);
+  box-shadow: 0 -8px 28px rgba(20, 20, 20, 0.08);
+}
+
+:root[data-theme="light"] .mnshop-mobile-bottom-nav__item {
+  color: rgba(20, 20, 20, 0.68);
+}
+
+:root[data-theme="light"] .mnshop-mobile-bottom-nav__item:hover,
+:root[data-theme="light"] .mnshop-mobile-bottom-nav__item.is-active,
+:root[data-theme="light"] .mnshop-mobile-bottom-nav__item[aria-current="page"] {
+  color: #2563eb;
+}
+
+/* Sale remains distinctive in light mode without becoming a dark block. */
+:root[data-theme="light"] .mnshop-sale-section {
+  border-color: rgba(190, 80, 60, 0.18);
+  background: linear-gradient(135deg, #f6ede8 0%, #f3f0ea 52%, #edf3fb 100%);
+  color: #1c1715;
+}
+
+:root[data-theme="light"] .mnshop-sale-section .mnshop-product-section__heading {
+  border-color: rgba(20, 20, 20, 0.14);
+}
+
+:root[data-theme="light"] .mnshop-sale-section .mnshop-product-section__heading h2,
+:root[data-theme="light"] .mnshop-sale-section .mnshop-product-card h3,
+:root[data-theme="light"] .mnshop-sale-section .mnshop-product-card__prices span:first-child {
+  color: #1c1715;
+}
+
+:root[data-theme="light"] .mnshop-sale-section .mnshop-product-section__heading p,
+:root[data-theme="light"] .mnshop-sale-section .mnshop-product-card__eyebrow,
+:root[data-theme="light"] .mnshop-sale-section .mnshop-product-card__metrics {
+  color: rgba(28, 23, 21, 0.55);
+}
+
+/* Footer follows the selected theme on all breakpoints. */
+:root[data-theme="light"] .mnshop-footer {
+  border-color: rgba(20, 20, 20, 0.12);
+  background: #eceae4;
+  color: #1b1b1b;
+}
+
+:root[data-theme="light"] .mnshop-footer__brand-link,
+:root[data-theme="light"] .mnshop-footer__title,
+:root[data-theme="light"] .mnshop-footer__socials a {
+  color: #1b1b1b;
+}
+
+:root[data-theme="light"] .mnshop-footer__description,
+:root[data-theme="light"] .mnshop-footer__links a,
+:root[data-theme="light"] .mnshop-footer__contact p,
+:root[data-theme="light"] .mnshop-footer__bottom {
+  color: rgba(27, 27, 27, 0.62);
+}
+
+:root[data-theme="light"] .mnshop-footer__bottom,
+:root[data-theme="light"] .mnshop-footer__socials a {
+  border-color: rgba(20, 20, 20, 0.12);
+}
+
 .theme-dark-content {
   color: #f8fafc;
 }

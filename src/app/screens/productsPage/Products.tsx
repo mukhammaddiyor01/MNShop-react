@@ -202,19 +202,19 @@ export function Products() {
         </div>
 
         <div className="mnshop-catalog__layout">
-          <aside className="mnshop-catalog__filters">
+          <aside className="">
             <div className="mnshop-catalog__price-filter">
               <label htmlFor="catalog-price">Maximum price</label>
               <input
                 id="catalog-price"
                 type="range"
-                min="100000"
-                max="800000"
-                defaultValue="800000"
+                min="10000"
+                max="50000"
+                defaultValue="50000"
               />
               <div>
-                <span>100K KRW</span>
-                <span>800K KRW</span>
+                <span>10K KRW</span>
+                <span>50K KRW</span>
               </div>
             </div>
 
@@ -227,7 +227,14 @@ export function Products() {
                     checked={selectedColors.includes(color)}
                     onChange={() => toggleColor(color)}
                   />
-                  <span style={{ backgroundColor: color }} />
+                  <span
+                    data-light-color={
+                      ["#f8fafc", "#ffffff", "white"].includes(color.toLowerCase())
+                        ? "true"
+                        : undefined
+                    }
+                    style={{ backgroundColor: color }}
+                  />
                   {colorLabel(color)}
                 </label>
               ))}

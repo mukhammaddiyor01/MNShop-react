@@ -12,7 +12,7 @@ export function SitePreferenceControls() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="site-preference-controls">
+    <div className="site-preference-controls" data-no-translate>
       <button type="button" className="site-control-button" onClick={toggleTheme} aria-label={theme === "dark" ? t("Light mode") : t("Dark mode")} title={theme === "dark" ? t("Light mode") : t("Dark mode")}>
         {theme === "dark" ? <LightModeIcon fontSize="small" /> : <DarkModeIcon fontSize="small" />}
       </button>

@@ -8,9 +8,14 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import "./css/index.css";
 import { BrowserRouter as Router } from "react-router-dom";
-import theme from "./app/MaterialTheme copy";
+import { getTheme } from "./app/MaterialTheme copy";
 import { ContextProvider } from "./app/context/ContextProvider";
-import { SitePreferencesProvider } from "./app/context/SitePreferencesProvider";
+import { SitePreferencesProvider, useSitePreferences } from "./app/context/SitePreferencesProvider";
+
+function PreferenceThemeProvider({ children }: { children: React.ReactNode }) {
+  const { theme } = useSitePreferences();
+  return <ThemeProvider theme={getTheme(theme)}><CssBaseline />{children}</ThemeProvider>;
+}
 
 const container = document.getElementById("root");
 
@@ -26,12 +31,11 @@ root.render(
     <Provider store={store}>
       <ContextProvider>
         <SitePreferencesProvider>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
+          <PreferenceThemeProvider>
             <Router>
               <App />
             </Router>
-          </ThemeProvider>
+          </PreferenceThemeProvider>
         </SitePreferencesProvider>
       </ContextProvider>
     </Provider>
