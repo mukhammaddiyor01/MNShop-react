@@ -3,6 +3,7 @@ import axios from "axios";
 export type SellerOrder = {
   id: string;
   buyerId: string;
+  buyerName: string;
   items: Array<{
     productId: string;
     name: string;
@@ -31,6 +32,12 @@ export type DeliveryStatus =
 type SellerOrderDto = {
   _id: string;
   buyerId?: string;
+  buyerData?: Array<{
+    _id?: string;
+    userNick?: string;
+    userEmail?: string;
+    userImage?: string;
+  }>;
   orderItems?: Array<{
     productId?: string;
     itemQuantity?: number;
@@ -64,6 +71,10 @@ const serverApi = (
 const normalizeOrder = (order: SellerOrderDto): SellerOrder => ({
   id: String(order._id),
   buyerId: String(order.buyerId || ""),
+  buyerName:
+    order.buyerData?.[0]?.userNick?.trim() ||
+    order.buyerData?.[0]?.userEmail?.trim() ||
+    "Buyer",
   items: (order.orderItems || []).map((item) => ({
     productId: String(item.productId || ""),
     name: (order.productData || []).find(

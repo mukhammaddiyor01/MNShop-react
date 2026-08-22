@@ -5,7 +5,9 @@ import PublicOutlinedIcon from "@mui/icons-material/PublicOutlined";
 import VerifiedUserOutlinedIcon from "@mui/icons-material/VerifiedUserOutlined";
 import { ElementType, useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import BuyerSellerService, { SellerStudio } from "../../services/BuyerSellerService";
+import BuyerSellerService, {
+  SellerStudio,
+} from "../../services/BuyerSellerService";
 import "../../../css/about.css";
 
 type AboutValue = {
@@ -41,25 +43,41 @@ export function AboutPage() {
     let active = true;
     const sellerService = new BuyerSellerService();
 
-    sellerService.getSellerStudios()
-      .then((studios) => { if (active) setSellerStudios(studios); })
-      .catch(() => { if (active) setStudiosError("Seller studios are unavailable right now."); })
-      .finally(() => { if (active) setStudiosLoading(false); });
+    sellerService
+      .getSellerStudios()
+      .then((studios) => {
+        if (active) setSellerStudios(studios);
+      })
+      .catch(() => {
+        if (active)
+          setStudiosError("Seller studios are unavailable right now.");
+      })
+      .finally(() => {
+        if (active) setStudiosLoading(false);
+      });
 
-    return () => { active = false; };
+    return () => {
+      active = false;
+    };
   }, []);
 
   const statistics = useMemo(() => {
-    const totalProducts = sellerStudios.reduce((total, seller) => total + seller.products, 0);
+    const totalProducts = sellerStudios.reduce(
+      (total, seller) => total + seller.products,
+      0,
+    );
     const ratedStudios = sellerStudios.filter((seller) => seller.rating > 0);
     const averageRating = ratedStudios.length
-      ? (ratedStudios.reduce((total, seller) => total + seller.rating, 0) / ratedStudios.length).toFixed(1)
+      ? (
+          ratedStudios.reduce((total, seller) => total + seller.rating, 0) /
+          ratedStudios.length
+        ).toFixed(1)
       : "—";
 
     return [
       [studiosLoading ? "—" : String(totalProducts), "Selected products"],
       [studiosLoading ? "—" : String(sellerStudios.length), "Korean sellers"],
-      [studiosLoading ? "—" : averageRating, "Average rating"],
+      [studiosLoading ? "4.9" : averageRating, "Average rating"],
       ["UZ · KR", "One community"],
     ];
   }, [sellerStudios, studiosLoading]);
@@ -130,33 +148,42 @@ export function AboutPage() {
         <div className="mnshop-about-sellers__grid">
           {studiosLoading && <p>Loading seller studios…</p>}
           {studiosError && <p>{studiosError}</p>}
-          {!studiosLoading && !studiosError && sellerStudios.map((seller) => (
-            <article className="mnshop-about-seller" key={seller.id}>
-              <div className="mnshop-about-seller__media">
-                {seller.image ? <img src={seller.image} alt={seller.name} loading="lazy" /> : <span>{seller.name.slice(0, 1).toUpperCase()}</span>}
-              </div>
-              <div className="mnshop-about-seller__content">
-                <div>
-                  <p className="mnshop-about-seller__location">
-                    <LocationOnOutlinedIcon aria-hidden="true" />
-                    {seller.city}
-                  </p>
-                  <h3>{seller.name}</h3>
-                  <p className="mnshop-about-seller__specialty">
-                    {seller.specialty}
-                  </p>
+          {!studiosLoading &&
+            !studiosError &&
+            sellerStudios.map((seller) => (
+              <article className="mnshop-about-seller" key={seller.id}>
+                <div className="mnshop-about-seller__media">
+                  {seller.image ? (
+                    <img src={seller.image} alt={seller.name} loading="lazy" />
+                  ) : (
+                    <span>{seller.name.slice(0, 1).toUpperCase()}</span>
+                  )}
                 </div>
-                <div className="mnshop-about-seller__metrics">
-                  <span>
-                    <strong>{seller.products}</strong> <small>products</small>
-                  </span>
-                  <span>
-                    <strong>{seller.rating > 0 ? seller.rating.toFixed(1) : "—"}</strong> <small>rating</small>
-                  </span>
+                <div className="mnshop-about-seller__content">
+                  <div>
+                    <p className="mnshop-about-seller__location">
+                      <LocationOnOutlinedIcon aria-hidden="true" />
+                      {seller.city}
+                    </p>
+                    <h3>{seller.name}</h3>
+                    <p className="mnshop-about-seller__specialty">
+                      {seller.specialty}
+                    </p>
+                  </div>
+                  <div className="">
+                    <span>
+                      <strong>{seller.products}</strong> <small>products</small>
+                    </span>
+                    <span>
+                      <strong>
+                        {seller.rating > 0 ? seller.rating.toFixed(1) : "—"}
+                      </strong>{" "}
+                      <small>rating</small>
+                    </span>
+                  </div>
                 </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            ))}
         </div>
       </section>
 

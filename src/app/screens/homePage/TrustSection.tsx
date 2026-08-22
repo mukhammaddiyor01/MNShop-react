@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const buyerStats = [
   ["2.4K+", "Active buyers"],
-  ["4.8/5", "Average rating"],
+  ["4.9/5", "Average rating"],
   ["1.2K+", "Orders delivered"],
 ];
 
@@ -54,7 +54,7 @@ export function TrustSection() {
                 <div>
                   <div
                     className="mnshop-community__stars"
-                    aria-label="4.8 out of 5 stars"
+                    aria-label="4.9 out of 5 stars"
                   >
                     {Array.from({ length: 5 }, (_, index) => (
                       <StarIcon key={index} aria-hidden="true" />
