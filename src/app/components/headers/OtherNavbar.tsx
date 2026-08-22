@@ -16,6 +16,7 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import { products } from "../../data/products";
 import { useGlobals } from "../../hooks/useGlobals";
 import { MnshopLogo } from "../mnshop-logo";
+import { SitePreferenceControls } from "../SitePreferenceControls";
 
 const publicNavigation = [
   { label: "Home", href: "/", icon: HomeOutlinedIcon },
@@ -137,6 +138,7 @@ export function OtherNavbar() {
         </div>
 
         <div className="mnshop-other-header__actions">
+          <SitePreferenceControls />
           {authUser && (
             <>
               <button

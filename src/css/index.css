@@ -86,6 +86,16 @@ textarea {
     color 180ms ease;
 }
 
+.site-preference-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.site-language-control {
+  position: relative;
+}
+
 .site-control-button {
   width: 2.5rem;
   border-radius: 999px;

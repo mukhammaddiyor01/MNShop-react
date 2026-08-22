@@ -9,6 +9,7 @@ import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import { ReactNode, useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { useSellerGlobals } from "../../context/ContextProvider";
+import { SitePreferenceControls } from "../SitePreferenceControls";
 
 type SellerDashboardLayoutProps = { children: ReactNode };
 
@@ -76,11 +77,12 @@ export function SellerDashboardLayout({ children }: SellerDashboardLayoutProps) 
 
         <div className="mnshop-seller-dashboard__content">
           <header className="mnshop-seller-dashboard__topbar">
-            <div>
+            <div className="mnshop-seller-dashboard__topbar-copy">
               <p>Seller Studio</p>
               <h1>Seller Dashboard</h1>
               <span>Products, orders, messages, and analytics in one place.</span>
             </div>
+            <SitePreferenceControls />
           </header>
           {children}
           <footer className="mnshop-seller-dashboard__footer">

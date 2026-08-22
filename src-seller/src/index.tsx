@@ -10,18 +10,22 @@ import "./css/index.css";
 import { BrowserRouter as Router } from "react-router-dom";
 import theme from "./app/MaterialTheme";
 import { SellerContextProvider } from "./app/context/ContextProvider";
+import { SitePreferencesProvider } from "./app/context/SitePreferencesProvider";
+import "./css/preferences.css";
 
 // Global integration => REDUX
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <SellerContextProvider>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Router>
-            <App />
-          </Router>
-        </ThemeProvider>
+        <SitePreferencesProvider>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Router>
+              <App />
+            </Router>
+          </ThemeProvider>
+        </SitePreferencesProvider>
       </SellerContextProvider>
     </Provider>
   </React.StrictMode>,

@@ -16,6 +16,7 @@ import { useGlobals } from "../../hooks/useGlobals";
 import { retrieveHomeProducts } from "../../screens/homePage/selector";
 import { retrieveCatalogProducts } from "../../screens/productsPage/selector";
 import { MnshopLogo } from "../mnshop-logo";
+import { SitePreferenceControls } from "../SitePreferenceControls";
 
 const publicNavigation = [
   { label: "Home", href: "/", icon: HomeOutlinedIcon },
@@ -130,6 +131,7 @@ export function HomeNavbar() {
         </div>
 
         <div className="mnshop-home-header__actions">
+          <SitePreferenceControls />
           {authUser && (
             <>
               <Link
