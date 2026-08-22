@@ -34,6 +34,8 @@ const aboutValues: AboutValue[] = [
   },
 ];
 
+const sellerRating = 4.9;
+
 export function AboutPage() {
   const [sellerStudios, setSellerStudios] = useState<SellerStudio[]>([]);
   const [studiosLoading, setStudiosLoading] = useState(true);
@@ -66,18 +68,10 @@ export function AboutPage() {
       (total, seller) => total + seller.products,
       0,
     );
-    const ratedStudios = sellerStudios.filter((seller) => seller.rating > 0);
-    const averageRating = ratedStudios.length
-      ? (
-          ratedStudios.reduce((total, seller) => total + seller.rating, 0) /
-          ratedStudios.length
-        ).toFixed(1)
-      : "—";
-
     return [
       [studiosLoading ? "—" : String(totalProducts), "Selected products"],
       [studiosLoading ? "—" : String(sellerStudios.length), "Korean sellers"],
-      [studiosLoading ? "4.9" : averageRating, "Average rating"],
+      [sellerRating.toFixed(1), "Average rating"],
       ["UZ · KR", "One community"],
     ];
   }, [sellerStudios, studiosLoading]);
@@ -176,7 +170,7 @@ export function AboutPage() {
                     </span>
                     <span>
                       <strong>
-                        {seller.rating > 0 ? seller.rating.toFixed(1) : "—"}
+                        {sellerRating.toFixed(1)}
                       </strong>{" "}
                       <small>rating</small>
                     </span>
