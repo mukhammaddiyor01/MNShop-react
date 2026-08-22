@@ -34,6 +34,7 @@ type SellerOrderDto = {
   orderItems?: Array<{
     productId?: string;
     itemQuantity?: number;
+    itemSubtotal?: number;
     itemPrice?: number;
   }>;
   productData?: Array<{
@@ -68,7 +69,7 @@ const normalizeOrder = (order: SellerOrderDto): SellerOrder => ({
     name: (order.productData || []).find(
       (product) => String(product._id) === String(item.productId),
     )?.productName || "Product",
-    quantity: Number(item.itemQuantity || 0),
+    quantity: Number(item.itemQuantity ?? item.itemSubtotal ?? 0),
     price: Number(item.itemPrice || 0),
   })),
   address: order.orderAddress || "",

@@ -282,6 +282,13 @@
   .mnshop-seller-product-editor__color-options .is-white { background: #f8fafc; }
   .mnshop-seller-product-editor__color-options .is-red { background: #ef4444; }
   .mnshop-seller-product-editor__color-options .is-blue { background: #3b82f6; }
+  .mnshop-seller-product-editor__size-options { display: grid; gap: 9px; margin: 0; border: 1px solid rgba(255,255,255,.12); border-radius: 7px; padding: 13px; }
+  .mnshop-seller-product-editor__size-options legend { padding: 0 5px; color: rgba(255,255,255,.62); font-size: 12px; font-weight: 700; }
+  .mnshop-seller-product-editor__size-options > div { display: flex; flex-wrap: wrap; gap: 8px; }
+  .mnshop-seller-product-editor__size-options label { display: inline-flex; align-items: center; gap: 7px; color: rgba(255,255,255,.72); cursor: pointer; font-size: 12px; }
+  .mnshop-seller-product-editor__size-options input { width: 14px; height: 14px; margin: 0; accent-color: #3b82f6; }
+  .mnshop-seller-product-editor__size-options span { display: grid; min-width: 28px; min-height: 28px; place-items: center; border: 1px solid rgba(255,255,255,.2); border-radius: 5px; padding: 0 5px; font-size: 11px; }
+  .mnshop-seller-product-editor__size-options label:has(input:checked) span { border-color: #3b82f6; background: rgba(59,130,246,.16); color: #dbeafe; }
   .mnshop-seller-product-editor__image-picker { display: grid; gap: 7px; }
   .mnshop-seller-product-editor__image-picker small { color: rgba(255,255,255,.42); font-size: 11px; font-weight: 600; }
   .mnshop-seller-product-editor__image-picker input { cursor: pointer; }

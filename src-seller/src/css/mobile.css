@@ -188,6 +188,13 @@
   .mnshop-seller-product-editor__color-options input { accent-color: #3b82f6; }
   .mnshop-seller-product-editor__color-options span { width: 13px; height: 13px; border: 1px solid rgba(255,255,255,.35); border-radius: 50%; }
   .mnshop-seller-product-editor__color-options .is-black { background: #0a0a0a; }.mnshop-seller-product-editor__color-options .is-white { background: #f8fafc; }.mnshop-seller-product-editor__color-options .is-red { background: #ef4444; }.mnshop-seller-product-editor__color-options .is-blue { background: #3b82f6; }
+  .mnshop-seller-product-editor__size-options { display: grid; gap: 8px; margin: 0; border: 1px solid rgba(255,255,255,.12); border-radius: 7px; padding: 12px; }
+  .mnshop-seller-product-editor__size-options legend { padding: 0 5px; color: rgba(255,255,255,.62); font-size: 12px; font-weight: 700; }
+  .mnshop-seller-product-editor__size-options > div { display: flex; flex-wrap: wrap; gap: 7px; }
+  .mnshop-seller-product-editor__size-options label { display: inline-flex; align-items: center; gap: 6px; color: rgba(255,255,255,.72); font-size: 12px; }
+  .mnshop-seller-product-editor__size-options input { width: 14px; height: 14px; margin: 0; accent-color: #3b82f6; }
+  .mnshop-seller-product-editor__size-options span { display: grid; min-width: 26px; min-height: 26px; place-items: center; border: 1px solid rgba(255,255,255,.2); border-radius: 5px; padding: 0 4px; font-size: 10px; }
+  .mnshop-seller-product-editor__size-options label:has(input:checked) span { border-color: #3b82f6; background: rgba(59,130,246,.16); color: #dbeafe; }
   .mnshop-seller-product-editor__body > .mnshop-seller-product-editor__image-previews { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
   .mnshop-seller-product-editor__image-previews figure { position: relative; aspect-ratio: 1; margin: 0; overflow: hidden; border: 1px solid rgba(255,255,255,.14); border-radius: 6px; }
   .mnshop-seller-product-editor__image-previews img { display: block; width: 100%; height: 100%; object-fit: cover; }

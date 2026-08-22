@@ -36,9 +36,9 @@ const productCategoryNames: Record<Exclude<CatalogCategory, "sale">, string> = {
 const catalogHeroes: Record<CatalogCategory, CatalogHero> = {
   hoodies: {
     images: [
-      "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1800&q=85",
-      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=1800&q=85",
-      "https://images.unsplash.com/photo-1579572331145-5e53b299c64e?auto=format&fit=crop&w=1800&q=85",
+      "/img/hoodieshero/hoodie-hero-02-lion.webp",
+      "/img/hoodieshero/hoodie-hero-01-eagle.webp",
+      "/img/hoodieshero/hoodie-hero-03-mounted-warrior.webp",
     ],
     eyebrow: "Heavyweight comfort",
     title: "Hoodies",
@@ -47,9 +47,9 @@ const catalogHeroes: Record<CatalogCategory, CatalogHero> = {
   },
   tshirts: {
     images: [
-      "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=1800&q=85",
-      "https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=1800&q=85",
-      "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1800&q=85",
+      "/img/tshirtshero/tshirt-hero-01-dont-give-up.webp",
+      "/img/tshirtshero/tshirt-hero-02-conversation.webp",
+      "/img/tshirtshero/tshirt-hero-03-paisley-cascade.webp",
     ],
     eyebrow: "Seoul daily uniform",
     title: "T-Shirts",
@@ -58,9 +58,9 @@ const catalogHeroes: Record<CatalogCategory, CatalogHero> = {
   },
   caps: {
     images: [
-      "https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=1800&q=85",
-      "https://images.unsplash.com/photo-1534215754734-18e55d13e346?auto=format&fit=crop&w=1800&q=85",
-      "https://images.unsplash.com/photo-1572307480813-ceb0e59d8325?auto=format&fit=crop&w=1800&q=85",
+      "/img/capshero/cap-hero-01-athletic-motion.webp",
+      "/img/capshero/cap-hero-02-wing-star.webp",
+      "/img/capshero/cap-hero-03-geometric-b.webp",
     ],
     eyebrow: "Finish the fit",
     title: "Caps",
@@ -69,9 +69,9 @@ const catalogHeroes: Record<CatalogCategory, CatalogHero> = {
   },
   cups: {
     images: [
-      "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?auto=format&fit=crop&w=1800&q=85",
-      "https://images.unsplash.com/photo-1520034475321-cbe63696469a?auto=format&fit=crop&w=1800&q=85",
-      "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1800&q=85",
+      "/img/cupshero/cup-hero-01-crescent-stars.webp",
+      "/img/cupshero/cup-hero-02-bukhara-skyline.webp",
+      "/img/cupshero/cup-hero-03-space-explorer.webp",
     ],
     eyebrow: "Coffee meets culture",
     title: "Cups",
@@ -80,9 +80,9 @@ const catalogHeroes: Record<CatalogCategory, CatalogHero> = {
   },
   sale: {
     images: [
-      "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1800&q=85",
-      "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1800&q=85",
-      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1800&q=85",
+      "/img/sales page images/sales-hero.webp",
+      "/img/sales page images/sales-hero2.webp",
+      "/img/sales page images/sales-hero3.webp",
     ],
     eyebrow: "Limited prices",
     title: "Sale Collection",
@@ -148,8 +148,8 @@ export function Products() {
           dispatch(
             setCatalogProductsError(
               "Products could not be loaded. Please try again.",
-          ),
-        );
+            ),
+          );
         }
       })
       .finally(() => {
@@ -185,9 +185,7 @@ export function Products() {
       <section className="mnshop-catalog">
         <div className="mnshop-catalog__heading">
           <div>
-            <p>
-              Current collection / {visibleProducts.length} pieces
-            </p>
+            <p>Current collection / {visibleProducts.length} pieces</p>
             <h2>Shop {hero.title}</h2>
           </div>
 
@@ -233,7 +231,9 @@ export function Products() {
                   {colorLabel(color)}
                 </label>
               ))}
-              {!availableColors.length && <small>No color variants available.</small>}
+              {!availableColors.length && (
+                <small>No color variants available.</small>
+              )}
             </div>
 
             {activeCategory !== "cups" && (
@@ -259,9 +259,11 @@ export function Products() {
             <div className="mnshop-catalog__grid">
               {isLoading && <p>Loading products…</p>}
               {!isLoading && loadError && <p role="alert">{loadError}</p>}
-              {!isLoading && !loadError && visibleProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
+              {!isLoading &&
+                !loadError &&
+                visibleProducts.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
             </div>
           </div>
         </div>

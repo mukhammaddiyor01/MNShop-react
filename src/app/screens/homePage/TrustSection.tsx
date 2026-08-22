@@ -2,8 +2,6 @@ import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import StarIcon from "@mui/icons-material/Star";
 import { Link } from "react-router-dom";
-import { useAppSelector } from "../../hooks";
-import { retrieveHomeProducts } from "./selector";
 
 const buyerStats = [
   ["2.4K+", "Active buyers"],
@@ -28,13 +26,7 @@ const sellerBenefits = [
 ];
 
 export function TrustSection() {
-  const products = useAppSelector(retrieveHomeProducts);
-  const sellerProduct =
-    products.find((product) => product.category === "T-Shirts") || products[0];
-  const sellerImage =
-    sellerProduct?.hoverImage ||
-    sellerProduct?.image ||
-    "/images/product-placeholder.png";
+  const sellerImage = "/img/MNShop%20brand%20image/mnshopbrand.webp";
 
   return (
     <>
