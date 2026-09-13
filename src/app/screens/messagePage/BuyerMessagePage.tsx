@@ -6,7 +6,7 @@ import {
   buyerConversations,
   MessageConversationTarget,
 } from "./messageData";
-import "../../../css/message.css";
+import "../../../css/message.scss";
 
 function isConversationTarget(
   target: string | null,

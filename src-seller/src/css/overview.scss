@@ -1,3 +1,4 @@
+// SCSS entry; preserve existing cascade and responsive rules.
 .mnshop-seller-overview { color: #f8fafc; }
 .mnshop-seller-overview__stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
 .mnshop-seller-overview__stats article, .mnshop-seller-overview__panels > article { border: 1px solid rgba(255,255,255,.1); border-radius: 8px; background: rgba(20,20,20,.72); box-shadow: 0 16px 44px rgba(0,0,0,.22); backdrop-filter: blur(14px); }

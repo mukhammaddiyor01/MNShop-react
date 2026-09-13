@@ -15,7 +15,7 @@ import {
   setSellerSettingsSaved,
   setSellerSettingsSaving,
 } from "./slice";
-import "../../../css/settings.css";
+import "../../../css/settings.scss";
 
 const sellerProfileService = new SellerProfileService();
 

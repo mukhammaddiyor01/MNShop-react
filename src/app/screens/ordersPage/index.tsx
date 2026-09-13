@@ -1,4 +1,4 @@
-import "../../../css/order.css";
+import "../../../css/order.scss";
 import { BuyerOrdersClient } from "./BuyerOrdersClient";
 
 export function OrdersPage() {

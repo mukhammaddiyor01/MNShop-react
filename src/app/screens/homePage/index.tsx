@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect } from "react";
-import "../../../css/home.css";
-import "../../../css/mobile.css";
-import "../../../css/products.css";
+import "../../../css/home.scss";
+import "../../../css/mobile.scss";
+import "../../../css/products.scss";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import BuyerProductService from "../../services/BuyerProductService";
 import { BestSellers } from "./BestSellers";

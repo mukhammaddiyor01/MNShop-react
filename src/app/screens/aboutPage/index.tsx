@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import BuyerSellerService, {
   SellerStudio,
 } from "../../services/BuyerSellerService";
-import "../../../css/about.css";
+import "../../../css/about.scss";
 
 type AboutValue = {
   icon: ElementType;

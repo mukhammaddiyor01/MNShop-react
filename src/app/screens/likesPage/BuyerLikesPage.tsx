@@ -4,7 +4,7 @@ import { ProductCard } from "../../components/product/ProductCard";
 import { Product } from "../../context/ContextProvider";
 import { useGlobals } from "../../hooks/useGlobals";
 import BuyerProductService from "../../services/BuyerProductService";
-import "../../../css/likes.css";
+import "../../../css/likes.scss";
 
 const buyerProductService = new BuyerProductService();
 

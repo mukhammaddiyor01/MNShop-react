@@ -5,7 +5,7 @@ import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import TaskAltOutlinedIcon from "@mui/icons-material/TaskAltOutlined";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import { useEffect, useMemo, useState } from "react";
-import "../../../css/checkout.css";
+import "../../../css/checkout.scss";
 import { calculateDeliveryFee } from "../../../lib/delivery";
 import { CartItem } from "../../context/ContextProvider";
 import { money } from "../../data/products";

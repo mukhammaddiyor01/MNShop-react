@@ -4,7 +4,7 @@ import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import { useEffect, useMemo, useState } from "react";
 import SellerOrderService, { SellerOrder } from "../../services/SellerOrderService";
 import SellerProductService, { SellerProduct } from "../../services/SellerProductService";
-import "../../../css/analytics.css";
+import "../../../css/analytics.scss";
 
 const productService = new SellerProductService();
 const orderService = new SellerOrderService();

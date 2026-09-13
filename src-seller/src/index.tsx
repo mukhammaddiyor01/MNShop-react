@@ -6,12 +6,12 @@ import App from "./app/App";
 import reportWebVitals from "./reportWebVitals";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
-import "./css/index.css";
+import "./css/index.scss";
 import { BrowserRouter as Router } from "react-router-dom";
 import { getTheme } from "./app/MaterialTheme";
 import { SellerContextProvider } from "./app/context/ContextProvider";
 import { SitePreferencesProvider, useSitePreferences } from "./app/context/SitePreferencesProvider";
-import "./css/preferences.css";
+import "./css/preferences.scss";
 
 function PreferenceThemeProvider({ children }: { children: React.ReactNode }) {
   const { theme } = useSitePreferences();

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import "../../../css/animation.css";
+import "../../../css/animation.scss";
 
 type Particle = {
   angle: number;

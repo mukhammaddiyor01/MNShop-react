@@ -1,3 +1,4 @@
+// SCSS entry; preserve existing cascade and responsive rules.
 @media screen and (min-width: 1024px) {
   .mnshop-likes-page { min-height: calc(100vh - 160px); }
   .mnshop-likes-page__content { width: min(100%, 1280px); margin: 0 auto; padding: 40px 20px; }

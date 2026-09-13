@@ -1,6 +1,6 @@
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import { FormEvent, useMemo, useState } from "react";
-import "../../../css/messages.css";
+import "../../../css/messages.scss";
 
 type Conversation = {
   id: string;

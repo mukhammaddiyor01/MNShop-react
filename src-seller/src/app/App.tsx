@@ -1,7 +1,7 @@
 import React from "react";
-import "../css/app.css";
-import "../css/auth.css";
-import "../css/mobile.css";
+import "../css/app.scss";
+import "../css/auth.scss";
+import "../css/mobile.scss";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { OverviewPage } from "./screens/overviewPage/index";
 import { MessagesPage } from "./screens/messagesPage/index";

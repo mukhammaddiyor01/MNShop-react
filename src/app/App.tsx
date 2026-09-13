@@ -22,10 +22,10 @@ import { CartDrawer } from "./components/headers/Basket";
 import { MobileBottomNav } from "./components/headers/MobileBottomNav";
 import { BackToTop } from "./components/shared/BackToTop";
 import { Footer } from "./components/footer";
-import "../css/navbar.css";
-import "../css/footer.css";
-import "../css/app.css";
-import "../css/auth.css";
+import "../css/navbar.scss";
+import "../css/footer.scss";
+import "../css/app.scss";
+import "../css/auth.scss";
 
 function App() {
   const location = useLocation();

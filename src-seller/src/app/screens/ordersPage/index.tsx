@@ -16,7 +16,7 @@ import {
   setSellerOrdersError,
   setSellerOrdersLoading,
 } from "./slice";
-import "../../../css/orders.css";
+import "../../../css/orders.scss";
 
 const sellerOrderService = new SellerOrderService();
 const formatKrw = (value: number) => `${new Intl.NumberFormat("en-US").format(value)} KRW`;

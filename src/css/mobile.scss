@@ -1,3 +1,4 @@
+/* Responsive SCSS entry: preserve rule order and existing breakpoint values. */
 /* Catalog filters remain reachable while the product list scrolls. */
 @media screen and (max-width: 1023px) {
   .mnshop-products-catalog .mnshop-catalog__filters {

@@ -18,7 +18,7 @@ import {
   setSellerOverviewError,
   setSellerOverviewLoading,
 } from "./slice";
-import "../../../css/overview.css";
+import "../../../css/overview.scss";
 
 const sellerOrderService = new SellerOrderService();
 const sellerProductService = new SellerProductService();

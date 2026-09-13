@@ -1,3 +1,4 @@
+// SCSS entry; preserve existing cascade and responsive rules.
 @media screen and (max-width: 1023px) {
   .mnshop-seller-dashboard { min-height: 100vh; background: #080808; color: #f8fafc; }
   .mnshop-seller-dashboard__grid { display: block; }

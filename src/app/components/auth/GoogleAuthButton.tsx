@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import "../../../css/google.css";
+import "../../../css/google.scss";
 
 type GoogleCredentialResponse = {
   credential?: string;

@@ -15,7 +15,7 @@ import {
 import { HelpContactActions } from "../../components/HelpContactActions";
 import { HelpTopicDetails } from "./HelpTopicDetails";
 import { helpTopicDetails, HelpTopicSlug } from "./helpTopics";
-import "../../../css/help.css";
+import "../../../css/help.scss";
 
 const helpTopicIcons: Record<HelpTopicSlug, ElementType> = {
   delivery: LocalShippingOutlinedIcon,

@@ -1,5 +1,5 @@
 import { Redirect } from "react-router-dom";
-import "../../../css/userPage.css";
+import "../../../css/userPage.scss";
 import { useGlobals } from "../../hooks/useGlobals";
 import { BuyerProfileSettings } from "./BuyerProfileSettings";
 
