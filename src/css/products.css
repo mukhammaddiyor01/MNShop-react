@@ -484,6 +484,9 @@
   .mnshop-catalog__filters {
     position: sticky;
     top: 128px;
+    align-self: start;
+    max-height: calc(100svh - 152px);
+    overflow-y: auto;
     height: fit-content;
     padding-right: 32px;
     border-right: 1px solid rgba(255, 255, 255, 0.15);

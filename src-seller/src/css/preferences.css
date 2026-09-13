@@ -2,6 +2,28 @@
   color-scheme: dark;
 }
 
+:root[data-theme="light"] { color-scheme: light; background: #f7f6f2; }
+:root[data-theme="light"] .mnshop-seller-auth__panel {
+  background: #f7f6f2;
+  border-color: #d1d5db;
+  color: #141414;
+}
+:root[data-theme="light"] .mnshop-seller-auth__logo,
+:root[data-theme="light"] .mnshop-seller-auth h1 { color: #141414; }
+:root[data-theme="light"] .mnshop-seller-auth__intro,
+:root[data-theme="light"] .mnshop-seller-auth__switch,
+:root[data-theme="light"] .mnshop-seller-auth form label,
+:root[data-theme="light"] .mnshop-seller-auth-state { color: #4b5563; }
+:root[data-theme="light"] .mnshop-seller-auth input,
+:root[data-theme="light"] .mnshop-seller-orders-page input {
+  background: #fff;
+  color: #141414;
+  border-color: #9ca3af;
+}
+:root[data-theme="light"] input::placeholder,
+:root[data-theme="light"] textarea::placeholder { color: #6b7280; opacity: 1; }
+:root[data-theme="light"] .mnshop-seller-auth__error { color: #be123c; }
+
 .site-preference-controls { display: inline-flex; align-items: center; gap: 7px; }
 .site-language-control { position: relative; }
 .site-control-button, .site-language-button {

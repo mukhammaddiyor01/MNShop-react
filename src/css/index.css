@@ -1,5 +1,61 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@700;800;900&display=swap");
 
+.mnshop-catalog__size-filter button[aria-pressed="true"] {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #fff;
+}
+:root[data-theme="light"] .mnshop-catalog__size-filter button[aria-pressed="true"] {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #fff;
+}
+:root[data-theme="light"] .mnshop-trust {
+  background: #eeece6;
+  border-color: #d1d5db;
+}
+:root[data-theme="light"] .mnshop-trust__item h2,
+:root[data-theme="light"] .mnshop-product-detail__breadcrumb > span:last-child {
+  color: #141414;
+}
+:root[data-theme="light"] .mnshop-trust__item p,
+:root[data-theme="light"] .mnshop-help-contact__actions button small,
+:root[data-theme="light"] .mnshop-help-topic-detail__contact-inner > div:first-child > p:last-child,
+:root[data-theme="light"] .mnshop-sellers__benefit > span {
+  color: #4b5563;
+}
+:root[data-theme="light"] .mnshop-best-sellers__heading-actions a,
+:root[data-theme="light"] .mnshop-product-section__heading > a,
+:root[data-theme="light"] .mnshop-sale-section .mnshop-product-section__heading > a,
+:root[data-theme="light"] .mnshop-sellers__secondary-action {
+  color: #1d4ed8;
+}
+:root[data-theme="light"] .mnshop-mock-payment__dialog {
+  background: #fff;
+  color: #141414;
+  border-color: #d1d5db;
+}
+:root[data-theme="light"] .mnshop-mock-payment__header h2,
+:root[data-theme="light"] .mnshop-mock-payment__header button,
+:root[data-theme="light"] .mnshop-mock-payment__summary strong,
+:root[data-theme="light"] .mnshop-mock-payment form label > span { color: #141414; }
+:root[data-theme="light"] .mnshop-mock-payment__summary span,
+:root[data-theme="light"] .mnshop-mock-payment__warning { color: #4b5563; }
+:root[data-theme="light"] .mnshop-mock-payment form input {
+  background: #f8fafc;
+  border-color: #9ca3af;
+  color: #141414;
+}
+:root[data-theme="light"] .mnshop-mock-payment form input::placeholder { color: #6b7280; }
+
+:root[data-theme="light"] .mnshop-product-card__prices span + span { color: #6b7280; }
+:root[data-theme="light"] .mnshop-buyer-order__status-actions button { color: #be123c; }
+:root[data-theme="light"] .mnshop-buyer-order__status-actions button:hover { color: #9f1239; }
+:root[data-theme="light"] .mnshop-buyer-order__status--processing { background: #dbeafe; color: #1d4ed8; }
+:root[data-theme="light"] .mnshop-buyer-order__status--shipped { background: #f3e8ff; color: #7e22ce; }
+:root[data-theme="light"] .mnshop-buyer-order__status--delivered { background: #d1fae5; color: #047857; }
+:root[data-theme="light"] .mnshop-buyer-order__status--cancelled { background: #ffe4e6; color: #be123c; }
+
 :root {
   color-scheme: dark;
   --page-bg: #0a0a0a;

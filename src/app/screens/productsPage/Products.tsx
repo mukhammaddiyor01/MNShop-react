@@ -1,4 +1,5 @@
 import TuneIcon from "@mui/icons-material/Tune";
+import { formatKrw } from "../../../lib/currency";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { ProductCard } from "../../components/product/ProductCard";
@@ -121,6 +122,9 @@ export function Products() {
   const loadError = useAppSelector(retrieveCatalogProductsError);
   const isLoading = useAppSelector(retrieveCatalogProductsLoading);
   const [selectedColors, setSelectedColors] = useState<string[]>([]);
+  const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
+  const [sort, setSort] = useState("newest");
+  const [maxPrice, setMaxPrice] = useState<number | null>(null);
   const searchParams = new URLSearchParams(location.search);
   const activeCategory = getActiveCategory(searchParams.get("category"));
   const hero = catalogHeroes[activeCategory];
@@ -164,11 +168,26 @@ export function Products() {
   const availableColors = Array.from(
     new Set(categoryProducts.flatMap((product) => product.colors)),
   );
-  const visibleProducts = selectedColors.length
-    ? categoryProducts.filter((product) =>
-        product.colors.some((color) => selectedColors.includes(color)),
-      )
-    : categoryProducts;
+  const priceCeiling = Math.max(1000, ...categoryProducts.map((product) => product.price));
+  const priceLimit = Math.min(maxPrice ?? priceCeiling, priceCeiling);
+  const availableSizes = Array.from(new Set(categoryProducts.flatMap((product) => product.sizes)));
+  const visibleProducts = categoryProducts.filter((product) =>
+    product.price <= priceLimit &&
+    (!selectedColors.length || product.colors.some((color) => selectedColors.includes(color))) &&
+    (!selectedSizes.length || product.sizes.some((size) => selectedSizes.includes(size)))
+  ).sort((a, b) => {
+    if (sort === "price-low") return a.price - b.price;
+    if (sort === "price-high") return b.price - a.price;
+    if (sort === "popular") return b.views - a.views || b.likes - a.likes;
+    // The products API returns newest first; preserve that order.
+    return 0;
+  });
+
+  useEffect(() => {
+    setSelectedColors([]);
+    setSelectedSizes([]);
+    setMaxPrice(null);
+  }, [activeCategory]);
 
   const toggleColor = (color: string) => {
     setSelectedColors((current) =>
@@ -192,7 +211,7 @@ export function Products() {
           <label className="mnshop-catalog__sort">
             <TuneIcon aria-hidden="true" />
             <span className="sr-only">Sort products</span>
-            <select defaultValue="newest">
+            <select value={sort} onChange={(event) => setSort(event.target.value)}>
               <option value="newest">Newest</option>
               <option value="popular">Most popular</option>
               <option value="price-low">Price: low to high</option>
@@ -202,19 +221,20 @@ export function Products() {
         </div>
 
         <div className="mnshop-catalog__layout">
-          <aside className="">
+          <aside className="mnshop-catalog__filters" aria-label="Product filters">
             <div className="mnshop-catalog__price-filter">
               <label htmlFor="catalog-price">Maximum price</label>
               <input
                 id="catalog-price"
                 type="range"
-                min="10000"
-                max="50000"
-                defaultValue="50000"
+                min="0"
+                max={priceCeiling}
+                value={priceLimit}
+                onChange={(event) => setMaxPrice(Number(event.target.value))}
               />
               <div>
-                <span>10K KRW</span>
-                <span>50K KRW</span>
+                <span>{formatKrw(0)}</span>
+                <output htmlFor="catalog-price">{formatKrw(priceLimit)}</output>
               </div>
             </div>
 
@@ -247,8 +267,10 @@ export function Products() {
               <div className="mnshop-catalog__size-filter">
                 <p>Sizes</p>
                 <div>
-                  {["XS", "S", "M", "L", "XL", "XXL"].map((size) => (
-                    <button key={size} type="button">
+                  {availableSizes.map((size) => (
+                    <button key={size} type="button" aria-pressed={selectedSizes.includes(size)}
+                      onClick={() => setSelectedSizes((current) => current.includes(size)
+                        ? current.filter((item) => item !== size) : [...current, size])}>
                       {size}
                     </button>
                   ))}
@@ -266,6 +288,7 @@ export function Products() {
             <div className="mnshop-catalog__grid">
               {isLoading && <p>Loading products…</p>}
               {!isLoading && loadError && <p role="alert">{loadError}</p>}
+              {!isLoading && !loadError && !visibleProducts.length && <p role="status">No products match your filters.</p>}
               {!isLoading &&
                 !loadError &&
                 visibleProducts.map((product) => (

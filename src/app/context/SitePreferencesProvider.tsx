@@ -27,7 +27,7 @@ export function SitePreferencesProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const savedTheme = localStorage.getItem(
-      "mnshop-theme",
+      "mnshop-buyer-theme",
     ) as SiteTheme | null;
     const nextTheme: SiteTheme = savedTheme === "light" ? "light" : "dark";
     const savedLanguage = localStorage.getItem("mnshop-language") as SiteLanguage | null;
@@ -44,7 +44,7 @@ export function SitePreferencesProvider({ children }: { children: ReactNode }) {
     if (!ready) return;
 
     document.documentElement.dataset.theme = theme;
-    localStorage.setItem("mnshop-theme", theme);
+    localStorage.setItem("mnshop-buyer-theme", theme);
   }, [ready, theme]);
 
   useEffect(() => {
