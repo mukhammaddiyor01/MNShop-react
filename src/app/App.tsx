@@ -1,5 +1,7 @@
 import React from "react";
-import { Route, Switch, useLocation } from "react-router-dom";
+import { PageSeo } from "./components/shared/PageSeo";
+import { getPageMetadata } from "../lib/seo";
+import { Link, Route, Switch, useLocation } from "react-router-dom";
 import { HomePage } from "./screens/homePage";
 import { HelpPage } from "./screens/helpPage/index";
 import { OrdersPage } from "./screens/ordersPage/index";
@@ -32,6 +34,9 @@ function App() {
   console.log(location);
   return (
     <>
+      {!/^\/products\/[^/]+\/?$/.test(location.pathname) && (
+        <PageSeo metadata={getPageMetadata(location.pathname, location.search)} />
+      )}
       {location.pathname === "/" ? <HomeNavbar /> : <OtherNavbar />}
 
       {/* A <Switch> looks through its children <Route>s and
@@ -82,8 +87,11 @@ function App() {
         <Route path="/user-page">
           <UserPage />
         </Route>
-        <Route path="/">
+        <Route exact path="/">
           <HomePage />
+        </Route>
+        <Route>
+          <main className="mnshop-product-not-found"><h1>Page not found</h1><Link to="/">Back to MNShop</Link></main>
         </Route>
       </Switch>
       <Footer />

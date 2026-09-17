@@ -54,6 +54,8 @@
     "build:shop": "react-scripts build",
     "build:seller": "yarn --cwd src-seller build",
     "build:all": "yarn build:seller && yarn build",
+    "build:release": "node scripts/build-release.cjs",
+    "test:release": "node --test scripts/build-release.test.cjs",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

@@ -76,7 +76,7 @@ class BuyerProductService {
   private readonly path = serverApi;
 
   public async getProducts(): Promise<Product[]> {
-    const result = await axios.get<ProductListResponse>(`${this.path}/products`);
+    const result = await axios.get<ProductListResponse>(`${this.path}/api/products`);
     return (result.data.data || []).map(normalizeProduct);
   }
 

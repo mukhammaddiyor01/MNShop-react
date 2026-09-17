@@ -12,6 +12,8 @@ import { Product } from "../../context/ContextProvider";
 import { money } from "../../data/products";
 import { useGlobals } from "../../hooks/useGlobals";
 import BuyerProductService from "../../services/BuyerProductService";
+import { PageSeo } from "../../components/shared/PageSeo";
+import { getProductMetadata } from "../../../lib/seo";
 
 type ChosenProductParams = {
   productId: string;
@@ -362,6 +364,8 @@ export function ChosenProduct() {
 
   useEffect(() => {
     let active = true;
+    setIsLoading(true);
+    setProduct(null);
     const productService = new BuyerProductService();
 
     productService
@@ -396,17 +400,18 @@ export function ChosenProduct() {
   }, [authUser?.role, productId]);
 
   if (isLoading) {
-    return <main className="mnshop-product-not-found">Loading product…</main>;
+    return <main className="mnshop-product-not-found"><PageSeo metadata={getProductMetadata(`/products/${productId}`, null, true)} />Loading product…</main>;
   }
 
   if (!product) {
     return (
       <main className="mnshop-product-not-found">
+        <PageSeo metadata={getProductMetadata(`/products/${productId}`, null, false)} />
         <h1>Product not found</h1>
         <Link to="/products">Back to products</Link>
       </main>
     );
   }
 
-  return <ProductDetail key={product.id} product={product} />;
+  return <><PageSeo metadata={getProductMetadata(`/products/${productId}`, product.id === productId ? product : null, product.id !== productId)} /><ProductDetail key={product.id} product={product} /></>;
 }
