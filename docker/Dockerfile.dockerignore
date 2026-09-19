@@ -1,0 +1,26 @@
+# Build context ota papka, ammo faqat shu ikki repository yuboriladi.
+**
+!mnshop-react/
+!mnshop-react/**
+!MNShop/
+!MNShop/**
+# Secretlar, Git tarixi va laptopdagi tayyor dependency/buildlar yuborilmaydi.
+**/.git
+**/.git/**
+**/.env*
+**/node_modules
+**/node_modules/**
+**/build
+**/build/**
+**/dist
+**/dist/**
+**/uploads
+**/uploads/**
+**/coverage
+**/coverage/**
+**/.codex
+**/.agents
+**/.DS_Store
+**/*.log
+**/*.pem
+**/*.key

@@ -1,0 +1,55 @@
+# Ikkala repository bir papkada yonma-yon turishi kerak: MNShop/ va mnshop-react/.
+services:
+  mnshop:
+    # Image ichida buyer, seller buildlari va kompilyatsiya qilingan backend bo‘ladi.
+    build:
+      context: ..
+      dockerfile: mnshop-react/docker/Dockerfile
+      # Faqat ommaviy frontend sozlamalari. Secret keylarni build args ga yozmang.
+      args:
+        PUBLIC_SITE_URL: ${PUBLIC_SITE_URL:-https://mnshop.uz}
+        PUBLIC_API_URL: ${PUBLIC_API_URL:-https://mnshop.uz}
+        REACT_APP_GOOGLE_CLIENT_ID: ${REACT_APP_GOOGLE_CLIENT_ID:-}
+    image: mnshop:local
+    init: true
+    restart: unless-stopped
+    # Backend secretlari faqat runtime paytida beriladi; image ichiga ko‘chirilmaydi.
+    env_file:
+      - ../MNShop/.env
+    environment:
+      NODE_ENV: production
+      PORT: "1213"
+      BUYER_FRONTEND_URL: ${PUBLIC_SITE_URL:-https://mnshop.uz}
+      SELLER_FRONTEND_URL: ${PUBLIC_SITE_URL:-https://mnshop.uz}
+    # Faqat serverning o‘zidan ochiladi. Nginx/Caddy HTTPS trafikni shu portga yuboradi.
+    ports:
+      - "127.0.0.1:1213:1213"
+    volumes:
+      # Mavjud mahsulot/profil rasmlari saqlanadi; container yangilansa ham o‘chmaydi.
+      # Serverda bu papka containerning node useriga (UID 1000) yozishga ruxsatli bo‘lsin.
+      - ../MNShop/uploads:/app/MNShop/uploads
+    # Backend tinglashni MongoDB ulanganidan keyingina boshlaydi.
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:1213/robots.txt').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      start_period: 60s
+      retries: 3
+    # Loglar server diskini cheksiz to‘ldirib yubormasligi uchun limit.
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    # Process root emas; qo‘shimcha Linux huquqlari talab qilinmaydi.
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    networks:
+      - production
+
+# Alohida MongoDB container yo‘q: mavjud MONGO_URL orqali MongoDB/Atlasga ulanadi.
+networks:
+  production:
+    driver: bridge
