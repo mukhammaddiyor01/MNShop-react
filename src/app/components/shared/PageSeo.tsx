@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { PageMetadata, SITE_URL } from "../../../lib/seo";
 
+const DEFAULT_SOCIAL_IMAGE = `${SITE_URL}/og/mnshop-preview.jpg`;
+
 export function PageSeo({ metadata }: { metadata: PageMetadata }) {
   const serialized = JSON.stringify(metadata);
   useEffect(() => {
@@ -18,13 +20,14 @@ export function PageSeo({ metadata }: { metadata: PageMetadata }) {
     meta("property", "og:title", page.title);
     meta("property", "og:description", page.description);
     meta("property", "og:url", SITE_URL + page.path);
-    meta("name", "twitter:card", "summary");
+    meta("name", "twitter:card", "summary_large_image");
     meta("name", "twitter:title", page.title);
     meta("name", "twitter:description", page.description);
     for (const [attribute, key] of [["property", "og:image"], ["name", "twitter:image"]] as const) {
-      if (page.image) meta(attribute, key, new URL(page.image, SITE_URL).href);
-      else document.head.querySelector(`meta[${attribute}="${key}"]`)?.remove();
+      meta(attribute, key, page.image ? new URL(page.image, SITE_URL).href : DEFAULT_SOCIAL_IMAGE);
     }
+    meta("property", "og:image:alt", page.title);
+    meta("name", "twitter:image:alt", page.title);
     let canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
     if (page.noindex) canonical?.remove();
     else {

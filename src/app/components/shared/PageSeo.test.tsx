@@ -37,6 +37,8 @@ test("navigation replaces metadata and removes stale schema and canonical", () =
   const render = (path: string) => act(() => { root.render(<PageSeo metadata={getPageMetadata(path)} />); });
   render("/");
   expect(document.getElementById("mnshop-seo-jsonld")).not.toBeNull();
+  expect(document.head.querySelector('meta[property="og:image"]')?.getAttribute("content")).toBe(`${SITE_URL}/og/mnshop-preview.jpg`);
+  expect(document.head.querySelector('meta[name="twitter:card"]')?.getAttribute("content")).toBe("summary_large_image");
   render("/login");
   expect(document.getElementById("mnshop-seo-jsonld")).toBeNull();
   expect(document.head.querySelector('link[rel="canonical"]')).toBeNull();
