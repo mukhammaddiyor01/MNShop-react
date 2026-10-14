@@ -1,7 +1,19 @@
 import { PreparedBuyerPayment } from "./BuyerPaymentService";
 
 type TossPaymentInstance = {
-  requestPayment: (input: Record<string, unknown>) => Promise<void>;
+  requestPayment: (input: TossPaymentRequest) => Promise<void>;
+};
+
+type TossPaymentRequest = {
+  method: "CARD";
+  amount: { value: number; currency: string };
+  orderId: string;
+  orderName: string;
+  successUrl: string;
+  failUrl: string;
+  customerName: string;
+  customerEmail: string;
+  flowMode: "DEFAULT";
 };
 
 type TossPaymentsFactory = (clientKey: string) => {
@@ -63,5 +75,6 @@ export async function openTossPaymentWindow(
     failUrl: payment.failUrl,
     customerName: buyer.fullName,
     customerEmail: buyer.email,
+    flowMode: "DEFAULT",
   });
 }

@@ -221,9 +221,13 @@ export function CheckoutPage() {
 
     try {
       await openTossPaymentWindow(preparedPayment, authUser);
-    } catch {
+    } catch (error) {
+      const message =
+        error instanceof Error && error.message
+          ? error.message
+          : "The Toss test payment window could not be opened.";
       setPaymentWindowError(
-        "The Toss test payment window could not be opened.",
+        `The Toss test payment window could not be opened. ${message}`,
       );
     }
   };

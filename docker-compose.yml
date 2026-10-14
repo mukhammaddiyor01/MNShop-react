@@ -19,6 +19,7 @@ services:
     environment:
       NODE_ENV: production
       PORT: "1213"
+      FRONTEND_URL: ${PUBLIC_SITE_URL:-https://mnshop.uz}
       BUYER_FRONTEND_URL: ${PUBLIC_SITE_URL:-https://mnshop.uz}
       SELLER_FRONTEND_URL: ${PUBLIC_SITE_URL:-https://mnshop.uz}
     # Faqat serverning o‘zidan ochiladi. Nginx/Caddy HTTPS trafikni shu portga yuboradi.

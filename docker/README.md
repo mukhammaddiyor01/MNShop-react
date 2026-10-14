@@ -2,7 +2,7 @@
 
 Repositorylar yonma-yon bo‘lsin: `MNShop/` va `mnshop-react/`. Buyruqlarni `mnshop-react` ichidan bajaring.
 
-1. Backend `MNShop/.env` ichida mavjud `MONGO_URL`, `SESSION_SECRET`, Google va payment sozlamalari bo‘lsin. Faylni Gitga qo‘shmang. MongoDB tashqi server/Atlasda bo‘lsa container unga kira olishi kerak; container ichidagi `localhost` laptop/server MongoDB’si emas.
+1. Backend `MNShop/.env` ichida mavjud `MONGO_URL`, `SESSION_SECRET`, Google va payment sozlamalari bo‘lsin. Toss test oynasi uchun bir xil test key juftligini `TOSS_CLIENT_KEY` va `TOSS_SECRET_KEY` sifatida yozing (`test_ck_` + `test_sk_` yoki `test_gck_` + `test_gsk_`). `TOSS_SECRET_KEY`ni frontendga yozmang. Faylni Gitga qo‘shmang. MongoDB tashqi server/Atlasda bo‘lsa container unga kira olishi kerak; container ichidagi `localhost` laptop/server MongoDB’si emas.
 2. Frontend `.env` ichidagi ommaviy `REACT_APP_GOOGLE_CLIENT_ID` Compose tomonidan buildga beriladi. Secret Google key yoki Toss secretni frontendga bermang.
 3. `MNShop/uploads` mavjud rasmlar bilan serverga ko‘chirilsin va UID 1000 yozishi mumkin bo‘lsin. Bu papkani va database’ni alohida backup qiling. Huquqlarni o‘zgartirishdan oldin serverdagi egasini tekshiring; `chmod 777` ishlatmang.
 4. `docker compose config --quiet` bilan tekshiring. Oddiy `docker compose config` secret qiymatlarni terminalga chiqarishi mumkin.
