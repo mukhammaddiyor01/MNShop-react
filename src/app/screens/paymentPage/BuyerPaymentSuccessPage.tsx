@@ -13,6 +13,18 @@ export function BuyerPaymentSuccessPage() {
   const [status, setStatus] = useState("Confirming your payment…");
   const [shouldRedirectToOrders, setShouldRedirectToOrders] = useState(false);
   const hasConfirmed = useRef(false);
+  const isMounted = useRef(true);
+  const paymentActions = useRef({ onDeleteAll, setOrderBuilder });
+
+  useEffect(() => {
+    paymentActions.current = { onDeleteAll, setOrderBuilder };
+  }, [onDeleteAll, setOrderBuilder]);
+
+  useEffect(() => {
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
 
   useEffect(() => {
     if (!authUser) return;
@@ -32,8 +44,8 @@ export function BuyerPaymentSuccessPage() {
       }
 
       hasConfirmed.current = true;
-      onDeleteAll();
-      setOrderBuilder(new Date());
+      paymentActions.current.onDeleteAll();
+      paymentActions.current.setOrderBuilder(new Date());
       setStatus("Test payment confirmed. Opening your orders…");
       setShouldRedirectToOrders(true);
       return;
@@ -50,31 +62,21 @@ export function BuyerPaymentSuccessPage() {
 
     hasConfirmed.current = true;
 
-    let active = true;
     buyerPaymentService
       .confirmPayment({ paymentKey, orderId, amount })
       .then(() => {
-        if (!active) return;
-        onDeleteAll();
-        setOrderBuilder(new Date());
+        if (!isMounted.current) return;
+        paymentActions.current.onDeleteAll();
+        paymentActions.current.setOrderBuilder(new Date());
         setStatus("Payment confirmed. Opening your orders…");
         setShouldRedirectToOrders(true);
       })
       .catch(() => {
-        if (active) setError("Payment could not be confirmed. Please contact MNShop support.");
+        if (isMounted.current) {
+          setError("Payment could not be confirmed. Please contact MNShop support.");
+        }
       });
-
-    return () => {
-      active = false;
-    };
-  }, [
-    authUser,
-    history,
-    location.search,
-    location.state,
-    onDeleteAll,
-    setOrderBuilder,
-  ]);
+  }, [authUser, location.search, location.state]);
 
   useEffect(() => {
     if (!shouldRedirectToOrders) return;
