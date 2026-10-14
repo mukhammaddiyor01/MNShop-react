@@ -13,7 +13,6 @@ type TossPaymentRequest = {
   failUrl: string;
   customerName: string;
   customerEmail: string;
-  flowMode: "DEFAULT";
 };
 
 type TossPaymentsFactory = (clientKey: string) => {
@@ -75,6 +74,5 @@ export async function openTossPaymentWindow(
     failUrl: payment.failUrl,
     customerName: buyer.fullName,
     customerEmail: buyer.email,
-    flowMode: "DEFAULT",
   });
 }
