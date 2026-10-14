@@ -23,6 +23,7 @@ import { OtherNavbar } from "./components/headers/OtherNavbar";
 import { CartDrawer } from "./components/headers/Basket";
 import { MobileBottomNav } from "./components/headers/MobileBottomNav";
 import { BackToTop } from "./components/shared/BackToTop";
+import { ScrollRestoration } from "./components/shared/ScrollRestoration";
 import { Footer } from "./components/footer";
 import "../css/navbar.scss";
 import "../css/footer.scss";
@@ -31,9 +32,9 @@ import "../css/auth.scss";
 
 function App() {
   const location = useLocation();
-  console.log(location);
   return (
     <>
+      <ScrollRestoration />
       {!/^\/products\/[^/]+\/?$/.test(location.pathname) && (
         <PageSeo metadata={getPageMetadata(location.pathname, location.search)} />
       )}
